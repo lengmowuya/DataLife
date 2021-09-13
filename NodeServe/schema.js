@@ -27,4 +27,6 @@ Export.EmotionModel.find({},(err,res)=>{
         }
     }
 })
-exports.Export = Export;
+// exports.ThoughtModel = Export.ThoughtModel;
+// exports.EmotionModel = Export.EmotionModel;
+module.exports = Export;

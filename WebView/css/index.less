@@ -1,3 +1,8 @@
+body{
+    font-family: "黑体";
+    // font-family: "华文黑体";
+    // font-family: "幼圆";
+}
 #ThoughtPage{
     padding:0px 1.5%;
 }
@@ -64,13 +69,104 @@ header{
     }
 }
 .body{
-    ul{
-        list-style: none;
-        li{
-            padding:12px;
+    .EnterBlock{
+        display:flex;
+        margin:0 auto;
+        margin-bottom:15px;
+        // padding:0px 15%;
+        max-width: 600px;
+        flex-direction: column;
+        textarea{
+            flex-grow: 1;
+            border:1px solid #e5e9ef;
+            background:#fff;
+            font-size:12px;
             border-radius:4px;
-            background-color:#fff;
-            margin-bottom:8px;
+            outline: none;
+            padding:5px;
+            &:hover{
+                border-color:#00a1d6;
+            }
+            &:focus{
+                border-color:#00a1d6;
+            }
         }
+        .EnterTools{
+            padding-top:5px;
+            display:flex;
+            justify-content: space-between;
+            .EnterEmontion{
+                border:1px solid #e5e9ef;
+                background:#fff;
+                border-radius:15px;
+                height:26px;
+                width:60px;
+                color:#999;
+                font-size:12px;
+                cursor: pointer;
+                transition:all 0.25s;
+                user-select: none;
+                &:hover{
+                    border-color:#00a1d6;
+                    color:#00a1d6;
+                }
+            }
+            .EnterButton{
+                width:66px;
+                flex-shrink: 0;
+                height:26px;
+                border:none;
+                background:#00a1d6;
+                margin-left:10px;
+                // border-radius:10px;
+                // margin:5px;
+                color:#fff;
+                cursor:pointer;
+                transition: all 0.25s;
+                user-select: none;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
+
+    }
+    .ThougthList{
+        list-style: none;
+        .DateLi{
+            padding-left:15px;
+            .DateLiTitle{
+                padding:10px;
+                // padding-left:-15px;
+                margin-left:-15px;
+                margin-top:30px;
+                color:#00a1d6;
+                font-weight: bold;
+                font-size: 18px;
+                .DateThoughtNumber{
+                    font-size:12px;
+                    color:#fff;
+                    background:#00a1d6;
+                    border-radius:3px;
+                    padding:2px 5px;
+                    background:#fff;
+                    color:#999;
+                    font-weight: normal;
+                }
+            }
+            li{
+                padding:12px;
+                border-radius:4px;
+                background-color:#fff;
+                margin-bottom:8px;
+                font-size:14px;
+                color:#252525;
+                .thou_time{
+                    font-size:12px;
+                    color:#999;
+                }
+            }
+        }
+
     }
 }

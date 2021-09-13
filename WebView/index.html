@@ -19,14 +19,26 @@
         </header>
         <div class="body">
             <div class="EnterBlock">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <button>记录</button>
+                <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
+                <div class="EnterTools">
+                    <button class="EnterEmontion">{{thoughtEmotion.name}}</button>
+                    <button class="EnterButton" @click="writeThou">记录</button>
+                </div>
             </div>
             <ul class="ThougthList">
+                <div class="DateLi" v-for="(item,key) in dateList" :key="key">
+                    <p class="DateLiTitle">{{item.dateString}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
+                    <li v-for="(li,key) in item.thoughtList" :key="key">
+                        {{li.text}}
+                        <!-- <span class="thou_time">{{getDateString(FormatDate(li.time))}}</span> -->
+                    </li>
+                </div>
             </ul>
         </div>
         <footer></footer>
     </div>
+    <script src="./js/ToolsFunction.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="./js/page_thought.js"></script>
     <script src="./js/Class.js"></script>
     <script src="./js/DB.js"></script>

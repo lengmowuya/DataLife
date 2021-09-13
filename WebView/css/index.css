@@ -1,3 +1,6 @@
+body {
+  font-family: "黑体";
+}
 #ThoughtPage {
   padding: 0px 1.5%;
 }
@@ -53,12 +56,97 @@ header ul li:nth-child(2) i {
 header ul li:hover a {
   color: #00a1d6;
 }
-.body ul {
+.body .EnterBlock {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  max-width: 600px;
+  flex-direction: column;
+}
+.body .EnterBlock textarea {
+  flex-grow: 1;
+  border: 1px solid #e5e9ef;
+  background: #fff;
+  font-size: 12px;
+  border-radius: 4px;
+  outline: none;
+  padding: 5px;
+}
+.body .EnterBlock textarea:hover {
+  border-color: #00a1d6;
+}
+.body .EnterBlock textarea:focus {
+  border-color: #00a1d6;
+}
+.body .EnterBlock .EnterTools {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.body .EnterBlock .EnterTools .EnterEmontion {
+  border: 1px solid #e5e9ef;
+  background: #fff;
+  border-radius: 15px;
+  height: 26px;
+  width: 60px;
+  color: #999;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s;
+  user-select: none;
+}
+.body .EnterBlock .EnterTools .EnterEmontion:hover {
+  border-color: #00a1d6;
+  color: #00a1d6;
+}
+.body .EnterBlock .EnterTools .EnterButton {
+  width: 66px;
+  flex-shrink: 0;
+  height: 26px;
+  border: none;
+  background: #00a1d6;
+  margin-left: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s;
+  user-select: none;
+}
+.body .EnterBlock .EnterTools .EnterButton:hover {
+  opacity: 0.8;
+}
+.body .ThougthList {
   list-style: none;
 }
-.body ul li {
+.body .ThougthList .DateLi {
+  padding-left: 15px;
+}
+.body .ThougthList .DateLi .DateLiTitle {
+  padding: 10px;
+  margin-left: -15px;
+  margin-top: 30px;
+  color: #00a1d6;
+  font-weight: bold;
+  font-size: 18px;
+}
+.body .ThougthList .DateLi .DateLiTitle .DateThoughtNumber {
+  font-size: 12px;
+  color: #fff;
+  background: #00a1d6;
+  border-radius: 3px;
+  padding: 2px 5px;
+  background: #fff;
+  color: #999;
+  font-weight: normal;
+}
+.body .ThougthList .DateLi li {
   padding: 12px;
   border-radius: 4px;
   background-color: #fff;
   margin-bottom: 8px;
+  font-size: 14px;
+  color: #252525;
+}
+.body .ThougthList .DateLi li .thou_time {
+  font-size: 12px;
+  color: #999;
 }

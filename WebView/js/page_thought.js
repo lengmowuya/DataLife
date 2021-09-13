@@ -5,7 +5,8 @@ let Controldata = {
     thoughtEmotion:{
         name:"状态"
     },
-    Emotion:[]
+    EmotionList:[],
+    showEmotionList:false,
 }
 const ThoughtControldata = {
     data(){
@@ -22,6 +23,15 @@ const ThoughtControldata = {
                     page_thought();
                 });
             this.writeText = "";
+        },
+        destoryThou(_id){
+            let data = {
+                _id
+            }
+            axios.post('http://127.0.0.1:3000/thought/remove',data)
+            .then(res=>{
+                page_thought();
+            });
         },
         FormatDate,
         getDateString,
@@ -76,6 +86,11 @@ function page_thought(){
         console.log(res);
         TCCase.setThoughtList();
         TCCase.initDateList();
+        TCCase.$forceUpdate();
+    });
+    axios.get('http://127.0.0.1:3000/emotion/all')
+    .then(res=>{
+        Controldata.EmotionList = res.data;
         TCCase.$forceUpdate();
     });
 }

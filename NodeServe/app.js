@@ -30,10 +30,24 @@ app.post('/thought/add',(req,res)=>{
         res.send({type:'success'});
     });
 })
+app.post('/thought/remove',(req,res)=>{
+    console.log(req.body);
+    Export.ThoughtModel.remove({_id:req.body._id},(err,result)=>{
+        if(err) res.send({type:'error'});
+        res.send();
+    })
+})
 app.get('/thought/all',(req,res)=>{
     Export.ThoughtModel.find({},(err,result)=>{
         if(err) res.send({type:'error'});
         res.send(result);
+    })
+})
+app.get('/emotion/all',(req,res)=>{
+    Export.EmotionModel.find({},(err,result)=>{
+        if(err) res.send({type:'error'});
+        res.send(result);
+        // console.log(result);
     })
 })
 app.listen(port,()=>{

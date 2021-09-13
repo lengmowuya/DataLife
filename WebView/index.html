@@ -22,15 +22,21 @@
             <div class="EnterBlock">
                 <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
                 <div class="EnterTools">
-                    <button class="EnterEmontion">{{thoughtEmotion.name}}</button>
+                    <button class="EnterEmontion" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
                     <button class="EnterButton" @click="writeThou">记录</button>
+                </div>
+                <div class="EmotionList" v-show="showEmotionList">
+                    <ul>
+                        <li v-for="(item,index) in EmotionList" :key="index">{{item.name}}</li>
+                    </ul>
                 </div>
             </div>
             <ul class="ThougthList">
                 <div class="DateLi" v-for="(item,key) in dateList" :key="key">
                     <p class="DateLiTitle">{{item.dateString}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
                     <li v-for="(li,key) in item.thoughtList" :key="key">
-                        {{li.text}}
+                        <span class="ThoughtText">{{li.text}}</span>
+                        <button class="DestoryThought" @click="destoryThou(li._id)">删除</button>
                         <!-- <span class="thou_time">{{getDateString(FormatDate(li.time))}}</span> -->
                     </li>
                 </div>

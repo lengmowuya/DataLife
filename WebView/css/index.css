@@ -95,6 +95,11 @@ header ul li:hover a {
   transition: all 0.25s;
   user-select: none;
 }
+.body .EnterBlock .EnterTools .EnterEmontion.active {
+  border-color: #00a1d6;
+  background: #00a1d6;
+  color: #fff;
+}
 .body .EnterBlock .EnterTools .EnterEmontion:hover {
   border-color: #00a1d6;
   color: #00a1d6;
@@ -140,6 +145,11 @@ header ul li:hover a {
   align-items: center;
   transition: all 0.25s;
   user-select: none;
+}
+.body .EnterBlock .EmotionList ul li.active {
+  border-color: #00a1d6;
+  background: #00a1d6;
+  color: #fff;
 }
 .body .EnterBlock .EmotionList ul li:hover {
   border-color: #00a1d6;

@@ -2,21 +2,33 @@ let Controldata = {
     List:[],
     writeText:"",
     dateList:[],
-    thoughtEmotion:{
-        name:"状态"
-    },
     EmotionList:[],
+    thoughtEmotion:{
+        name:"状态",
+        _id:null
+    },
     showEmotionList:false,
+    date:{}
 }
 const ThoughtControldata = {
     data(){
         return Controldata;
     },
     methods:{
+        //添加短文
         writeThou(){
             // ThoughtSurface.add(this.writeText);
             let data = {
-                text:this.writeText
+                text:this.writeText,
+                emotion:this.thoughtEmotion._id
+            }
+            if(this.writeText.trim() == ""){
+                alert("记录内容不能为空");
+                return;
+            }
+            if(this.thoughtEmotion._id == null){
+                alert("请选择一个状态");
+                return;
             }
             axios.post('http://127.0.0.1:3000/thought/add',data)
                 .then(res=>{
@@ -24,6 +36,7 @@ const ThoughtControldata = {
                 });
             this.writeText = "";
         },
+        //删除短文
         destoryThou(_id){
             let data = {
                 _id
@@ -32,6 +45,10 @@ const ThoughtControldata = {
             .then(res=>{
                 page_thought();
             });
+        },
+        changeEmotion(item){
+            this.thoughtEmotion = item;
+            // TCCase.$forceUpdate();
         },
         FormatDate,
         getDateString,
@@ -73,6 +90,31 @@ const ThoughtControldata = {
                     }
                 }
             });
+            this.dateList.sort((a,b)=>{
+                return b.timeSort - a.timeSort ;
+            })
+            let that = this;
+            this.dateList.forEach((item)=>{
+                let nowYear = that.date.year;
+                let itemYear = item.date.year;
+                let nowMonth = that.date.month;
+                let itemMonth = item.date.month;
+                let nowDay = that.date.day;
+                let itemDay = item.date.day;
+                item.showName = item.dateString;
+                if(nowYear == itemYear){
+                    item.showName = itemMonth + '-' + itemDay;
+                }
+                if(nowYear == itemYear && nowMonth == itemMonth && nowDay == itemDay){
+                    item.showName = '今天';
+                }
+                if(nowYear == itemYear && nowMonth == itemMonth && nowDay == itemDay + 1){
+                    item.showName = '昨天';
+                }
+                if(nowYear == itemYear && nowMonth == itemMonth && nowDay == itemDay + 2){
+                    item.showName = '前天';
+                }
+            })
         }
     }
 }
@@ -80,6 +122,7 @@ let ThoughtControl = Vue.createApp(ThoughtControldata);
 let TCCase = ThoughtControl.mount("#ThoughtPage");
 
 function page_thought(){
+    Controldata.date = FormatDate(new Date().getTime());
     axios.get('http://127.0.0.1:3000/thought/all')
     .then(res=>{
         Controldata.List = res.data;
@@ -90,7 +133,14 @@ function page_thought(){
     });
     axios.get('http://127.0.0.1:3000/emotion/all')
     .then(res=>{
+        // res.data.forEach(item=>{
+        //     item.id = item._id;
+        //     item._id = item.id;
+        //     // Controldata.EmotionList.push(item);
+        // })
         Controldata.EmotionList = res.data;
+        // console.log(res.data[0])
         TCCase.$forceUpdate();
     });
+    // debugger ;
 }

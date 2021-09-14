@@ -1,16 +1,20 @@
 let mongoose = require("mongoose");
-let  ThoughtSchema = {
-    text:String,
-    time:{
-        type:Number,
-        default:new Date().getTime()
-    }
-}
 let  EmotionSchema = {
     name:String,
     time:{
         type:Number,
         default:new Date().getTime()
+    }
+}
+let  ThoughtSchema = {
+    text:String,
+    time:{
+        type:Number,
+        default:new Date().getTime()
+    },
+    emotion:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Emotion'
     }
 }
 let Export = {};

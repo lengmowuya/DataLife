@@ -25,7 +25,7 @@ Export.EmotionModel = mongoose.model('Emotion',EmotionSchema,"Emotion");
 Export.EmotionModel.find({},(err,res)=>{
     // console.log(res);
     if(res.length == 0){
-        let NormalEmotion = ['忧愁','伤感',"无奈","愤怒","悲愤","痛惜","恍惚"];
+        let NormalEmotion = ['忧愁','伤感',"无奈","愤怒","悲愤","痛惜","恍惚","埋怨","痛苦","兴奋","顿悟","无趣","恶心","憎恨","沮丧"];
         for(let i = 0;i<NormalEmotion.length;i++){
             new Export.EmotionModel({name:NormalEmotion[i]}).save();
         }

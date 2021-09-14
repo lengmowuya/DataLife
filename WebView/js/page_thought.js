@@ -52,6 +52,7 @@ const ThoughtControldata = {
         },
         FormatDate,
         getDateString,
+        getTimeString,
         setThoughtList(){
             this.List.forEach((item)=>{
                 item.date = FormatDate(item.time);

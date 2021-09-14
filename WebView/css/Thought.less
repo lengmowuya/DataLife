@@ -1,74 +1,9 @@
-body{
-    font-family: "黑体";
-    // font-family: "华文黑体";
-    // font-family: "幼圆";
-}
 #ThoughtPage{
     padding:0px 1.5%;
 }
-header{
-    width:100%;
-    height:80px;
-    box-sizing: border-box;
-    ul{
-        height:60px;
-        display:flex;
-        box-shadow: 0 0 0 1px #eee;
-        background:#fff;
-        border-radius: 0 0 4px 4px;
-        padding:0px 20px;
-        box-sizing: border-box;
-        li{
-            list-style: none;
-            // width:120px;
-            margin-right:16px;
-            height:100%;
-            text-align: center;
-            font-size:16px;
-            cursor: pointer;
-            // font-weight: bold;
-            // margin:10px;
-            user-select: none;
-            transition:all 0.3s;
-            a{
-                width:100%;
-                height: 100%;
-                // color:#fff; 
-                text-decoration: none;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-                color:#252525;
-                box-sizing: border-box;
-                border-bottom:3px solid transparent;
-                transition: all 0.3s;
-                i{
-                    margin-right: 4px;
-                }
-            }
-            &.active{
-                a{
-                    color:#00a1d6;
-                    border-bottom:3px solid #00a1d6;
-                }
-            }
-            &:nth-child(1) i{
-                color:#00c091;
-            }
-            &:nth-child(2) i{
-                color:#fb7299;
-            }
-            &:hover{
-                a{
-                    color:#00a1d6;
-                }
-                // font-size: 32px;;
-                // opacity: 0.8;
-            }
-        }
-    }
-}
+// 页面主体
 .body{
+    // 输入板块
     .EnterBlock{
         display:flex;
         margin:0 auto;
@@ -134,6 +69,7 @@ header{
                 }
             }
         }
+        // 输入板块-状态块选择
         .EmotionList{
             background:#fff;
             padding:10px;
@@ -144,6 +80,7 @@ header{
             ul{
                 list-style: none;
                 display:flex;
+                flex-wrap: wrap;
                 li{
                     // padding:4px 6px;
                     width:62px;
@@ -154,13 +91,14 @@ header{
                     border-radius:26px;
                     font-size:14px;
                     margin-right: 6px;
+                    user-select: none;
                     // text-align: center;
                     display:flex;
                     justify-content: center;
                     align-items: center;
                     transition:all 0.25s;
+                    margin-bottom:5px;
                     // opacity: 0.5;
-                    user-select: none;
                     &.active{
                         border-color:#00a1d6;
                         background:#00a1d6;
@@ -178,6 +116,7 @@ header{
             }
         }
     }
+    // 历史短文列表
     .ThougthList{
         list-style: none;
         .DateLi{
@@ -208,28 +147,55 @@ header{
                 margin-bottom:8px;
                 display:flex;
                 margin-right:15px;
-                .ThoughtText{
-                    font-size:14px;
-                    color:#252525;
+                .ThoughtMain{
                     flex-grow: 1;
+                    .ThoughtText{
+                        font-size:14px;
+                        color:#252525;
+                    }
+                    .ThoughtDetails{
+                        padding-top:5px;
+                        display:flex;
+                        .ThoughtEmotion{
+                            width:40px;
+                            height:16px;
+                            border:1px solid #f2f2f2;
+                            cursor: pointer;
+                            color:#999;
+                            border-radius:26px;
+                            font-size:12px;
+                            margin-right: 6px;
+                            user-select: none;
+                            display:flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            border-color:#00a1d6;
+                            background:#00a1d6;
+                            color:#fff;
+                        }
+                        .thou_time{
+                            line-height: 18px;
+                            font-size:12px;
+                            color:#999;
+                        }
+                    }
                 }
-                .thou_time{
-                    font-size:12px;
-                    color:#999;
-                }
+
                 .DestoryThought{
                     border:none;
-                    padding:4px 6px;
                     flex-shrink: 0;
                     border-radius:4px;
-                    // background:#f4f4f4;
-                    // border:1px solid rgb(255, 90, 90);
-                    // color:red;
                     background:red;
                     color:#fff;
                     transition:all 0.25s;
                     opacity: 0.3;
                     cursor: pointer;
+                    width:40px;
+                    height:25px;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
                     &:hover{
                         opacity: 1;
                     }

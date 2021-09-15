@@ -9,18 +9,22 @@
     margin:0 auto;
     display:flex;
     .NewBlock{
-        height:80px;
+        height:85px;
         flex-grow: 1;
-        // background-color:#00a1d6;
         background-color:#fff;
         border-radius:4px;
         display:flex;
         flex-direction: column;
         padding:10px;
         box-sizing: border-box;
-        // box-shadow:0 11px 12px 0 #00a0d611;
-        // border:6px solid #fff;
         border:1px solid #e5e9ef;
+        transition:all 0.25s;
+        &:hover{
+            border-color:#00a1d6;
+        }
+        &:focus{
+            border-color:#00a1d6;
+        }
         .NewBlockName,
         .NewBlockDescribe{
             border:none;
@@ -37,7 +41,7 @@
         .NewBlockName{
             height:30px;
             flex-grow: 1;
-            margin-bottom:10px;
+            // margin-bottom:10px;
             font-size:30px;
             font-weight: bold;
             // background:tr
@@ -45,8 +49,54 @@
         }
         .NewBlockDescribe{
             flex-shrink: 0;
-            height:15px;
+            height:20px;
             font-size:15px;
+        }
+    }
+    .AddButton{
+        width:60px;
+        height:80px;
+        button{
+            width:100%;
+            height:100%;
+            background:transparent;
+            border-radius:8px;
+            color:tomato;
+            border:none;
+            font-size:46px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0.65;
+            transition:all 0.25s;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+}
+.MyAffair{
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    margin-top:40px;
+    .AffairLi{
+        margin:5px;
+        padding:5px;
+        border-radius: 4px;
+        background:#fff;
+        border:1px solid #e5e9ef;
+        width:30%;
+        flex-grow: 1;
+        .AffairLiName{
+            font-size:18px;
+            color:#00a0d6;
+            // font-weight: bold;
+        }
+        .AffairLiDescribe{
+            font-size:12px;
+            color:#00a0d699;
         }
     }
 }

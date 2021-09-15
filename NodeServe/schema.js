@@ -1,4 +1,29 @@
 let mongoose = require("mongoose");
+// 事务
+let AffairSchema = {
+    name:String,
+    describe:String,
+    time:{
+        type:Number,
+        default:new Date().getTime()
+    },
+    record:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'AffairRecord'
+    }
+}
+let AffairRecordSchema = {
+    name:String,
+    time:{
+        type:Number,
+        default:new Date().getTime()
+    },
+    affair:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Affair'
+    }
+}
+// 感悟-状态
 let  EmotionSchema = {
     name:String,
     time:{
@@ -6,6 +31,7 @@ let  EmotionSchema = {
         default:new Date().getTime()
     }
 }
+// 感悟-短文
 let  ThoughtSchema = {
     text:String,
     time:{
@@ -20,6 +46,8 @@ let  ThoughtSchema = {
 let Export = {};
 Export.ThoughtModel = mongoose.model('Thought',ThoughtSchema,"Thought");
 Export.EmotionModel = mongoose.model('Emotion',EmotionSchema,"Emotion");
+Export.AffairModel = mongoose.model('Affair',AffairSchema,"Affair");
+Export.AffairRecordModel= mongoose.model('AffairRecord',AffairRecordSchema,"AffairRecord");
 
 // 初始化状态数据
 Export.EmotionModel.find({},(err,res)=>{
@@ -31,6 +59,4 @@ Export.EmotionModel.find({},(err,res)=>{
         }
     }
 })
-// exports.ThoughtModel = Export.ThoughtModel;
-// exports.EmotionModel = Export.EmotionModel;
 module.exports = Export;

@@ -5,7 +5,8 @@ const app = express();
 const port = 3000;
 require('./db.js');
 require('./schema.js');
-require('./thought.js');
+let thoughtRouter = require('./thought.js');
+let affairRouter = require('./affair.js');
 let Export = require('./schema.js');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -22,43 +23,8 @@ app.all("*",function(req,res,next){
     else
         next();
 })
-// app.get('/',(req,res)=>{
-//     res.send(req.query);
-// })
-app.post('/thought/add',(req,res)=>{
-    req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
-    new Export.ThoughtModel(req.body).save((err,result)=>{
-        if(err) res.send({type:'error'});
-        res.send({type:'success'});
-    });
-})
-app.post('/thought/remove',(req,res)=>{
-    console.log(req.body);
-    Export.ThoughtModel.remove({_id:req.body._id},(err,result)=>{
-        if(err) res.send({type:'error'});
-        res.send();
-    })
-})
-app.get('/thought/all',(req,res)=>{
-    Export.ThoughtModel.find()
-        .populate('emotion')
-        .then(result=>{
-            // console.log(result);
-            res.send(result);
-        })
-    // res.send(result);
-    // console.log(result);
-    // labelModel.aggregate([{$group : {_id : "$label", num_tutorial : {$sum : 1}}}],function(err,docs){
-    //     console.log(docs)
-    // })
-})
-app.get('/emotion/all',(req,res)=>{
-    Export.EmotionModel.find({},(err,result)=>{
-        if(err) res.send({type:'error'});
-        res.send(result);
-        // console.log(result);
-    })
-})
+app.use(thoughtRouter);
+app.use(affairRouter);
 app.listen(port,()=>{
     console.log('服务器正在运行...');
 })

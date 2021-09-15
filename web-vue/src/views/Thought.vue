@@ -24,13 +24,13 @@
                     <div class="ThoughtMain">
                         <span class="ThoughtText">{{li.text}}</span>
                         <div class="ThoughtDetails">
-                            <span class="ThoughtEmotion" v-if="li.emotion instanceof Object">
+                            <span class="ThoughtEmotion" v-if="li.emotion != null">
                                 {{li.emotion.name}}
                             </span>
                             <span class="thou_time">{{getTimeString(li.date)}}</span>
                         </div>
                     </div>
-                    <button class="DestoryThought" @click="destoryThou(li._id)">删除</button>
+                    <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
                 </li>
             </div>
         </ul>
@@ -187,9 +187,12 @@ export default {
                 // this.$forceUpdate();
             });
         }
+    },
+    mounted(){
+        this.updateDate();
     }
 }
 </script>
-<style lan="less">
-@import './../less/Thought.less';
+<style lang="less" scoped>
+    @import './../less/Thought.less';
 </style>

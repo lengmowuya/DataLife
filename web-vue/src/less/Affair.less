@@ -1,0 +1,52 @@
+#AffairPage{
+    max-width: 1000px;
+    padding-top:40px;
+    margin:0 auto;
+}
+.EnterBlock{
+    width:100%;
+    max-width: 600px;
+    margin:0 auto;
+    display:flex;
+    .NewBlock{
+        height:80px;
+        flex-grow: 1;
+        // background-color:#00a1d6;
+        background-color:#fff;
+        border-radius:4px;
+        display:flex;
+        flex-direction: column;
+        padding:10px;
+        box-sizing: border-box;
+        // box-shadow:0 11px 12px 0 #00a0d611;
+        // border:6px solid #fff;
+        border:1px solid #e5e9ef;
+        .NewBlockName,
+        .NewBlockDescribe{
+            border:none;
+            outline: none;
+            background:transparent;
+            color:#fff;
+            color:#00a0d6;
+        }
+        .NewBlockName::placeholder,
+        .NewBlockDescribe::placeholder{
+            color:#eee;
+            color:#00a0d633;
+        }
+        .NewBlockName{
+            height:30px;
+            flex-grow: 1;
+            margin-bottom:10px;
+            font-size:30px;
+            font-weight: bold;
+            // background:tr
+            // height:1
+        }
+        .NewBlockDescribe{
+            flex-shrink: 0;
+            height:15px;
+            font-size:15px;
+        }
+    }
+}

@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="AffairPage">
+    <div class="EnterBlock">
+      <div class="NewBlock">
+        <input type="text" class="NewBlockName" placeholder="事务名称">
+        <input type="text" class="NewBlockDescribe" placeholder="一句话描述我的事务">
+      </div>
+    </div>
+    <div class="FinishBlock">
+
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  data(){
+    return {
+
+    }
   }
 }
 </script>
+<style lang="less" scoped>
+@import './../less/Affair.less';
+</style>

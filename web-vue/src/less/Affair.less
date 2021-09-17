@@ -3,13 +3,14 @@
     padding-top:40px;
     margin:0 auto;
 }
+
 .EnterBlock{
     width:100%;
     max-width: 600px;
     margin:0 auto;
     display:flex;
     .NewBlock{
-        height:85px;
+        height:65px;
         flex-grow: 1;
         background-color:#fff;
         border-radius:4px;
@@ -39,23 +40,23 @@
             color:#00a0d633;
         }
         .NewBlockName{
-            height:30px;
+            height:20px;
             flex-grow: 1;
             // margin-bottom:10px;
-            font-size:30px;
+            font-size:18px;
             font-weight: bold;
             // background:tr
             // height:1
         }
         .NewBlockDescribe{
             flex-shrink: 0;
-            height:20px;
-            font-size:15px;
+            height:14px;
+            font-size:12px;
         }
     }
     .AddButton{
         width:60px;
-        height:80px;
+        height:65px;
         button{
             width:100%;
             height:100%;
@@ -76,27 +77,150 @@
         }
     }
 }
+.HistoryRecord{
+    .HistoryBlock{
+        
+    }
+}
+.FinishBlock{
+    margin-top:25px;
+    .FinishDay{
+        color:#00a0d6;
+        text-align: center;
+        margin-bottom:10px;
+        font-size:20px;
+        font-weight: bold;
+    }
+    .FinishRecordList{
+        display:flex;
+        flex-wrap: wrap;
+        margin-right:-5px;
+
+    }
+    .FinishRecord{
+        background:#00a0d699;
+        border:2px solid #00a0d6;
+        color:#fff;
+        // height:34px;
+        margin-right:5px;
+        border-radius:6px;
+        display:flex;
+        // flex-direction: column;
+        margin-bottom:5px;
+        flex-grow: 1;
+        min-width: 15%;
+        .FinishRecordIcon{
+            background:#fff;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            padding:5px;
+            border-radius:6px;
+            margin:2px;
+            margin-right:5px;
+            .icon{
+                font-size:35px;
+            }
+        }
+        .FinishRecordText{
+            display:flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            padding:5px;
+            .RecordName{
+                flex-grow: 1;
+                font-size: 14px;
+                letter-spacing: 1px;
+                user-select: none;
+            }
+            .RecordTime{
+                font-size:12px;
+                opacity: 0.6;
+                user-select: none;
+            }
+        }
+    }
+}
 .MyAffair{
     width:100%;
     display:flex;
     flex-wrap: wrap;
     margin-top:40px;
     .AffairLi{
-        margin:5px;
-        padding:5px;
+        margin:3px;
+        padding:10px;
         border-radius: 4px;
         background:#fff;
-        border:1px solid #e5e9ef;
-        width:30%;
+        // border:1px solid #e5e9ef;
+        min-width:30%;
         flex-grow: 1;
-        .AffairLiName{
-            font-size:18px;
-            color:#00a0d6;
-            // font-weight: bold;
+        cursor: pointer;
+        transition:all 0.25s;
+        display:flex;
+        border:1px solid transparent;
+        transition:all 0.25s;
+        width:40%;
+        &.active{
+            border:1px solid #00a0d6;
         }
-        .AffairLiDescribe{
-            font-size:12px;
-            color:#00a0d699;
+        &:hover{
+            .AffairTools{
+                opacity: 1;
+            }
+        }
+        .AffairIcon{
+            font-size:34px;
+            color:#00a0d6;
+            margin-right:10px;
+        }
+        .AffairText{
+            flex-grow: 1;
+            margin-right:10px;
+            .AffairLiName{
+                font-size:14px;
+                color:#252525;
+                // font-weight: bold;
+                user-select: none;
+            }
+            .AffairLiDescribe{
+                font-size:12px;
+                color:#bbb;
+                user-select: none;
+            }
+        }
+        .AffairTools{
+            flex-shrink: 0;
+            opacity: 0;
+            display:flex;
+            align-items: center;
+            button{
+                flex-shrink: 0;
+                border:none;
+                background:transparent;
+                cursor: pointer;
+                // padding:3x;
+                color:#fff;
+                // font-weight: bold;
+                font-size:18px;
+                display:flex;
+                width:24px;
+                height:24px;
+                align-items: center;
+                justify-content: center;
+                margin-right:4px;
+                border-radius: 3px;
+                opacity: 0.4;
+                transition:all 0.25s;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+            .finish{
+                background:#00a0d6;
+            }
+            .delete{
+                background:#ff0000bb;
+            }
         }
     }
 }

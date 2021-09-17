@@ -12,7 +12,7 @@ app.post('/thought/add',(req,res)=>{
 })
 // 删除感悟
 app.post('/thought/remove',(req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     Export.ThoughtModel.remove({_id:req.body._id},(err,result)=>{
         if(err) res.send({type:'error'});
         res.send();

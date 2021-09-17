@@ -7,9 +7,17 @@ html{
 }
 body{
     font-family: "黑体";
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
     max-width: 1000px;
     margin:0 auto;
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
 // 导航栏
 #DataLifeNav{
     width:100%;
@@ -38,7 +46,8 @@ body{
         border-bottom:3px solid transparent;
         transition: all 0.3s;
         i{
-            margin-right: 4px;
+            margin-right: 2px;
+            font-size: 19px;
         }
         &.router-link-active{
             color:#00a1d6;

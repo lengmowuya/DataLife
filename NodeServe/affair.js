@@ -12,25 +12,51 @@ app.post('/affair/add',(req,res)=>{
 })
 // 删除事务
 app.post('/affair/remove',(req,res)=>{
-    // console.log(req.body);
-    Export.AffairModel.remove({_id:req.body._id},(err,result)=>{
+    Export.AffairModel.remove({_id:req.body.id},(err,result)=>{
         if(err) res.send({type:'error'});
         res.send();
     })
 })
-// // 获取所有事务
-// app.get('/affair/all',(req,res)=>{
-//     Export.ThoughtModel.find()
-//         .populate('emotion')
-//         .then(result=>{
-//             res.send(result);
-//         })
-// })
 // 获取所有事务
 app.get('/affair/all',(req,res)=>{
-    Export.AffairModel.find({},(err,result)=>{
-        if(err) res.send({type:'error'});
-        res.send(result);
-    })
+    // Export.AffairModel.find({},(err,result)=>{
+    //     if(err) res.send({type:'error'});
+    //     res.send(result);
+    // })
+    Export.AffairModel.find()
+        .populate('record')
+        .then(result=>{
+            res.send(result);
+        })
+})
+// 以下为事务记录
+// 添加事务记录
+app.post('/affairRecord/add',(req,res)=>{
+    // 创建新记录
+    console.log(req.body);
+    new Export.AffairRecordModel().save()
+        .then(affairRecord=>{
+            // 添加外键
+            Export.AffairModel.findOne({_id:req.body.affair})
+            .then(affair=>{
+                if(!Array.isArray(affair.record)){
+                    affair.record = [];
+                }
+                affair.record.push(affairRecord._id);
+                affair.save();
+            })
+            res.send({type:'success'});
+        })
+
+    // 添加外键
+    // Export.AffairModel.findOne({_id:req.body.affair})
+    // .then(affair=>{
+    //     if(!Array.isArray(affair.record)){
+    //         affair.record = [];
+    //     }
+    //     affair.record.push(new Date().getTime());
+    //     affair.save();
+    // })
+    // res.send({type:'success'});
 })
 module.exports = app;

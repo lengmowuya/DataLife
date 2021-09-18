@@ -29,12 +29,19 @@ app.get('/affair/all',(req,res)=>{
             res.send(result);
         })
 })
+// 获取所有图标
+app.get('/icon/all',(req,res)=>{
+    Export.IconModel.find()
+        .then(result=>{
+            res.send(result);
+        })
+})
 // 以下为事务记录
 // 添加事务记录
 app.post('/affairRecord/add',(req,res)=>{
     // 创建新记录
     console.log(req.body);
-    new Export.AffairRecordModel().save()
+    new Export.AffairRecordModel({sentence:req.body.sentence}).save()
         .then(affairRecord=>{
             // 添加外键
             Export.AffairModel.findOne({_id:req.body.affair})

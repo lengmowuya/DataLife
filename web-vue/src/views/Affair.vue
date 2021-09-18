@@ -9,26 +9,30 @@
         <button @click="addAffair()"><i class="el-icon-circle-plus"></i></button>
       </div>
     </div>
-    <div class="HistoryRecord">
-      <div class="HistoryBlock" v-for="(item,i) in HistoryRecord" :key="i">
-        <span class="HistoryDateNumber">
-          {{item.record.length}}
-        </span>
+    <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
+      <p class="FinishDay">[ {{getDateString(RecordShowDate.data)}} 星期{{RecordShowDate.date.getDay()}} ]</p>
+      <div class="HistoryRecord">
+        <div class="HistoryBlock" v-for="(item,i) in HistoryRecord" :key="i" :title="getDateString(item.data)">
+          <span v-if="item.record.length > 0" class="HistoryDateNumber" @click="RecordShowDate = HistoryRecord[i]">
+            {{item.record.length}}
+          </span>
+        </div>
       </div>
-    </div>
-    <div class="FinishBlock" v-if="NowDate.Date != undefined">
-      <p class="FinishDay">[ 星期{{NowDate.Date.getDay()}} ]</p>
       <div class="FinishRecordList">
-        <div class="FinishRecord" v-for="(item,index) in RecordList" :key="index">
-          <div class="FinishRecordIcon">
-            <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-dakaqiandao"></use>
-            </svg>
+        <div class="FinishRecord" v-for="(item,index) in RecordShowDate.record" :key="index">
+          <div class="FinishRecordHeader">
+            <div class="FinishRecordIcon">
+              <svg class="icon" aria-hidden="true">
+                <!-- :xlink:href="'#icon-'+IconList[5].font_class" -->
+                  <use xlink:href="#icon-dakaqiandao"></use>
+              </svg>
+            </div>
+            <div class="FinishRecordText">
+              <p class="RecordName">{{item.affair.name}}</p>
+              <p class="RecordTime">{{getTimeString(item.data)}}</p>
+            </div>
           </div>
-          <div class="FinishRecordText">
-            <p class="RecordName">{{item.affair.name}}</p>
-            <p class="RecordTime">{{getTimeString(item.data)}}</p>
-          </div>
+          <p class="RecordSentence">{{item.sentence}}</p>
         </div>
       </div>
     </div>
@@ -44,20 +48,62 @@
           </svg>
         </div>
         <div class="AffairText">
-          <p class="AffairLiName">{{item.name}}</p>
+          <p class="AffairLiName">{{item.name}} <span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span></p>
           <p class="AffairLiDescribe">{{item.describe}}</p>
         </div>
         <div class="AffairTools">
-          <button class="finish" @click.prevent="addAffairRecord(item._id)" title="完成一次">
-            <i class="el-icon-plus"></i>
+          <button class="AffairFinishButton" @click="onPushRecord = true;pushAffair = item"  title="完成一次">
+            <i class="el-icon-check"></i>
           </button>
-          <button class="delete"  title="删除这个事务" @click.prevent="removeAffair(item._id)">
-            <i class="el-icon-close"></i>
+          <!-- @click.prevent="removeAffair(item._id)" -->
+          <button class="AffairEditorButton"  title="编辑这个事务" >
+            <i class="el-icon-s-tools"></i>
           </button>
         </div>
       </div>
     </div>
-
+    <div class="FinishRecordPush" v-if="onPushRecord && pushAffair!=null">
+      <div class="PushAlert">
+        <p class="PushRecordName">{{pushAffair.name}}
+          <span class="AffairLevel" v-show="pushAffair.record.length > 0">Lv.{{pushAffair.record.length}}</span>
+        </p>
+        <p class="PushRecordDescribe" >{{pushAffair.describe}}</p>
+        <input type="text" v-model="pushSentence" class="PushSentence" placeholder="总结这次完成">
+        <p class="SentenceThum">{{pushSentence}}</p>
+        <div class="PushTools">
+          <button class="affirm" @click.prevent="addAffairRecord()">确认</button>
+          <button class="cancel" @click="onPushRecord = false">取消</button>
+        </div>
+      </div>
+    </div>
+    <div class="EditorAffairPanel" v-if="Editor.onEditorAffair && Editor.editorAffair!=null">
+      <div class="PushAlert">
+        <!-- <p class="PushRecordName">{{Editor.editorAffair.name}}
+          <span class="AffairLevel" v-show="Editor.editorAffair.record.length > 0">Lv.{{Editor.editorAffair.record.length}}</span>
+        </p> -->
+        <!-- <p class="PushRecordDescribe" >{{Editor.editorAffair.describe}}</p> -->
+        <div class="AffairIcon">
+           <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-guanbi"></use>
+          </svg>
+        </div>
+        <div class="IconList">
+          <div class="IconLI" v-for="(icon,i) in IconList" :key="i">
+            <!-- :xlink:href="'#icon-'+IconList[5].font_class" -->
+            <svg class="icon" aria-hidden="true">
+                <use :xlink:href="'#icon-'+icon.font_class"></use>
+            </svg>
+          </div>
+        </div>
+        <input type="text" v-model="Editor.NewAffair.name" class="NewAffairName" placeholder="事务新名称" title="名称">
+        <input type="text" v-model="Editor.NewAffair.describe" class="NewAffairDescribe" placeholder="事务新描述" title="描述">
+        <p class="SentenceThum">{{pushSentence}}</p>
+        <div class="PushTools">
+          <button class="affirm" >修改</button>
+          <button class="cancel" @click="onPushRecord = false">取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -65,6 +111,19 @@
 export default {
   data(){
     return {
+      onPushRecord:false,
+      pushAffair:null,
+      RecordShowDate:null,
+      Editor:{
+        NewAffair:{
+          name:'',
+          describe:'',
+          icon:''
+        },
+        onEditorAffair:true,
+        editorAffair:null,
+      },
+      pushSentence:'',
       NowDate:{
         time:new Date().getTime(),
         data:{},
@@ -74,6 +133,7 @@ export default {
       AffairList:[],
       RecordList:[],
       activeAffairId:'',
+      IconList:'',
       NewBlock:{
         name:'',
         describe:''
@@ -104,13 +164,21 @@ export default {
           this.getAllAffair();
         })
     },
-    addAffairRecord(id){
+    addAffairRecord(){
+      if(this.pushSentence.trim() == ''){
+        alert("请填入您的总结");
+        return;
+      }
       let info = {
-        affair:id
+        affair:this.pushAffair._id,
+        sentence:this.pushSentence
       }
       this.axios.post('http://127.0.0.1:3000/affairRecord/add',info)
         .then(()=>{
           this.getAllAffair();
+          this.onPushRecord = false;
+          this.pushAffair = null;
+          this.pushSentence = '';
         })
     },
     FormatDate(timeStamp){
@@ -146,6 +214,12 @@ export default {
       }
       return hourName + '' + data.hour + ':' + data.min;
     },
+    getAllIcon(){
+      this.axios.get('http://127.0.0.1:3000/icon/all')
+        .then(res=>{
+          this.IconList = res.data;
+        })
+    },
     getAllAffair(){
       let that = this;
       this.axios.get('http://127.0.0.1:3000/affair/all')
@@ -161,7 +235,7 @@ export default {
                 that.RecordList.push(item.record[i]);
                 // 设置单个记录
                 let record = item.record[i];
-                console.log(record._id);
+                // console.log(record._id);
                 // 初始化历史记录索引
                 if(this.HistoryRecord.length == 0){
                   // console.log("init");
@@ -171,7 +245,8 @@ export default {
                     date:new Date(this.NowDate.time)
                   }
                   this.HistoryRecord.push(newDate);
-                  for(let e=1;e<40;e++){
+                  this.RecordShowDate = this.HistoryRecord[0];
+                  for(let e=1;e<300-14;e++){
                     let dayTime = this.NowDate.time - e * 86400000;
                     let dayData = this.FormatDate(dayTime);
                     let newDate = {
@@ -223,6 +298,9 @@ export default {
               return b.data.sec - a.data.sec;
             }
           })
+          this.Editor.editorAffair = this.AffairList[0];
+          this.Editor.NewAffair.name = this.Editor.editorAffair.name;
+          this.Editor.NewAffair.describe = this.Editor.editorAffair.describe;
         })
     }
   },
@@ -242,6 +320,7 @@ export default {
     this.NowDate.data = this.FormatDate(this.NowDate.time);
     this.NowDate.Date = new Date(this.NowDate.time);
     this.getAllAffair();
+    this.getAllIcon();
   }
 }
 </script>

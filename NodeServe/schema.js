@@ -59,6 +59,7 @@ let AffairSchema = {
 }
 // 事务记录
 let AffairRecordSchema = {
+    sentence:String,
     time:{
         type:Number,
         default:new Date().getTime()

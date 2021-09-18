@@ -78,8 +78,43 @@
     }
 }
 .HistoryRecord{
+    padding:5px;
+    background:#fff;
+    margin:10px 0px;
+    display:flex;
+    // flex-direction: column;
+    flex-wrap: wrap-reverse;
+    height:168px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content:flex-end;
+    // justify-self: unset;
+    align-content: flex-start;
     .HistoryBlock{
-        
+        // border:1px solid #ccc;
+        background:#f6f6f6;
+        width:20px;
+        height:20px;
+        margin:2px;
+        border-radius: 3px;
+        overflow: hidden;
+        .HistoryDateNumber{
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-size:12px;
+            color:#ffffff;
+            background:#00a0d6;
+            user-select: none;
+            vertical-align: middle;
+            cursor: pointer;
+            transition: all 0.25s;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
     }
 }
 .FinishBlock{
@@ -104,40 +139,50 @@
         // height:34px;
         margin-right:5px;
         border-radius:6px;
+        flex-direction: column;
         display:flex;
-        // flex-direction: column;
         margin-bottom:5px;
         flex-grow: 1;
-        min-width: 15%;
-        .FinishRecordIcon{
-            background:#fff;
+        // min-width: 15%;
+        width:20%;
+        max-width: 25%;
+        box-sizing: border-box;
+        .FinishRecordHeader{
             display:flex;
-            justify-content: center;
-            align-items: center;
-            padding:5px;
-            border-radius:6px;
-            margin:2px;
-            margin-right:5px;
-            .icon{
-                font-size:35px;
+            .FinishRecordIcon{
+                background:#fff;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                padding:2px;
+                border-radius:6px;
+                margin:4px;
+                // margin-right:5px;
+                .icon{
+                    font-size:35px;
+                }
+            }
+            .FinishRecordText{
+                display:flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                padding:5px;
+                .RecordName{
+                    flex-grow: 1;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                    user-select: none;
+                }
+                .RecordTime{
+                    font-size:12px;
+                    opacity: 0.6;
+                    user-select: none;
+                }
             }
         }
-        .FinishRecordText{
-            display:flex;
-            flex-wrap: wrap;
-            flex-direction: column;
+        .RecordSentence{
             padding:5px;
-            .RecordName{
-                flex-grow: 1;
-                font-size: 14px;
-                letter-spacing: 1px;
-                user-select: none;
-            }
-            .RecordTime{
-                font-size:12px;
-                opacity: 0.6;
-                user-select: none;
-            }
+            font-size:12px; 
         }
     }
 }
@@ -148,7 +193,6 @@
     margin-top:40px;
     .AffairLi{
         margin:3px;
-        padding:10px;
         border-radius: 4px;
         background:#fff;
         // border:1px solid #e5e9ef;
@@ -169,18 +213,30 @@
             }
         }
         .AffairIcon{
-            font-size:34px;
-            color:#00a0d6;
-            margin-right:10px;
+            font-size:40px;
+            // color:#00a0d6;
+            // margin-right:10px;
+            width:60px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+
         }
         .AffairText{
             flex-grow: 1;
             margin-right:10px;
+            padding:10px;
+            padding-left:0px;
             .AffairLiName{
-                font-size:14px;
+                font-size:15px;
                 color:#252525;
-                // font-weight: bold;
+                font-weight: bold;
                 user-select: none;
+            }
+            .AffairLevel{
+                color:gold;
+                margin-left:4px;
+                font-size:12px;
             }
             .AffairLiDescribe{
                 font-size:12px;
@@ -193,6 +249,7 @@
             opacity: 0;
             display:flex;
             align-items: center;
+            margin-right:10px;
             button{
                 flex-shrink: 0;
                 border:none;
@@ -215,12 +272,221 @@
                     opacity: 1;
                 }
             }
-            .finish{
+            .AffairFinishButton{
                 background:#00a0d6;
             }
-            .delete{
-                background:#ff0000bb;
+            .AffairEditorButton{
+                background:#E6A23C;
             }
         }
+    }
+}
+.FinishRecordPush{
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    z-index: 999;
+    background:#000000bb;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .PushAlert{
+        width:100%;
+        max-width: 600px;
+        margin:0 auto;
+        min-height:200px;
+        background:#fff;
+        border-radius: 6px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding:20px;
+        background: url(https://duvebe931qgtc.cloudfront.net/resources/images/sub/bg_allleague_sub.png) center center #fff no-repeat;
+        background-size: 100% 100%;
+        .PushRecordName{
+            color:#252525;
+            font-weight: bold;
+            user-select: none;
+        }
+        .AffairLevel{
+            color:gold;
+            margin-left:4px;
+            font-size:12px;
+        }
+        .PushRecordDescribe{
+            color:#999;
+            // font-weight: bold;
+            font-size:12px;
+            margin-bottom:10px;
+            user-select: none;
+            margin-bottom:15px;
+        }
+        .PushSentence{
+            height:40px;
+            border-radius:6px;
+            outline: none;
+            border:none;
+            padding:10px;
+            font-size:26px;
+            border:2px solid #eee;
+            transition:all 0.25s;
+            &:hover{
+                border-color:#00a0d6
+            }
+            &:focus{
+                border-color:#00a0d6
+            }
+            &::placeholder{
+                color:#ccc;
+            }
+        }
+        .SentenceThum{
+            max-width: 450px;
+            font-size:12px;
+            color:#999;
+            margin-top:5px;
+        }
+        .affirm,
+        .cancel{
+            width:100px;
+            height:40px;
+            margin:5px;
+            margin-top:10px;
+            border:none;
+            color:#fff;
+            font-size:16px;
+            transition:all 0.25s;
+            cursor: pointer;
+            user-select: none;
+            &:hover{
+                opacity: 0.7;
+            }
+        }
+        .affirm{
+            background:#67C23A;
+        }
+        .cancel{
+            background:#F56C6C;
+        }
+    }
+}
+.EditorAffairPanel{
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    z-index: 999;
+    background:#000000bb;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .PushAlert{
+        width:100%;
+        max-width: 600px;
+        margin:0 auto;
+        min-height:300px;
+        background:#fff;
+        border-radius: 6px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding:20px;
+        // background: url(https://duvebe931qgtc.cloudfront.net/resources/images/sub/bg_allleague_sub.png) center center #fff no-repeat;
+        // background-size: 100% 100%;
+        position: relative;
+        .AffairIcon{
+            margin-top:20px;
+            // margin-top:-50px;
+            font-size:45px;
+        }
+        .IconList{
+            width:420px;
+            display:flex;
+            flex-wrap: wrap;
+            margin-bottom:20px;
+            .IconLI{
+                font-size:30px;
+            }
+        }
+
+        .PushRecordDescribe{
+            color:#999;
+            // font-weight: bold;
+            font-size:12px;
+            margin-bottom:10px;
+            user-select: none;
+            margin-bottom:15px;
+        }
+        .NewAffairName,
+        .NewAffairDescribe{
+            height:40px;
+            border-radius:6px;
+            width:400px;
+            outline: none;
+            border:none;
+            padding:10px;
+            font-size:26px;
+            border:2px solid #eee;
+            transition:all 0.25s;
+            &:hover{
+                border-color:#00a0d6
+            }
+            &:focus{
+                border-color:#00a0d6
+            }
+            &::placeholder{
+                color:#ccc;
+            }
+        }
+        .NewAffairDescribe{
+            margin-top:4px;
+            height:26px;
+            font-size:20px;
+        }
+        .SentenceThum{
+            max-width: 450px;
+            font-size:12px;
+            color:#999;
+            margin-top:5px;
+        }
+        .PushTools{
+            // position: absolute;
+            // transform:translateX(-50%);
+            margin-top:15px;
+            // margin-bottom:5px;
+            .affirm,
+            .cancel{
+                width:80px;
+                height:35px;
+                margin:5px;
+                margin-top:10px;
+                border:none;
+                color:#fff;
+                font-size:16px;
+                transition:all 0.25s;
+                cursor: pointer;
+                user-select: none;
+                border-radius: 4px;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+            .affirm{
+                background:#67C23A;
+            }
+            .cancel{
+                background:#F56C6C;
+            }
+        }
+
     }
 }

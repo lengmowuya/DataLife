@@ -216,13 +216,6 @@
       "unicode_decimal": 64278
     },
     {
-      "icon_id": "24111632",
-      "name": "时间",
-      "font_class": "shijian",
-      "unicode": "fb18",
-      "unicode_decimal": 64280
-    },
-    {
       "icon_id": "24111635",
       "name": "拍照",
       "font_class": "paizhao",
@@ -286,13 +279,6 @@
       "unicode_decimal": 64413
     },
     {
-      "icon_id": "24111781",
-      "name": "删除",
-      "font_class": "shanchu",
-      "unicode": "fba3",
-      "unicode_decimal": 64419
-    },
-    {
       "icon_id": "24111782",
       "name": "提示",
       "font_class": "tishi",
@@ -347,13 +333,6 @@
       "font_class": "yejian",
       "unicode": "fc09",
       "unicode_decimal": 64521
-    },
-    {
-      "icon_id": "24111907",
-      "name": "关闭",
-      "font_class": "guanbi",
-      "unicode": "fc13",
-      "unicode_decimal": 64531
     }
   ]
 }

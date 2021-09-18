@@ -29,6 +29,17 @@ app.get('/affair/all',(req,res)=>{
             res.send(result);
         })
 })
+app.post('/affair/update',(req,res)=>{
+    let data = {
+        name:req.body.name,
+        describe:req.body.describe,
+        icon:req.body.icon
+    }
+    Export.AffairModel.update({_id:req.body._id},data)
+        .then(()=>{
+            res.send("success");
+        })
+})
 // 获取所有图标
 app.get('/icon/all',(req,res)=>{
     Export.IconModel.find()

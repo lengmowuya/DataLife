@@ -23,8 +23,8 @@
           <div class="FinishRecordHeader">
             <div class="FinishRecordIcon">
               <svg class="icon" aria-hidden="true">
-                <!-- :xlink:href="'#icon-'+IconList[5].font_class" -->
-                  <use xlink:href="#icon-dakaqiandao"></use>
+                  <!-- <use xlink:href="#icon-dakaqiandao"></use> -->
+                <use :xlink:href="'#icon-'+item.affair.icon"></use>
               </svg>
             </div>
             <div class="FinishRecordText">
@@ -37,14 +37,12 @@
       </div>
     </div>
     <div class="MyAffair">
-      <!-- @click="addAffairRecord(item._id)" -->
       <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
         <div class="AffairIcon">
-          <!-- <i class="el-icon-medal-1"></i> -->
-          <!-- <i class="iconfont icon-zhanghuxiugai"></i>
-           -->
            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-dakaqiandao"></use>
+              <!-- <use xlink:href="#icon-dakaqiandao"></use>
+               -->
+               <use :xlink:href="'#icon-'+item.icon"></use>
           </svg>
         </div>
         <div class="AffairText">
@@ -55,8 +53,7 @@
           <button class="AffairFinishButton" @click="onPushRecord = true;pushAffair = item"  title="完成一次">
             <i class="el-icon-check"></i>
           </button>
-          <!-- @click.prevent="removeAffair(item._id)" -->
-          <button class="AffairEditorButton"  title="编辑这个事务" >
+          <button class="AffairEditorButton"  title="编辑这个事务" @click="Editor.onEditorAffair = true;changeAffairInfo(item)">
             <i class="el-icon-s-tools"></i>
           </button>
         </div>
@@ -78,18 +75,13 @@
     </div>
     <div class="EditorAffairPanel" v-if="Editor.onEditorAffair && Editor.editorAffair!=null">
       <div class="PushAlert">
-        <!-- <p class="PushRecordName">{{Editor.editorAffair.name}}
-          <span class="AffairLevel" v-show="Editor.editorAffair.record.length > 0">Lv.{{Editor.editorAffair.record.length}}</span>
-        </p> -->
-        <!-- <p class="PushRecordDescribe" >{{Editor.editorAffair.describe}}</p> -->
-        <div class="AffairIcon">
+        <div class="AffairIcon" @click="Editor.showIconList = !Editor.showIconList">
            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-guanbi"></use>
+              <use :xlink:href="'#icon-'+Editor.NewAffair.icon"></use>
           </svg>
         </div>
-        <div class="IconList">
-          <div class="IconLI" v-for="(icon,i) in IconList" :key="i">
-            <!-- :xlink:href="'#icon-'+IconList[5].font_class" -->
+        <div class="IconList" v-show="Editor.showIconList">
+          <div class="IconLI" v-for="(icon,i) in IconList" :key="i" @click="Editor.NewAffair.icon = icon.font_class" :title="icon.name">
             <svg class="icon" aria-hidden="true">
                 <use :xlink:href="'#icon-'+icon.font_class"></use>
             </svg>
@@ -99,8 +91,8 @@
         <input type="text" v-model="Editor.NewAffair.describe" class="NewAffairDescribe" placeholder="事务新描述" title="描述">
         <p class="SentenceThum">{{pushSentence}}</p>
         <div class="PushTools">
-          <button class="affirm" >修改</button>
-          <button class="cancel" @click="onPushRecord = false">取消</button>
+          <button class="affirm" @click="updateAffair()">修改</button>
+          <button class="cancel" @click="Editor.onEditorAffair = false">取消</button>
         </div>
       </div>
     </div>
@@ -120,7 +112,8 @@ export default {
           describe:'',
           icon:''
         },
-        onEditorAffair:true,
+        showIconList:false,
+        onEditorAffair:false,
         editorAffair:null,
       },
       pushSentence:'',
@@ -133,7 +126,7 @@ export default {
       AffairList:[],
       RecordList:[],
       activeAffairId:'',
-      IconList:'',
+      IconList:[],
       NewBlock:{
         name:'',
         describe:''
@@ -214,10 +207,36 @@ export default {
       }
       return hourName + '' + data.hour + ':' + data.min;
     },
+    updateAffair(){
+      let NewAffair = this.Editor.NewAffair;
+      if(NewAffair.name.trim() == '' || NewAffair.describe.trim() == '' || NewAffair.icon.trim() == ''){
+        alert("事务新信息不能为空!");
+        return;
+      }
+      this.axios.post('http://127.0.0.1:3000/affair/update',NewAffair)
+        .then(()=>{
+          this.getAllAffair();
+          this.Editor.showIconList = false;
+          this.Editor.onEditorAffair = false;
+        })
+    },
+    changeAffairInfo(item){
+      this.Editor.editorAffair = item;
+      this.Editor.NewAffair._id = item._id;
+      this.Editor.NewAffair.name = item.name;
+      this.Editor.NewAffair.describe = item.describe;
+      this.Editor.NewAffair.icon = item.icon;
+      if(this.Editor.NewAffair.icon == ''){
+        this.Editor.NewAffair.icon = this.IconList[0].font_class;
+      }
+    },
     getAllIcon(){
       this.axios.get('http://127.0.0.1:3000/icon/all')
         .then(res=>{
           this.IconList = res.data;
+          if(this.Editor.NewAffair.icon == ''){
+            this.Editor.NewAffair.icon = this.IconList[0].font_class;
+          }
         })
     },
     getAllAffair(){
@@ -225,7 +244,6 @@ export default {
       this.axios.get('http://127.0.0.1:3000/affair/all')
         .then(res=>{
           this.AffairList = res.data;
-          // console.log(this.AffairList)
           this.RecordList = [];
           this.HistoryRecord = [];
           this.AffairList.forEach(item=>{
@@ -299,8 +317,10 @@ export default {
             }
           })
           this.Editor.editorAffair = this.AffairList[0];
+          this.Editor.NewAffair._id = this.Editor.editorAffair._id;
           this.Editor.NewAffair.name = this.Editor.editorAffair.name;
           this.Editor.NewAffair.describe = this.Editor.editorAffair.describe;
+          this.Editor.NewAffair.icon = this.Editor.editorAffair.icon;
         })
     }
   },

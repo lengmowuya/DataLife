@@ -400,21 +400,41 @@
         align-items: center;
         justify-content: center;
         padding:20px;
-        // background: url(https://duvebe931qgtc.cloudfront.net/resources/images/sub/bg_allleague_sub.png) center center #fff no-repeat;
-        // background-size: 100% 100%;
+        transition: all 0.25s;
         position: relative;
         .AffairIcon{
             margin-top:20px;
-            // margin-top:-50px;
             font-size:45px;
+            cursor: pointer;
+            transition: all 0.25s;
+            &:hover{
+                opacity: 0.5;
+            }
         }
         .IconList{
-            width:420px;
+            width:418px;
             display:flex;
-            flex-wrap: wrap;
+            flex-wrap:wrap;
             margin-bottom:20px;
+            border:1px solid #eee;
+            border-radius:6px;
+            padding:4px;
             .IconLI{
+                width:34px;
+                height:34px;
+                box-sizing: border-box;
+                display:flex;
+                justify-content: center;
+                align-items: center;
                 font-size:30px;
+                border:2px solid #fff;
+                border-radius: 5px;
+                margin:2px;
+                transition: all 0.25s;
+                &:hover{
+                    border-color:#00a0d6;
+                    cursor: pointer;
+                }
             }
         }
 

@@ -47,7 +47,7 @@ let AffairSchema = {
     },
     icon:{
         type:String,
-        default:"icon-dakaqiandao"
+        default:"dakaqiandao"
     },
     record:[
         {

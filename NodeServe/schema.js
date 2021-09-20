@@ -41,10 +41,7 @@ let AffairSchema = {
         type:Boolean,
         default:false
     },
-    time:{
-        type:Number,
-        default:new Date().getTime()
-    },
+    time:Number,
     icon:{
         type:String,
         default:"dakaqiandao"
@@ -60,10 +57,7 @@ let AffairSchema = {
 // 事务记录
 let AffairRecordSchema = {
     sentence:String,
-    time:{
-        type:Number,
-        default:new Date().getTime()
-    },
+    time:Number,
     data:{
         type:Object,
         default:FormatDate(new Date().getTime())
@@ -76,18 +70,12 @@ let AffairRecordSchema = {
 // 感悟-状态
 let  EmotionSchema = {
     name:String,
-    time:{
-        type:Number,
-        default:new Date().getTime()
-    }
+    time:Number
 }
 // 感悟-短文
 let  ThoughtSchema = {
     text:String,
-    time:{
-        type:Number,
-        default:new Date().getTime()
-    },
+    time:Number,
     emotion:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Emotion'

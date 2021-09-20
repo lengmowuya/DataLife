@@ -167,11 +167,16 @@
                         .thou_time{
                             line-height: 18px;
                             font-size:12px;
-                            color:#999;
+                            color:#ccc;
+                            // line-height: 14px;
                         }
                     }
                 }
-
+                &:hover{
+                    .DestoryThought{
+                        opacity: 0.5;
+                    }
+                }
                 .DestoryThought{
                     border:none;
                     flex-shrink: 0;
@@ -179,7 +184,7 @@
                     background:red;
                     color:#fff;
                     transition:all 0.25s;
-                    opacity: 0.3;
+                    opacity: 0;
                     cursor: pointer;
                     width:40px;
                     height:25px;
@@ -189,7 +194,9 @@
                     &:hover{
                         opacity: 1;
                     }
+
                 }
+
             }
         }
 

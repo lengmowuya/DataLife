@@ -106,7 +106,22 @@ export default {
           return data.year + '-' + data.month + '-' + data.day;
         },
         getTimeString(data){
-          return data.hour + ':' + data.min;
+            let hourName = '';
+            let hour = data.hour;
+            if(hour <= 6){
+                hourName = "凌晨";
+            }else if(hour <= 10){
+                hourName = "上午";
+            }else if(hour <= 12){
+                hourName = "中午";
+            }else if(hour <= 17){
+                hourName = "下午";
+            }else if(hour <= 21){
+                hourName = "晚上";
+            }else{
+                hourName = "半夜";
+            }
+            return hourName + '' + data.hour + ':' + data.min;
         },
         setThoughtList(){
             this.List.forEach((item)=>{

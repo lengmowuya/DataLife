@@ -12,8 +12,8 @@
     <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
       <p class="FinishDay">[ {{getDateString(RecordShowDate.data)}} 星期{{RecordShowDate.date.getDay()}} ]</p>
       <div class="HistoryRecord">
-        <div class="HistoryBlock" v-for="(item,i) in HistoryRecord" :key="i" :title="getDateString(item.data)">
-          <span v-if="item.record.length > 0" class="HistoryDateNumber" @click="RecordShowDate = HistoryRecord[i]">
+        <div  v-for="(item,i) in HistoryRecord" :key="i" :title="getDateString(item.data)" :class="{HistoryBlock:true}">
+          <span v-if="item.record.length > 0" :class="{HistoryDateNumber:true,plus5:item.record.length >= 5,plus10:item.record.length >= 10}" @click="RecordShowDate = HistoryRecord[i]">
             {{item.record.length}}
           </span>
         </div>
@@ -32,7 +32,7 @@
               <p class="RecordTime">{{getTimeString(item.data)}}</p>
             </div>
           </div>
-          <p class="RecordSentence">{{item.sentence}}</p>
+          <pre class="RecordSentence">{{item.sentence}}</pre>
         </div>
       </div>
     </div>
@@ -65,7 +65,7 @@
           <span class="AffairLevel" v-show="pushAffair.record.length > 0">Lv.{{pushAffair.record.length}}</span>
         </p>
         <p class="PushRecordDescribe" >{{pushAffair.describe}}</p>
-        <input type="text" v-model="pushSentence" class="PushSentence" placeholder="总结这次完成">
+        <textarea type="text" v-model="pushSentence" class="PushSentence" placeholder="总结这次完成"></textarea>
         <p class="SentenceThum">{{pushSentence}}</p>
         <div class="PushTools">
           <button class="affirm" @click.prevent="addAffairRecord()">确认</button>
@@ -341,6 +341,7 @@ export default {
     this.NowDate.Date = new Date(this.NowDate.time);
     this.getAllAffair();
     this.getAllIcon();
+    document.title = "DataLife-" + "事务";
   }
 }
 </script>

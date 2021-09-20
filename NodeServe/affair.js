@@ -5,6 +5,7 @@ let Export = require('./schema.js');
 // 添加事务
 app.post('/affair/add',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
+    req.body.time = new Date().getTime();
     new Export.AffairModel(req.body).save((err,result)=>{
         if(err) res.send({type:'error'});
         res.send({type:'success'});
@@ -51,8 +52,12 @@ app.get('/icon/all',(req,res)=>{
 // 添加事务记录
 app.post('/affairRecord/add',(req,res)=>{
     // 创建新记录
-    console.log(req.body);
-    new Export.AffairRecordModel({sentence:req.body.sentence}).save()
+    // console.log(req.body);
+    let  AffairRecord = {
+        sentence:req.body.sentence,
+        time:new Date().getTime()
+    }
+    new Export.AffairRecordModel(AffairRecord).save()
         .then(affairRecord=>{
             // 添加外键
             Export.AffairModel.findOne({_id:req.body.affair})

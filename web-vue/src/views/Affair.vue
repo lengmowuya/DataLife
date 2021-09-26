@@ -10,14 +10,18 @@
       </div>
     </div>
     <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
-      <p class="FinishDay">[ {{getDateString(RecordShowDate.data)}} 星期{{RecordShowDate.date.getDay()}} ]</p>
       <div class="HistoryRecord">
         <div  v-for="(item,i) in HistoryRecord" :key="i" :title="getDateString(item.data)" :class="{HistoryBlock:true}">
-          <span v-if="item.record.length > 0" :class="{HistoryDateNumber:true,plus5:item.record.length >= 5,plus10:item.record.length >= 10}" @click="RecordShowDate = HistoryRecord[i]">
+          <span v-if="item.record.length > 0" 
+            :class="{HistoryDateNumber:true,
+              plus5:item.record.length >= 5,
+              plus10:item.record.length >= 10,
+              active:getDateString(RecordShowDate.data) == getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i]">
             {{item.record.length}}
           </span>
         </div>
       </div>
+      <p class="FinishDay">{{getDateString(RecordShowDate.data)}} 星期{{RecordShowDate.date.getDay()}}</p>
       <div class="FinishRecordList">
         <div class="FinishRecord" v-for="(item,index) in RecordShowDate.record" :key="index">
           <div class="FinishRecordHeader">
@@ -37,9 +41,9 @@
       </div>
     </div>
     <div class="MyAffairCareer">
-      <span class="AllRecordLength"><span class="LabelName">总生涯记录</span>{{RecordList.length}} <span class="LabelName">条</span></span>
-      <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName">天</span></span>
-      <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName">条/天</span></span>
+      <span class="AllRecordLength"><span class="LabelName">总生涯等级</span>{{RecordList.length}}<span class="LabelName"> 级</span></span>
+      <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName"> 天</span></span>
+      <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName"> 条/天</span></span>
     </div>
     <div class="MyAffair">
       <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
@@ -270,7 +274,7 @@ export default {
                   }
                   this.HistoryRecord.push(newDate);
                   this.RecordShowDate = this.HistoryRecord[0];
-                  for(let e=1;e<300-14;e++){
+                  for(let e=1;e<100-14;e++){
                     let dayTime = this.NowDate.time - e * 86400000;
                     let dayData = this.FormatDate(dayTime);
                     let newDate = {

@@ -86,17 +86,18 @@
     display:flex;
     // flex-direction: column;
     flex-wrap: wrap-reverse;
-    height:168px;
+    height:136px;
     flex-direction: column-reverse;
     align-items: flex-start;
     justify-content:flex-end;
     // justify-self: unset;
     align-content: flex-start;
+    border-radius: 6px;
     .HistoryBlock{
         // border:1px solid #ccc;
         background:#f6f6f6;
-        width:20px;
-        height:20px;
+        width:30px;
+        height:30px;
         margin:2px;
         border-radius: 3px;
         overflow: hidden;
@@ -106,38 +107,51 @@
             display:flex;
             align-items: center;
             justify-content: center;
-            font-size:12px;
+            font-size:14px;
             color:#ffffff;
             background:#00a0d6;
             user-select: none;
             vertical-align: middle;
             cursor: pointer;
             transition: all 0.25s;
+            border:2px solid #00a0d6;
+            box-sizing: border-box;
             &:hover{
                 opacity: 0.5;
             }
             &.plus5{
                 background:gold;
+                border-color: gold;
             }
             &.plus10{
                 background:tomato;
+                border-color: tomato;
+            }
+            &.active{
+                border-color: #333 !important;
             }
         }
     }
 }
 .FinishBlock{
+    max-width: 80%;
+    margin:0 auto;
     margin-top:25px;
+    background:#fff;
+    border-radius: 6px;
     .FinishDay{
         color:#00a0d6;
         text-align: center;
-        margin-bottom:10px;
-        font-size:20px;
+        // margin-bottom:10px;
+        font-size:16px;
         font-weight: bold;
     }
     .FinishRecordList{
         display:flex;
         flex-wrap: wrap;
         margin-right:-5px;
+        padding:10px;
+        padding-top:5px;
 
     }
     .FinishRecord{
@@ -221,6 +235,7 @@
         font-size:13px;
         opacity: 0.9;
         user-select: none;
+        color:silver;
     }
     .AllRecordLength,
     .AverageRecord,
@@ -288,7 +303,7 @@
             }
             .AffairLevel{
                 color:gold;
-                margin-left:4px;
+                // margin-left:4px;
                 font-size:12px;
                 padding:2px 4px;
                 background:#252525;

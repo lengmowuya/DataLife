@@ -3,6 +3,7 @@
     max-width: 1200px;
     padding-top:40px;
     margin:0 auto;
+    padding-bottom:150px;
 }
 
 .EnterBlock{
@@ -206,11 +207,42 @@
         }
     }
 }
+.MyAffairCareer{
+    // display:flex;
+    margin-top:40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:#000;
+    padding:15px;
+    border-radius: 6px;
+    .LabelName{
+        margin-right:4px;
+        font-size:13px;
+        opacity: 0.9;
+        user-select: none;
+    }
+    .AllRecordLength,
+    .AverageRecord,
+    .AllAffairLength{
+        padding:8px 16px;
+        color:gold;
+        background:#252525; 
+        background-image: linear-gradient(to Right,#252525,#333);
+        border-radius: 4px;
+        font-size:27px;
+        margin-right:10px;
+    }
+    .AverageRecord{
+        margin:0px;
+    }
+}
 .MyAffair{
     width:100%;
     display:flex;
     flex-wrap: wrap;
-    margin-top:40px;
+    // flex-direction: column;
+    margin-top:10px;
     .AffairLi{
         margin:3px;
         border-radius: 4px;
@@ -258,6 +290,10 @@
                 color:gold;
                 margin-left:4px;
                 font-size:12px;
+                padding:2px 4px;
+                background:#252525;
+                font-weight: normal;
+                border-radius: 3px;
             }
             .AffairLiDescribe{
                 font-size:12px;

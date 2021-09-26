@@ -22,7 +22,7 @@
                 <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
                 <li v-for="(li,key) in item.thoughtList" :key="key">
                     <div class="ThoughtMain">
-                        <span class="ThoughtText">{{li.text}}</span>
+                        <pre class="ThoughtText">{{li.text}}</pre>
                         <div class="ThoughtDetails">
                             <span class="ThoughtEmotion" v-if="li.emotion != null">
                                 {{li.emotion.name}}

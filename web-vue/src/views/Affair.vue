@@ -36,6 +36,11 @@
         </div>
       </div>
     </div>
+    <div class="MyAffairCareer">
+      <span class="AllRecordLength"><span class="LabelName">总生涯记录</span>{{RecordList.length}} <span class="LabelName">条</span></span>
+      <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName">天</span></span>
+      <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName">条/天</span></span>
+    </div>
     <div class="MyAffair">
       <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
         <div class="AffairIcon">
@@ -46,7 +51,7 @@
           </svg>
         </div>
         <div class="AffairText">
-          <p class="AffairLiName">{{item.name}} <span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span></p>
+          <p class="AffairLiName"><span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span> {{item.name}} </p>
           <p class="AffairLiDescribe">{{item.describe}}</p>
         </div>
         <div class="AffairTools">
@@ -103,6 +108,7 @@
 export default {
   data(){
     return {
+      AllAffairDay:0,
       onPushRecord:false,
       pushAffair:null,
       RecordShowDate:null,
@@ -293,6 +299,12 @@ export default {
                     break;
                   }
                 }
+                this.AllAffairDay = 0;
+                this.HistoryRecord.forEach(item=>{
+                  if(item.record.length >= 1){
+                    this.AllAffairDay += 1;
+                  }
+                })
                 // // 如果没有存在的日期
                 // if(!hasDate){
                 //   console.log("New");
@@ -315,6 +327,9 @@ export default {
             }else{
               return b.data.sec - a.data.sec;
             }
+          })
+          this.AffairList.sort((a,b)=>{
+            return b.record.length - a.record.length;
           })
           this.Editor.editorAffair = this.AffairList[0];
           this.Editor.NewAffair._id = this.Editor.editorAffair._id;

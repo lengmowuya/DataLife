@@ -2,6 +2,40 @@ const express = require("express");
 const app = express();
 let Export = require('./schema.js');
 
+function FormatDate(timeStamp){
+    let TimeObj = new Date(timeStamp);
+    let date = {
+        year:TimeObj.getFullYear(),
+        month:TimeObj.getMonth() + 1,
+        day:TimeObj.getDate(),
+        hour:TimeObj.getHours(),
+        min:TimeObj.getMinutes(),
+        sec:TimeObj.getSeconds()
+    }
+    return date;
+}
+function getDateString(data){
+    return data.year + '-' + data.month + '-' + data.day;
+}
+function getTimeString(data){
+let hourName = '';
+let hour = data.hour;
+if(hour <= 6){
+    hourName = "凌晨";
+}else if(hour <= 10){
+    hourName = "上午";
+}else if(hour <= 12){
+    hourName = "中午";
+}else if(hour <= 17){
+    hourName = "下午";
+}else if(hour <= 21){
+    hourName = "晚上";
+}else{
+    hourName = "半夜";
+}
+return hourName + '' + data.hour + ':' + data.min;
+}
+
 // 添加事务
 app.post('/affair/add',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
@@ -55,7 +89,8 @@ app.post('/affairRecord/add',(req,res)=>{
     // console.log(req.body);
     let  AffairRecord = {
         sentence:req.body.sentence,
-        time:new Date().getTime()
+        time:new Date().getTime(),
+        data:FormatDate(new Date().getTime())
     }
     new Export.AffairRecordModel(AffairRecord).save()
         .then(affairRecord=>{

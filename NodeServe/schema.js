@@ -11,28 +11,28 @@ function FormatDate(timeStamp){
         sec:TimeObj.getSeconds()
     }
     return date;
-  }
-  function  getDateString(data){
-    return data.year + '-' + data.month + '-' + data.day;
-  }
-  function getTimeString(data){
-    let hourName = '';
-    let hour = data.hour;
-    if(hour <= 6){
-      hourName = "凌晨";
-    }else if(hour <= 10){
-      hourName = "上午";
-    }else if(hour <= 12){
-      hourName = "中午";
-    }else if(hour <= 17){
-      hourName = "下午";
-    }else if(hour <= 21){
-      hourName = "晚上";
-    }else{
-      hourName = "半夜";
-    }
-    return hourName + '' + data.hour + ':' + data.min;
-  }
+}
+function getDateString(data){
+return data.year + '-' + data.month + '-' + data.day;
+}
+function getTimeString(data){
+let hourName = '';
+let hour = data.hour;
+if(hour <= 6){
+    hourName = "凌晨";
+}else if(hour <= 10){
+    hourName = "上午";
+}else if(hour <= 12){
+    hourName = "中午";
+}else if(hour <= 17){
+    hourName = "下午";
+}else if(hour <= 21){
+    hourName = "晚上";
+}else{
+    hourName = "半夜";
+}
+return hourName + '' + data.hour + ':' + data.min;
+}
 // 事务
 let AffairSchema = {
     name:String,

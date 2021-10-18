@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 require('./db.js');
+
 require('./schema.js');
 let thoughtRouter = require('./thought.js');
 let affairRouter = require('./affair.js');

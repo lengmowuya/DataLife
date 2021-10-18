@@ -1,0 +1,627 @@
+#AffairPage{
+    width:100%;
+    max-width: 1200px;
+    // padding-top:40px;
+    margin:0 auto;
+    padding-bottom:150px;
+}
+#DataLifeNav{
+    position: fixed;
+    left:0;
+    bottom:0;
+}
+.EnterBlock{
+    width:100%;
+    max-width: 600px;
+    margin:0 auto;
+    display:flex;
+    .NewBlock{
+        height:65px;
+        flex-grow: 1;
+        background-color:#fff;
+        border-radius:4px;
+        display:flex;
+        flex-direction: column;
+        padding:10px;
+        box-sizing: border-box;
+        border:1px solid #e5e9ef;
+        transition:all 0.25s;
+        &:hover{
+            border-color:#00a1d6;
+        }
+        &:focus{
+            border-color:#00a1d6;
+        }
+        .NewBlockName,
+        .NewBlockDescribe{
+            border:none;
+            outline: none;
+            background:transparent;
+            color:#fff;
+            color:#00a0d6;
+        }
+        .NewBlockName::placeholder,
+        .NewBlockDescribe::placeholder{
+            color:#eee;
+            color:#00a0d633;
+        }
+        .NewBlockName{
+            height:20px;
+            flex-grow: 1;
+            // margin-bottom:10px;
+            font-size:18px;
+            font-weight: bold;
+            // background:tr
+            // height:1
+        }
+        .NewBlockDescribe{
+            flex-shrink: 0;
+            height:14px;
+            font-size:12px;
+        }
+    }
+    .AddButton{
+        width:60px;
+        height:65px;
+        button{
+            width:100%;
+            height:100%;
+            background:transparent;
+            border-radius:8px;
+            color:tomato;
+            border:none;
+            font-size:46px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0.65;
+            transition:all 0.25s;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+}
+.HistoryRecord{
+    padding:5px;
+    background:#fff;
+    margin:5px 0px;
+    display:flex;
+    width:100%;
+    // flex-direction: column;
+    flex-wrap: wrap-reverse;
+    height:136px;
+    box-sizing: border-box;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content:flex-end;
+    // justify-self: unset;
+    align-content: flex-start;
+    border-radius: 6px;
+    overflow: scroll;
+    .HistoryBlock{
+        // border:1px solid #ccc;
+        background:#f6f6f6;
+        width:24px;
+        height:24px;
+        margin:2px;
+        border-radius: 3px;
+        overflow: hidden;
+        .HistoryDateNumber{
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-size:14px;
+            color:#ffffff;
+            background:#00a0d6;
+            user-select: none;
+            vertical-align: middle;
+            cursor: pointer;
+            transition: all 0.25s;
+            border:2px solid #00a0d6;
+            box-sizing: border-box;
+            &:hover{
+                opacity: 0.5;
+            }
+            &.plus5{
+                background:gold;
+                border-color: gold;
+            }
+            &.plus10{
+                background:tomato;
+                border-color: tomato;
+            }
+            &.active{
+                border-color: #333 !important;
+            }
+        }
+    }
+}
+.FinishBlock{
+    // max-width: 80%;
+    margin:0 auto;
+    // margin-top:25px;
+    background:#fff;
+    border-radius: 6px;
+    .FinishDay{
+        color:#00a0d6;
+        text-align: center;
+        // margin-bottom:10px;
+        font-size:16px;
+        font-weight: bold;
+    }
+    .FinishRecordList{
+        display:flex;
+        flex-wrap: wrap;
+        margin-right:-5px;
+        padding:10px;
+        padding-top:5px;
+
+    }
+    .FinishRecord{
+        background:#00a0d699;
+        // border:2px solid #00a0d6;
+        color:#fff;
+        // height:34px;
+        margin-right:5px;
+        border-radius:4px;
+        flex-direction: column;
+        display:flex;
+        margin-bottom:5px;
+        flex-grow: 1;
+        // min-width: 15%;
+        width:20%;
+        max-width: 25%;
+        box-sizing: border-box;
+        .FinishRecordHeader{
+            display:flex;
+            .FinishRecordIcon{
+                background:#fff;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                padding:2px;
+                border-radius:6px;
+                margin:4px;
+                width:30px;
+                height:30px;
+                // margin-right:5px;
+                flex-shrink: 0;
+                .icon{
+                    font-size:35px;
+                }
+            }
+            .FinishRecordText{
+                display:flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                padding:4px 0px;
+                .RecordName{
+                    flex-grow: 1;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                    user-select: none;
+                }
+                .RecordTime{
+                    font-size:12px;
+                    opacity: 0.6;
+                    user-select: none;
+                }
+            }
+        }
+        .RecordSentence{
+            padding:3px;
+            font-size:12px; 
+            // text-indent: 2em;
+            // letter-spacing: 0.25px;
+            transition: all 0.25s;
+            cursor: pointer;
+            // width:100%;
+            // box-sizing: border-box;
+            white-space: pre-wrap;
+            // word-wrap: break-word;
+            &:hover{
+                color:#252525;
+                // font-weight: bold;
+            }
+        }
+    }
+}
+.MyAffairCareer{
+    // display:flex;
+    margin-top:40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:#000;
+    padding:15px;
+    border-radius: 6px;
+    .LabelName{
+        margin-right:4px;
+        font-size:13px;
+        opacity: 0.9;
+        user-select: none;
+        color:silver;
+    }
+    .AllRecordLength,
+    .AverageRecord,
+    .AllAffairLength{
+        padding:8px 16px;
+        color:gold;
+        background:#252525; 
+        background-image: linear-gradient(to Right,#252525,#333);
+        border-radius: 4px;
+        font-size:27px;
+        margin-right:10px;
+    }
+    .AverageRecord{
+        margin:0px;
+    }
+}
+.MyAffair{
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
+    margin-top:10px;
+    .AffairLi{
+        margin:3px;
+        border-radius: 4px;
+        background:#fff;
+        // border:1px solid #e5e9ef;
+        min-width:30%;
+        flex-grow: 1;
+        cursor: pointer;
+        transition:all 0.25s;
+        display:flex;
+        border:1px solid transparent;
+        transition:all 0.25s;
+        width:40%;
+        &.active{
+            border:1px solid #00a0d6;
+        }
+        &:hover{
+            .AffairTools{
+                display:flex;
+            }
+        }
+        .AffairIcon{
+            font-size:40px;
+            // color:#00a0d6;
+            // margin-right:10px;
+            width:60px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+
+        }
+        .AffairText{
+            flex-grow: 1;
+            margin-right:10px;
+            padding:10px;
+            padding-left:0px;
+            .AffairLiName{
+                font-size:15px;
+                color:#252525;
+                font-weight: bold;
+                user-select: none;
+            }
+            .AffairLevel{
+                color:gold;
+                // margin-left:4px;
+                font-size:12px;
+                padding:2px 4px;
+                background:#252525;
+                font-weight: normal;
+                border-radius: 3px;
+            }
+            .AffairLiDescribe{
+                font-size:12px;
+                color:#bbb;
+                user-select: none;
+            }
+        }
+        .AffairTools{
+            flex-shrink: 0;
+            // opacity: 0;
+            display:flex;
+            display:none;
+            align-items: center;
+            margin-right:10px;
+            button{
+                flex-shrink: 0;
+                border:none;
+                background:transparent;
+                cursor: pointer;
+                // padding:3x;
+                color:#fff;
+                // font-weight: bold;
+                font-size:18px;
+                display:flex;
+                width:24px;
+                height:24px;
+                align-items: center;
+                justify-content: center;
+                margin-right:4px;
+                border-radius: 3px;
+                opacity: 0.4;
+                transition:all 0.25s;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+            .AffairFinishButton{
+                background:#00a0d6;
+            }
+            .AffairEditorButton{
+                background:#E6A23C;
+            }
+        }
+    }
+}
+.FinishRecordPush{
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    z-index: 999;
+    background:#000000bb;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    .PushAlert{
+        width:100%;
+        max-width: 600px;
+        margin:0 auto;
+        min-height:200px;
+        background:#fff;
+        border-radius: 6px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding:20px;
+        background: url(https://duvebe931qgtc.cloudfront.net/resources/images/sub/bg_allleague_sub.png) center center #fff no-repeat;
+        background-size: 100% 100%;
+        .PushRecordName{
+            color:#252525;
+            font-weight: bold;
+            user-select: none;
+        }
+        .AffairLevel{
+            color:gold;
+            margin-left:4px;
+            font-size:12px;
+        }
+        .PushRecordDescribe{
+            color:#999;
+            // font-weight: bold;
+            font-size:12px;
+            margin-bottom:10px;
+            user-select: none;
+            margin-bottom:15px;
+        }
+        .PushSentence{
+            // height:40px;
+            width:415px;
+            height:150px;
+            border-radius:6px;
+            outline: none;
+            border:none;
+            padding:10px;
+            font-size:26px;
+            border:2px solid #eee;
+            transition:all 0.25s;
+            max-width: 90%;
+            &:hover{
+                border-color:#00a0d6
+            }
+            &:focus{
+                border-color:#00a0d6
+            }
+            &::placeholder{
+                color:#ccc;
+            }
+        }
+        .SentenceThum{
+            max-width: 450px;
+            font-size:12px;
+            color:#999;
+            margin-top:5px;
+        }
+        .affirm,
+        .cancel{
+            width:100px;
+            height:40px;
+            margin:5px;
+            margin-top:10px;
+            border:none;
+            color:#fff;
+            font-size:16px;
+            transition:all 0.25s;
+            cursor: pointer;
+            user-select: none;
+            &:hover{
+                opacity: 0.7;
+            }
+        }
+        .affirm{
+            background:#67C23A;
+        }
+        .cancel{
+            background:#F56C6C;
+        }
+    }
+}
+.EditorAffairPanel{
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    z-index: 999;
+    background:#000000bb;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .PushAlert{
+        width:100%;
+        max-width: 600px;
+        margin:0 auto;
+        min-height:300px;
+        background:#fff;
+        border-radius: 6px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding:20px;
+        transition: all 0.25s;
+        position: relative;
+        .AffairIcon{
+            margin-top:20px;
+            font-size:45px;
+            cursor: pointer;
+            transition: all 0.25s;
+            flex-shrink: 0;
+            &:hover{
+                opacity: 0.5;
+            }
+        }
+        .IconList{
+            width:418px;
+            max-width: 90%;
+            height:200px;
+            overflow-y: scroll;
+            display:flex;
+            flex-wrap:wrap;
+            margin-bottom:20px;
+            border:1px solid #eee;
+            border-radius:6px;
+            padding:4px;
+            .IconLI{
+                width:34px;
+                height:34px;
+                box-sizing: border-box;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-size:30px;
+                border:2px solid #fff;
+                border-radius: 5px;
+                margin:2px;
+                transition: all 0.25s;
+                &:hover{
+                    border-color:#00a0d6;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .PushRecordDescribe{
+            color:#999;
+            // font-weight: bold;
+            font-size:12px;
+            margin-bottom:10px;
+            user-select: none;
+            margin-bottom:15px;
+        }
+        .NewAffairName,
+        .NewAffairDescribe{
+            height:40px;
+            border-radius:6px;
+            width:400px;
+            outline: none;
+            border:none;
+            padding:10px;
+            font-size:26px;
+            border:2px solid #eee;
+            transition:all 0.25s;
+            max-width: 90%;
+            &:hover{
+                border-color:#00a0d6
+            }
+            &:focus{
+                border-color:#00a0d6
+            }
+            &::placeholder{
+                color:#ccc;
+            }
+        }
+        .NewAffairDescribe{
+            margin-top:4px;
+            height:26px;
+            font-size:20px;
+        }
+        .SentenceThum{
+            max-width: 450px;
+            font-size:12px;
+            color:#999;
+            margin-top:5px;
+        }
+        .PushTools{
+            // position: absolute;
+            // transform:translateX(-50%);
+            margin-top:15px;
+            // margin-bottom:5px;
+            .affirm,
+            .cancel{
+                width:80px;
+                height:35px;
+                margin:5px;
+                margin-top:10px;
+                border:none;
+                color:#fff;
+                font-size:16px;
+                transition:all 0.25s;
+                cursor: pointer;
+                user-select: none;
+                border-radius: 4px;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+            .affirm{
+                background:#67C23A;
+            }
+            .cancel{
+                background:#F56C6C;
+            }
+        }
+
+    }
+}
+@media screen and (max-width : 600px) {
+    .MyAffair{
+        .AffairLi{
+            flex-direction: column !important;
+            padding:10px !important;
+            .AffairText{
+                padding:10px !important;
+            }
+        }
+    }
+    // body{
+    //     max-width:99vw !important;
+    // }
+    .FinishRecord{
+        width:100% !important;
+        max-width: 100% !important;
+    }
+}
+@media screen and (min-width : 1000px) {
+    .AffairLi{
+        width:30% !important;
+        max-width: 33.3% !important;
+    }
+}

@@ -20,18 +20,20 @@
         <ul class="ThougthList">
             <div class="DateLi" v-for="(item,key) in dateList" :key="key">
                 <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
-                <li v-for="(li,key) in item.thoughtList" :key="key">
-                    <div class="ThoughtMain">
-                        <pre class="ThoughtText">{{li.text}}</pre>
-                        <div class="ThoughtDetails">
-                            <span class="ThoughtEmotion" v-if="li.emotion != null">
-                                {{li.emotion.name}}
-                            </span>
-                            <span class="thou_time">{{getTimeString(li.date)}}</span>
+                <ul class="CurrentDateList">
+                    <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
+                        <div class="ThoughtMain">
+                            <pre class="ThoughtText">{{li.text}}</pre>
+                            <div class="ThoughtDetails">
+                                <span class="ThoughtEmotion" v-if="li.emotion != null">
+                                    {{li.emotion.name}}
+                                </span>
+                                <span class="thou_time">{{getTimeString(li.date)}}</span>
+                                <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
+                            </div>
                         </div>
-                    </div>
-                    <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
-                </li>
+                    </li>
+                </ul>
             </div>
         </ul>
     </div>

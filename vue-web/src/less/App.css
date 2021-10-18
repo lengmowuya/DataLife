@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 1000px) {
+  body {
+    max-width: 100vw !important;
+  }
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+#DataLifeNav {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 0 1px #eee;
+  background: #fff;
+  border-radius: 0 0 4px 4px;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+#DataLifeNav a {
+  margin-right: 16px;
+  width: 75px;
+  height: 100%;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #252525;
+  box-sizing: border-box;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+#DataLifeNav a i {
+  margin-right: 2px;
+  font-size: 19px;
+}
+#DataLifeNav a.router-link-active {
+  color: #00a1d6;
+  border-bottom: 3px solid #00a1d6;
+}
+#DataLifeNav a:nth-child(1) i {
+  color: #00c091;
+}
+#DataLifeNav a:nth-child(2) i {
+  color: #fb7299;
+}
+#DataLifeNav a:nth-child(3) i {
+  color: #67C23A;
+}
+#DataLifeNav a:nth-child(4) i {
+  color: #f3a034;
+}
+#DataLifeNav a:hover a {
+  color: #00a1d6;
+}

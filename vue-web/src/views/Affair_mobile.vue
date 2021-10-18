@@ -360,10 +360,14 @@ export default {
     this.NowDate.Date = new Date(this.NowDate.time);
     this.getAllAffair();
     this.getAllIcon();
-    document.title = "DataLife-" + "事务";
+    document.title = "DataLife-mobile" + "事务";
+    console.log("this small");
+    if(document.documentElement.clientWidth >= 1000){
+      this.$router.push('affair');
+    }
   }
 }
 </script>
 <style lang="less" scoped>
-@import './../less/Affair.less';
+@import './../less/Affair_mobile.less';
 </style>

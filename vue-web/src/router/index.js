@@ -17,6 +17,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Affair.vue')
   },
   {
+    path: '/affair_mobile',
+    name: 'AffairMobile',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Affair_mobile.vue')
+  },
+  {
     path: '/self',
     name: 'Self',
     component: () => import(/* webpackChunkName: "about" */ '../views/Self.vue')

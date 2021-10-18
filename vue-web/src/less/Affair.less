@@ -83,23 +83,19 @@
     padding:5px;
     background:#fff;
     margin:10px 0px;
+    margin-top:0px;
     display:flex;
-    // flex-direction: column;
     flex-wrap: wrap-reverse;
-    height:136px;
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    justify-content:flex-end;
-    // justify-self: unset;
+    @height:42px;
+    flex-direction: row-reverse;
     align-content: flex-start;
     border-radius: 6px;
+    box-shadow:0 4px 20px rgba(0,25,104,0.05);
     .HistoryBlock{
-        // border:1px solid #ccc;
-        background:#f6f6f6;
-        width:30px;
-        height:30px;
+        width:@height;
+        height:@height;
         margin:2px;
-        border-radius: 3px;
+        border-radius: 7px;
         overflow: hidden;
         .HistoryDateNumber{
             width:100%;
@@ -108,37 +104,61 @@
             align-items: center;
             justify-content: center;
             font-size:14px;
-            color:#ffffff;
-            background:#00a0d6;
+            color:#999;
+            // background:#fff;
+            background:#f6f6f6;
             user-select: none;
             vertical-align: middle;
             cursor: pointer;
             transition: all 0.25s;
-            border:2px solid #00a0d6;
+            // border:2px solid #00a0d6;
             box-sizing: border-box;
-            &:hover{
+            flex-direction: column;
+            .HistroyDateLength{
+                font-weight: bold;
+                font-size: 19px;
+            }
+            .HistroyDateIntraday{
+                font-size:12px;
                 opacity: 0.5;
+                font-weight: bold;
+            }
+            &:not(.active):hover{
+                opacity: 0.5;
+                // background-color: #00a0d6;
+
             }
             &.plus5{
-                background:gold;
-                border-color: gold;
+                color:gold;
+                // border-color: gold;  
             }
             &.plus10{
-                background:tomato;
-                border-color: tomato;
+                color:tomato;
+                // border-color: tomato;
             }
             &.active{
-                border-color: #333 !important;
+                // box-shadow: 6px 0px 6px #666;
+                // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                // border-color: #ccc !important;
+                background:#333;
+                .HistroyDateIntraday{
+                    // color:#333;
+                    opacity: 1;
+                }
             }
         }
     }
 }
 .FinishBlock{
-    max-width: 80%;
+    max-width: 1200px;
     margin:0 auto;
     margin-top:25px;
     background:#fff;
+    background:#f6f7f9; 
     border-radius: 6px;
+    min-height: 400px;
+    padding:15px;
+    box-sizing: border-box;
     .FinishDay{
         color:#00a0d6;
         text-align: center;
@@ -159,16 +179,30 @@
         border:2px solid #00a0d6;
         color:#fff;
         // height:34px;
-        margin-right:5px;
+        margin-right:12px;
         border-radius:6px;
         flex-direction: column;
         display:flex;
-        margin-bottom:5px;
+        margin-bottom:12px;
         flex-grow: 1;
         // min-width: 15%;
         width:20%;
-        max-width: 25%;
+        max-width: calc(25% - 14px);
         box-sizing: border-box;
+        transition: all 0.25s;
+        &:hover{
+            .FinishRecordIcon{
+                background:#eee !important;
+            }
+            .FinishRecordText{
+                color:#252525;
+            }
+            background:#fff;
+            .RecordSentence{
+                color:#252525;
+            }
+            // font-weight: bold;
+        }
         .FinishRecordHeader{
             display:flex;
             .FinishRecordIcon{
@@ -214,10 +248,7 @@
             // box-sizing: border-box;
             white-space: pre-wrap;
             // word-wrap: break-word;
-            &:hover{
-                color:#252525;
-                // font-weight: bold;
-            }
+
         }
     }
 }
@@ -227,15 +258,18 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    background:#000;
+    // background:#000;
     padding:15px;
-    border-radius: 6px;
+    // padding-bottom:5px;
+    // border-radius: 6px;
+    background:#f6f7f9;
+    // border-bottom:2px solid #eee;
     .LabelName{
         margin-right:4px;
         font-size:13px;
-        opacity: 0.9;
+        // opacity: 0.9;
         user-select: none;
-        color:silver;
+        color:#999;
     }
     .AllRecordLength,
     .AverageRecord,
@@ -243,10 +277,13 @@
         padding:8px 16px;
         color:gold;
         background:#252525; 
+        // background:#fff; 
         background-image: linear-gradient(to Right,#252525,#333);
+        background-image: linear-gradient(to Right,#eee,#fff);
         border-radius: 4px;
         font-size:27px;
         margin-right:10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
     .AverageRecord{
         margin:0px;
@@ -257,24 +294,43 @@
     display:flex;
     flex-wrap: wrap;
     // flex-direction: column;
-    margin-top:10px;
+    // padding-top:10px;
+    background:#f6f7f9;
+    padding:20px;
+    padding-top:0px;
+    box-sizing: border-box;
+    // border-bottom-left-radius: 6px;
+    // border-bottom-right-radius: 6px;
+    // border:1px solid #eee;
     .AffairLi{
-        margin:3px;
+        margin:6px;
         border-radius: 4px;
         background:#fff;
         // border:1px solid #e5e9ef;
-        min-width:30%;
+        min-width:20%;
         flex-grow: 1;
         cursor: pointer;
         transition:all 0.25s;
         display:flex;
         border:1px solid transparent;
         transition:all 0.25s;
-        width:40%;
+        border:2px solid transparent;
+        width:20%;
+        max-width: calc(25% - 14px);
+        position: relative;
         &.active{
-            border:1px solid #00a0d6;
         }
         &:hover{
+            border-color:#00a0d6;
+
+            .AffairText{
+                display:none;
+                .AffairLiName{
+                    display:none;
+                }
+                .AffairLiDescribe   {
+                }
+            }
             .AffairTools{
                 display:flex;
             }
@@ -283,37 +339,53 @@
             font-size:40px;
             // color:#00a0d6;
             // margin-right:10px;
-            width:60px;
+            width:50px;
             display:flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
+            // border:1px  solid #eee;
 
+        }
+        .AffairLevel{
+            color:gold;
+            // margin-left:4px;
+            font-size:10px;
+            padding:2px 4px;
+            background:#252525;
+            font-weight: normal;
+            border-radius: 3px;
+            position: absolute;
+            transform: scale(0.8) translateX(-50%);
+            left:23px;
+            
+            bottom:-8.5px;
         }
         .AffairText{
             flex-grow: 1;
-            margin-right:10px;
+            // margin-right:10px;
             padding:10px;
             padding-left:0px;
             .AffairLiName{
-                font-size:15px;
+                font-size:13px;
                 color:#252525;
                 font-weight: bold;
                 user-select: none;
-            }
-            .AffairLevel{
-                color:gold;
-                // margin-left:4px;
-                font-size:12px;
-                padding:2px 4px;
-                background:#252525;
-                font-weight: normal;
-                border-radius: 3px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 190px;
             }
             .AffairLiDescribe{
-                font-size:12px;
-                color:#bbb;
+                margin-top:2px;
+                font-size:10px;
+                color:#ccc;
                 user-select: none;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: calc(100% - 60px);
+                max-width: 190px;
             }
         }
         .AffairTools{
@@ -323,6 +395,8 @@
             display:none;
             align-items: center;
             margin-right:10px;
+            justify-content: center;
+            flex-grow: 1;
             button{
                 flex-shrink: 0;
                 border:none;
@@ -612,7 +686,7 @@
 }
 @media screen and (min-width : 1000px) {
     .AffairLi{
-        width:30% !important;
-        max-width: 33.3% !important;
+        // width:30% !important;
+        // max-width: 33.3% !important;
     }
 }

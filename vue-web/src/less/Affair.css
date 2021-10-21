@@ -20,11 +20,13 @@
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
-  border: 1px solid #e5e9ef;
   transition: all 0.25s;
+  box-shadow: 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
+  margin-right: 12px;
+  color: #98a3b7;
 }
 .EnterBlock .NewBlock:hover {
-  border-color: #00a1d6;
+  border-color: #98a3b7;
 }
 .EnterBlock .NewBlock:focus {
   border-color: #00a1d6;
@@ -35,12 +37,12 @@
   outline: none;
   background: transparent;
   color: #fff;
-  color: #00a0d6;
+  color: #98a3b7;
 }
 .EnterBlock .NewBlock .NewBlockName::placeholder,
 .EnterBlock .NewBlock .NewBlockDescribe::placeholder {
   color: #eee;
-  color: #00a0d633;
+  color: #98a3b7;
 }
 .EnterBlock .NewBlock .NewBlockName {
   height: 20px;
@@ -54,23 +56,24 @@
   font-size: 12px;
 }
 .EnterBlock .AddButton {
-  width: 60px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
 }
 .EnterBlock .AddButton button {
   width: 100%;
   height: 100%;
   background: transparent;
   border-radius: 8px;
-  color: tomato;
   border: none;
-  font-size: 46px;
+  font-size: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  opacity: 0.65;
   transition: all 0.25s;
+  background: #fff;
+  box-shadow: 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
 }
 .EnterBlock .AddButton button:hover {
   opacity: 1;
@@ -140,16 +143,25 @@
   margin-top: 25px;
   background: #fff;
   background: #f6f7f9;
+  box-shadow: inset 0px 0px 20px 0 rgba(55, 99, 170, 0.11);
   border-radius: 6px;
   min-height: 400px;
   padding: 15px;
   box-sizing: border-box;
 }
 .FinishBlock .FinishDay {
-  color: #00a0d6;
   text-align: center;
   font-size: 16px;
-  font-weight: bold;
+  padding: 14px 0px;
+  padding-bottom: 24px;
+}
+.FinishBlock .FinishDay .text {
+  color: #98a3b7;
+  background: #ffffff99;
+  padding: 10px;
+  user-select: none;
+  border-radius: 6px;
+  overflow: hidden;
 }
 .FinishBlock .FinishRecordList {
   display: flex;
@@ -159,9 +171,10 @@
   padding-top: 5px;
 }
 .FinishBlock .FinishRecord {
-  background: #00a0d699;
-  border: 2px solid #00a0d6;
-  color: #fff;
+  color: #98a3b7;
+  background: #fff;
+  box-shadow: 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
+  padding: 10px;
   margin-right: 12px;
   border-radius: 6px;
   flex-direction: column;
@@ -225,19 +238,25 @@
   cursor: pointer;
   white-space: pre-wrap;
 }
+.MyAffairBigBlock {
+  background: #f6f7f9;
+  box-shadow: inset 0px 0px 20px 0 rgba(55, 99, 170, 0.11);
+  border-radius: 6px;
+}
 .MyAffairCareer {
   margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #f6f7f9;
 }
 .MyAffairCareer .LabelName {
   margin-right: 4px;
   font-size: 13px;
-  user-select: none;
   color: #999;
+  color: #98a3b7;
+  cursor: pointer;
+  user-select: none;
 }
 .MyAffairCareer .AllRecordLength,
 .MyAffairCareer .AverageRecord,
@@ -247,49 +266,52 @@
   background: #252525;
   background-image: linear-gradient(to Right, #252525, #333);
   background-image: linear-gradient(to Right, #eee, #fff);
+  background-image: linear-gradient(0deg, #fff, #f3f5f8);
   border-radius: 4px;
   font-size: 27px;
-  margin-right: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 16px;
+  border: 2px solid #fff;
+  box-shadow: 8px 8px 20px 0 rgba(55, 99, 170, 0.1), -8px -8px 20px 0 #fff;
+  font-weight: bold;
+  user-select: none;
 }
 .MyAffairCareer .AverageRecord {
   margin: 0px;
+}
+.MyAffairCareer > * {
+  margin-top: -40px !important;
 }
 .MyAffair {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  background: #f6f7f9;
   padding: 20px;
   padding-top: 0px;
   box-sizing: border-box;
 }
 .MyAffair .AffairLi {
-  margin: 6px;
+  margin: 12px;
   border-radius: 4px;
   background: #fff;
+  box-shadow: 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
   min-width: 20%;
   flex-grow: 1;
   cursor: pointer;
   display: flex;
-  border: 1px solid transparent;
   transition: all 0.25s;
   border: 2px solid transparent;
   width: 20%;
-  max-width: calc(25% - 14px);
+  max-width: calc(25% - 24px - 4px);
   position: relative;
 }
 .MyAffair .AffairLi:hover {
   border-color: #00a0d6;
 }
 .MyAffair .AffairLi:hover .AffairText {
-  display: none;
-}
-.MyAffair .AffairLi:hover .AffairText .AffairLiName {
-  display: none;
+  opacity: 0.25;
 }
 .MyAffair .AffairLi:hover .AffairTools {
-  display: flex;
+  opacity: 1 !important;
 }
 .MyAffair .AffairLi .AffairIcon {
   font-size: 40px;
@@ -315,6 +337,8 @@
   flex-grow: 1;
   padding: 10px;
   padding-left: 0px;
+  opacity: 1;
+  transition: all 0.25s;
 }
 .MyAffair .AffairLi .AffairText .AffairLiName {
   font-size: 13px;
@@ -340,11 +364,15 @@
 .MyAffair .AffairLi .AffairTools {
   flex-shrink: 0;
   display: flex;
-  display: none;
   align-items: center;
   margin-right: 10px;
   justify-content: center;
   flex-grow: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.25s;
 }
 .MyAffair .AffairLi .AffairTools button {
   flex-shrink: 0;

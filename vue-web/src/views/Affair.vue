@@ -1,78 +1,79 @@
 <template>
   <div id="AffairPage">
+    <!-- 新建事务的输入板块 -->
     <div class="EnterBlock">
       <div class="NewBlock">
         <input type="text" class="NewBlockName" placeholder="新事务名称" v-model="NewBlock.name">
         <input type="text" class="NewBlockDescribe" placeholder="一句话描述我的新事务" v-model="NewBlock.describe">
       </div>
       <div class="AddButton">
-        <button @click="addAffair()"><i class="el-icon-circle-plus"></i></button>
+        <button @click="addAffair()">+</button>
       </div>
     </div>
+    <!-- 完成的记录板块 -->
     <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
       <div class="HistoryRecord">
-        <div  v-for="(item,i) in HistoryRecord" :key="i" :title="getDateString(item.data)" :class="{HistoryBlock:true}">
+        <div  v-for="(item,i) in HistoryRecord" :key="i" :title="Tool.getDateString(item.data)" :class="{HistoryBlock:true}">
           <span v-if="item.record.length > 0" 
             :class="{HistoryDateNumber:true,
               plus5:item.record.length >= 5,
               plus10:item.record.length >= 10,
-              active:getDateString(RecordShowDate.data) == getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i]">
-            <!-- <span class="HistroyDateLength">{{item.record.length}}</span> -->
-            <span class="HistroyDateIntraday">{{getMiniDateString(item.data)}}</span>
+              active:Tool.getDateString(RecordShowDate.data) == Tool.getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i]">
+            <span class="HistroyDateIntraday">{{Tool.getMiniDateString(item.data)}}</span>
           </span>
         </div>
       </div>
-      <p class="FinishDay">{{getDateString(RecordShowDate.data)}}号&nbsp; 周{{RecordShowDate.date.getDay()}}</p>
+      <p class="FinishDay"><span class="text">{{Tool.getDateString(RecordShowDate.data)}}号&nbsp; 周{{RecordShowDate.date.getDay()}}</span></p>
       <div class="FinishRecordList">
         <div class="FinishRecord" v-for="(item,index) in RecordShowDate.record" :key="index">
           <div class="FinishRecordHeader">
             <div class="FinishRecordIcon">
               <svg class="icon" aria-hidden="true">
-                  <!-- <use xlink:href="#icon-dakaqiandao"></use> -->
                 <use :xlink:href="'#icon-'+item.affair.icon"></use>
               </svg>
             </div>
             <div class="FinishRecordText">
               <p class="RecordName">{{item.affair.name}}</p>
-              <p class="RecordTime">{{getTimeString(item.data)}}</p>
+              <p class="RecordTime">{{Tool.getTimeString(item.data)}}</p>
             </div>
           </div>
           <pre class="RecordSentence">{{item.sentence}}</pre>
         </div>
       </div>
     </div>
-    <div class="MyAffairCareer">
-      <span class="AllRecordLength"><span class="LabelName">总生涯等级</span>{{RecordList.length}}<span class="LabelName"> 级</span></span>
-      <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName"> 天</span></span>
-      <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName"> 条/天</span></span>
-    </div>
-    <div class="MyAffair">
-      
-      <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
-        <div class="AffairIcon">
-           <svg class="icon" aria-hidden="true">
-              <!-- <use xlink:href="#icon-dakaqiandao"></use>
-               -->
-               <use :xlink:href="'#icon-'+item.icon"></use>
-          </svg>
-        </div>
-        <span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span>
-        <div class="AffairText">
-          <p class="AffairLiName"> {{item.name}} </p>
-          <p class="AffairLiDescribe">{{item.describe}}</p>
-        </div>
-        <div class="AffairTools">
-          <button class="AffairFinishButton" @click="onPushRecord = true;pushAffair = item"  title="完成一次">
-            <i class="el-icon-check"></i>
-          </button>
-          <button class="AffairEditorButton"  title="编辑这个事务!" @click="Editor.onEditorAffair = true;changeAffairInfo(item)">
-            <i class="el-icon-s-tools"> </i>
-          </button>
-
-
+    <div class="MyAffairBigBlock">
+      <!-- 我事务的数据头衔 -->
+      <div class="MyAffairCareer">
+        <span class="AllRecordLength"><span class="LabelName">总生涯等级</span>{{RecordList.length}}<span class="LabelName"> 级</span></span>
+        <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName"> 天</span></span>
+        <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName"> 条/天</span></span>
+      </div>
+      <!-- 我所有的事务 -->
+      <div class="MyAffair">
+        <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
+          <div class="AffairIcon">
+            <svg class="icon" aria-hidden="true">
+                <use :xlink:href="'#icon-'+item.icon"></use>
+            </svg>
+          </div>
+          <span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span>
+          <div class="AffairText">
+            <p class="AffairLiName"> {{item.name}} </p>
+            <p class="AffairLiDescribe">{{item.describe}}</p>
+          </div>
+          <div class="AffairTools">
+            <button class="AffairFinishButton" @click="onPushRecord = true;pushAffair = item"  title="完成一次">
+              <i class="el-icon-check"></i>
+            </button>
+            <button class="AffairEditorButton"  title="编辑这个事务!" @click="Editor.onEditorAffair = true;changeAffairInfo(item)">
+              <i class="el-icon-s-tools"> </i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- 完成该事务板块(默认隐藏) -->
     <div class="FinishRecordPush" v-if="onPushRecord && pushAffair!=null">
       <div class="PushAlert">
         <p class="PushRecordName">{{pushAffair.name}}
@@ -87,6 +88,7 @@
         </div>
       </div>
     </div>
+    <!-- 编辑该事务板块(默认隐藏) -->
     <div class="EditorAffairPanel" v-if="Editor.onEditorAffair && Editor.editorAffair!=null">
       <div class="PushAlert">
         <div class="AffairIcon" @click="Editor.showIconList = !Editor.showIconList">
@@ -94,6 +96,7 @@
               <use :xlink:href="'#icon-'+Editor.NewAffair.icon"></use>
           </svg>
         </div>
+        <!-- 图标列表 -->
         <div class="IconList" v-show="Editor.showIconList">
           <div class="IconLI" v-for="(icon,i) in IconList" :key="i" @click="Editor.NewAffair.icon = icon.font_class" :title="icon.name">
             <svg class="icon" aria-hidden="true">
@@ -112,7 +115,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data(){
@@ -121,6 +123,7 @@ export default {
       onPushRecord:false,
       pushAffair:null,
       RecordShowDate:null,
+      // 编辑板块信息
       Editor:{
         NewAffair:{
           name:'',
@@ -137,11 +140,15 @@ export default {
         data:{},
         Date:new Date()
       },
+      Record:{
+        activeIndex:0,
+      },
       HistoryRecord:[],
       AffairList:[],
       RecordList:[],
       activeAffairId:'',
       IconList:[],
+      // 新建事务板块信息
       NewBlock:{
         name:'',
         describe:''
@@ -149,29 +156,51 @@ export default {
     }
   },
   methods:{
+    keyDown() {
+      document.onkeydown = (e) => {
+        //事件对象兼容
+        let e1 = e || event || window.event || arguments.callee.caller.arguments[0]
+        //键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
+        if (e1 && e1.keyCode == 37 && this.Record.activeIndex < this.HistoryRecord.length-1) {
+          if(this.HistoryRecord[this.Record.activeIndex+1].record.length>0){
+            this.Record.activeIndex++;
+            this.RecordShowDate = this.HistoryRecord[this.Record.activeIndex];
+          }
+          // 按下左箭头
+        } else if (e1 && e1.keyCode == 39 && this.Record.activeIndex > 0 ) {
+            // 按下右箭头
+            this.Record.activeIndex--;
+            this.RecordShowDate = this.HistoryRecord[this.Record.activeIndex];
+        }
+      }
+    },
+    // 切换选中的事务
     changeActiveAffair(id){
       this.activeAffairId = id;
     },
+    // 新增事务
     addAffair(){
       let NewAffair = this.NewBlock;
       if(NewAffair.name.trim() == '' || NewAffair.describe.trim() == ''){
         alert("事务的名称或描述不能为空");
         return;
       }
-      this.axios.post('http://127.0.0.1:3000/affair/add',NewAffair)
+      this.axios.post(this.Tool.config.address + '/affair/add',NewAffair)
         .then(()=>{
           this.NewBlock.name = '';
           this.NewBlock.describe = '';
           this.getAllAffair();
         })
     },
+    // 删除事务
     removeAffair(id){
       let Affair = {id};
-      this.axios.post('http://127.0.0.1:3000/affair/remove',Affair)
+      this.axios.post(this.Tool.config.address + '/affair/remove',Affair)
         .then(()=>{
           this.getAllAffair();
         })
     },
+    // 新增事务记录
     addAffairRecord(){
       if(this.pushSentence.trim() == ''){
         alert("请填入您的总结");
@@ -181,7 +210,7 @@ export default {
         affair:this.pushAffair._id,
         sentence:this.pushSentence
       }
-      this.axios.post('http://127.0.0.1:3000/affairRecord/add',info)
+      this.axios.post(this.Tool.config.address + '/affairRecord/add',info)
         .then(()=>{
           this.getAllAffair();
           this.onPushRecord = false;
@@ -189,55 +218,22 @@ export default {
           this.pushSentence = '';
         })
     },
-    FormatDate(timeStamp){
-      let TimeObj = new Date(timeStamp);
-      let date = {
-          year:TimeObj.getFullYear(),
-          month:TimeObj.getMonth() + 1,
-          day:TimeObj.getDate(),
-          hour:TimeObj.getHours(),
-          min:TimeObj.getMinutes(),
-          sec:TimeObj.getSeconds()
-      }
-      return date;
-    },
-    getDateString(data){
-      return data.year + '-' + data.month + '-' + data.day;
-    },
-    getMiniDateString(data){
-      return data.month + '-' + data.day;
-    },
-    getTimeString(data){
-      let hourName = '';
-      let hour = data.hour;
-      if(hour <= 6){
-        hourName = "凌晨";
-      }else if(hour <= 10){
-        hourName = "上午";
-      }else if(hour <= 12){
-        hourName = "中午";
-      }else if(hour <= 17){
-        hourName = "下午";
-      }else if(hour <= 21){
-        hourName = "晚上";
-      }else{
-        hourName = "半夜";
-      }
-      return hourName + '' + data.hour + ':' + data.min;
-    },
+    // 
+    // 更新事务信息
     updateAffair(){
       let NewAffair = this.Editor.NewAffair;
       if(NewAffair.name.trim() == '' || NewAffair.describe.trim() == '' || NewAffair.icon.trim() == ''){
         alert("事务新信息不能为空!");
         return;
       }
-      this.axios.post('http://127.0.0.1:3000/affair/update',NewAffair)
+      this.axios.post(this.Tool.config.address + '/affair/update',NewAffair)
         .then(()=>{
           this.getAllAffair();
           this.Editor.showIconList = false;
           this.Editor.onEditorAffair = false;
         })
     },
+    // 本地修改事务
     changeAffairInfo(item){
       this.Editor.editorAffair = item;
       this.Editor.NewAffair._id = item._id;
@@ -248,8 +244,9 @@ export default {
         this.Editor.NewAffair.icon = this.IconList[0].font_class;
       }
     },
+    // 获取所有图标
     getAllIcon(){
-      this.axios.get('http://127.0.0.1:3000/icon/all')
+      this.axios.get(this.Tool.config.address + '/icon/all')
         .then(res=>{
           this.IconList = res.data;
           if(this.Editor.NewAffair.icon == ''){
@@ -257,9 +254,10 @@ export default {
           }
         })
     },
+    // 获取所有事务
     getAllAffair(){
       let that = this;
-      this.axios.get('http://127.0.0.1:3000/affair/all')
+      this.axios.get(this.Tool.config.address + '/affair/all')
         .then(res=>{
           this.AffairList = res.data;
           this.RecordList = [];
@@ -271,10 +269,8 @@ export default {
                 that.RecordList.push(item.record[i]);
                 // 设置单个记录
                 let record = item.record[i];
-                // console.log(record._id);
                 // 初始化历史记录索引
                 if(this.HistoryRecord.length == 0){
-                  // console.log("init");
                   let newDate = {
                     data:this.NowDate.data,
                     record:[],
@@ -284,7 +280,7 @@ export default {
                   this.RecordShowDate = this.HistoryRecord[0];
                   for(let e=1;e<50;e++){
                     let dayTime = this.NowDate.time - e * 86400000;
-                    let dayData = this.FormatDate(dayTime);
+                    let dayData = this.Tool.FormatDate(dayTime);
                     let newDate = {
                       data:dayData,
                       record:[],
@@ -293,21 +289,12 @@ export default {
                     this.HistoryRecord.push(newDate);
                   }
                 }
-                // let hasDate = false;
-                // 遍历日期
-                // console.log(this.HistoryRecord.length);
                 for(let j = 0 ; j < this.HistoryRecord.length;j++){
                   let HisDate = this.HistoryRecord[j].data;
                   let TargetRecord = record.data;
                   let Date = this.HistoryRecord[j];
-                  // 如果目标日期和记录日期相同
-                  // console.log(HisDate.day,TargetRecord.day);
                   if(HisDate.year == TargetRecord.year && HisDate.month == TargetRecord.month && HisDate.day == TargetRecord.day){
-                    // hasDate = true;
                     Date.record.push(record);
-                    // console.log("push",Date.record.length);
-                    // lssz.push(record);
-                    // console.log(lssz.length);
                     break;
                   }
                 }
@@ -317,16 +304,6 @@ export default {
                     this.AllAffairDay += 1;
                   }
                 })
-                // // 如果没有存在的日期
-                // if(!hasDate){
-                //   console.log("New");
-                //   let newDate2 = {
-                //     data:record.data,
-                //     record:[record],
-                //     date:new Date(record)
-                //   }
-                //   this.HistoryRecord.push(newDate2);
-                // }
               }
             }
           })
@@ -361,21 +338,24 @@ export default {
     }
   },
   created(){
-    // this.getAllAffair();
   },
   mounted(){
-    this.NowDate.data = this.FormatDate(this.NowDate.time);
+    // 初始化数据
+    this.NowDate.data = this.Tool.FormatDate(this.NowDate.time);
     this.NowDate.Date = new Date(this.NowDate.time);
     this.getAllAffair();
     this.getAllIcon();
+    // 页面标题
     document.title = "DataLife-" + "事务";
-    console.log("this is big");
+    // 跳转移动端
     if(document.documentElement.clientWidth < 1000){
       this.$router.push('affair_mobile');
     }
+    this.keyDown();
+    // console.log(this.$store.state.NowDate);
   }
 }
 </script>
 <style lang="less" scoped>
-@import './../less/Affair.less';
+  @import './../less/Affair.less';
 </style>

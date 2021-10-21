@@ -20,10 +20,13 @@
         flex-direction: column;
         padding:10px;
         box-sizing: border-box;
-        border:1px solid #e5e9ef;
+        // border:1px solid #e5e9ef;
         transition:all 0.25s;
+        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
+        margin-right:12px;
+        color:#98a3b7;
         &:hover{
-            border-color:#00a1d6;
+            border-color:#98a3b7;
         }
         &:focus{
             border-color:#00a1d6;
@@ -34,12 +37,12 @@
             outline: none;
             background:transparent;
             color:#fff;
-            color:#00a0d6;
+            color:#98a3b7;
         }
         .NewBlockName::placeholder,
         .NewBlockDescribe::placeholder{
             color:#eee;
-            color:#00a0d633;
+            color:#98a3b7;
         }
         .NewBlockName{
             height:20px;
@@ -57,22 +60,26 @@
         }
     }
     .AddButton{
-        width:60px;
-        height:65px;
+        width:40px;
+        height:40px;
+        margin-top:10px;
         button{
             width:100%;
             height:100%;
             background:transparent;
             border-radius:8px;
-            color:tomato;
+            // color:tomato;
             border:none;
-            font-size:46px;
+            font-size:24px;
             display:flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            opacity: 0.65;
+            // opacity: 0.65;
             transition:all 0.25s;
+            background:#fff;
+            // border:2px solid #f6f7f9;
+            box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
             &:hover{
                 opacity: 1;
             }
@@ -155,16 +162,28 @@
     margin-top:25px;
     background:#fff;
     background:#f6f7f9; 
+    box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
     border-radius: 6px;
     min-height: 400px;
     padding:15px;
     box-sizing: border-box;
     .FinishDay{
-        color:#00a0d6;
+
         text-align: center;
         // margin-bottom:10px;
         font-size:16px;
-        font-weight: bold;
+        // font-weight: bold;
+        padding:14px 0px;
+        padding-bottom:24px;
+
+        .text{
+            color:#98a3b7;
+            background:#ffffff99;
+            padding:10px;
+            user-select: none;
+            border-radius: 6px;
+            overflow: hidden;
+        }
     }
     .FinishRecordList{
         display:flex;
@@ -172,12 +191,18 @@
         margin-right:-5px;
         padding:10px;
         padding-top:5px;
-
     }
     .FinishRecord{
-        background:#00a0d699;
-        border:2px solid #00a0d6;
-        color:#fff;
+        // background:#00a0d699;
+        // border:2px solid #00a0d6;
+        // color:#fff;
+        background:#fff;
+        color:#98a3b7;
+        // border:1px solid rgba(157,173,193,.5);
+        // background-image: linear-gradient(0deg,#fff,#f3f5f8);
+        background:#fff;
+        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
+        padding:10px;
         // height:34px;
         margin-right:12px;
         border-radius:6px;
@@ -252,6 +277,11 @@
         }
     }
 }
+.MyAffairBigBlock{
+    background:#f6f7f9;
+    box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+    border-radius: 6px;
+}
 .MyAffairCareer{
     // display:flex;
     margin-top:40px;
@@ -262,14 +292,18 @@
     padding:15px;
     // padding-bottom:5px;
     // border-radius: 6px;
-    background:#f6f7f9;
+
     // border-bottom:2px solid #eee;
+
     .LabelName{
         margin-right:4px;
         font-size:13px;
         // opacity: 0.9;
         user-select: none;
         color:#999;
+        color:#98a3b7;
+        cursor: pointer;
+        user-select: none;
     }
     .AllRecordLength,
     .AverageRecord,
@@ -280,13 +314,21 @@
         // background:#fff; 
         background-image: linear-gradient(to Right,#252525,#333);
         background-image: linear-gradient(to Right,#eee,#fff);
+        background-image: linear-gradient(0deg,#fff,#f3f5f8);
         border-radius: 4px;
         font-size:27px;
-        margin-right:10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin-right:16px;
+        border:2px solid #fff;
+        // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 8px 8px 20px 0 rgb(55 99 170 / 10%), -8px -8px 20px 0 #fff;
+        font-weight: bold;
+        user-select: none;
     }
     .AverageRecord{
         margin:0px;
+    }
+    &>*{
+        margin-top:-40px !important;
     }
 }
 .MyAffair{
@@ -295,7 +337,7 @@
     flex-wrap: wrap;
     // flex-direction: column;
     // padding-top:10px;
-    background:#f6f7f9;
+    // background:#f6f7f9;
     padding:20px;
     padding-top:0px;
     box-sizing: border-box;
@@ -303,36 +345,41 @@
     // border-bottom-right-radius: 6px;
     // border:1px solid #eee;
     .AffairLi{
-        margin:6px;
+        margin:12px;
         border-radius: 4px;
         background:#fff;
+        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
         // border:1px solid #e5e9ef;
         min-width:20%;
         flex-grow: 1;
         cursor: pointer;
         transition:all 0.25s;
         display:flex;
-        border:1px solid transparent;
         transition:all 0.25s;
         border:2px solid transparent;
         width:20%;
-        max-width: calc(25% - 14px);
+        max-width: calc(25% - 24px - 4px);
         position: relative;
+        // background:url(	https://cloudcache.tencent-cloud.com/open_proj/pro…tea-portal-material-portal/images/recom-bg5e7.jpg
+        // ),linear-gradient(180deg,#f3f5f8,#fff 178px,#fff);
+        // border:2px solid #fff;
         &.active{
         }
         &:hover{
             border-color:#00a0d6;
 
             .AffairText{
-                display:none;
+                // display:none;
+                opacity: 0.25;
                 .AffairLiName{
-                    display:none;
+                    // display:none;
                 }
                 .AffairLiDescribe   {
                 }
             }
             .AffairTools{
-                display:flex;
+                // display:flex;
+                opacity: 1 !important;
             }
         }
         .AffairIcon{
@@ -366,6 +413,8 @@
             // margin-right:10px;
             padding:10px;
             padding-left:0px;
+            opacity: 1;
+            transition: all 0.25s;
             .AffairLiName{
                 font-size:13px;
                 color:#252525;
@@ -392,11 +441,18 @@
             flex-shrink: 0;
             // opacity: 0;
             display:flex;
-            display:none;
+            // display:none;
             align-items: center;
             margin-right:10px;
             justify-content: center;
             flex-grow: 1;
+            position: absolute;
+            // right:10px;
+            // top:5px;
+            width:100%;
+            height:100%;
+            opacity: 0;
+            transition: all 0.25s;
             button{
                 flex-shrink: 0;
                 border:none;

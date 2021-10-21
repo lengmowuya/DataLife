@@ -1,10 +1,10 @@
 <template>
   <div id="DataLife">
     <header id="DataLifeNav">
-      <router-link to="/"><i class="el-icon-s-home"></i>主页</router-link>
-      <router-link to="/thought"><i class="el-icon-s-opportunity"></i>感语</router-link>
+      <!-- <router-link to="/"><i class="el-icon-s-home"></i>主页</router-link> -->
       <router-link to="/affair"><i class="el-icon-s-claim"></i>事务</router-link>
-      <router-link to="/self"><i class="el-icon-s-custom"></i>自我</router-link>
+      <router-link to="/thought"><i class="el-icon-s-opportunity"></i>感语</router-link>
+      <!-- <router-link to="/self"><i class="el-icon-s-custom"></i>自我</router-link> -->
     </header>
     <router-view/>
   </div>

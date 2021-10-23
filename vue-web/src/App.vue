@@ -163,7 +163,7 @@
         }
     },
     mounted(){
-        // console.log(this.$route);
+        console.log(this.Tool.config.address);
         this.$watch(
             () => this.$route,
             (count, prevCount) => {

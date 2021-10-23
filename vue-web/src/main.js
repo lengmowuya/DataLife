@@ -13,3 +13,4 @@ const app = createApp(App)
 app.config.globalProperties.Tool = Tool;
 app.use(VueAxios,Axios);
 app.use(store).use(router).mount('#app')
+

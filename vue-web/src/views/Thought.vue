@@ -72,7 +72,7 @@ export default {
                 return;
             }
             let that = this;
-            this.axios.post('http://127.0.0.1:3000/thought/add',data)
+            this.axios.post(this.Tool.config.address + '/thought/add',data)
                 .then(()=>{
                   that.updateDate();
                 });
@@ -84,7 +84,7 @@ export default {
                 _id
             }
             let that = this;
-            this.axios.post('http://127.0.0.1:3000/thought/remove',data)
+            this.axios.post(this.Tool.config.address + '/thought/remove',data)
             .then(()=>{
                 that.updateDate();
             });
@@ -192,14 +192,14 @@ export default {
         },
         updateDate(){
           this.date = this.FormatDate(new Date().getTime());
-          this.axios.get('http://127.0.0.1:3000/thought/all/'+this.$store.state.user.id)
+          this.axios.get(this.Tool.config.address + '/thought/all/'+this.$store.state.user.id)
             .then(res=>{
                 this.List = res.data;
                 this.setThoughtList();
                 this.initDateList();
                 // this.$forceUpdate();
             });
-          this.axios.get('http://127.0.0.1:3000/emotion/all')
+          this.axios.get(this.Tool.config.address + '/emotion/all')
             .then(res=>{
                 this.EmotionList = res.data;
                 // this.$forceUpdate();

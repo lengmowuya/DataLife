@@ -26,10 +26,10 @@ app.get('/thought/all/:userId',(req,res)=>{
         .populate('emotion')
         .then(result=>{
             res.send(result);
-            result.forEach(item=>{
-                item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
-                item.save();
-            })
+            // result.forEach(item=>{
+            //     item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
+            //     item.save();
+            // })
         })
 })
 // 获取所有心情状态

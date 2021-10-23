@@ -3,7 +3,7 @@
     border:1px solid transparent;
     padding-top:40px;
     padding:0px 1.5%;
-    background:#f6f7f9; 
+    // background:#f6f7f9; 
     // max-width: 1200px;
     margin:0 auto;
     // 输入板块
@@ -16,8 +16,12 @@
         flex-direction: column;
         textarea{
             flex-grow: 1;
-            border:1px solid #e5e9ef;
+            // border:1px solid #e5e9ef;
+            border:1px solid #fff;
             background:#fff;
+            box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
+            // background:#f6f7f9; 
+            // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
             font-size:12px;
             border-radius:4px;
             outline: none;
@@ -118,26 +122,31 @@
         max-width: 1000px;
         margin:0 auto;
         padding-bottom:20px;
+        border-left:4px solid #98a3b7;
         .DateLi{
             width:100%;
             // padding-left:15px;
             flex-direction: row;
             flex-wrap: wrap;
             background:#fff;
-            border-radius: 8px;
-            padding:16px 24px;
+            border-radius: 6px;
+            padding:12px 16px;
             margin-top:30px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+            // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+            background:#fff;
+            // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+            // background:#f6f7f9; 
+            // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
             box-sizing: border-box;
             .DateLiTitle{
                 // padding:10px 0px;
                 padding-bottom:12px;
                 // margin-left:-15px;
                 // color:#00a1d6;
-                // font-weight: bold;
-                font-size: 20px;
+                font-weight: bold;
+                font-size: 14px;
                 user-select: none;
-                color:#ddd;
+                color:#98a3b7;
                 .DateThoughtNumber{
                     font-size:12px;
                     color:#fff;
@@ -167,7 +176,11 @@
                 box-sizing: border-box;
                 flex-grow: 1;
                 // background:#fff;
-                border:2px solid #eee;
+                border:2px solid #fff;
+                // background:#fff;
+                // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+                background:#f6f7f9; 
+                box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
                 transition: all 0.25s;
                 &:hover{
                     border-color: #00a1d6;
@@ -179,6 +192,7 @@
                     .ThoughtText{
                         font-size:13px;
                         color:#252525;
+                        color:#98a3b7;
                         white-space: pre-wrap;
                         letter-spacing: -0.5px;
                         flex-grow: 1;
@@ -188,9 +202,9 @@
                         }
                         &::first-letter{
                             padding-right:2px;
-                            font-size:1.5em;
+                            font-size:1.15em;
                             font-weight: bold;
-                            color:#000;
+                            // color:#000;
                         }
                     }
                     .ThoughtDetails{

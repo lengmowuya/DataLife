@@ -1,6 +1,6 @@
 <template>
   <div id="DataLife">
-    <header id="DataLifeNav">
+    <header id="DataLifeNav" v-if="showNav">
       <!-- <router-link to="/"><i class="el-icon-s-home"></i>主页</router-link> -->
       <router-link to="/affair"><i class="el-icon-s-claim"></i>事务</router-link>
       <router-link to="/thought"><i class="el-icon-s-opportunity"></i>感语</router-link>
@@ -13,6 +13,7 @@
   export default {
     data(){
       return {
+        showNav:true,
         List:[],
         writeText:"",
         dateList:[],
@@ -159,6 +160,29 @@
                 this.EmotionList = res.data;
                 // this.$forceUpdate();
             });
+        }
+    },
+    mounted(){
+        // console.log(this.$route);
+        this.$watch(
+            () => this.$route,
+            (count, prevCount) => {
+                // console.log(count);
+                if(count.fullPath == '/sign'){
+                    this.showNav = false;
+                }else{
+                    this.showNav = true;
+                }
+                /* ... */
+            }
+        )
+        if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
+            this.$router.push('sign');
+        }
+    },
+    updated(){
+        if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
+            this.$router.push('sign');
         }
     }
   }

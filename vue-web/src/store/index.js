@@ -6,7 +6,13 @@ export default createStore({
     NowDate:{
       time:new Date().getTime(),
       data:{},
-      Date:new Date()
+      Date:new Date(),
+      user:{
+        name:"",
+        passward:"",
+        email:"",
+        id:''
+      }
     },
   },
   mutations: {

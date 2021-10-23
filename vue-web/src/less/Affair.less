@@ -216,17 +216,19 @@
         box-sizing: border-box;
         transition: all 0.25s;
         &:hover{
-            .FinishRecordIcon{
-                background:#eee !important;
+            .morePanel{
+                opacity: 1 !important;
             }
-            .FinishRecordText{
-                color:#252525;
-            }
-            background:#fff;
-            .RecordSentence{
-                color:#252525;
-            }
-            // font-weight: bold;
+            // .FinishRecordIcon{
+            //     background:#eee !important;
+            // }
+            // .FinishRecordText{
+            //     color:#252525;
+            // }
+            // background:#fff;
+            // .RecordSentence{
+            //     color:#252525;
+            // }
         }
         .FinishRecordHeader{
             display:flex;
@@ -249,6 +251,7 @@
                 flex-wrap: wrap;
                 flex-direction: column;
                 padding:5px;
+                flex-grow: 1;
                 .RecordName{
                     flex-grow: 1;
                     font-size: 14px;
@@ -273,7 +276,29 @@
             // box-sizing: border-box;
             white-space: pre-wrap;
             // word-wrap: break-word;
-
+        }
+        .morePanel{
+            opacity: 0;
+            transition: all 0.25s;
+            .button{
+                transition:all 0.25s;
+                background:#fff;
+                line-height: 21px;  
+                padding:5px;
+                font-size:16px;
+                width:20px;
+                text-align: center;
+                border-radius: 4px;
+                // opacity: 0.5;
+                cursor: pointer;
+                color:#98a3b799;
+                &:hover{
+                    background:#f9f9f9;
+                    // opacity: 1;
+                    color:red;
+                }
+            }
+            // height:21px;
         }
     }
 }
@@ -281,10 +306,10 @@
     background:#f6f7f9;
     box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
     border-radius: 6px;
+    margin-top:40px;
 }
 .MyAffairCareer{
     // display:flex;
-    margin-top:40px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -335,15 +360,19 @@
     width:100%;
     display:flex;
     flex-wrap: wrap;
-    // flex-direction: column;
-    // padding-top:10px;
-    // background:#f6f7f9;
     padding:20px;
     padding-top:0px;
     box-sizing: border-box;
-    // border-bottom-left-radius: 6px;
-    // border-bottom-right-radius: 6px;
-    // border:1px solid #eee;
+    min-height: 300px;
+    .NullBlockTip{
+        flex-grow: 1;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color:#98a3b7;
+        font-size:20px;
+        user-select: none;
+    }
     .AffairLi{
         margin:12px;
         border-radius: 4px;
@@ -721,6 +750,24 @@
         }
 
     }
+    .deleteButton{
+        position: absolute;
+        right:10px;
+        top:10px;
+        button{
+            border:none;
+            background:red;
+            opacity: 0.5;
+            border-radius: 6px;
+            color:#fff;
+            padding:6px 12px;
+            cursor: pointer;
+            transition: all 0.25s;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }   
 }
 @media screen and (max-width : 600px) {
     .MyAffair{

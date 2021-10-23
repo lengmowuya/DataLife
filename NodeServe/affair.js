@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 let Export = require('./schema.js');
-
+let mongoose = require("mongoose");
 function FormatDate(timeStamp){
     let TimeObj = new Date(timeStamp);
     let date = {
@@ -40,6 +40,7 @@ return hourName + '' + data.hour + ':' + data.min;
 app.post('/affair/add',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
     req.body.time = new Date().getTime();
+    req.body.icon = "miaosha";
     new Export.AffairModel(req.body).save((err,result)=>{
         if(err) res.send({type:'error'});
         res.send({type:'success'});
@@ -53,15 +54,15 @@ app.post('/affair/remove',(req,res)=>{
     })
 })
 // 获取所有事务
-app.get('/affair/all',(req,res)=>{
-    // Export.AffairModel.find({},(err,result)=>{
-    //     if(err) res.send({type:'error'});
-    //     res.send(result);
-    // })
-    Export.AffairModel.find()
+app.get('/affair/all/:userId',(req,res)=>{
+    Export.AffairModel.find({owner:req.params.userId})
         .populate('record')
         .then(result=>{
             res.send(result);
+            result.forEach(item=>{
+                item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
+                item.save();
+            })
         })
 })
 app.post('/affair/update',(req,res)=>{
@@ -82,7 +83,15 @@ app.get('/icon/all',(req,res)=>{
             res.send(result);
         })
 })
+
 // 以下为事务记录
+// 删除事务
+app.post('/affairRecord/remove',(req,res)=>{
+    Export.AffairRecordModel.remove({_id:req.body.id},(err,result)=>{
+        if(err) res.send({type:'error'});
+        res.send();
+    })
+})
 // 添加事务记录
 app.post('/affairRecord/add',(req,res)=>{
     // 创建新记录
@@ -105,16 +114,5 @@ app.post('/affairRecord/add',(req,res)=>{
             })
             res.send({type:'success'});
         })
-
-    // 添加外键
-    // Export.AffairModel.findOne({_id:req.body.affair})
-    // .then(affair=>{
-    //     if(!Array.isArray(affair.record)){
-    //         affair.record = [];
-    //     }
-    //     affair.record.push(new Date().getTime());
-    //     affair.save();
-    // })
-    // res.send({type:'success'});
 })
 module.exports = app;

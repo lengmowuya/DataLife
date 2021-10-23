@@ -18,7 +18,7 @@
             :class="{HistoryDateNumber:true,
               plus5:item.record.length >= 5,
               plus10:item.record.length >= 10,
-              active:Tool.getDateString(RecordShowDate.data) == Tool.getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i]">
+              active:Tool.getDateString(RecordShowDate.data) == Tool.getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i],Record.activeIndex = i">
             <span class="HistroyDateIntraday">{{Tool.getMiniDateString(item.data)}}</span>
           </span>
         </div>
@@ -36,6 +36,9 @@
               <p class="RecordName">{{item.affair.name}}</p>
               <p class="RecordTime">{{Tool.getTimeString(item.data)}}</p>
             </div>
+            <div class="morePanel">
+              <i class="el-icon-delete-solid button" title="删除" @click="removeAffairRecord(item._id)"></i>
+            </div>
           </div>
           <pre class="RecordSentence">{{item.sentence}}</pre>
         </div>
@@ -43,13 +46,16 @@
     </div>
     <div class="MyAffairBigBlock">
       <!-- 我事务的数据头衔 -->
-      <div class="MyAffairCareer">
+      <div class="MyAffairCareer" v-if="RecordList.length>10">
         <span class="AllRecordLength"><span class="LabelName">总生涯等级</span>{{RecordList.length}}<span class="LabelName"> 级</span></span>
         <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName"> 天</span></span>
         <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName"> 条/天</span></span>
       </div>
       <!-- 我所有的事务 -->
       <div class="MyAffair">
+        <div class="NullBlockTip" v-if="AffairList.length<=0">
+          您暂无事务,先创建一个吧!
+        </div>
         <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
           <div class="AffairIcon">
             <svg class="icon" aria-hidden="true">
@@ -72,7 +78,6 @@
         </div>
       </div>
     </div>
-
     <!-- 完成该事务板块(默认隐藏) -->
     <div class="FinishRecordPush" v-if="onPushRecord && pushAffair!=null">
       <div class="PushAlert">
@@ -110,6 +115,9 @@
         <div class="PushTools">
           <button class="affirm" @click="updateAffair()">修改</button>
           <button class="cancel" @click="Editor.onEditorAffair = false">取消</button>
+        </div>
+        <div class="deleteButton">
+          <button title="警告,删除不可撤销!" @click="removeAffair(Editor.editorAffair)">删除事务</button>
         </div>
       </div>
     </div>
@@ -185,10 +193,19 @@ export default {
         alert("事务的名称或描述不能为空");
         return;
       }
+      NewAffair.owner=this.$store.state.user.id;
       this.axios.post(this.Tool.config.address + '/affair/add',NewAffair)
         .then(()=>{
           this.NewBlock.name = '';
           this.NewBlock.describe = '';
+          this.getAllAffair();
+        })
+    },
+    removeAffairRecord(id){
+      let Affair = {id};
+      this.axios.post(this.Tool.config.address + '/affairRecord/remove',Affair)
+        .then(()=>{
+          this.Editor.onEditorAffair = false;
           this.getAllAffair();
         })
     },
@@ -197,6 +214,7 @@ export default {
       let Affair = {id};
       this.axios.post(this.Tool.config.address + '/affair/remove',Affair)
         .then(()=>{
+          this.Editor.onEditorAffair = false;
           this.getAllAffair();
         })
     },
@@ -257,7 +275,7 @@ export default {
     // 获取所有事务
     getAllAffair(){
       let that = this;
-      this.axios.get(this.Tool.config.address + '/affair/all')
+      this.axios.get(this.Tool.config.address + '/affair/all/'+this.$store.state.user.id )
         .then(res=>{
           this.AffairList = res.data;
           this.RecordList = [];
@@ -340,6 +358,10 @@ export default {
   created(){
   },
   mounted(){
+    // console.log(this.$store.state.NowDate);
+    if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
+      this.$router.push('sign');
+    }
     // 初始化数据
     this.NowDate.data = this.Tool.FormatDate(this.NowDate.time);
     this.NowDate.Date = new Date(this.NowDate.time);
@@ -353,7 +375,8 @@ export default {
     }
     this.keyDown();
     // console.log(this.$store.state.NowDate);
-  }
+  },
+
 }
 </script>
 <style lang="less" scoped>

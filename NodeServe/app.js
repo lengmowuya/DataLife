@@ -4,10 +4,10 @@ const express = require("express");
 const app = express();
 const port = 3000;
 require('./db.js');
-
 require('./schema.js');
 let thoughtRouter = require('./thought.js');
 let affairRouter = require('./affair.js');
+let UserRouter = require('./UserRouter.js');
 let Export = require('./schema.js');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -20,12 +20,18 @@ app.all("*",function(req,res,next){
     //跨域允许的请求方式 
     res.header("Access-Control-Allow-Methods","DELETE,PUT,POST,GET,OPTIONS");
     if (req.method.toLowerCase() == 'options')
-        res.send(200);  //让options尝试请求快速结束
+        res.status(200).send();  //让options尝试请求快速结束
+        // res.send(200);  //让options尝试请求快速结束
     else
         next();
 })
+// 添加感悟
+app.get('/test',(req,res)=>{
+    res.send({type:'success'});
+})
 app.use(thoughtRouter);
 app.use(affairRouter);
+app.use(UserRouter);
 app.listen(port,()=>{
     console.log('服务器正在运行...');
 })

@@ -17,7 +17,7 @@
             </div>
         </div>
         <!-- 历史列表块 -->
-        <ul class="ThougthList">
+        <ul class="ThougthList" v-if="List.length>0">
             <div class="DateLi" v-for="(item,key) in dateList" :key="key">
                 <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
                 <ul class="CurrentDateList">
@@ -60,7 +60,8 @@ export default {
             // ThoughtSurface.add(this.writeText);
             let data = {
                 text:this.writeText,
-                emotion:this.thoughtEmotion._id
+                emotion:this.thoughtEmotion._id,
+                owner:this.$store.state.user.id
             }
             if(this.writeText.trim() == ""){
                 alert("记录内容不能为空");
@@ -191,7 +192,7 @@ export default {
         },
         updateDate(){
           this.date = this.FormatDate(new Date().getTime());
-          this.axios.get('http://127.0.0.1:3000/thought/all')
+          this.axios.get('http://127.0.0.1:3000/thought/all/'+this.$store.state.user.id)
             .then(res=>{
                 this.List = res.data;
                 this.setThoughtList();
@@ -206,6 +207,9 @@ export default {
         }
     },
     mounted(){
+        if(this.$store.state.user == undefined){
+            this.$router.push('sign');
+        }
         this.updateDate();
     }
 }

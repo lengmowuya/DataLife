@@ -80,6 +80,7 @@ export default {
         },
         //删除短文
         destoryThou(_id){
+            
             let data = {
                 _id
             }

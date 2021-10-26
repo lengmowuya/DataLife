@@ -5,7 +5,7 @@
       </div>
       <div id="SignBlock" v-if="onSign">
           <div class="Header">
-              <p class="title">注册-Sign</p>
+              <p class="title" @click="onSign=!onSign">注册</p>
               <p class="nodeError" v-if="nodeError">服务器请求失败-请联系管理员404</p>
           </div>
           <div class="Form">
@@ -19,16 +19,16 @@
       </div>
       <div id="LoginBlock" v-if="!onSign">
           <div class="Header">
-              <p class="title">登录-Login</p>
+              <p class="title" @click="onSign=!onSign">现在就登录</p>
               <p class="nodeError" v-if="nodeError">服务器请求失败-请联系管理员404</p>
           </div>
           <div class="Form">
-            <input type="text" class="email" title="邮箱地址" placeholder="邮箱地址" v-model="LoginBlock.email">
-            <input type="passward" class="passward" title="您的密码" placeholder="您的密码" v-model="LoginBlock.passward" @keydown.enter="LoginUser()">
-            <input type="button" class="submit" value="上线" @click="LoginUser()">
+            <input type="text" class="email" title="邮箱地址" placeholder="邮箱地址" v-model="SignBlock.email">
+            <input type="passward" class="passward" title="您的密码" placeholder="您的密码" v-model="SignBlock.passward" @keydown.enter="LoginUser()">
+            <input type="button" class="submit" value="登录" @click="LoginUser(true)">
           </div>
           <div class="Footer">
-              <span class="goLogin" @click="onSign=true">没有账号?现在就去注册</span>
+              <span class="goLogin" @click="onSign=true">新用户注册</span>
           </div>
       </div>
   </div>
@@ -39,18 +39,15 @@
         data(){
             return {
                 nodeError:false,
-                onSign:true,
+                onSign:false,
                 SignBlock:{
                     email:'',
                     passward:''
                 },
-                LoginBlock:{
-                    email:'',
-                    passward:''
-                }
             }
         },
         methods:{
+            // 注册新用户
             SignUser(){
                 if(this.SignBlock.email.trim() == '' || this.SignBlock.passward.trim() == ''){
                     alert("邮箱和密码请勿为空");
@@ -76,25 +73,26 @@
 
                     })
             },
-            LoginUser(){
-                if(this.LoginBlock.email.trim() == '' || this.LoginBlock.passward.trim() == ''){
+            // 用户登录
+            LoginUser(remember){
+                if(this.SignBlock.email.trim() == '' || this.SignBlock.passward.trim() == ''){
                     alert("邮箱和密码请勿为空");
                     return;
                 }
                 let myUser = {
-                    name:this.LoginBlock.email,
-                    email:this.LoginBlock.email,
-                    passward:this.LoginBlock.passward
+                    name:this.SignBlock.email,
+                    email:this.SignBlock.email,
+                    passward:this.SignBlock.passward
                 }
                 this.axios.post(this.Tool.config.address + '/user/login',myUser)
                     .then((res)=>{
-                        // this.NewBlock.name = '';
-                        // this.NewBlock.describe = '';
-                        // this.getAllAffair();
                         let log = res.data.type;
                         myUser.id = res.data.id;
                         if(log == 'success'){
                             this.$store.state.user = myUser;
+                            if(remember){
+                                this.Tool.writeUserStorage(myUser.email,myUser.passward);
+                            }
                             this.$router.push('affair');
                         }else if(log == 'null'){
                             alert("未找到用户");
@@ -103,11 +101,11 @@
                         }else if(log == 'ERROR'){
                             alert("服务器错误-请联系管理员");
                         }
-                        
                     })
             }
         },
         mounted(){
+            // 检测与服务器连接
             this.axios.get(this.Tool.config.address + '/test')
                 .then((res)=>{
                     console.log("test");
@@ -118,6 +116,16 @@
                         this.nodeError = true;
                     }
                 })
+
+            if(this.$store.state.user.email == ''){
+                let user =  this.Tool.getUserStorage();
+                if(user.email == '' || user.email == undefined){
+                    return;
+                }
+                this.SignBlock.email = user.email;
+                this.SignBlock.passward = user.passward;
+                this.LoginUser(false);
+            }
         }
     }
 </script>

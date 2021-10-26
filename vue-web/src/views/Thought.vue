@@ -57,7 +57,6 @@ export default {
     methods:{
         //添加短文
         writeThou(){
-            // ThoughtSurface.add(this.writeText);
             let data = {
                 text:this.writeText,
                 emotion:this.thoughtEmotion._id,
@@ -208,9 +207,6 @@ export default {
         }
     },
     mounted(){
-        if(this.$store.state.user == undefined){
-            this.$router.push('sign');
-        }
         this.updateDate();
     }
 }

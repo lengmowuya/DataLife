@@ -7,13 +7,13 @@ export default createStore({
       time:new Date().getTime(),
       data:{},
       Date:new Date(),
-      user:{
-        name:"",
-        passward:"",
-        email:"",
-        id:''
-      }
     },
+    user:{
+      name:"",
+      passward:"",
+      email:"",
+      id:''
+    }
   },
   mutations: {
   },

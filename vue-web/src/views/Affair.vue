@@ -359,9 +359,9 @@ export default {
   },
   mounted(){
     // console.log(this.$store.state.NowDate);
-    if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
-      this.$router.push('sign');
-    }
+    // if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
+    //   this.$router.push('sign');
+    // }
     // 初始化数据
     this.NowDate.data = this.Tool.FormatDate(this.NowDate.time);
     this.NowDate.Date = new Date(this.NowDate.time);

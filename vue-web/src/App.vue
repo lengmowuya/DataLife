@@ -176,14 +176,9 @@
                 /* ... */
             }
         )
-        if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
-            this.$router.push('sign');
-        }
     },
     updated(){
-        if(this.$store.state.user == undefined ||this.$store.state.user.email == undefined || this.$store.state.user.email == ''){
-            this.$router.push('sign');
-        }
+
     }
   }
 </script>

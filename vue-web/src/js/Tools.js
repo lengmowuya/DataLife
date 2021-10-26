@@ -14,7 +14,7 @@ let Tool = {
             sec:TimeObj.getSeconds()
         }
         return date;
-      },
+    },
     getDateString(data){
         return data.year + '-' + data.month + '-' + data.day;
     },
@@ -39,6 +39,15 @@ let Tool = {
     }
     return hourName + '' + data.hour + ':' + data.min;
     },
+    writeUserStorage(email,passward){
+        localStorage.setItem('email',email);
+        localStorage.setItem('passward',passward);
+    },
+    getUserStorage(){
+        let email = localStorage.getItem('email');
+        let passward = localStorage.getItem('passward');
+        return {email,passward};
+    }
 }
 
 // console.log(process.env.NODE_ENV == "development");

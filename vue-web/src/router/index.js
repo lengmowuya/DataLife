@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory ,createWebHashHistory} from 'vue-router'
+import vuex from './../store/index'
 import Thought from '../views/Thought.vue'
 
 const routes = [
@@ -35,6 +36,14 @@ const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   // mode:hash,
   routes
+})
+router.beforeEach((to,from,next)=>{
+  let user = vuex.state.user;
+  if(user == undefined ||user.email == undefined || user.email == '' && to.path != '/sign'){
+    next("/sign");
+  }else{
+    next();
+  }
 })
 
 export default router

@@ -1,27 +1,52 @@
 <template>
-  <div id="DataLife">
-    <header id="DataLifeNav" v-if="showNav && !isMobile">
-      <!-- <router-link to="/"><i class="el-icon-s-home"></i>主页</router-link> -->
-      <router-link to="/affair"><i class="el-icon-s-claim"></i>事务</router-link>
-      <router-link to="/thought"><i class="el-icon-s-opportunity"></i>短语</router-link>
-      <!-- <router-link to="/self"><i class="el-icon-s-custom"></i>自我</router-link> -->
-    </header>
-    <header id="MobileDataLifeNav" v-if="showNav && isMobile">
-      <!-- <router-link to="/"><i class="el-icon-s-home"></i>主页</router-link> -->
-      <router-link to="/affair_mobile"><i class="el-icon-s-claim"></i>事务</router-link>
-      <router-link to="/thought_mobile"><i class="el-icon-s-opportunity"></i>短语</router-link>
-      <!-- <router-link to="/self"><i class="el-icon-s-custom"></i>自我</router-link> -->
-    </header>
-    <router-view/>
-  </div>
+    <!-- 页面主体 -->
+    <div id="ThoughtPage">
+        <div class="PageTitle">短语</div>
+        <!-- 输入块 -->
+        <div class="EnterBlock" v-if="false">
+            <!-- 短文输入框 -->
+            <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
+            <div class="EnterTools">
+                <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
+                <button class="EnterButton" @click="writeThou">记录</button>
+            </div>
+            <!-- 状态列表(默认隐藏) -->
+            <div class="EmotionList" v-show="showEmotionList">
+                <ul>
+                    <li v-for="(item,index) in EmotionList"  :class="{active:item._id == thoughtEmotion._id}" :key="index" @click="changeEmotion(item)">{{item.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="IssueButton">
+            <button>记录此时感想</button>
+        </div>
+        <!-- 历史列表块 -->
+        <ul class="ThougthList" v-if="List.length>0">
+            <div class="DateLi" v-for="(item,key) in dateList" :key="key">
+                <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
+                <ul class="CurrentDateList">
+                    <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
+                        <div class="ThoughtMain">
+                            <pre class="ThoughtText">{{li.text}}</pre>
+                            <div class="ThoughtDetails">
+                                <span class="ThoughtEmotion" v-if="li.emotion != null">
+                                    {{li.emotion.name}}
+                                </span>
+                                <span class="thou_time">{{item.showName}}日 {{Tool.getTimeString(li.date)}}</span>
+                                <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </ul>
+    </div>
 </template>
 <script>
-  export default {
-    data(){
+export default {
+      data(){
       return {
-        showNav:true,
         List:[],
-        isMobile:false,
         writeText:"",
         dateList:[],
         EmotionList:[],
@@ -36,10 +61,10 @@
     methods:{
         //添加短文
         writeThou(){
-            // ThoughtSurface.add(this.writeText);
             let data = {
                 text:this.writeText,
-                emotion:this.thoughtEmotion._id
+                emotion:this.thoughtEmotion._id,
+                owner:this.$store.state.user.id
             }
             if(this.writeText.trim() == ""){
                 alert("记录内容不能为空");
@@ -50,7 +75,7 @@
                 return;
             }
             let that = this;
-            this.axios.post('http://127.0.0.1:3000/thought/add',data)
+            this.axios.post(this.Tool.config.address + '/thought/add',data)
                 .then(()=>{
                   that.updateDate();
                 });
@@ -62,37 +87,18 @@
                 _id
             }
             let that = this;
-            this.axios.post('http://127.0.0.1:3000/thought/remove',data)
+            this.axios.post(this.Tool.config.address + '/thought/remove',data)
             .then(()=>{
                 that.updateDate();
             });
         },
         changeEmotion(item){
             this.thoughtEmotion = item;
-            // TCCase.$forceUpdate();
-        },
-        FormatDate(timeStamp){
-          let TimeObj = new Date(timeStamp);
-          let date = {
-              year:TimeObj.getFullYear(),
-              month:TimeObj.getMonth() + 1,
-              day:TimeObj.getDate(),
-              hour:TimeObj.getHours(),
-              min:TimeObj.getMinutes(),
-              sec:TimeObj.getSeconds()
-          }
-          return date;
-        },
-        getDateString(data){
-          return data.year + '-' + data.month + '-' + data.day;
-        },
-        getTimeString(data){
-          return data.hour + ':' + data.min;
         },
         setThoughtList(){
             this.List.forEach((item)=>{
-                item.date = this.FormatDate(item.time);
-                item.dateString = this.getDateString(item.date);
+                item.date = this.Tool.FormatDate(item.time);
+                item.dateString = this.Tool.getDateString(item.date);
                 item.timeSort = item.date.year * 12 * 31 + item.date.month * 31 + item.date.day;
             });
         },
@@ -154,50 +160,24 @@
             })
         },
         updateDate(){
-          this.date = this.FormatDate(new Date().getTime());
-          this.axios.get('http://127.0.0.1:3000/thought/all')
+          this.date = this.Tool.FormatDate(new Date().getTime());
+          this.axios.get(this.Tool.config.address + '/thought/all/'+this.$store.state.user.id)
             .then(res=>{
                 this.List = res.data;
                 this.setThoughtList();
                 this.initDateList();
-                // this.$forceUpdate();
             });
-          this.axios.get('http://127.0.0.1:3000/emotion/all')
+          this.axios.get(this.Tool.config.address + '/emotion/all')
             .then(res=>{
                 this.EmotionList = res.data;
-                // this.$forceUpdate();
             });
-        },
-        mobileJudge(){
-            let PageWidth = document.body.offsetWidth;
-            if(PageWidth <= 600){
-                this.isMobile = true;
-            }else{
-                this.isMobile = false;
-            }
         }
     },
     mounted(){
-        console.log(this.Tool.config.address);
-        this.mobileJudge();
-        this.$watch(
-            () => this.$route,
-            (count, prevCount) => {
-                // console.log(count);
-                if(count.fullPath == '/sign'){
-                    this.showNav = false;
-                }else{
-                    this.showNav = true;
-                }
-                /* ... */
-            }
-        )
-    },
-    updated(){
-        this.mobileJudge();
+        this.updateDate();
     }
-  }
+}
 </script>
-<style lang="less">
-@import "./less/App.less";
+<style lang="less" scoped>
+    @import './../../less/mobile/m_Thought.less';
 </style>

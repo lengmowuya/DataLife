@@ -7,7 +7,6 @@ db.on('error',()=>{
 db.once('open',()=>{
     console.log("数据库连接成功!");
 })
-// console.log(dbConfig);
 let options = {
     user:dbConfig.user,
     pass:dbConfig.pass,

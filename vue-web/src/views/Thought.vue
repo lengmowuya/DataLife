@@ -28,7 +28,7 @@
                                 <span class="ThoughtEmotion" v-if="li.emotion != null">
                                     {{li.emotion.name}}
                                 </span>
-                                <span class="thou_time">{{getTimeString(li.date)}}</span>
+                                <span class="thou_time">{{Tool.getTimeString(li.date)}}</span>
                                 <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
                             </div>
                         </div>
@@ -79,7 +79,6 @@ export default {
         },
         //删除短文
         destoryThou(_id){
-            
             let data = {
                 _id
             }
@@ -91,45 +90,11 @@ export default {
         },
         changeEmotion(item){
             this.thoughtEmotion = item;
-            // TCCase.$forceUpdate();
-        },
-        FormatDate(timeStamp){
-          let TimeObj = new Date(timeStamp);
-          let date = {
-              year:TimeObj.getFullYear(),
-              month:TimeObj.getMonth() + 1,
-              day:TimeObj.getDate(),
-              hour:TimeObj.getHours(),
-              min:TimeObj.getMinutes(),
-              sec:TimeObj.getSeconds()
-          }
-          return date;
-        },
-        getDateString(data){
-          return data.year + '-' + data.month + '-' + data.day;
-        },
-        getTimeString(data){
-            let hourName = '';
-            let hour = data.hour;
-            if(hour <= 6){
-                hourName = "凌晨";
-            }else if(hour <= 10){
-                hourName = "上午";
-            }else if(hour <= 12){
-                hourName = "中午";
-            }else if(hour <= 17){
-                hourName = "下午";
-            }else if(hour <= 21){
-                hourName = "晚上";
-            }else{
-                hourName = "半夜";
-            }
-            return hourName + '' + data.hour + ':' + data.min;
         },
         setThoughtList(){
             this.List.forEach((item)=>{
-                item.date = this.FormatDate(item.time);
-                item.dateString = this.getDateString(item.date);
+                item.date = this.Tool.FormatDate(item.time);
+                item.dateString = this.Tool.getDateString(item.date);
                 item.timeSort = item.date.year * 12 * 31 + item.date.month * 31 + item.date.day;
             });
         },
@@ -191,18 +156,16 @@ export default {
             })
         },
         updateDate(){
-          this.date = this.FormatDate(new Date().getTime());
+          this.date = this.Tool.FormatDate(new Date().getTime());
           this.axios.get(this.Tool.config.address + '/thought/all/'+this.$store.state.user.id)
             .then(res=>{
                 this.List = res.data;
                 this.setThoughtList();
                 this.initDateList();
-                // this.$forceUpdate();
             });
           this.axios.get(this.Tool.config.address + '/emotion/all')
             .then(res=>{
                 this.EmotionList = res.data;
-                // this.$forceUpdate();
             });
         }
     },

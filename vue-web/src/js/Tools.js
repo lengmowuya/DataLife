@@ -15,6 +15,30 @@ let Tool = {
         }
         return date;
     },
+    FormatDateWeekChinese(number){
+        let name = "一";
+        switch(number){
+            case 6:
+                name = "六";
+                break;
+            case 5:
+                name = "五";
+                break;
+            case 4:
+                name = "四";
+                break;    
+            case 3:
+                name = "三";
+                break;
+            case 2:
+                name = "二";
+                break;
+            case 0:
+                name = "天";
+                break;    
+        }
+        return name;
+    },
     getDateString(data){
         return data.year + '-' + data.month + '-' + data.day;
     },

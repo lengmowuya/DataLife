@@ -39,7 +39,6 @@ body{
     padding:0px 20px;
     box-sizing: border-box;
     box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
-
     a{
         margin-right:16px;
         width:75px;
@@ -63,7 +62,7 @@ body{
         }
         &.router-link-active{
             color:#00a1d6;
-            border-bottom:3px solid #00a1d6;
+            border-color:#00a1d6;
         }
         &:nth-child(1) i{
             color:#00c091;
@@ -76,6 +75,62 @@ body{
         }
         &:nth-child(4) i{
             color:#f3a034;
+        }
+        &:hover{
+            a{
+                color:#00a1d6;
+            }
+            // font-size: 32px;;
+            // opacity: 0.8;
+        }
+    }
+}
+// 移动端导航栏
+#MobileDataLifeNav{
+    width:100%;
+    height:46px;
+    display:flex;
+    justify-content: center;
+    // box-shadow: 0 0 0 1px #eee;
+    background:#fff;
+    border-radius: 0 0 4px 4px;
+    padding:0px 20px;
+    box-sizing: border-box;
+    // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+    border-top:1px solid #eee;
+    position: fixed;
+    left:0;
+    bottom:0;
+    z-index: 999999999;
+    a{
+        margin-right:16px;
+        width:75px;
+        height:100%;
+        text-align: center;
+        font-size:12px;
+        cursor: pointer;
+        user-select: none;
+        transition:all 0.3s;
+        text-decoration: none;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color:#98a3b7;
+        box-sizing: border-box;
+        flex-direction: column;
+        // border-bottom:3px solid transparent;
+        transition: all 0.3s;
+        transform: scale(0.8);
+        i{
+            margin-bottom: 3px;
+            font-size: 26px;
+        }
+        &.router-link-active{
+            color:#00a1d6;
+            border-color:#00a1d6;
+        }
+        &.router-link-active i{
+            color:#00a1d6;
         }
         &:hover{
             a{

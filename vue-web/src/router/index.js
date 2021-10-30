@@ -5,9 +5,7 @@ import Thought from '../views/Thought.vue'
 const routes = [
   {
     path: '/',
-    // name: 'Thought',
     redirect:'/affair'
-    // component: Thought
   },{
     path: '/thought',
     name: 'Thought',
@@ -17,10 +15,6 @@ const routes = [
     name: 'Affair',
     component: () => import(/* webpackChunkName: "about" */ '../views/Affair.vue')
   },{
-    path: '/affair_mobile',
-    name: 'AffairMobile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Affair_mobile.vue')
-  },{
     path: '/self',
     name: 'Self',
     component: () => import(/* webpackChunkName: "about" */ '../views/Self.vue')
@@ -28,6 +22,14 @@ const routes = [
     path: '/sign',
     name: 'Sign',
     component: () => import(/* webpackChunkName: "about" */ '../views/Sign.vue')
+  },{
+    path: '/affair_mobile',
+    name: 'AffairMobile',
+    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Affair.vue')
+  },{
+    path: '/thought_mobile',
+    name: 'ThoughtMobile',
+    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Thought.vue')
   }
 ]
 

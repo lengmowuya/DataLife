@@ -1,0 +1,320 @@
+// 页面主体
+#ThoughtPage{
+    border:1px solid transparent;
+    // padding-top:10px;
+    // padding:0px 1.5%;
+    background:#f6f7f9; 
+    // max-width: 1200px;
+    padding-bottom:50px;
+    margin:0 auto;
+    padding-top:36px;
+    .PageTitle{
+        background:#fff;
+        position: fixed;
+        left:0;
+        top:0;
+        height: 36px;
+        line-height: 36px;
+        width:100%;
+        text-align: center;
+        font-size:14px;
+        border-bottom:1px solid  #eee;
+    }
+    // 输入板块
+    .EnterBlock{
+        display:flex;
+        margin:0 auto;
+        margin-bottom:10px;
+        margin-top:10px;
+        max-width: 600px;
+        flex-direction: column;
+        textarea{
+            flex-grow: 1;
+            // border:1px solid #e5e9ef;
+            border:1px solid #fff;
+            background:#fff;
+            box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
+            // background:#f6f7f9; 
+            // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+            font-size:12px;
+            border-radius:4px;
+            outline: none;
+            padding:5px;
+            transition:all 0.25s;
+            &:hover{
+                border-color:#00a1d6;
+            }
+            &:focus{
+                border-color:#00a1d6;
+            }
+        }
+        .EnterTools{
+            padding-top:5px;
+            display:flex;
+            justify-content: space-between;
+            .EnterEmontion{
+                border:1px solid #e5e9ef;
+                background:#fff;
+                border-radius:15px;
+                height:26px;
+                width:60px;
+                color:#999;
+                font-size:12px;
+                cursor: pointer;
+                transition:all 0.25s;
+                user-select: none;
+                &.active{
+                    border-color:#00a1d6;
+                    background:#00a1d6;
+                    color:#fff;
+                }
+                &:hover{
+                    border-color:#00a1d6;
+                    color:#00a1d6;
+                }
+            }
+            .EnterButton{
+                width:66px;
+                flex-shrink: 0;
+                height:26px;
+                border:none;
+                background:#00a1d6;
+                margin-left:10px;
+                color:#fff;
+                cursor:pointer;
+                transition: all 0.25s;
+                user-select: none;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
+        // 输入板块-状态块选择
+        .EmotionList{
+            background:#fff;
+            padding:10px;
+            margin-top:5px;
+            box-shadow: 0 11px 12px 0 rgb(106 115 133 / 10%);
+            border-radius: 8px;
+            border:1px solid #E5E9EF;
+            ul{
+                list-style: none;
+                display:flex;
+                flex-wrap: wrap;
+                li{
+                    width:62px;
+                    height:24px;
+                    border:1px solid #f2f2f2;
+                    cursor: pointer;
+                    color:#999;
+                    border-radius:26px;
+                    font-size:14px;
+                    margin-right: 6px;
+                    user-select: none;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition:all 0.25s;
+                    margin-bottom:5px;
+                    &.active{
+                        border-color:#00a1d6;
+                        background:#00a1d6;
+                        color:#fff;
+                    }
+                    &:hover{
+                        border-color:#00a1d6;
+                        background:#00a1d6;
+                        color:#fff;
+                    }
+                }
+            }
+        }
+    }
+    // 历史短文列表
+    .ThougthList{
+        list-style: none;
+        max-width: 1000px;
+        margin:0 auto;
+        margin-top:10px;
+        padding-bottom:20px;
+        .DateLi{
+            // width:100%;
+            // background:#f9f9f9;
+            // padding-left:15px;
+            flex-direction: row;
+            flex-wrap: no-wrap;
+            // background:#fff;
+            // border-radius: 6px;
+            // padding:12px 16px;
+            // margin-bottom:20px;
+            // padding:0px 5px;
+            // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+            // background:#fff;
+            // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+            // background:#f6f7f9; 
+            // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+            box-sizing: border-box;
+            // margin-right: -10px;
+            flex-direction: column;
+            // background:#00a1d6;
+            .DateLiTitle{
+                // padding:10px 0px;
+                padding-bottom:5px;
+                // margin-left:-15px;
+                // color:#00a1d6;
+                // font-weight: bold;
+                font-size: 14px;
+                user-select: none;
+                color:#98a3b7;
+                display:none;
+                .DateThoughtNumber{
+                    font-size:12px;
+                    color:#fff;
+                    // background:#00a1d6;
+                    border-radius:3px;
+                    padding:2px 5px;
+                    // background:#fff;
+                    color:#ccc;
+                    user-select: none;
+                    font-weight: normal;
+                }
+            }
+            .CurrentDateList{
+                width:100%;
+                display:flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
+            .ThougthLi{
+                padding:10px;
+                // border-radius:6px;
+                margin-bottom:6px;
+                // margin-bottom:10px;
+                display:flex;
+                // margin-right:10px;
+                // width:30%;
+                // max-width: 50%;
+                box-sizing: border-box;
+                flex-grow: 1;
+                // background:#fff;
+                // border:2px solid #fff;
+                background:#fff;
+                // background:#fff;
+                // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+                // background:#f6f7f9; 
+                // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+                transition: all 0.25s;
+                &:hover{
+                    border-color: #00a1d6;
+                }
+                .ThoughtMain{
+                    flex-grow: 1;
+                    display:flex;
+                    flex-direction: column;
+                    .ThoughtText{
+                        font-size:13px;
+                        color:#252525;
+                        // color:#98a3b7;
+                        white-space: pre-wrap;
+                        letter-spacing: -0.5px;
+                        flex-grow: 1;
+                        &::selection{
+                            background:#00a1d6;
+                            color:#fff;
+                        }
+                        &::first-letter{
+                            // padding-right:2px;
+                            // font-size:1.15em;
+                            // font-weight: bold;
+                            // color:#000;
+                        }
+                    }
+                    .ThoughtDetails{
+                        flex-shrink: 0;
+                        padding-top:5px;
+                        display:flex;
+                        margin-top:6px;
+                        .ThoughtEmotion{
+                            width:30px;
+                            height:20px;
+                            // border:1px solid #f2f2f2;
+                            cursor: pointer;
+                            color:#999;
+                            border-radius:26px;
+                            font-size:12px;
+                            margin-right: 6px;
+                            user-select: none;
+                            display:flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-color:#00a1d666;
+                            // background:#00a1d6;
+                            color:#fff;
+                            color:#00a1d6;
+                            line-height: 20px;
+                        }
+                        .thou_time{
+                            flex-grow: 1;
+                            line-height: 20px;
+                            font-size:12px;
+                            color:#ccc;
+                            user-select: none;
+                            // line-height: 14px;
+                        }
+                        .DestoryThought{
+                            border:none;
+                            flex-shrink: 0;
+                            border-radius:4px;
+                            background:rgba(255, 0, 0,0.5);
+                            color:#fff;
+                            transition:all 0.25s;
+                            // opacity: 0;
+                            cursor: pointer;
+                            width:40px;
+                            height:20px;
+                            display:flex;
+                            justify-content: center;
+                            align-items: center;
+                            display: none;
+                            user-select: none;
+                            &:hover{
+                                background:rgba(255, 0, 0,1);
+                                // opacity: 1;
+                            }
+        
+                        }
+                    }
+                }
+                &:hover{
+                    .DestoryThought{
+                        // opacity: 0.5;
+                        display: flex !important;
+                    }
+                }
+
+
+            }
+        }
+
+    }
+}
+.IssueButton{
+    position: fixed;
+    // background
+    padding:6px;
+    left:50%;
+    bottom:46px;
+    width:100%;
+    display:flex;
+    box-sizing: border-box;
+    height:50px;
+    transform: translateX(-50%);
+    &>button{
+        background:#00a1d6;
+        color:#fff;
+        border:none;
+        flex-grow: 1;
+        border-radius: 12px;
+        font-size: 14px;
+    }
+}

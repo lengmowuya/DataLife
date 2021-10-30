@@ -1,7 +1,7 @@
 <template>
   <div id="AffairPage">
     <!-- 新建事务的输入板块 -->
-    <div class="EnterBlock">
+    <div class="EnterBlock" v-if="false">
       <div class="NewBlock">
         <input type="text" class="NewBlockName" placeholder="新事务名称" v-model="NewBlock.name">
         <input type="text" class="NewBlockDescribe" placeholder="一句话描述我的新事务" v-model="NewBlock.describe">
@@ -12,18 +12,20 @@
     </div>
     <!-- 完成的记录板块 -->
     <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
-      <div class="HistoryRecord">
+      <p class="FinishDay" @click="showDateList = !showDateList"><span class="text">{{Tool.getDateString(RecordShowDate.data)}}号&nbsp; 周{{Tool.FormatDateWeekChinese(RecordShowDate.date.getDay())}}</span></p>
+      <div class="HistoryRecord" v-show="showDateList">
         <div  v-for="(item,i) in HistoryRecord" :key="i" :title="Tool.getDateString(item.data)" :class="{HistoryBlock:true}">
           <span v-if="item.record.length > 0" 
             :class="{HistoryDateNumber:true,
               plus5:item.record.length >= 5,
               plus10:item.record.length >= 10,
               active:Tool.getDateString(RecordShowDate.data) == Tool.getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i],Record.activeIndex = i">
-            <span class="HistroyDateIntraday">{{Tool.getMiniDateString(item.data)}}</span>
+            <!-- <span class="HistroyDateIntraday">{{Tool.getMiniDateString(item.data)}}</span> -->
+            <span class="HistroyDateIntraday">{{Tool.FormatDateWeekChinese(item.date.getDay())}}</span>
+            <!-- FormatDateWeekChinese -->
           </span>
         </div>
       </div>
-      <p class="FinishDay"><span class="text">{{Tool.getDateString(RecordShowDate.data)}}号&nbsp; 周{{RecordShowDate.date.getDay()}}</span></p>
       <div class="FinishRecordList">
         <div class="FinishRecord" v-for="(item,index) in RecordShowDate.record" :key="index">
           <div class="FinishRecordHeader">
@@ -47,9 +49,17 @@
     <div class="MyAffairBigBlock">
       <!-- 我事务的数据头衔 -->
       <div class="MyAffairCareer" v-if="RecordList.length>10">
-        <span class="AllRecordLength"><span class="LabelName">总生涯等级</span>{{RecordList.length}}<span class="LabelName"> 级</span></span>
-        <span class="AllAffairLength"><span class="LabelName">总生涯天数</span>{{AllAffairDay}}<span class="LabelName"> 天</span></span>
-        <span class="AverageRecord"><span class="LabelName">平均生涯记录</span>{{(RecordList.length/AllAffairDay).toFixed(1)}}<span class="LabelName"> 条/天</span></span>
+        <span class="AllRecordLength">
+          <span class="awardText">{{RecordList.length}}</span>
+          <span class="LabelName">总生涯等级</span></span>
+        <span class="AllAffairLength">
+          <span class="awardText">{{AllAffairDay}}</span>
+          <span class="LabelName">总生涯天数</span>
+        </span>
+        <span class="AverageRecord">
+          <span class="awardText">{{(RecordList.length/AllAffairDay).toFixed(1)}}</span>
+          <span class="LabelName">平均生涯记录</span>
+        </span>
       </div>
       <!-- 我所有的事务 -->
       <div class="MyAffair">
@@ -58,13 +68,16 @@
         </div>
         <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
           <div class="AffairIcon">
+            <svg class="iconBackground" aria-hidden="true">
+                <use :xlink:href="'#icon-'+item.icon"></use>
+            </svg>
             <svg class="icon" aria-hidden="true">
                 <use :xlink:href="'#icon-'+item.icon"></use>
             </svg>
           </div>
-          <span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span>
           <div class="AffairText">
             <p class="AffairLiName"> {{item.name}} </p>
+            <span class="AffairLevel" v-show="item.record.length > 0">Lv.{{item.record.length}}</span>
             <p class="AffairLiDescribe">{{item.describe}}</p>
           </div>
           <div class="AffairTools">
@@ -125,11 +138,12 @@
 </template>
 <script>
 import {addAffair,removeAffairRecord,removeAffair,addAffairRecord,updateAffair,
-  getAllIcon,getAllAffair} from "./../js/Affair_Work";
+  getAllIcon,getAllAffair} from "./../../js/Affair_Work";
 export default {
   data(){
     return {
       AllAffairDay:0,
+      showDateList:false,
       onPushRecord:false,
       pushAffair:null,
       RecordShowDate:null,
@@ -242,5 +256,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-  @import './../less/Affair.less';
+  @import './../../less/mobile/m_Affair.less';
 </style>

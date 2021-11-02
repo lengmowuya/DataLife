@@ -1,7 +1,7 @@
 <template>
     <!-- 页面主体 -->
     <div id="ThoughtPage">
-        <div class="PageTitle">短语</div>
+        <div class="PageTitle"><span class="titleName">短语</span> <span class="length" v-if="List.length>3">{{List.length}}</span></div>
         <!-- 输入块 -->
         <div class="EnterBlock" v-if="false">
             <!-- 短文输入框 -->

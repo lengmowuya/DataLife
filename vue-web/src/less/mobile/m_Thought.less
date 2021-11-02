@@ -1,24 +1,37 @@
 // 页面主体
 #ThoughtPage{
     border:1px solid transparent;
-    // padding-top:10px;
-    // padding:0px 1.5%;
     background:#f6f7f9; 
-    // max-width: 1200px;
-    padding-bottom:50px;
+    padding-bottom:110px;
     margin:0 auto;
-    padding-top:36px;
     .PageTitle{
-        background:#fff;
-        position: fixed;
-        left:0;
-        top:0;
-        height: 36px;
-        line-height: 36px;
+        // background:#fff;
+        // position: fixed;
+        // left:0;
+        // top:0;
+        height: 50px;
+        line-height: 50px;
         width:100%;
         text-align: center;
-        font-size:14px;
-        border-bottom:1px solid  #eee;
+        font-size:18px;
+        // border-bottom:1px solid  #eee;
+        font-family: caner;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        .length{
+            margin-left:4px;
+            height:16px;
+            line-height: 16px;
+            width:24px;
+            // margin-top:-5px;
+            font-size: 12px;
+            background:#00a1d655;
+            letter-spacing: 1px;
+            color:#fff; 
+            // padding:1px 6px;
+            border-radius: 10px;
+        }
     }
     // 输入板块
     .EnterBlock{
@@ -135,28 +148,13 @@
         list-style: none;
         max-width: 1000px;
         margin:0 auto;
-        margin-top:10px;
         padding-bottom:20px;
+        padding:0px 10px;
         .DateLi{
-            // width:100%;
-            // background:#f9f9f9;
-            // padding-left:15px;
             flex-direction: row;
             flex-wrap: no-wrap;
-            // background:#fff;
-            // border-radius: 6px;
-            // padding:12px 16px;
-            // margin-bottom:20px;
-            // padding:0px 5px;
-            // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
-            // background:#fff;
-            // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
-            // background:#f6f7f9; 
-            // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
             box-sizing: border-box;
-            // margin-right: -10px;
             flex-direction: column;
-            // background:#00a1d6;
             .DateLiTitle{
                 // padding:10px 0px;
                 padding-bottom:5px;
@@ -199,6 +197,7 @@
                 // background:#fff;
                 // border:2px solid #fff;
                 background:#fff;
+                border-radius: 6px;
                 // background:#fff;
                 // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
                 // background:#f6f7f9; 
@@ -212,12 +211,14 @@
                     display:flex;
                     flex-direction: column;
                     .ThoughtText{
-                        font-size:13px;
+                        font-size:14px;
                         color:#252525;
                         // color:#98a3b7;
                         white-space: pre-wrap;
-                        letter-spacing: -0.5px;
+                        letter-spacing: 0.25px;
                         flex-grow: 1;
+                        font-family: caner;
+                        line-height: 1.5em;
                         &::selection{
                             background:#00a1d6;
                             color:#fff;
@@ -231,15 +232,15 @@
                     }
                     .ThoughtDetails{
                         flex-shrink: 0;
-                        padding-top:5px;
+                        // padding-top:5px;
                         display:flex;
-                        margin-top:6px;
+                        // margin-top:6px;
                         .ThoughtEmotion{
                             width:30px;
                             height:20px;
                             // border:1px solid #f2f2f2;
                             cursor: pointer;
-                            color:#999;
+                            color:#ccc;
                             border-radius:26px;
                             font-size:12px;
                             margin-right: 6px;
@@ -300,21 +301,22 @@
 }
 .IssueButton{
     position: fixed;
-    // background
-    padding:6px;
+    padding:4px 10px;
     left:50%;
-    bottom:46px;
-    width:100%;
+    bottom:60px;
+    width:80%;
     display:flex;
     box-sizing: border-box;
-    height:50px;
+    height:46px;
     transform: translateX(-50%);
     &>button{
         background:#00a1d6;
         color:#fff;
         border:none;
         flex-grow: 1;
-        border-radius: 12px;
-        font-size: 14px;
+        border-radius: 20px;
+        font-size: 16px;
+        letter-spacing: 1.5px;
+        font-family: caner;
     }
 }

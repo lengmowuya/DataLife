@@ -77,7 +77,7 @@ let Tool = {
 // console.log(process.env.NODE_ENV == "development");
 Tool.config.process = process.env.NODE_ENV;
 if(Tool.config.process == "development"){
-    Tool.config.address = "http://" + "127.0.0.1:3000";
+    Tool.config.address = "http://" + "192.168.101.3:3000";
 }else{
     Tool.config.address = "http://" + "101.35.144.20:3000";
 }

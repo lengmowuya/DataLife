@@ -23,6 +23,10 @@ const routes = [
     name: 'Sign',
     component: () => import(/* webpackChunkName: "about" */ '../views/Sign.vue')
   },{
+    path: '/record_mobile',
+    name: 'RecordMobile',
+    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Record.vue')
+  },{
     path: '/affair_mobile',
     name: 'AffairMobile',
     component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Affair.vue')

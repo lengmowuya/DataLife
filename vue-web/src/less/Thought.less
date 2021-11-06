@@ -1,13 +1,25 @@
 // 页面主体
 #ThoughtPage{
-    border:1px solid transparent;
-    padding-top:40px;
-    padding:0px 1.5%;
+    // border:1px solid transparent;
+    // padding:0px 1.5%;
     // background:#f6f7f9; 
     // max-width: 1200px;
+    box-sizing: border-box;
     margin:0 auto;
+    width:100%;
+    .Header{
+        padding-top:40px;
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background:#f6f7f9;
+        padding:60px 0px;
+        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05) inset, -8px -8px 20px 0 #fff;
+    }
     // 输入板块
     .EnterBlock{
+        width:600px;
         display:flex;
         margin:0 auto;
         margin-bottom:15px;
@@ -17,16 +29,18 @@
         textarea{
             flex-grow: 1;
             // border:1px solid #e5e9ef;
-            border:1px solid #fff;
+            // border:1px solid #fff;
+            border:2px solid rgba(55,99,170,0.1);
             background:#fff;
-            box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
+            box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
             // background:#f6f7f9; 
             // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
-            font-size:12px;
-            border-radius:4px;
+            font-size:15px;
+            border-radius:8px;
             outline: none;
-            padding:5px;
+            padding:8px;
             transition:all 0.25s;
+            font-family: caner;
             &:hover{
                 border-color:#00a1d6;
             }
@@ -35,24 +49,28 @@
             }
         }
         .EnterTools{
-            padding-top:5px;
+            padding-top:8px;
             display:flex;
             justify-content: space-between;
             .EnterEmontion{
-                border:1px solid #e5e9ef;
+                // border:1px solid #e5e9ef;
+                border:2px solid rgba(55,99,170,0.1);
                 background:#fff;
-                border-radius:15px;
-                height:26px;
-                width:60px;
+                border-radius:24px;
+                height:34px;
+                // width:120px;
+                padding:0px 18px;
                 color:#999;
-                font-size:12px;
+                font-size:14px;
                 cursor: pointer;
                 transition:all 0.25s;
                 user-select: none;
+                font-family: caner;
+                // color:#00a1d6;
                 &.active{
                     border-color:#00a1d6;
-                    background:#00a1d6;
-                    color:#fff;
+                    // background:#00a1d6;
+                    color:#00a1d6;
                 }
                 &:hover{
                     border-color:#00a1d6;
@@ -60,16 +78,19 @@
                 }
             }
             .EnterButton{
-                width:66px;
+                width:120px;
                 flex-shrink: 0;
-                height:26px;
+                height:34px;
+                font-family: caner;
                 border:none;
                 background:#00a1d6;
                 margin-left:10px;
                 color:#fff;
                 cursor:pointer;
                 transition: all 0.25s;
+                font-size: 14px;
                 user-select: none;
+                border-radius: 24px;
                 &:hover{
                     opacity: 0.8;
                 }
@@ -80,9 +101,11 @@
             background:#fff;
             padding:10px;
             margin-top:5px;
-            box-shadow: 0 11px 12px 0 rgb(106 115 133 / 10%);
+            box-shadow: 0 11px 12px 0 rgb(106 115 133 / 10%) inset;
             border-radius: 8px;
-            border:1px solid #E5E9EF;
+            // border:1px solid #E5E9EF;
+            // background:#98a3b715;
+
             ul{
                 list-style: none;
                 display:flex;
@@ -91,8 +114,9 @@
                     width:62px;
                     height:24px;
                     border:1px solid #f2f2f2;
+                    border:2px solid #98a3b733;
                     cursor: pointer;
-                    color:#999;
+                    color:#98a3b7;
                     border-radius:26px;
                     font-size:14px;
                     margin-right: 6px;
@@ -102,10 +126,13 @@
                     align-items: center;
                     transition:all 0.25s;
                     margin-bottom:5px;
+                    padding:0px 6px;
+                    font-family: caner;
+                    flex-grow: 1;
                     &.active{
                         border-color:#00a1d6;
-                        background:#00a1d6;
-                        color:#fff;
+                        // background:#00a1d6;
+                        color:#00a1d6;
                     }
                     &:hover{
                         border-color:#00a1d6;
@@ -120,9 +147,10 @@
     .ThougthList{
         list-style: none;
         max-width: 1000px;
-        margin:0 auto;
+        margin:40px auto;
+        // padding-top:20px;
         padding-bottom:20px;
-        border-left:4px solid #98a3b7;
+        border-left:8px solid #98a3b733;
         .DateLi{
             width:100%;
             // padding-left:15px;
@@ -130,7 +158,7 @@
             flex-wrap: wrap;
             background:#fff;
             border-radius: 6px;
-            padding:12px 16px;
+            padding:18px 16px;
             margin-top:30px;
             // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
             background:#fff;
@@ -176,11 +204,13 @@
                 box-sizing: border-box;
                 flex-grow: 1;
                 // background:#fff;
-                border:2px solid #fff;
+                border:2px solid rgba(55,99,170,0.1);
                 // background:#fff;
                 // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
-                background:#f6f7f9; 
-                box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+                // background:#f6f7f9; 
+                // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+                box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+
                 transition: all 0.25s;
                 &:hover{
                     border-color: #00a1d6;
@@ -190,20 +220,22 @@
                     display:flex;
                     flex-direction: column;
                     .ThoughtText{
-                        font-size:13px;
+                        font-size:15px;
                         color:#252525;
-                        color:#98a3b7;
+                        // color:#98a3b7;
                         white-space: pre-wrap;
-                        letter-spacing: -0.5px;
+                        letter-spacing: 0.1px;
+                        font-family: caner;
                         flex-grow: 1;
+                        line-height: 1.5em;    
                         &::selection{
                             background:#00a1d6;
                             color:#fff;
                         }
                         &::first-letter{
-                            padding-right:2px;
-                            font-size:1.15em;
-                            font-weight: bold;
+                            // padding-right:2px;
+                            // font-size:1.15em;
+                            // font-weight: bold;
                             // color:#000;
                         }
                     }
@@ -211,6 +243,7 @@
                         flex-shrink: 0;
                         padding-top:5px;
                         display:flex;
+                        font-family: caner;
                         margin-top:6px;
                         .ThoughtEmotion{
                             width:30px;
@@ -236,6 +269,7 @@
                             line-height: 20px;
                             font-size:12px;
                             color:#ccc;
+                            font-family: caner;
                             user-select: none;
                             // line-height: 14px;
                         }
@@ -254,6 +288,7 @@
                             justify-content: center;
                             align-items: center;
                             display: none;
+                            font-family: caner;
                             user-select: none;
                             &:hover{
                                 background:rgba(255, 0, 0,1);

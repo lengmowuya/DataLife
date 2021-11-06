@@ -2,19 +2,19 @@
 #ThoughtPage{
     border:1px solid transparent;
     background:#f6f7f9; 
+    // height:100vh;
+    box-sizing: border-box;
+    // flex-grow: 1;
     padding-bottom:110px;
     margin:0 auto;
+    display:flex;
+    flex-direction: column;
     .PageTitle{
-        // background:#fff;
-        // position: fixed;
-        // left:0;
-        // top:0;
         height: 50px;
         line-height: 50px;
         width:100%;
         text-align: center;
         font-size:18px;
-        // border-bottom:1px solid  #eee;
         font-family: caner;
         display:flex;
         justify-content: center;
@@ -146,10 +146,12 @@
     // 历史短文列表
     .ThougthList{
         list-style: none;
-        max-width: 1000px;
+        max-width: 100%;
         margin:0 auto;
         padding-bottom:20px;
+        height: 100%;
         padding:0px 10px;
+        // overflow-x: hidden;
         .DateLi{
             flex-direction: row;
             flex-wrap: no-wrap;
@@ -185,23 +187,12 @@
             }
             .ThougthLi{
                 padding:10px;
-                // border-radius:6px;
-                margin-bottom:6px;
-                // margin-bottom:10px;
+                margin-bottom:10px;
                 display:flex;
-                // margin-right:10px;
-                // width:30%;
-                // max-width: 50%;
                 box-sizing: border-box;
                 flex-grow: 1;
-                // background:#fff;
-                // border:2px solid #fff;
                 background:#fff;
                 border-radius: 6px;
-                // background:#fff;
-                // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
-                // background:#f6f7f9; 
-                // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
                 transition: all 0.25s;
                 &:hover{
                     border-color: #00a1d6;
@@ -219,6 +210,9 @@
                         flex-grow: 1;
                         font-family: caner;
                         line-height: 1.5em;
+                        white-space: pre-wrap;
+                        overflow-wrap: break-word;
+                        max-width: calc(100vw - 40px);
                         &::selection{
                             background:#00a1d6;
                             color:#fff;
@@ -309,6 +303,7 @@
     box-sizing: border-box;
     height:46px;
     transform: translateX(-50%);
+    // display:none;
     &>button{
         background:#00a1d6;
         color:#fff;

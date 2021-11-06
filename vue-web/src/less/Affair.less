@@ -1,30 +1,41 @@
 #AffairPage{
     width:100%;
-    max-width: 1200px;
-    padding-top:40px;
+    // max-width: 1200px;
     margin:0 auto;
     padding-bottom:150px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
-
+.Header{
+    padding-top:40px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:#f6f7f9;
+    padding:60px 0px;
+    box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05) inset, -8px -8px 20px 0 #fff;
+}
 .EnterBlock{
     width:100%;
     max-width: 600px;
     margin:0 auto;
     display:flex;
     .NewBlock{
-        height:65px;
+        height:80px;
         flex-grow: 1;
         background-color:#fff;
-        border-radius:4px;
+        border-radius:6px;
         display:flex;
         flex-direction: column;
-        padding:10px;
+        padding:10px 16px;
         box-sizing: border-box;
         // border:1px solid #e5e9ef;
         transition:all 0.25s;
         box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
         margin-right:12px;
-        color:#98a3b7;
+        font-family: caner;
         &:hover{
             border-color:#98a3b7;
         }
@@ -36,27 +47,27 @@
             border:none;
             outline: none;
             background:transparent;
-            color:#fff;
-            color:#98a3b7;
+            color:#252525;
+            font-family: caner;
         }
         .NewBlockName::placeholder,
         .NewBlockDescribe::placeholder{
             color:#eee;
-            color:#98a3b7;
+            color:#98a3b799;
         }
         .NewBlockName{
-            height:20px;
+            height:40px;
             flex-grow: 1;
-            // margin-bottom:10px;
-            font-size:18px;
+            font-size:22px;
             font-weight: bold;
-            // background:tr
-            // height:1
+            line-height: 40px;
         }
         .NewBlockDescribe{
             flex-shrink: 0;
-            height:14px;
-            font-size:12px;
+            height:20px;
+            font-size:14px;
+            line-height: 20px;
+            opacity: 0.8;
         }
     }
     .AddButton{
@@ -102,7 +113,6 @@
         width:@height;
         height:@height;
         margin:2px;
-        border-radius: 7px;
         overflow: hidden;
         .HistoryDateNumber{
             width:100%;
@@ -111,24 +121,28 @@
             align-items: center;
             justify-content: center;
             font-size:14px;
-            color:#999;
+            color:#fff;
             // background:#fff;
-            background:#f6f6f6;
+            // background:#f6f6f6;
+            background:#9be9a8;
             user-select: none;
             vertical-align: middle;
             cursor: pointer;
             transition: all 0.25s;
-            // border:2px solid #00a0d6;
+            border:2px solid transparent;
             box-sizing: border-box;
             flex-direction: column;
+            border-radius: 7px;
             .HistroyDateLength{
                 font-weight: bold;
                 font-size: 19px;
             }
             .HistroyDateIntraday{
-                font-size:12px;
+                font-size:14px;
                 opacity: 0.5;
-                font-weight: bold;
+                // color:#252525;
+                font-family: caner;
+                // font-weight: bold;
             }
             &:not(.active):hover{
                 opacity: 0.5;
@@ -136,18 +150,20 @@
 
             }
             &.plus5{
-                color:gold;
+                // color:gold;
+                background-color: #40c463;
                 // border-color: gold;  
             }
             &.plus10{
-                color:tomato;
+                // color:tomato;
+                background-color: #30a14e;
                 // border-color: tomato;
             }
             &.active{
                 // box-shadow: 6px 0px 6px #666;
                 // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                // border-color: #ccc !important;
-                background:#333;
+                border-color: green !important;
+                // background:#333;
                 .HistroyDateIntraday{
                     // color:#333;
                     opacity: 1;
@@ -158,8 +174,8 @@
 }
 .FinishBlock{
     max-width: 1200px;
-    margin:0 auto;
-    margin-top:25px;
+    margin:65px auto;
+    margin-top:30px;
     background:#fff;
     background:#f6f7f9; 
     box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
@@ -173,16 +189,37 @@
         // margin-bottom:10px;
         font-size:16px;
         // font-weight: bold;
-        padding:14px 0px;
-        padding-bottom:24px;
-
+        padding:10px 0px;
+        // padding-bottom:24px;
+        display:flex;
+        justify-content: center;
         .text{
-            color:#98a3b7;
-            background:#ffffff99;
-            padding:10px;
+            // color:#98a3b7;
+            // background:#ffffff99;
+            // padding:10px;
+            height:20px;
+            font-family: caner;
+            color:#333;
             user-select: none;
             border-radius: 6px;
+            line-height: 20px;
             overflow: hidden;
+            padding:0px 12px;
+        }
+        .length{
+            margin-left:4px;
+            height:20px;
+            // width:24px;
+            padding:0px 8px;
+            line-height: 20px;
+            // margin-top:-5px;
+            font-family: caner;
+            font-size: 14px;
+            background:#00a1d655;
+            letter-spacing: 1px;
+            color:#fff; 
+            // padding:1px 6px;
+            border-radius: 10px;
         }
     }
     .FinishRecordList{
@@ -197,7 +234,7 @@
         // border:2px solid #00a0d6;
         // color:#fff;
         background:#fff;
-        color:#98a3b7;
+        color:#363636;
         // border:1px solid rgba(157,173,193,.5);
         // background-image: linear-gradient(0deg,#fff,#f3f5f8);
         background:#fff;
@@ -237,13 +274,28 @@
                 display:flex;
                 justify-content: center;
                 align-items: center;
-                padding:2px;
-                border-radius:6px;
-                margin:4px;
-                // margin-right:5px;
                 flex-shrink: 0;
+                font-size:36px;
+                width:42px;
+                height: 42px;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0;
+                border-radius: 12px;
+                margin:5px;
+                overflow: hidden;
+                position: relative;
+                .iconBackground{
+                    position: absolute;
+                    left:50%;
+                    top:50%;
+                    transform: translateX(-50%) translateY(-50%);
+                    filter:blur(8px);
+                    opacity: 0.2;
+                }
                 .icon{
-                    font-size:35px;
+                    // font-size:35px;
                 }
             }
             .FinishRecordText{
@@ -252,14 +304,16 @@
                 flex-direction: column;
                 padding:5px;
                 flex-grow: 1;
+                font-family: caner;
                 .RecordName{
                     flex-grow: 1;
-                    font-size: 14px;
+                    font-size: 15px;
                     letter-spacing: 1px;
                     user-select: none;
+                    line-height: 26px;
                 }
                 .RecordTime{
-                    font-size:12px;
+                    font-size:13px;
                     opacity: 0.6;
                     user-select: none;
                 }
@@ -267,15 +321,18 @@
         }
         .RecordSentence{
             padding:5px;
-            font-size:13px; 
+            font-size:15px; 
+            line-height: 1.35em;
             // text-indent: 2em;
-            // letter-spacing: 0.25px;
+            letter-spacing: 0.5px;
             transition: all 0.25s;
             cursor: pointer;
             // width:100%;
+            color:#98a3b7;
             // box-sizing: border-box;
             white-space: pre-wrap;
             // word-wrap: break-word;
+            font-family: caner;
         }
         .morePanel{
             opacity: 0;
@@ -306,7 +363,8 @@
     background:#f6f7f9;
     box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
     border-radius: 6px;
-    margin-top:40px;
+    // margin-top:60px;
+    max-width: 1200px;
 }
 .MyAffairCareer{
     // display:flex;
@@ -344,8 +402,9 @@
         font-size:27px;
         margin-right:16px;
         border:2px solid #fff;
+        // border:2px solid silver;
         // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        box-shadow: 8px 8px 20px 0 rgb(55 99 170 / 10%), -8px -8px 20px 0 #fff;
+        box-shadow: 8px 8px 20px 0 rgba(55,99,170,0.1), -8px -8px 20px 0 #fff;
         font-weight: bold;
         user-select: none;
     }
@@ -353,7 +412,7 @@
         margin:0px;
     }
     &>*{
-        margin-top:-40px !important;
+        // margin-top:-40px !important;
     }
 }
 .MyAffair{
@@ -374,10 +433,10 @@
         user-select: none;
     }
     .AffairLi{
-        margin:12px;
-        border-radius: 4px;
+        margin:8px;
+        border-radius: 8px;
         background:#fff;
-        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
+        // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
         // border:1px solid #e5e9ef;
         min-width:20%;
         flex-grow: 1;
@@ -385,7 +444,10 @@
         transition:all 0.25s;
         display:flex;
         transition:all 0.25s;
-        border:2px solid transparent;
+        // border:2px solid #cccccc66;
+        box-shadow: 4px 4px 16px 0 rgba(55,99,170,0.1), -8px -8px 20px 0 #fff;
+
+        padding:10px;
         width:20%;
         max-width: calc(25% - 24px - 4px);
         position: relative;
@@ -413,16 +475,34 @@
             }
         }
         .AffairIcon{
-            font-size:40px;
-            // color:#00a0d6;
-            // margin-right:10px;
-            width:50px;
+            font-size:36px;
+            width:42px;
+            height: 42px;
             display:flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
+            // color:#00a0d6;
+            // margin-right:10px;
+            // width:50px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 12px;
             // border:1px  solid #eee;
-
+            // margin-top:5px;
+            margin:5px;
+            overflow: hidden;
+            position: relative;
+            .iconBackground{
+                position: absolute;
+                left:50%;
+                top:50%;
+                transform: translateX(-50%) translateY(-50%);
+                filter:blur(8px);
+                opacity: 0.2;
+            }
         }
         .AffairLevel{
             color:gold;
@@ -434,9 +514,9 @@
             border-radius: 3px;
             position: absolute;
             transform: scale(0.8) translateX(-50%);
-            left:23px;
+            left:33.5px;
             
-            bottom:-8.5px;
+            bottom:4.5px;
         }
         .AffairText{
             flex-grow: 1;
@@ -458,7 +538,7 @@
             .AffairLiDescribe{
                 margin-top:2px;
                 font-size:10px;
-                color:#ccc;
+                color:#98a3b799;
                 user-select: none;
                 white-space: nowrap;
                 overflow: hidden;
@@ -553,7 +633,7 @@
             font-size:12px;
         }
         .PushRecordDescribe{
-            color:#999;
+            color:#98a3b7;
             // font-weight: bold;
             font-size:12px;
             margin-bottom:10px;

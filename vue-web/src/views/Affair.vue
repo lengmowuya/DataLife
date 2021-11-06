@@ -1,17 +1,23 @@
 <template>
   <div id="AffairPage">
-    <!-- 新建事务的输入板块 -->
-    <div class="EnterBlock">
-      <div class="NewBlock">
-        <input type="text" class="NewBlockName" placeholder="新事务名称" v-model="NewBlock.name">
-        <input type="text" class="NewBlockDescribe" placeholder="一句话描述我的新事务" v-model="NewBlock.describe">
-      </div>
-      <div class="AddButton">
-        <button @click="addAffair()">+</button>
+    <div class="Header">
+      <!-- 新建事务的输入板块 -->
+      <div class="EnterBlock">
+        <div class="NewBlock">
+          <input type="text" class="NewBlockName" placeholder="新事务名称" v-model="NewBlock.name">
+          <input type="text" class="NewBlockDescribe" placeholder="一句话描述我的新事务" v-model="NewBlock.describe">
+        </div>
+        <div class="AddButton">
+          <button @click="addAffair()">+</button>
+        </div>
       </div>
     </div>
     <!-- 完成的记录板块 -->
     <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
+      <p class="FinishDay">
+        <span class="text">{{Tool.getDateString(RecordShowDate.data)}}号&nbsp; 周{{Tool.FormatDateWeekChinese(RecordShowDate.date.getDay())}}</span>
+        <span class="length" v-if="RecordShowDate.record.length>0">{{RecordShowDate.record.length}}条</span>
+      </p>
       <div class="HistoryRecord">
         <div  v-for="(item,i) in HistoryRecord" :key="i" :title="Tool.getDateString(item.data)" :class="{HistoryBlock:true}">
           <span v-if="item.record.length > 0" 
@@ -23,11 +29,13 @@
           </span>
         </div>
       </div>
-      <p class="FinishDay"><span class="text">{{Tool.getDateString(RecordShowDate.data)}}号&nbsp; 周{{RecordShowDate.date.getDay()}}</span></p>
       <div class="FinishRecordList">
         <div class="FinishRecord" v-for="(item,index) in RecordShowDate.record" :key="index">
           <div class="FinishRecordHeader">
             <div class="FinishRecordIcon">
+              <svg class="iconBackground" aria-hidden="true">
+                  <use :xlink:href="'#icon-'+item.affair.icon"></use>
+              </svg>
               <svg class="icon" aria-hidden="true">
                 <use :xlink:href="'#icon-'+item.affair.icon"></use>
               </svg>
@@ -58,6 +66,9 @@
         </div>
         <div  v-for="(item,index) in AffairList"  :key="index" @click="changeActiveAffair(item._id)" :class="{AffairLi:true,active:activeAffairId==item._id}">
           <div class="AffairIcon">
+            <svg class="iconBackground" aria-hidden="true">
+                <use :xlink:href="'#icon-'+item.icon"></use>
+            </svg>
             <svg class="icon" aria-hidden="true">
                 <use :xlink:href="'#icon-'+item.icon"></use>
             </svg>

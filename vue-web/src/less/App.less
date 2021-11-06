@@ -5,6 +5,7 @@
 }
 html{
     // background:#f4f5f7;
+    // overflow: hidden;
 }
 @font-face{
     font-family: caner;
@@ -16,7 +17,6 @@ html{
 }
 @mainColor:#00a1d6;
 body{
-    // font-family: "黑体";
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
   'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
     max-width: 1000px;
@@ -53,7 +53,7 @@ body{
     box-sizing: border-box;
     box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
     a{
-        margin-right:16px;
+        margin-right:26px;
         width:75px;
         height:100%;
         text-align: center;
@@ -65,30 +65,32 @@ body{
         display:flex;
         justify-content: center;
         align-items: center;
-        color:#252525;
+        color:#98a3b7;
         box-sizing: border-box;
-        border-bottom:3px solid transparent;
+        // border-bottom:3px solid transparent;
         transition: all 0.3s;
+        font-family: caner;
         i{
+            vertical-align: top;
             margin-right: 2px;
-            font-size: 19px;
+            font-size: 24px;
         }
         &.router-link-active{
             color:#00a1d6;
             border-color:#00a1d6;
         }
-        &:nth-child(1) i{
-            color:#00c091;
-        }
-        &:nth-child(2) i{
-            color:#fb7299;
-        }
-        &:nth-child(3) i{
-            color:#67C23A;
-        }
-        &:nth-child(4) i{
-            color:#f3a034;
-        }
+        // &:nth-child(1) i{
+        //     color:#00c091;
+        // }
+        // &:nth-child(2) i{
+        //     color:#fb7299;
+        // }
+        // &:nth-child(3) i{
+        //     color:#67C23A;
+        // }
+        // &:nth-child(4) i{
+        //     color:#f3a034;
+        // }
         &:hover{
             a{
                 color:#00a1d6;
@@ -105,12 +107,10 @@ body{
     height:54px;
     display:flex;
     justify-content: center;
-    // box-shadow: 0 0 0 1px #eee;
     background:#fff;
     border-radius: 0 0 4px 4px;
     padding:0px 20px;
     box-sizing: border-box;
-    // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
     border-top:1px solid #eee;
     position: fixed;
     left:0;
@@ -133,9 +133,7 @@ body{
         color:#98a3b7;
         box-sizing: border-box;
         flex-direction: column;
-        // border-bottom:3px solid transparent;
         transition: all 0.3s;
-        // transform: scale(0.8);
         i{
             margin-bottom: 3px;
             font-size:26px;
@@ -151,8 +149,6 @@ body{
             a{
                 color:#00a1d6;
             }
-            // font-size: 32px;;
-            // opacity: 0.8;
         }
     }
 }

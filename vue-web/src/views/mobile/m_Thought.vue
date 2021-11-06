@@ -2,7 +2,6 @@
     <!-- 页面主体 -->
     <div id="ThoughtPage">
         <div class="PageTitle"><span class="titleName">短语</span> <span class="length" v-if="List.length>3">{{List.length}}</span></div>
-        <!-- 输入块 -->
         <div class="EnterBlock" v-if="false">
             <!-- 短文输入框 -->
             <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
@@ -18,7 +17,7 @@
             </div>
         </div>
         <div class="IssueButton">
-            <button>记录此时感想</button>
+            <button @click="$router.push('newThought_mobile');">记录此时感想</button>
         </div>
         <!-- 历史列表块 -->
         <ul class="ThougthList" v-if="List.length>0">

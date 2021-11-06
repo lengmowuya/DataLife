@@ -34,6 +34,14 @@ const routes = [
     path: '/thought_mobile',
     name: 'ThoughtMobile',
     component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Thought.vue')
+  },{
+    path: '/newAffair_mobile',
+    name: 'NewAffairOnlayAffair',
+    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewAffair.vue')
+  },{
+    path: '/newThought_mobile',
+    name: 'NewThoughtOnlayAffair',
+    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewThought.vue')
   }
 ]
 

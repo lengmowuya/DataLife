@@ -1,50 +1,14 @@
 <template>
   <div id="AffairPage">
     <!-- 新建事务的输入板块 -->
-    <div class="EnterBlock" v-if="false">
+    <div class="PageTitle">新建事务</div>
+    <div class="EnterBlock">
       <div class="NewBlock">
         <input type="text" class="NewBlockName" placeholder="新事务名称" v-model="NewBlock.name">
-        <input type="text" class="NewBlockDescribe" placeholder="一句话描述我的新事务" v-model="NewBlock.describe">
+        <textarea type="text" class="NewBlockDescribe" placeholder="一句话描述我的新事务" v-model="NewBlock.describe"></textarea>
       </div>
       <div class="AddButton">
-        <button @click="addAffair()">+</button>
-      </div>
-    </div>
-    <!-- 完成的记录板块 -->
-    <div class="FinishBlock" v-if="RecordShowDate !=null && RecordShowDate.date != undefined">
-      <p class="FinishDay" @click="showDateList = !showDateList"><span class="text">{{Tool.getDateString(RecordShowDate.data)}}号&nbsp; 周{{Tool.FormatDateWeekChinese(RecordShowDate.date.getDay())}}</span></p>
-      <div class="HistoryRecord" v-show="showDateList">
-        <div  v-for="(item,i) in HistoryRecord" :key="i" :title="Tool.getDateString(item.data)" :class="{HistoryBlock:true}">
-          <span v-if="item.record.length > 0" 
-            :class="{HistoryDateNumber:true,
-              plus5:item.record.length >= 5,
-              plus10:item.record.length >= 10,
-              active:Tool.getDateString(RecordShowDate.data) == Tool.getDateString(item.data)}" @click="RecordShowDate = HistoryRecord[i],Record.activeIndex = i">
-            <span class="HistroyDateIntraday">{{Tool.FormatDateWeekChinese(item.date.getDay())}}</span>
-          </span>
-        </div>
-      </div>
-      <div class="FinishRecordList">
-        <div class="FinishRecord" v-for="(item,index) in RecordShowDate.record" :key="index">
-          <div class="FinishRecordHeader">
-            <div class="FinishRecordIcon">
-              <svg class="iconBackground" aria-hidden="true">
-                <use :xlink:href="'#icon-'+item.affair.icon"></use>
-            </svg>
-              <svg class="icon" aria-hidden="true">
-                <use :xlink:href="'#icon-'+item.affair.icon"></use>
-              </svg>
-            </div>
-            <div class="FinishRecordText">
-              <p class="RecordName">{{item.affair.name}}</p>
-              <p class="RecordTime">{{Tool.getTimeString(item.data)}}</p>
-            </div>
-            <div class="morePanel">
-              <i class="el-icon-delete-solid button" title="删除" @click="removeAffairRecord(item._id)"></i>
-            </div>
-          </div>
-          <pre class="RecordSentence">{{item.sentence}}</pre>
-        </div>
+        <button @click="addAffair()">完成</button>
       </div>
     </div>
   </div>
@@ -165,5 +129,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-  @import './../../less/mobile/m_Record.less';
+  @import './../../less/mobile/m_NewAffair.less';
 </style>

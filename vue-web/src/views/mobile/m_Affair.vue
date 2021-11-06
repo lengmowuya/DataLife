@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="AddAffairButton">
-        <button>创建我的新事务</button>
+        <button @click="$router.push('newAffair_mobile')">创建我的新事务</button>
     </div>
     <!-- 完成该事务板块(默认隐藏) -->
     <div class="FinishRecordPush" v-if="onPushRecord && pushAffair!=null">

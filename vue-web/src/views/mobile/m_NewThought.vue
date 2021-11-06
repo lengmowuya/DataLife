@@ -1,44 +1,24 @@
 <template>
     <!-- 页面主体 -->
-    <div id="ThoughtPage">
-        <div class="Header">
-            <!-- 输入块 -->
-            <div class="EnterBlock">
-                <!-- 短文输入框 -->
-                <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
-                <!-- 状态列表(默认隐藏) -->
-                <div class="EmotionList" v-show="showEmotionList">
-                    <ul>
-                        <li v-for="(item,index) in EmotionList"  :class="{active:item._id == thoughtEmotion._id}" :key="index" @click="changeEmotion(item)">{{item.name}}</li>
-                    </ul>
-                </div>
-                <div class="EnterTools">
-                    <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
-                    <button class="EnterButton" @click="writeThou">记录</button>
-                </div>
-
+    <div id="NewThoughtPage">
+        <div class="PageTitle"><span class="titleName">短语</span></div>
+        <!-- 输入块 -->
+        <div class="EnterBlock">
+            <!-- 短文输入框 -->
+            <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
+            <div class="EnterTools" v-if="false">
+                <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
             </div>
-        </div>
-        <!-- 历史列表块 -->
-        <ul class="ThougthList" v-if="List.length>0">
-            <div class="DateLi" v-for="(item,key) in dateList" :key="key">
-                <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
-                <ul class="CurrentDateList">
-                    <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
-                        <div class="ThoughtMain">
-                            <pre class="ThoughtText">{{li.text}}</pre>
-                            <div class="ThoughtDetails">
-                                <span class="ThoughtEmotion" v-if="li.emotion != null">
-                                    {{li.emotion.name}}
-                                </span>
-                                <span class="thou_time">{{Tool.getTimeString(li.date)}}</span>
-                                <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
-                            </div>
-                        </div>
-                    </li>
+            <!-- 状态列表(默认隐藏) -->
+            <div class="EmotionList" v-show="showEmotionList">
+                <ul>
+                    <li v-for="(item,index) in EmotionList"  :class="{active:item._id == thoughtEmotion._id}" :key="index" @click="changeEmotion(item)">{{item.name}}</li>
                 </ul>
             </div>
-        </ul>
+        </div>
+        <div class="IssueButton" @click="writeThou">
+            <button>确认</button>
+        </div>
     </div>
 </template>
 <script>
@@ -53,7 +33,7 @@ export default {
             name:"状态",
             _id:null
         },
-        showEmotionList:false,
+        showEmotionList:true,
         date:{}
       };
     },
@@ -76,20 +56,10 @@ export default {
             let that = this;
             this.axios.post(this.Tool.config.address + '/thought/add',data)
                 .then(()=>{
-                  that.updateDate();
+                    this.$router.push('thought_mobile');
+                //   that.updateDate();
                 });
             this.writeText = "";
-        },
-        //删除短文
-        destoryThou(_id){
-            let data = {
-                _id
-            }
-            let that = this;
-            this.axios.post(this.Tool.config.address + '/thought/remove',data)
-            .then(()=>{
-                that.updateDate();
-            });
         },
         changeEmotion(item){
             this.thoughtEmotion = item;
@@ -178,5 +148,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    @import './../less/Thought.less';
+    @import './../../less/mobile/m_NewThought.less';
 </style>

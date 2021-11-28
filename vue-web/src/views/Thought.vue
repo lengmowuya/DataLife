@@ -2,6 +2,11 @@
     <!-- 页面主体 -->
     <div id="ThoughtPage">
         <div class="Header">
+            <div class="ThoughtCareer" v-if="List.length > 2">
+                <span class="RecordBlock"><span class="LabelName">生涯</span>{{dateList.length}}<span class="LabelName"> 天</span></span>
+                <span class="RecordBlock"><span class="LabelName">短语</span>{{List.length}}<span class="LabelName"> 条</span></span>
+                <span class="RecordBlock"><span class="LabelName">共</span>{{careerTextLength}}<span class="LabelName"> 字</span></span>
+            </div>
             <!-- 输入块 -->
             <div class="EnterBlock">
                 <!-- 短文输入框 -->
@@ -22,7 +27,7 @@
         <!-- 历史列表块 -->
         <ul class="ThougthList" v-if="List.length>0">
             <div class="DateLi" v-for="(item,key) in dateList" :key="key">
-                <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
+                <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber" v-if="false">{{item.thoughtList.length}} 感悟</span></p>
                 <ul class="CurrentDateList">
                     <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
                         <div class="ThoughtMain">
@@ -47,6 +52,7 @@ export default {
       return {
         List:[],
         writeText:"",
+        careerTextLength:0,
         dateList:[],
         EmotionList:[],
         thoughtEmotion:{
@@ -58,6 +64,14 @@ export default {
       };
     },
     methods:{
+        updateCareerTextLength(){
+            // this.careerTextLength = 0;
+            let TextLength = 0;
+            this.List.forEach(item=>{
+                TextLength += item.text.length;
+            })
+            this.careerTextLength = TextLength;
+        },
         //添加短文
         writeThou(){
             let data = {
@@ -165,6 +179,7 @@ export default {
                 this.List = res.data;
                 this.setThoughtList();
                 this.initDateList();
+                this.updateCareerTextLength();
             });
           this.axios.get(this.Tool.config.address + '/emotion/all')
             .then(res=>{

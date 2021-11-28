@@ -97,7 +97,7 @@ let Worker = {
                     }
                     this.HistoryRecord.push(newDate);
                     this.RecordShowDate = this.HistoryRecord[0];
-                    for(let e=1;e<50;e++){
+                    for(let e=1;e<100;e++){
                         let dayTime = this.NowDate.time - e * 86400000;
                         let dayData = this.Tool.FormatDate(dayTime);
                         let newDate = {

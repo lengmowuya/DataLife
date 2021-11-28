@@ -12,8 +12,14 @@ export default createStore({
       name:"",
       passward:"",
       email:"",
-      id:''
-    }
+      id:'',
+      isLogin:false,
+      Token:''
+    },
+    AffairList:[],
+    AffairRecordList:[],
+    RecordDateList:[],
+    RecordShowDate:null,
   },
   mutations: {
   },

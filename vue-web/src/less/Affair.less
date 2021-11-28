@@ -7,412 +7,49 @@
     flex-direction: column;
     align-items: center;
 }
-.Header{
-    padding-top:40px;
-    width:100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    background:#f6f7f9;
-    padding:60px 0px;
-    box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05) inset, -8px -8px 20px 0 #fff;
-}
-.EnterBlock{
-    width:100%;
-    max-width: 600px;
-    margin:0 auto;
-    display:flex;
-    .NewBlock{
-        height:80px;
-        flex-grow: 1;
-        background-color:#fff;
-        border-radius:6px;
-        display:flex;
-        flex-direction: column;
-        padding:10px 16px;
-        box-sizing: border-box;
-        // border:1px solid #e5e9ef;
-        transition:all 0.25s;
-        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
-        margin-right:12px;
-        font-family: caner;
-        &:hover{
-            border-color:#98a3b7;
-        }
-        &:focus{
-            border-color:#00a1d6;
-        }
-        .NewBlockName,
-        .NewBlockDescribe{
-            border:none;
-            outline: none;
-            background:transparent;
-            color:#252525;
-            font-family: caner;
-        }
-        .NewBlockName::placeholder,
-        .NewBlockDescribe::placeholder{
-            color:#eee;
-            color:#98a3b799;
-        }
-        .NewBlockName{
-            height:40px;
-            flex-grow: 1;
-            font-size:22px;
-            font-weight: bold;
-            line-height: 40px;
-        }
-        .NewBlockDescribe{
-            flex-shrink: 0;
-            height:20px;
-            font-size:14px;
-            line-height: 20px;
-            opacity: 0.8;
-        }
-    }
-    .AddButton{
-        width:40px;
-        height:40px;
-        margin-top:10px;
-        button{
-            width:100%;
-            height:100%;
-            background:transparent;
-            border-radius:8px;
-            // color:tomato;
-            border:none;
-            font-size:24px;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            // opacity: 0.65;
-            transition:all 0.25s;
-            background:#fff;
-            // border:2px solid #f6f7f9;
-            box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
-            &:hover{
-                opacity: 1;
-            }
-        }
-    }
-}
-.HistoryRecord{
-    padding:5px;
-    background:#fff;
-    margin:10px 0px;
-    margin-top:0px;
-    display:flex;
-    flex-wrap: wrap-reverse;
-    @height:42px;
-    flex-direction: row-reverse;
-    align-content: flex-start;
-    border-radius: 6px;
-    box-shadow:0 4px 20px rgba(0,25,104,0.05);
-    .HistoryBlock{
-        width:@height;
-        height:@height;
-        margin:2px;
-        overflow: hidden;
-        .HistoryDateNumber{
-            width:100%;
-            height:100%;
-            display:flex;
-            align-items: center;
-            justify-content: center;
-            font-size:14px;
-            color:#fff;
-            // background:#fff;
-            // background:#f6f6f6;
-            background:#9be9a8;
-            user-select: none;
-            vertical-align: middle;
-            cursor: pointer;
-            transition: all 0.25s;
-            border:2px solid transparent;
-            box-sizing: border-box;
-            flex-direction: column;
-            border-radius: 7px;
-            .HistroyDateLength{
-                font-weight: bold;
-                font-size: 19px;
-            }
-            .HistroyDateIntraday{
-                font-size:14px;
-                opacity: 0.5;
-                // color:#252525;
-                font-family: caner;
-                // font-weight: bold;
-            }
-            &:not(.active):hover{
-                opacity: 0.5;
-                // background-color: #00a0d6;
-
-            }
-            &.plus5{
-                // color:gold;
-                background-color: #40c463;
-                // border-color: gold;  
-            }
-            &.plus10{
-                // color:tomato;
-                background-color: #30a14e;
-                // border-color: tomato;
-            }
-            &.active{
-                // box-shadow: 6px 0px 6px #666;
-                // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                border-color: green !important;
-                // background:#333;
-                .HistroyDateIntraday{
-                    // color:#333;
-                    opacity: 1;
-                }
-            }
-        }
-    }
-}
-.FinishBlock{
-    max-width: 1200px;
-    margin:65px auto;
-    margin-top:30px;
-    background:#fff;
-    background:#f6f7f9; 
-    box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
-    border-radius: 6px;
-    min-height: 400px;
-    padding:15px;
-    box-sizing: border-box;
-    .FinishDay{
-
-        text-align: center;
-        // margin-bottom:10px;
-        font-size:16px;
-        // font-weight: bold;
-        padding:10px 0px;
-        // padding-bottom:24px;
-        display:flex;
-        justify-content: center;
-        .text{
-            // color:#98a3b7;
-            // background:#ffffff99;
-            // padding:10px;
-            height:20px;
-            font-family: caner;
-            color:#333;
-            user-select: none;
-            border-radius: 6px;
-            line-height: 20px;
-            overflow: hidden;
-            padding:0px 12px;
-        }
-        .length{
-            margin-left:4px;
-            height:20px;
-            // width:24px;
-            padding:0px 8px;
-            line-height: 20px;
-            // margin-top:-5px;
-            font-family: caner;
-            font-size: 14px;
-            background:#00a1d655;
-            letter-spacing: 1px;
-            color:#fff; 
-            // padding:1px 6px;
-            border-radius: 10px;
-        }
-    }
-    .FinishRecordList{
-        display:flex;
-        flex-wrap: wrap;
-        margin-right:-5px;
-        padding:10px;
-        padding-top:5px;
-    }
-    .FinishRecord{
-        // background:#00a0d699;
-        // border:2px solid #00a0d6;
-        // color:#fff;
-        background:#fff;
-        color:#363636;
-        // border:1px solid rgba(157,173,193,.5);
-        // background-image: linear-gradient(0deg,#fff,#f3f5f8);
-        background:#fff;
-        box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
-        padding:10px;
-        // height:34px;
-        margin-right:12px;
-        border-radius:6px;
-        flex-direction: column;
-        display:flex;
-        margin-bottom:12px;
-        flex-grow: 1;
-        // min-width: 15%;
-        width:20%;
-        max-width: calc(25% - 14px);
-        box-sizing: border-box;
-        transition: all 0.25s;
-        &:hover{
-            .morePanel{
-                opacity: 1 !important;
-            }
-            // .FinishRecordIcon{
-            //     background:#eee !important;
-            // }
-            // .FinishRecordText{
-            //     color:#252525;
-            // }
-            // background:#fff;
-            // .RecordSentence{
-            //     color:#252525;
-            // }
-        }
-        .FinishRecordHeader{
-            display:flex;
-            .FinishRecordIcon{
-                background:#fff;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-                flex-shrink: 0;
-                font-size:36px;
-                width:42px;
-                height: 42px;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-                flex-shrink: 0;
-                border-radius: 12px;
-                margin:5px;
-                overflow: hidden;
-                position: relative;
-                .iconBackground{
-                    position: absolute;
-                    left:50%;
-                    top:50%;
-                    transform: translateX(-50%) translateY(-50%);
-                    filter:blur(8px);
-                    opacity: 0.2;
-                }
-                .icon{
-                    // font-size:35px;
-                }
-            }
-            .FinishRecordText{
-                display:flex;
-                flex-wrap: wrap;
-                flex-direction: column;
-                padding:5px;
-                flex-grow: 1;
-                font-family: caner;
-                .RecordName{
-                    flex-grow: 1;
-                    font-size: 15px;
-                    letter-spacing: 1px;
-                    user-select: none;
-                    line-height: 26px;
-                }
-                .RecordTime{
-                    font-size:13px;
-                    opacity: 0.6;
-                    user-select: none;
-                }
-            }
-        }
-        .RecordSentence{
-            padding:5px;
-            font-size:15px; 
-            line-height: 1.35em;
-            // text-indent: 2em;
-            letter-spacing: 0.5px;
-            transition: all 0.25s;
-            cursor: pointer;
-            // width:100%;
-            color:#98a3b7;
-            // box-sizing: border-box;
-            white-space: pre-wrap;
-            // word-wrap: break-word;
-            font-family: caner;
-        }
-        .morePanel{
-            opacity: 0;
-            transition: all 0.25s;
-            .button{
-                transition:all 0.25s;
-                background:#fff;
-                line-height: 21px;  
-                padding:5px;
-                font-size:16px;
-                width:20px;
-                text-align: center;
-                border-radius: 4px;
-                // opacity: 0.5;
-                cursor: pointer;
-                color:#98a3b799;
-                &:hover{
-                    background:#f9f9f9;
-                    // opacity: 1;
-                    color:red;
-                }
-            }
-            // height:21px;
-        }
-    }
-}
 .MyAffairBigBlock{
-    background:#f6f7f9;
-    box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+    // background:#f6f7f9;
+    // border:1px solid #d0d7de;
+    // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
     border-radius: 6px;
     // margin-top:60px;
     max-width: 1200px;
+    width:100%;
+    margin-top:20px;
 }
 .MyAffairCareer{
-    // display:flex;
     display:flex;
     justify-content: center;
     align-items: center;
-    // background:#000;
     padding:15px;
-    // padding-bottom:5px;
-    // border-radius: 6px;
-
-    // border-bottom:2px solid #eee;
-
+    padding-bottom:0px;
+    margin-top:10px;
+    // margin-bottom:10px;
     .LabelName{
         margin-right:4px;
-        font-size:13px;
+        font-size:16px;
         // opacity: 0.9;
         user-select: none;
         color:#999;
-        color:#98a3b7;
+        color:#98a3b799;
         cursor: pointer;
         user-select: none;
+        font-family: caner;
     }
     .AllRecordLength,
     .AverageRecord,
     .AllAffairLength{
         padding:8px 16px;
         color:gold;
-        background:#252525; 
-        // background:#fff; 
-        background-image: linear-gradient(to Right,#252525,#333);
-        background-image: linear-gradient(to Right,#eee,#fff);
-        background-image: linear-gradient(0deg,#fff,#f3f5f8);
         border-radius: 4px;
-        font-size:27px;
+        font-size:16px;
         margin-right:16px;
-        border:2px solid #fff;
-        // border:2px solid silver;
-        // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        box-shadow: 8px 8px 20px 0 rgba(55,99,170,0.1), -8px -8px 20px 0 #fff;
-        font-weight: bold;
+        // font-family: caner;
+        // font-weight: bold;
         user-select: none;
     }
     .AverageRecord{
         margin:0px;
-    }
-    &>*{
-        // margin-top:-40px !important;
     }
 }
 .MyAffair{
@@ -420,7 +57,7 @@
     display:flex;
     flex-wrap: wrap;
     padding:20px;
-    padding-top:0px;
+    // padding-top:20px;
     box-sizing: border-box;
     min-height: 300px;
     .NullBlockTip{
@@ -433,46 +70,31 @@
         user-select: none;
     }
     .AffairLi{
-        margin:8px;
-        border-radius: 8px;
+        padding:36px 0px;
+        margin:0px 30px;
+        // border-bottom:1px solid #d8dee4;
         background:#fff;
-        // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
-        // border:1px solid #e5e9ef;
-        min-width:20%;
+        min-width:40%;
         flex-grow: 1;
         cursor: pointer;
         transition:all 0.25s;
         display:flex;
         transition:all 0.25s;
-        // border:2px solid #cccccc66;
-        box-shadow: 4px 4px 16px 0 rgba(55,99,170,0.1), -8px -8px 20px 0 #fff;
-
-        padding:10px;
-        width:20%;
-        max-width: calc(25% - 24px - 4px);
+        width: calc(50% - 60px);
+        max-width: calc(50% - 60px);
         position: relative;
-        max-height: 60px;
-        // background:url(	https://cloudcache.tencent-cloud.com/open_proj/pro…tea-portal-material-portal/images/recom-bg5e7.jpg
-        // ),linear-gradient(180deg,#f3f5f8,#fff 178px,#fff);
-        // border:2px solid #fff;
-        &.active{
+        .AffairContent{
+            width:100%;
+            flex-grow: 1;
+            display:flex;
+            position: relative;
         }
-        &:hover{
-            border-color:#00a0d6;
-
-            .AffairText{
-                // display:none;
-                opacity: 0.25;
-                .AffairLiName{
-                    // display:none;
-                }
-                .AffairLiDescribe   {
-                }
-            }
-            .AffairTools{
-                // display:flex;
-                opacity: 1 !important;
-            }
+        .AffairIconBlock{
+            height:100%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            padding:0px 10px;
         }
         .AffairIcon{
             font-size:36px;
@@ -504,64 +126,64 @@
                 opacity: 0.2;
             }
         }
-        .AffairLevel{
-            color:gold;
-            // margin-left:4px;
-            font-size:10px;
-            padding:2px 4px;
-            background:#252525;
-            font-weight: normal;
-            border-radius: 3px;
-            position: absolute;
-            transform: scale(0.8) translateX(-50%);
-            left:33.5px;
-            
-            bottom:4.5px;
-        }
         .AffairText{
             flex-grow: 1;
             // margin-right:10px;
-            padding:10px;
-            padding-left:0px;
+            // padding:10px;
+            padding-left:5px;
             opacity: 1;
             transition: all 0.25s;
             .AffairLiName{
-                font-size:13px;
+                font-size:15px;
                 color:#252525;
-                font-weight: bold;
+                // color:#218bff;
+                font-weight: bold;   
                 user-select: none;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                max-width: 190px;
+                // max-width: 190px;
+                line-height: 24px;
             }
             .AffairLiDescribe{
                 margin-top:2px;
-                font-size:10px;
+                font-size:14px;
                 color:#98a3b799;
                 user-select: none;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: calc(100% - 60px);
-                max-width: 190px;
+                // white-space: nowrap;
+                // overflow: hidden;
+                // text-overflow: ellipsis;
+                // max-width: calc(100% - 60px);
+                // max-width: 190px;
+                line-height: 20px;
+            }
+            .AffairLevel{
+                color:gold;
+                // margin-left:4px;
+                font-size:10px;
+                padding:2px 4px;
+                background:#252525;
+                font-weight: normal;
+                border-radius: 3px;
+                line-height: 26px;
+                // position: absolute;
+                // transform: scale(0.8) translateX(-50%);
+                // left:33.5px;
+                // bottom:4.5px;
             }
         }
         .AffairTools{
+            position: absolute;
+            right:0px;
+            top:0px;
+            // top:50%;
+            // transform: translateY(-50%);
             flex-shrink: 0;
-            // opacity: 0;
             display:flex;
-            // display:none;
             align-items: center;
             margin-right:10px;
             justify-content: center;
             flex-grow: 1;
-            position: absolute;
-            // right:10px;
-            // top:5px;
-            width:100%;
-            height:100%;
-            opacity: 0;
             transition: all 0.25s;
             button{
                 flex-shrink: 0;
@@ -571,26 +193,36 @@
                 // padding:3x;
                 color:#fff;
                 // font-weight: bold;
-                font-size:18px;
                 display:flex;
-                width:24px;
+                // width:24px;
+                font-size:12px;
                 height:24px;
                 align-items: center;
                 justify-content: center;
                 margin-right:4px;
-                border-radius: 3px;
-                opacity: 0.4;
+                background:#f6f8fa;
+                color:#24292f;
+                border-radius: 4px;
                 transition:all 0.25s;
+                border:1px solid #d0d7de;
+                padding:5px 6px;
+                vertical-align: middle;
+                font-weight: bold;
+                i{
+                    font-size:14px;
+                    margin-right: 2px;
+                }
                 &:hover{
-                    opacity: 1;
+                    // opacity: 1;
+                    background:#f3f4f6;
                 }
             }
-            .AffairFinishButton{
-                background:#00a0d6;
-            }
-            .AffairEditorButton{
-                background:#E6A23C;
-            }
+            // .AffairFinishButton{
+            //     background:#00a0d6;
+            // }
+            // .AffairEditorButton{
+            //     background:#E6A23C;
+            // }
         }
     }
 }

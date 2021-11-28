@@ -3,24 +3,28 @@
     padding:0;
     outline: none;
 }
-html{
-    // background:#f4f5f7;
-    // overflow: hidden;
-}
+// 苍耳云黑
 @font-face{
     font-family: caner;
     src:url(./../assets/font/CangErJinKai01-9128-W04-5.otf);
 }
-@font-face{
-    font-family: lanting;
-    src:url('./../assets/font/MILanProVF-Medium.ttf')
-}
+
+// @font-face{
+//     font-family: lanting;
+//     src:url('./../assets/font/MILanProVF-Medium.ttf')
+// }
 @mainColor:#00a1d6;
 body{
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
   'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
     max-width: 1000px;
     margin:0 auto;
+}
+body::-webkit-scrollbar{
+    // position: fixed;
+    display:none;
+    // right:3px;
+    // top:0px;
 }
 @media screen and (min-width : 1000px) {
     body{

@@ -55,22 +55,24 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .Header{
-    padding-top:40px;
     width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
-    background:#f6f7f9;
-    padding:60px 0px;
+    // background:#f6f7f9;
+    padding:30px 0px;
+    padding-top:60px;
     // box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05) inset, -8px -8px 20px 0 #fff;
     display:flex;
     flex-direction: column;
 }
 .EnterBlock{
     width:100%;
-    max-width: 600px;
+    max-width: 400px;
     margin:0 auto;
     display:flex;
+    align-items: center;
+    
     .NewBlock{
         height:80px;
         flex-grow: 1;
@@ -78,7 +80,7 @@ export default {
         border-radius:6px;
         display:flex;
         flex-direction: column;
-        padding:10px 16px;
+        padding:10px 10px;
         box-sizing: border-box;
         // border:1px solid #e5e9ef;
         transition:all 0.25s;
@@ -96,8 +98,13 @@ export default {
             border:none;
             outline: none;
             background:transparent;
+            padding:0px 5px;
             color:#252525;
             font-family: caner;
+            transition:all 0.25s;
+            &:hover{
+              background:#f9f9f9;
+            }
         }
         .NewBlockName::placeholder,
         .NewBlockDescribe::placeholder{
@@ -105,24 +112,25 @@ export default {
             color:#98a3b799;
         }
         .NewBlockName{
-            height:40px;
+            height:35px;
             flex-grow: 1;
             font-size:22px;
-            font-weight: bold;
+            // font-weight: bold;
             line-height: 40px;
         }
         .NewBlockDescribe{
             flex-shrink: 0;
-            height:20px;
-            font-size:14px;
+            height:30px;
+            font-size:16px;
             line-height: 20px;
-            opacity: 0.8;
+            // opacity: 0.8;
+            color:#999;
         }
     }
     .AddButton{
         width:40px;
         height:40px;
-        margin-top:10px;
+        // margin-top:10px;
         button{
             width:100%;
             height:100%;
@@ -141,7 +149,8 @@ export default {
             // border:2px solid #f6f7f9;
             box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.11), -8px -8px 20px 0 #fff;
             &:hover{
-                opacity: 1;
+                // opacity: 1;
+                background:#f9f9f9;
             }
         }
     }

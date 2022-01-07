@@ -71,7 +71,6 @@ body::-webkit-scrollbar{
         align-items: center;
         color:#98a3b7;
         box-sizing: border-box;
-        // border-bottom:3px solid transparent;
         transition: all 0.3s;
         font-family: caner;
         i{
@@ -83,24 +82,8 @@ body::-webkit-scrollbar{
             color:#00a1d6;
             border-color:#00a1d6;
         }
-        // &:nth-child(1) i{
-        //     color:#00c091;
-        // }
-        // &:nth-child(2) i{
-        //     color:#fb7299;
-        // }
-        // &:nth-child(3) i{
-        //     color:#67C23A;
-        // }
-        // &:nth-child(4) i{
-        //     color:#f3a034;
-        // }
-        &:hover{
-            a{
-                color:#00a1d6;
-            }
-            // font-size: 32px;;
-            // opacity: 0.8;
+        &:not(.router-link-active):hover{
+            opacity: 0.5;
         }
     }
 }

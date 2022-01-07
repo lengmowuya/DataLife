@@ -9,6 +9,7 @@ let thoughtRouter = require('./thought.js');
 let affairRouter = require('./affair.js');
 let UserRouter = require('./UserRouter.js');
 let Export = require('./schema.js');
+let TokenTools = require('./jsonwebtoken.js');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 //设置跨域访问
@@ -29,9 +30,20 @@ app.all("*",function(req,res,next){
 app.get('/test',(req,res)=>{
     res.send({type:'success'});
 })
+app.use((req,res,next)=>{
+    if(!TokenTools.whiteList.includes(req.url)){
+        TokenTools.verifyToken(req.header.authorization)
+            .then(res=>{next()})
+            .catch(e=>{res.status(401).send('invalid token')})
+    }else{
+        next()
+    }
+})
 app.use(thoughtRouter);
 app.use(affairRouter);
 app.use(UserRouter);
 app.listen(port,()=>{
     console.log('服务器正在运行...');
 })
+
+

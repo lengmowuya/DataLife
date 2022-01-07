@@ -187,6 +187,17 @@ let Affair = {
 
         });
         return request;
+    },
+    ComputeLevel(count){
+        let nowCount = count;
+        let nextLevel = 5;
+        let nowLevel = 0;
+        while(nowCount >= nextLevel){
+            nowCount-=nextLevel;
+            nextLevel+=5;
+            nowLevel++;
+        }
+        return {level:nowLevel,count:nowCount};
     }
 }
 // 事务记录相关业务

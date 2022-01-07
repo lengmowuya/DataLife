@@ -122,6 +122,12 @@ export default {
     },
     // 根据Affair等级对其进行从高到低排序
     SortAffairLevel() {
+      this.$store.state.AffairList.forEach(item=>{
+        let result = this.Work.Affair.ComputeLevel(item.record.length);
+        console.log(result);
+        item.level = result.level;
+        item.count = result.count;
+      })
       this.$store.state.AffairList.sort((a, b) => {
         return b.record.length - a.record.length;
       });

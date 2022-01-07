@@ -78,6 +78,16 @@ export default {
       // activeAffairId: "",
     };
   },
+  methods:{
+    removeAffairRecord(id){
+        let Affair = {id};
+        this.axios.post(this.Tool.config.address + '/affairRecord/remove',Affair)
+            .then(()=>{
+            // this.Editor.onEditorAffair = false;
+            // this.getAllAffair();
+            })
+    }
+  },
   updated(){
 
 
@@ -89,6 +99,7 @@ export default {
         this.RecordShowDate = this.HistoryRecord[0];
       }
     },500);
+
     // this.Work.Affair.GetAllAffair()
     //   .then(res=>{
     //     // this.$store.AffairList = res.data;

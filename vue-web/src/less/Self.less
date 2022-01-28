@@ -1,0 +1,59 @@
+@import url("./App.less");
+#SelfPage{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background:#f6f7f9;
+    min-height: calc(100vh - 50px);
+
+}
+.UserInfo{
+    max-width: 1000px;
+    width:100%;
+    margin:20px;
+    // padding-top:20px;
+    padding:10px;
+    box-sizing: border-box;
+    border-radius:6px;
+    background:#fff;
+    min-height: 300px;
+}
+.CareerBlock{
+    width:100%;
+    max-width: 1000px;
+    display:flex;
+    .MyAffairCareer,
+    .ThoughtCareer{
+        padding:10px;
+        border-radius:6px;
+        color:#fff;
+        flex-grow: 1;
+        display:flex;
+        flex-direction: column;
+        font-weight: bold;
+        font-size: 16px;
+        .LabelName{
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 1.75em;
+        }
+    }
+    .MyAffairCareer{
+        // background:@mainColor;
+        background:linear-gradient(
+            35deg,
+            #007bff 20.82%,
+            #6bc3f3 93.88%
+          );
+        margin-right: 10px;
+
+    }
+    .ThoughtCareer{
+        // background:chocolate;
+        background:linear-gradient(
+            35deg,
+            #003d4d,
+            #00c996
+          );
+    }
+}

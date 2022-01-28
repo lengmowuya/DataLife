@@ -74,7 +74,7 @@ let Affair = {
                 reject('DataError');
             } else {
                 // 增添事务所有者
-                NewAffair.owner = this.$store.state.user.id;
+                // NewAffair.owner = this.$store.state.user.id;
                 this.axios.post(this.Tool.config.address + '/affair/add', NewAffair)
                     .then(() => {
                         resolve();
@@ -88,10 +88,7 @@ let Affair = {
     // 删除事务
     RemoveAffair(id) {
         let request = new Promise((resolve, reject) => {
-            let Affair = {
-                id
-            };
-            this.axios.post(this.Tool.config.address + '/affair/remove', Affair)
+            this.axios.post(this.Tool.config.address + '/affair/remove', {id})
                 .then(() => {
                     // this.Editor.onEditorAffair = false;
                     // this.getAllAffair();
@@ -104,18 +101,14 @@ let Affair = {
         return request;
     },
     // 更新事务信息
-    UpdateAffair() {
+    UpdateAffair(NewAffair) {
         let request = new Promise((resolve, reject) => {
-            let NewAffair = this.Editor.NewAffair;
             if (NewAffair.name.trim() == '' || NewAffair.describe.trim() == '' || NewAffair.icon.trim() == '') {
                 // alert("事务新信息不能为空!");
                 reject('DataError');
             } else {
                 this.axios.post(this.Tool.config.address + '/affair/update', NewAffair)
                     .then(() => {
-                        // this.getAllAffair();
-                        // this.Editor.showIconList = false;
-                        // this.Editor.onEditorAffair = false;
                         resolve();
                     })
                     .catch(() => {

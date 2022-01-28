@@ -2,6 +2,10 @@
     margin: 0;
     padding:0;
     outline: none;
+    &::selection{
+        background:@mainColor;
+        color:#fff;
+    }
 }
 // 苍耳云黑
 @font-face{
@@ -13,7 +17,9 @@
 //     font-family: lanting;
 //     src:url('./../assets/font/MILanProVF-Medium.ttf')
 // }
-@mainColor:#00a1d6;
+@mainColor:#f83621;
+@opacityMain:#f8362166;
+
 body{
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
   'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
@@ -47,7 +53,7 @@ body::-webkit-scrollbar{
 #DataLifeNav{
     flex-shrink: 0;
     width:100%;
-    height:60px;
+    height:50px;
     display:flex;
     justify-content: center;
     // box-shadow: 0 0 0 1px #eee;
@@ -56,9 +62,11 @@ body::-webkit-scrollbar{
     padding:0px 20px;
     box-sizing: border-box;
     box-shadow: 2px 2px 15px 0 rgba(55,99,170,0.05), -8px -8px 20px 0 #fff;
+    border-bottom:1px solid #d8dee4;
+    box-sizing: border-box;
     a{
-        margin-right:26px;
-        width:75px;
+        // margin-right:26px;
+        width:105px;
         height:100%;
         text-align: center;
         font-size:16px;
@@ -67,23 +75,28 @@ body::-webkit-scrollbar{
         transition:all 0.3s;
         text-decoration: none;
         display:flex;
-        justify-content: center;
+        justify-content: center;    
         align-items: center;
-        color:#98a3b7;
+        color:#ccc;
         box-sizing: border-box;
         transition: all 0.3s;
+        // font-weight: bold;
         font-family: caner;
         i{
+            // display: none;
             vertical-align: top;
             margin-right: 2px;
-            font-size: 24px;
+            font-size: 22px;
         }
         &.router-link-active{
-            color:#00a1d6;
-            border-color:#00a1d6;
+            color:#fff;
+            // border-color:@mainColor;
+            background:@mainColor;
         }
         &:not(.router-link-active):hover{
-            opacity: 0.5;
+            // opacity: 0.5;
+            color:#fff;
+            background:@opacityMain;
         }
     }
 }
@@ -126,15 +139,15 @@ body::-webkit-scrollbar{
             font-size:26px;
         }
         &.router-link-active{
-            color:#00a1d6;
-            border-color:#00a1d6;
+            color:@mainColor;
+            border-color:@mainColor;
         }
         &.router-link-active i{
-            color:#00a1d6;
+            color:@mainColor;
         }
         &:hover{
             a{
-                color:#00a1d6;
+                color:@mainColor;
             }
         }
     }

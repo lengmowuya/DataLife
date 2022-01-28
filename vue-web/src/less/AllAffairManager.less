@@ -14,15 +14,21 @@
     overflow: hidden;
     margin:0 auto;
     display:flex;
+    // align-items: center;
+    justify-content: center;
+    padding:10px 0px;
+    box-sizing: border-box;
 }
 .MyAffairBigBlock{
     background:#f6f7f9;
     box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
-    max-height: calc(100vh - 50px);
-    border-right:1px solid #d8dee4;
+    max-height: calc(100vh - 90px);
+    border:1px solid #d8dee4;
+    // border-left:1px solid #d8dee4;
     flex-grow: 0;
-    max-width: 400px;
+    max-width: 1000px;
     box-sizing: border-box;
+    border-radius: 8px;
     .AffairListTools{
         display:flex;
         height:40px;
@@ -49,13 +55,13 @@
     width:100%;
     display:flex;
     flex-wrap: wrap;
-    padding:20px;
-    padding-top:12px;
+    padding:10px;
+    // padding-top:12px;
     flex-grow: 0;
     box-sizing: border-box;
     min-height: 300px;
     overflow: auto;
-    max-height: calc(100vh - 90px);
+    max-height: calc(100% - 0px);
     &::-webkit-scrollbar{
         overflow: hidden;
         width:0px;
@@ -70,9 +76,16 @@
         user-select: none;
     }
     .AffairLi{
-        padding:12px 0px;
-        margin:8px 0px;
-        width:100%;
+        padding:8px 0px;
+        margin:8px 8px;
+        // width:100%;
+        width:calc(50% - 16px);
+        // min-width: 34%;
+
+        max-width: calc(50% - 16px);
+        // min-width: 300px;
+        box-sizing: border-box;
+        flex-grow: 1;
         background:#fff;
         flex-grow: 1;
         cursor: pointer;
@@ -104,9 +117,9 @@
             padding-right:4px;
         }
         .AffairIcon{
-            font-size:38px;
-            width:46px;
-            height: 46px;
+            font-size:32px;
+            width:40px;
+            height: 40px;
             display:flex;
             justify-content: center;
             align-items: center;
@@ -139,7 +152,7 @@
             width: calc(100% - 90px) !important;
             max-width: calc(100% - 90px);
             .AffairLiName{
-                font-size:15px;
+                font-size:14px;
                 color:#252525;
                 font-weight: bold;   
                 user-select: none;
@@ -151,7 +164,7 @@
             }
             .AffairLiDescribe{
                 margin-top:2px;
-                font-size:14px;
+                font-size:13px;
                 color:#98a3b799;
                 user-select: none;
                 white-space: nowrap;
@@ -160,20 +173,31 @@
                 max-width: calc(100% - 45px);
                 line-height: 20px;
             }
-            .AffairLevel{
-                color:gold;
-                font-size:10px;
-                padding:2px 4px;
-                background:#252525;
-                font-weight: normal;
-                border-radius: 3px;
-                line-height: 26px;
-            }
+
+        }
+        .AffairLevel{
+            color:gold;
+            font-size:10px;
+            padding:2px 4px;
+            // background:#252525;
+            font-weight: bold;
+            border-radius: 3px;
+            line-height: 26px;
+            // flex-grow: 0;
+            // max-width: 40px;
+            width:60px;
+            text-align: right;
+            position: absolute;
+            right:0px;
+            bottom:0px;
+            margin-right:15px;
+
         }
         .AffairTools{
             position: absolute;
             right:0px;
             top:0px;
+            // width:60px;
             flex-shrink: 0;
             display:flex;
             align-items: center;
@@ -181,7 +205,7 @@
             justify-content: center;
             flex-grow: 1;
             transition: all 0.25s;
-            display:none;
+            // display:none;
             button{
                 flex-shrink: 0;
                 border:none;
@@ -211,22 +235,157 @@
     }
 }
 
-@media screen and (max-width : 600px) {
-    .MyAffair{
-        .AffairLi{
-            flex-direction: column !important;
-            padding:10px !important;
-            .AffairText{
-                padding:10px !important;
+.EditorAffairPanel{
+    position:fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:100vw;
+    height:100vh;
+    z-index: 999;
+    background:#000000bb;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    .PushAlert{
+        width:100%;
+        max-width: 600px;
+        margin:0 auto;
+        min-height:300px;
+        background:#fff;
+        border-radius: 6px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding:20px;
+        transition: all 0.25s;
+        position: relative;
+        .AffairIcon{
+            margin-top:20px;
+            font-size:45px;
+            cursor: pointer;
+            transition: all 0.25s;
+            flex-shrink: 0;
+            &:hover{
+                opacity: 0.5;
             }
         }
+        .IconList{
+            width:418px;
+            max-width: 90%;
+            height:200px;
+            overflow-y: scroll;
+            display:flex;
+            flex-wrap:wrap;
+            margin-bottom:20px;
+            border:1px solid #eee;
+            border-radius:6px;
+            padding:4px;
+            .IconLI{
+                width:34px;
+                height:34px;
+                box-sizing: border-box;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-size:30px;
+                border:2px solid #fff;
+                border-radius: 5px;
+                margin:2px;
+                transition: all 0.25s;
+                &:hover{
+                    border-color:@mainColor;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .PushRecordDescribe{
+            color:#999;
+            font-size:12px;
+            margin-bottom:10px;
+            user-select: none;
+            margin-bottom:15px;
+        }
+        .NewAffairName,
+        .NewAffairDescribe{
+            height:40px;
+            border-radius:6px;
+            width:400px;
+            outline: none;
+            border:none;
+            padding:10px;
+            font-size:26px;
+            border:2px solid #eee;
+            transition:all 0.25s;
+            max-width: 90%;
+            &:hover{
+                border-color:@mainColor
+            }
+            &:focus{
+                border-color:@mainColor
+            }
+            &::placeholder{
+                color:#ccc;
+            }
+        }
+        .NewAffairDescribe{
+            margin-top:4px;
+            height:26px;
+            font-size:20px;
+        }
+        .SentenceThum{
+            max-width: 450px;
+            font-size:12px;
+            color:#999;
+            margin-top:5px;
+        }
+        .PushTools{
+            margin-top:15px;
+            .affirm,
+            .cancel{
+                width:80px;
+                height:35px;
+                margin:5px;
+                margin-top:10px;
+                border:none;
+                color:#fff;
+                font-size:16px;
+                transition:all 0.25s;
+                cursor: pointer;
+                user-select: none;
+                border-radius: 4px;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+            .affirm{
+                background:#67C23A;
+            }
+            .cancel{
+                background:#F56C6C;
+            }
+        }
+
     }
-    .FinishRecord{
-        width:100% !important;
-        max-width: 100% !important;
-    }
-}
-@media screen and (min-width : 1000px) {
-    .AffairLi{
-    }
+    .deleteButton{
+        position: absolute;
+        right:10px;
+        top:10px;
+        button{
+            border:none;
+            background:red;
+            opacity: 0.5;
+            border-radius: 6px;
+            color:#fff;
+            padding:6px 12px;
+            cursor: pointer;
+            transition: all 0.25s;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }   
 }

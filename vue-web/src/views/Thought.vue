@@ -2,11 +2,6 @@
     <!-- 页面主体 -->
     <div id="ThoughtPage">
         <div class="Header">
-            <div class="ThoughtCareer" v-if="List.length > 2">
-                <span class="RecordBlock"><span class="LabelName">生涯</span>{{dateList.length}}<span class="LabelName"> 天</span></span>
-                <span class="RecordBlock"><span class="LabelName">短语</span>{{List.length}}<span class="LabelName"> 条</span></span>
-                <span class="RecordBlock"><span class="LabelName">共</span>{{careerTextLength}}<span class="LabelName"> 字</span></span>
-            </div>
             <!-- 输入块 -->
             <div class="EnterBlock">
                 <!-- 短文输入框 -->

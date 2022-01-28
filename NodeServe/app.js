@@ -30,15 +30,15 @@ app.all("*",function(req,res,next){
 app.get('/test',(req,res)=>{
     res.send({type:'success'});
 })
-app.use((req,res,next)=>{
-    if(!TokenTools.whiteList.includes(req.url)){
-        TokenTools.verifyToken(req.header.authorization)
-            .then(res=>{next()})
-            .catch(e=>{res.status(401).send('invalid token')})
-    }else{
-        next()
-    }
-})
+// app.use((req,res,next)=>{
+//     if(!TokenTools.whiteList.includes(req.url)){
+//         TokenTools.verifyToken(req.header.authorization)
+//             .then(res=>{next()})
+//             .catch(e=>{res.status(401).send('invalid token')})
+//     }else{
+//         next()
+//     }
+// })
 app.use(thoughtRouter);
 app.use(affairRouter);
 app.use(UserRouter);

@@ -8,7 +8,7 @@
       <router-link to="/thought">
         <i class="el-icon-s-opportunity"></i>短语
       </router-link>
-      <!-- <router-link to="/self"><i class="el-icon-s-custom"></i>自我</router-link> -->
+      <router-link to="/self"><i class="el-icon-s-custom"></i>生涯</router-link>
     </header>
     <!-- 移动端导航栏 -->
     <header id="MobileDataLifeNav" v-if="showNav && isMobile">
@@ -21,7 +21,7 @@
       <router-link to="/thought_mobile">
         <i class="el-icon-s-opportunity"></i>短语
       </router-link>
-      <!-- <router-link to="/self"><i class="el-icon-s-custom"></i>自我</router-link> -->
+      <router-link to="/self"><i class="el-icon-s-custom"></i>生涯</router-link>
     </header>
     <router-view />
   </div>
@@ -54,7 +54,6 @@ export default {
         record: [],
         date: new Date(NowDate.time)
       };
-      console.log(newDate);
       RecordDateList.push(newDate);
       for (let AgoDay = 1; AgoDay < 100; AgoDay++) {
         let dayTime = NowDate.time - AgoDay * 86400000;
@@ -80,12 +79,7 @@ export default {
           record.affair = item;
         })
       })
-      // console.log(AffairRecordList);
       this.$store.state.AffairRecordList = AffairRecordList;
-      //     if (Array.isArray(item.record) && item.record.length > 0) {
-      //         for (let i = 0; i < item.record.length; i++) {
-      //             item.record[i].affair = item;
-      //             that.RecordList.push(item.record[i]);
     },
     // 为RecordDateList添加其DateLi下所属的Record
     UpdeteRecordDateList(){
@@ -105,7 +99,6 @@ export default {
             }
         }
       })
-      // this.$store.state.RecordDateList = 
 
     },
     // 根据AffairRecord时间对其进行从高到低排序
@@ -124,7 +117,7 @@ export default {
     SortAffairLevel() {
       this.$store.state.AffairList.forEach(item=>{
         let result = this.Work.Affair.ComputeLevel(item.record.length);
-        console.log(result);
+        // console.log(result);
         item.level = result.level;
         item.count = result.count;
       })
@@ -168,7 +161,6 @@ export default {
               if (isRemember) {
                 this.Tool.writeUserStorage(myUser.email, myUser.passward);
               }
-              // console.log("login");
               resolve();
               this.$router.push("affair");
             } else if (log == "null") {
@@ -230,25 +222,17 @@ export default {
       }
       this.$store.state.user.email = user.email;
       this.$store.state.user.passward = user.passward;
-      // console.log(this.$store.state.user);
     }
-    // console.log(this.$store.state.user);
     this.LoginUser(false,this.$store.state.user)
       .then(() => {
         this.Work.Affair.GetAllAffair()
           .then(res => {
-              // console.log("initGlobal",res.data);
-              // console.log(this);
               this.$store.state.AffairList = res.data;
               this.CreateRecordDateList();
               this.UpdeteAffairRecordList();  
               this.UpdeteRecordDateList();
               this.SortAffairRecordDate();
               this.SortAffairLevel();
-              // this.$store.RecordDateList =
-              // this.AffairList = res.data;
-              // this.RecordList = [];
-              // this.HistoryRecord = [];
             },() => {
               alert("服务请求错误-ERROR");
             })

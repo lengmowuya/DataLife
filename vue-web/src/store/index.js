@@ -20,6 +20,7 @@ export default createStore({
     AffairRecordList:[],
     RecordDateList:[],
     RecordShowDate:null,
+    ThoughtRecordList:[]
   },
   mutations: {
   },

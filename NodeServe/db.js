@@ -11,4 +11,5 @@ let options = {
     user:dbConfig.user,
     pass:dbConfig.pass,
 }
-mongoose.connect('mongodb://localhost:27017/DataLife',options)
+// mongoose.connect('mongodb://localhost:27017/DataLife',options)
+mongoose.connect('mongodb://localhost:27017/DataLife')

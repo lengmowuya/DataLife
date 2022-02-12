@@ -50,8 +50,8 @@
   </div>
 </template>
 <script>
-import {addAffair,removeAffairRecord,removeAffair,addAffairRecord,updateAffair,
-  getAllIcon,getAllAffair} from "./../../js/Affair_Work";
+// import {addAffair,removeAffairRecord,removeAffair,addAffairRecord,updateAffair,
+//   getAllIcon,getAllAffair} from "./../../js/Affair_Work";
 export default {
   data(){
     return {
@@ -93,53 +93,53 @@ export default {
     }
   },
   methods:{
-    keyDown() {
-      document.onkeydown = (e) => {
-        //事件对象兼容
-        let e1 = e || event || window.event || arguments.callee.caller.arguments[0]
-        //键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
-        if (e1 && e1.keyCode == 37 && this.Record.activeIndex < this.HistoryRecord.length-1) {
-          if(this.HistoryRecord[this.Record.activeIndex+1].record.length>0){
-            this.Record.activeIndex++;
-            this.RecordShowDate = this.HistoryRecord[this.Record.activeIndex];
-          }
-          // 按下左箭头
-        } else if (e1 && e1.keyCode == 39 && this.Record.activeIndex > 0 ) {
-            // 按下右箭头
-            this.Record.activeIndex--;
-            this.RecordShowDate = this.HistoryRecord[this.Record.activeIndex];
-        }
-      }
-    },
-    // 切换选中的事务
-    changeActiveAffair(id){
-      this.activeAffairId = id;
-    },
-    // 新增事务
-    addAffair,
-    // 删除事务记录
-    removeAffairRecord,
-    // 删除事务
-    removeAffair,
-    // 新增事务记录
-    addAffairRecord,
-    // 更新事务信息
-    updateAffair,
-    // 获取所有图标
-    getAllIcon,
-    // 获取所有事务
-    getAllAffair,
-    // 本地修改事务
-    changeAffairInfo(item){
-      this.Editor.editorAffair = item;
-      this.Editor.NewAffair._id = item._id;
-      this.Editor.NewAffair.name = item.name;
-      this.Editor.NewAffair.describe = item.describe;
-      this.Editor.NewAffair.icon = item.icon;
-      if(this.Editor.NewAffair.icon == ''){
-        this.Editor.NewAffair.icon = this.IconList[0].font_class;
-      }
-    }
+    // keyDown() {
+    //   document.onkeydown = (e) => {
+    //     //事件对象兼容
+    //     let e1 = e || event || window.event || arguments.callee.caller.arguments[0]
+    //     //键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
+    //     if (e1 && e1.keyCode == 37 && this.Record.activeIndex < this.HistoryRecord.length-1) {
+    //       if(this.HistoryRecord[this.Record.activeIndex+1].record.length>0){
+    //         this.Record.activeIndex++;
+    //         this.RecordShowDate = this.HistoryRecord[this.Record.activeIndex];
+    //       }
+    //       // 按下左箭头
+    //     } else if (e1 && e1.keyCode == 39 && this.Record.activeIndex > 0 ) {
+    //         // 按下右箭头
+    //         this.Record.activeIndex--;
+    //         this.RecordShowDate = this.HistoryRecord[this.Record.activeIndex];
+    //     }
+    //   }
+    // },
+    // // 切换选中的事务
+    // changeActiveAffair(id){
+    //   this.activeAffairId = id;
+    // },
+    // // 新增事务
+    // addAffair,
+    // // 删除事务记录
+    // removeAffairRecord,
+    // // 删除事务
+    // removeAffair,
+    // // 新增事务记录
+    // addAffairRecord,
+    // // 更新事务信息
+    // updateAffair,
+    // // 获取所有图标
+    // getAllIcon,
+    // // 获取所有事务
+    // getAllAffair,
+    // // 本地修改事务
+    // changeAffairInfo(item){
+    //   this.Editor.editorAffair = item;
+    //   this.Editor.NewAffair._id = item._id;
+    //   this.Editor.NewAffair.name = item.name;
+    //   this.Editor.NewAffair.describe = item.describe;
+    //   this.Editor.NewAffair.icon = item.icon;
+    //   if(this.Editor.NewAffair.icon == ''){
+    //     this.Editor.NewAffair.icon = this.IconList[0].font_class;
+    //   }
+    // }
   },
   computed:{
     isToday(data){

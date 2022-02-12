@@ -22,7 +22,11 @@ export default createStore({
     RecordShowDate:null,
     ThoughtRecordList:[]
   },
+  getters:{
+
+  },
   mutations: {
+
   },
   actions: {
   },

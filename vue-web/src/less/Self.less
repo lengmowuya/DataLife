@@ -11,12 +11,26 @@
     max-width: 1000px;
     width:100%;
     margin:20px;
+    margin-bottom:16px;
     // padding-top:20px;
     padding:10px;
     box-sizing: border-box;
     border-radius:6px;
     background:#fff;
-    min-height: 300px;
+    min-height: 220px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    img{
+        width:120px;
+        border-radius: 50%;
+        border:2px solid #eee;
+        margin-bottom:16px;
+    }
+    h6{
+        font-size:18px;
+    }
 }
 .CareerBlock{
     width:100%;
@@ -28,10 +42,20 @@
         border-radius:6px;
         color:#fff;
         flex-grow: 1;
+        width:calc(50% - 16px);
+        box-sizing: border-box;
+        flex-shrink: 0;
         display:flex;
         flex-direction: column;
         font-weight: bold;
         font-size: 16px;
+        display:flex;
+        .CareerTitle{
+            text-align: center;
+            flex-grow: 1;
+            padding:10px 0px ;
+            font-weight: normal;
+        }
         .LabelName{
             font-weight: normal;
             font-size: 14px;
@@ -39,17 +63,16 @@
         }
     }
     .MyAffairCareer{
-        // background:@mainColor;
         background:linear-gradient(
             35deg,
-            #007bff 20.82%,
-            #6bc3f3 93.88%
+            #003d4d,
+            #00c996
           );
-        margin-right: 10px;
 
     }
     .ThoughtCareer{
         // background:chocolate;
+        margin-left: 16px;
         background:linear-gradient(
             35deg,
             #003d4d,

@@ -115,23 +115,12 @@ export default {
   updated() {},
   mounted() {
     this.HistoryRecord = this.$store.state.RecordDateList;
-    setInterval(() => {
+    let time = setInterval(() => {
       if (!this.RecordShowDate) {
         this.RecordShowDate = this.HistoryRecord[0];
+        clearInterval(time);
       }
-    }, 500);
-
-    // this.Work.Affair.GetAllAffair()
-    //   .then(res=>{
-    //     // this.$store.AffairList = res.data;
-    //     // this.$store.RecordDateList =
-    //     // this.AffairList = res.data;
-    //     // this.RecordList = [];
-    //     // this.HistoryRecord = [];
-
-    //   },()=>{
-
-    //   })
+    }, 300);
   },
 };
 </script>

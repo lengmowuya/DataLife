@@ -116,8 +116,6 @@ export default {
     },
     mounted() {
         document.title = "DataLife-" + "登录/注册";
-
-        // console.log("sign");
         // 检测与服务器连接
         this.Work.User.TestServer().then(
             () => {
@@ -137,7 +135,6 @@ export default {
             this.SignBlock.passward = user.passward;
             this.$store.state.user.email = user.email;
             this.$store.state.user.passward = user.passward;
-            //   this.LoginUser(false, this.SignBlock);
         }
     },
 };

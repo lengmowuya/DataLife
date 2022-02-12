@@ -3,7 +3,6 @@
         <div class="PushAlert">
             <p class="PushRecordName">
                 {{ TargetAffair.name }}
-
             </p>
             <p class="PushRecordDescribe">{{ TargetAffair.describe }}</p>
             <span class="AffairLevel" v-show="TargetAffair.record.length > 0">Lv.{{ TargetAffair.record.length }}</span>
@@ -116,15 +115,8 @@ export default {
             font-family: caner;
             resize: none;
             background: #f6f7f9;
-            // &:hover{
-            //     border-color:@mainColor
-            // }
-            // &:focus{
-            //     border-color:@mainColor
-            // }
             &::placeholder {
                 color: #ccc;
-                // text-shadow: 0px 0px 2px #ccc;
             }
         }
         .SentenceThum {
@@ -146,8 +138,6 @@ export default {
             cursor: pointer;
             user-select: none;
             border-radius: 3px;
-            // white-space: ;
-            // text-lettering
             letter-spacing: 3px;
             &:hover {
                 opacity: 0.7;

@@ -83,12 +83,10 @@ export default {
         OpenEditorPanel(item){
             this.$refs.EditorPanel.Open(item)
         },
-        // keyDown() {},
         // 切换选中的事务
         closeEditorPanel() {
             this.EditorPanelInfo.showPanel = false;
         },
-
         // 获取所有事务
         getAllAffair() {
             let that = this;
@@ -175,17 +173,6 @@ export default {
                     });
                 });
         },
-        // // 本地修改事务
-        // changeAffairInfo(item) {
-        //     this.Editor.editorAffair = item;
-        //     this.Editor.NewAffair._id = item._id;
-        //     this.Editor.NewAffair.name = item.name;
-        //     this.Editor.NewAffair.describe = item.describe;
-        //     this.Editor.NewAffair.icon = item.icon;
-        //     if (this.Editor.NewAffair.icon == "") {
-        //         this.Editor.NewAffair.icon = this.IconList[0].font_class;
-        //     }
-        // },        
         // 获取所有图标
         getAllIcon() {
             this.axios

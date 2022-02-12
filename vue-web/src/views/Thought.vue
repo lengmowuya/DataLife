@@ -59,6 +59,7 @@ export default {
       };
     },
     methods:{
+        // 更新短语生涯字数
         updateCareerTextLength(){
             // this.careerTextLength = 0;
             let TextLength = 0;
@@ -67,7 +68,7 @@ export default {
             })
             this.careerTextLength = TextLength;
         },
-        //添加短文
+        //用户新加短语
         writeThou(){
             let data = {
                 text:this.writeText,
@@ -89,7 +90,7 @@ export default {
                 });
             this.writeText = "";
         },
-        //删除短文
+        //用户删除短语
         destoryThou(_id){
             let data = {
                 _id
@@ -100,9 +101,11 @@ export default {
                 that.updateDate();
             });
         },
+        // 更改新短语的状态
         changeEmotion(item){
             this.thoughtEmotion = item;
         },
+        // 更新所有短语的日期
         setThoughtList(){
             this.List.forEach((item)=>{
                 item.date = this.Tool.FormatDate(item.time);

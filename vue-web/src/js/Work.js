@@ -121,58 +121,10 @@ let Affair = {
     },
     // 获取所有事务
     GetAllAffair() {
-        // console.log("new");
         let request = new Promise((resolve,reject)=>{
             this.axios.get(this.Tool.config.address + '/affair/all/' + this.$store.state.user.id)
                 .then(res => {
-                    // console.log("resolve");
                     resolve(res);
-                    // 更新和初始化数据
-                // this.AffairList = res.data;
-                // this.RecordList = [];
-                // this.HistoryRecord = [];
-
-                // let RecordDateList = this.HistoryRecord;
-
-                // 遍历Affair 来生成DateList
-                // 生成RecordList
-                // this.AffairList.forEach(item => {
-                //     if (Array.isArray(item.record) && item.record.length > 0) {
-                //         for (let i = 0; i < item.record.length; i++) {
-                //             item.record[i].affair = item;
-                //             that.RecordList.push(item.record[i]);
-                //             // 设置单个记录
-                //             let record = item.record[i];
-
-                //             // 将记录添加进DateList内相应的DateLi
-                //             for (let j = 0; j < RecordDateList.length; j++) {
-                //                 let HisDate = RecordDateList[j].data;
-                //                 let TargetRecord = record.data;
-                //                 let Date = RecordDateList[j];
-                //                 if (HisDate.year == TargetRecord.year && 
-                //                     HisDate.month == TargetRecord.month && 
-                //                     HisDate.day == TargetRecord.day) {
-                //                     Date.record.push(record);
-                //                     break;
-                //                 }
-                //             }
-
-                //             // 设置生涯长度
-                //             this.AllAffairDay = 0;
-                //             RecordDateList.forEach(item => {
-                //                 if (item.record.length >= 1) {
-                //                     this.AllAffairDay += 1;
-                //                 }
-                //             })
-                //         }
-                //     }
-                // })
-
-                // this.Editor.editorAffair = this.AffairList[0];
-                // this.Editor.NewAffair._id = this.Editor.editorAffair._id;
-                // this.Editor.NewAffair.name = this.Editor.editorAffair.name;
-                // this.Editor.NewAffair.describe = this.Editor.editorAffair.describe;
-                // this.Editor.NewAffair.icon = this.Editor.editorAffair.icon;
                 },()=>{
                     console.log("reject");
                     reject("NetError");
@@ -303,8 +255,6 @@ let Thought = {
         return request;
     },
 }
-
-
 let Work = {
     User,
     Affair,
@@ -312,5 +262,4 @@ let Work = {
     Icon,
     Thought
 }
-// module.exports = Work;
 export default Work;

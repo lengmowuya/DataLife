@@ -79,8 +79,8 @@ Tool.config.process = process.env.NODE_ENV;
 if(Tool.config.process == "development"){
     // Tool.config.address = "http://" + "192.168.101.3:3000";
     // Tool.config.address = "http://" + "192.168.65.102:3000";
-    Tool.config.address = "http://" + "192.168.1.54:3000";
-    // Tool.config.address = "http://" + "localhost:3000";
+    // Tool.config.address = "http://" + "192.168.1.54:3000";
+    Tool.config.address = "http://" + "localhost:3000";
 }else{
     Tool.config.address = "http://" + "101.35.144.20:3000";
 }

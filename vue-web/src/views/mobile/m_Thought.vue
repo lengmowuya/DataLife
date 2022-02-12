@@ -1,18 +1,24 @@
 <template>
     <!-- 页面主体 -->
     <div id="ThoughtPage">
-        <div class="PageTitle"><span class="titleName">短语</span> <span class="length" v-if="List.length>3">{{List.length}}</span></div>
+        <div class="PageTitle">
+            <span class="titleName">短语</span> 
+            <span class="length"
+                v-if="List.length>3">{{List.length}}</span></div>
         <div class="EnterBlock" v-if="false">
             <!-- 短文输入框 -->
-            <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
+            <textarea v-model="writeText" cols="30" rows="6" style="resize:none"
+                placeholder="一个事物也许不止一种看法呢......"></textarea>
             <div class="EnterTools">
-                <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
+                <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}"
+                    @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
                 <button class="EnterButton" @click="writeThou">记录</button>
             </div>
             <!-- 状态列表(默认隐藏) -->
             <div class="EmotionList" v-show="showEmotionList">
                 <ul>
-                    <li v-for="(item,index) in EmotionList"  :class="{active:item._id == thoughtEmotion._id}" :key="index" @click="changeEmotion(item)">{{item.name}}</li>
+                    <li v-for="(item,index) in EmotionList" :class="{active:item._id == thoughtEmotion._id}"
+                        :key="index" @click="changeEmotion(item)">{{item.name}}</li>
                 </ul>
             </div>
         </div>
@@ -22,7 +28,8 @@
         <!-- 历史列表块 -->
         <ul class="ThougthList" v-if="List.length>0">
             <div class="DateLi" v-for="(item,key) in dateList" :key="key">
-                <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}} 感悟</span></p>
+                <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber">{{item.thoughtList.length}}
+                        感悟</span></p>
                 <ul class="CurrentDateList">
                     <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
                         <div class="ThoughtMain">
@@ -43,100 +50,104 @@
 </template>
 <script>
 export default {
-      data(){
-      return {
-        List:[],
-        writeText:"",
-        dateList:[],
-        EmotionList:[],
-        thoughtEmotion:{
-            name:"状态",
-            _id:null
-        },
-        showEmotionList:false,
-        date:{}
-      };
+    data() {
+        return {
+            List: [],
+            writeText: "",
+            dateList: [],
+            EmotionList: [],
+            thoughtEmotion: {
+                name: "状态",
+                _id: null,
+            },
+            showEmotionList: false,
+            date: {},
+        };
     },
-    methods:{
+    methods: {
         //添加短文
-        writeThou(){
+        writeThou() {
             let data = {
-                text:this.writeText,
-                emotion:this.thoughtEmotion._id,
-                owner:this.$store.state.user.id
-            }
-            if(this.writeText.trim() == ""){
+                text: this.writeText,
+                emotion: this.thoughtEmotion._id,
+                owner: this.$store.state.user.id,
+            };
+            if (this.writeText.trim() == "") {
                 alert("记录内容不能为空");
                 return;
             }
-            if(this.thoughtEmotion._id == null){
+            if (this.thoughtEmotion._id == null) {
                 alert("请选择一个状态");
                 return;
             }
             let that = this;
-            this.axios.post(this.Tool.config.address + '/thought/add',data)
-                .then(()=>{
-                  that.updateDate();
+            this.axios
+                .post(this.Tool.config.address + "/thought/add", data)
+                .then(() => {
+                    that.updateDate();
                 });
             this.writeText = "";
         },
         //删除短文
-        destoryThou(_id){
+        destoryThou(_id) {
             let data = {
-                _id
-            }
+                _id,
+            };
             let that = this;
-            this.axios.post(this.Tool.config.address + '/thought/remove',data)
-            .then(()=>{
-                that.updateDate();
-            });
+            this.axios
+                .post(this.Tool.config.address + "/thought/remove", data)
+                .then(() => {
+                    that.updateDate();
+                });
         },
-        changeEmotion(item){
+        changeEmotion(item) {
             this.thoughtEmotion = item;
         },
-        setThoughtList(){
-            this.List.forEach((item)=>{
+        setThoughtList() {
+            this.List.forEach((item) => {
                 item.date = this.Tool.FormatDate(item.time);
                 item.dateString = this.Tool.getDateString(item.date);
-                item.timeSort = item.date.year * 12 * 31 + item.date.month * 31 + item.date.day;
+                item.timeSort =
+                    item.date.year * 12 * 31 +
+                    item.date.month * 31 +
+                    item.date.day;
             });
         },
-        initDateList(){
+        initDateList() {
             this.dateList = [];
-            this.List.forEach((item)=>{
+            this.List.forEach((item) => {
                 // 如果时间数组是空的
-                if(this.dateList.length == 0){
+                if (this.dateList.length == 0) {
                     this.dateList.push({
-                        dateString:item.dateString,
-                        timeSort:item.timeSort,
-                        date:item.date,
-                        thoughtList:[item]
-                    })
-
-                }else{
+                        dateString: item.dateString,
+                        timeSort: item.timeSort,
+                        date: item.date,
+                        thoughtList: [item],
+                    });
+                } else {
                     let hasDate = false;
-                    for(let i = 0; i < this.dateList.length ; i++){
-                        if(this.dateList[i].dateString == item.dateString){
+                    for (let i = 0; i < this.dateList.length; i++) {
+                        if (this.dateList[i].dateString == item.dateString) {
                             hasDate = true;
                             this.dateList[i].thoughtList.push(item);
                             break;
                         }
                     }
-                    if(!hasDate){
+                    if (!hasDate) {
                         this.dateList.push({
-                            dateString:item.dateString,
-                            timeSort:item.timeSort,
-                            date:item.date,
-                            thoughtList:[item]
-                        })
+                            dateString: item.dateString,
+                            timeSort: item.timeSort,
+                            date: item.date,
+                            thoughtList: [item],
+                        });
                     }
                 }
             });
-            this.dateList.sort((a,b)=>{
-                return b.timeSort - a.timeSort ;
-            })
+            this.dateList.sort((a, b) => {
+                return b.timeSort - a.timeSort;
+            });
             let that = this;
-            this.dateList.forEach((item)=>{
+            this.dateList.forEach((item) => {
                 let nowYear = that.date.year;
                 let itemYear = item.date.year;
                 let nowMonth = that.date.month;
@@ -144,39 +155,57 @@ export default {
                 let nowDay = that.date.day;
                 let itemDay = item.date.day;
                 item.showName = item.dateString;
-                if(nowYear == itemYear){
-                    item.showName = itemMonth + '-' + itemDay;
+                if (nowYear == itemYear) {
+                    item.showName = itemMonth + "-" + itemDay;
                 }
-                if(nowYear == itemYear && nowMonth == itemMonth && nowDay == itemDay){
-                    item.showName = '今天';
+                if (
+                    nowYear == itemYear &&
+                    nowMonth == itemMonth &&
+                    nowDay == itemDay
+                ) {
+                    item.showName = "今天";
                 }
-                if(nowYear == itemYear && nowMonth == itemMonth && nowDay == itemDay + 1){
-                    item.showName = '昨天';
+                if (
+                    nowYear == itemYear &&
+                    nowMonth == itemMonth &&
+                    nowDay == itemDay + 1
+                ) {
+                    item.showName = "昨天";
                 }
-                if(nowYear == itemYear && nowMonth == itemMonth && nowDay == itemDay + 2){
-                    item.showName = '前天';
+                if (
+                    nowYear == itemYear &&
+                    nowMonth == itemMonth &&
+                    nowDay == itemDay + 2
+                ) {
+                    item.showName = "前天";
                 }
-            })
+            });
         },
-        updateDate(){
-          this.date = this.Tool.FormatDate(new Date().getTime());
-          this.axios.get(this.Tool.config.address + '/thought/all/'+this.$store.state.user.id)
-            .then(res=>{
-                this.List = res.data;
-                this.setThoughtList();
-                this.initDateList();
-            });
-          this.axios.get(this.Tool.config.address + '/emotion/all')
-            .then(res=>{
-                this.EmotionList = res.data;
-            });
-        }
+        updateDate() {
+            this.date = this.Tool.FormatDate(new Date().getTime());
+            this.axios
+                .get(
+                    this.Tool.config.address +
+                        "/thought/all/" +
+                        this.$store.state.user.id
+                )
+                .then((res) => {
+                    this.List = res.data;
+                    this.setThoughtList();
+                    this.initDateList();
+                });
+            this.axios
+                .get(this.Tool.config.address + "/emotion/all")
+                .then((res) => {
+                    this.EmotionList = res.data;
+                });
+        },
     },
-    mounted(){
+    mounted() {
         this.updateDate();
-    }
-}
+    },
+};
 </script>
 <style lang="less" scoped>
-    @import './../../less/mobile/m_Thought.less';
+@import "./../../less/mobile/m_Thought.less";
 </style>

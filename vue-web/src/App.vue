@@ -125,14 +125,7 @@ export default {
                 return b.record.length - a.record.length;
             });
         },
-        mobileJudge() {
-            let PageWidth = document.body.offsetWidth;
-            if (PageWidth <= 600) {
-                this.isMobile = true;
-            } else {
-                this.isMobile = false;
-            }
-        },
+
         BindVueToWork() {
             this.Work.prototype = this;
             this.Work.__proto__ = this;
@@ -211,7 +204,6 @@ export default {
             Date: new Date(),
         };
         this.BindVueToWork();
-        this.mobileJudge();
         this.$watch(
             () => this.$route,
             (count, prevCount) => {
@@ -251,7 +243,6 @@ export default {
             });
     },
     updated() {
-        this.mobileJudge();
     },
 };
 </script>

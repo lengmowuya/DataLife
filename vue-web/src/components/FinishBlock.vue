@@ -219,9 +219,10 @@ export default {
   // margin:25px 0px;
   // margin-top:40px;
   background: #fff;
+  // border:10px solid #fff;
   // background: #f3f3f3;
-        background:#f6f7f9;
-  box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+        background:#e9e9f0;
+  //box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
 
   // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
   // border-radius: 6px;

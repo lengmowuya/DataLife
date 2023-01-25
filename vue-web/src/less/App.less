@@ -19,12 +19,17 @@
 // }
 @mainColor:#f83621;
 @opacityMain:#f8362166;
+@mainColor:#205295;
+@opacityMain:#2C74B3;
 
 body{
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
   'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
     max-width: 1000px;
     margin:0 auto;
+}
+html,body{
+    height: 100%;
 }
 body::-webkit-scrollbar{
     // position: fixed;
@@ -43,8 +48,15 @@ body::-webkit-scrollbar{
     fill: currentColor;
     overflow: hidden;
  }
+#app{
+    // background:#ccc;
+    height:100vh;
+}
 #DataLife{
     height:100vh;
+    // height:calc(100vh - 40px);
+    // margin:20px;
+    // border-radius: 20px;
     display:flex;
     flex-direction: column;
     // width:100vw;

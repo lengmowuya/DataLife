@@ -17,10 +17,16 @@
 }
 .MyAffairBigBlock{
     background:#f6f7f9;
-    box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
-    max-height: calc(100vh - 50px);
+    // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+    // max-height: calc(100vh - 50px);
     border-right:1px solid #d8dee4;
-    flex-grow: 0;
+    // margin:10px;
+    // border-radius: 10px;
+    overflow: hidden;
+    // border-right:1px solid #fff;
+    // border:10px solid #fff;
+    width:30%;
+    flex-grow: 1;
     max-width: 400px;
     box-sizing: border-box;
     .AffairListTools{
@@ -47,15 +53,19 @@
 }
 .MyAffair{
     width:100%;
-    display:flex;
+    // display:flex;
     flex-wrap: wrap;
-    padding:20px;
-    padding-top:12px;
+    padding:12px;
+    padding-top:0px;
     flex-grow: 0;
     box-sizing: border-box;
     min-height: 300px;
     overflow: auto;
     max-height: calc(100vh - 90px);
+    height:100%;
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    // flex-direction: ;
     &::-webkit-scrollbar{
         overflow: hidden;
         width:0px;
@@ -70,8 +80,8 @@
         user-select: none;
     }
     .AffairLi{
-        padding:12px 0px;
-        margin:8px 0px;
+        padding:8px 0px;
+        margin:12px 0px;
         width:100%;
         background:#fff;
         flex-grow: 1;
@@ -79,11 +89,13 @@
         transition:all 0.25s;
         display:flex;
         transition:all 0.25s;
-        border-radius: 6px;
+        border-radius: 4px;
         border:1px solid #d8dee499;
         box-shadow: 2px 2px 15px 0 rgba(55 ,99 ,170, 11%), -8px -8px 20px 0 #fff;
         position: relative;
         overflow: hidden;
+        // max-height:80px;
+        height:68px;
         &:hover{
             .AffairLiName{
                 color:@mainColor !important;
@@ -136,8 +148,8 @@
             display:flex;
             flex-direction: column;
             justify-content: center;
-            width: calc(100% - 90px) !important;
-            max-width: calc(100% - 90px);
+            width: calc(100% - 70px) !important;
+            max-width: calc(100% - 70px);
             .AffairLiName{
                 font-size:15px;
                 color:#252525;

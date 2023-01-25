@@ -31,27 +31,27 @@ const routes = [
   
   
   
-  {
-    path: '/record_mobile',
-    name: 'RecordMobile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Record.vue')
-  },{
-    path: '/affair_mobile',
-    name: 'AffairMobile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Affair.vue')
-  },{
-    path: '/thought_mobile',
-    name: 'ThoughtMobile',
-    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Thought.vue')
-  },{
-    path: '/newAffair_mobile',
-    name: 'NewAffairOnlayAffair',
-    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewAffair.vue')
-  },{
-    path: '/newThought_mobile',
-    name: 'NewThoughtOnlayAffair',
-    component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewThought.vue')
-  }
+  // {
+  //   path: '/record_mobile',
+  //   name: 'RecordMobile',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Record.vue')
+  // },{
+  //   path: '/affair_mobile',
+  //   name: 'AffairMobile',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Affair.vue')
+  // },{
+  //   path: '/thought_mobile',
+  //   name: 'ThoughtMobile',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Thought.vue')
+  // },{
+  //   path: '/newAffair_mobile',
+  //   name: 'NewAffairOnlayAffair',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewAffair.vue')
+  // },{
+  //   path: '/newThought_mobile',
+  //   name: 'NewThoughtOnlayAffair',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewThought.vue')
+  // }
 ]
 
 const router = createRouter({

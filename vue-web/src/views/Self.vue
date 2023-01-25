@@ -9,7 +9,7 @@
     <div class="CareerBlock">
       <!-- 事务生涯统计 -->
       <div class="MyAffairCareer">
-        <p class="CareerTitle">事务</p>
+        <p class="CareerTitle">事务生涯</p>
         <div class="AffairLevelBlock">
           <span class="AllRecordLength">
             <span class="LabelName">总等级</span>
@@ -34,7 +34,7 @@
       </div>
       <!-- 短语生涯统计 -->
       <div class="ThoughtCareer">
-        <p class="CareerTitle">短语</p>
+        <p class="CareerTitle">短语生涯</p>
         <span class="RecordBlock"
           ><span class="LabelName">总数</span> {{ dateList.length
           }}<span class="LabelName"> 天</span></span

@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-let Export = require('./schema.js');
+const Export = require('./../mongodb/schema');
+
 function CheckEmail(){
 
 }
@@ -12,14 +13,14 @@ function CheckPassward(){
 app.post('/user/sign',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
     req.body.time = new Date().getTime();
-    Export.UserModel.findOne({email:req.body.email})
+    Export.User.findOne({email:req.body.email})
     .then((result)=>{
         // if(err) res.send({type:'ERROR'});
         // console.log(result);
         console.log(result);
         if(result == undefined){
             // res.send({type:'null'});
-            new Export.UserModel(req.body).save((err,result)=>{
+            new Export.User(req.body).save((err,result)=>{
                 if(err) res.send({type:'ERROR'});
                 res.send({type:'success',id:result._id});
             });
@@ -33,7 +34,7 @@ app.post('/user/sign',(req,res)=>{
 // 用户登录
 app.post('/user/login',(req,res)=>{
     // console.log(req.body);
-    Export.UserModel.findOne({email:req.body.email})
+    Export.User.findOne({email:req.body.email})
         .then((result)=>{
             // if(err){console.log(err);return;}
             // console.log(result);

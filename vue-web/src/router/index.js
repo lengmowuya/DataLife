@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory ,createWebHashHistory} from 'vue-router'
 import vuex from './../store/index'
-import Thought from '../views/Thought.vue'
+import Thought from '../views/Thought/Thought.vue'
 
 const routes = [
   {
@@ -14,44 +14,20 @@ const routes = [
   },{
     path: '/affair',
     name: 'Affair',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Affair.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Affair/Affair.vue')
   },{
     path: '/affair/manager',
     name: 'ManagerSelf',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AllAffairManager.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Manager/Manager.vue')
   },{
     path: '/self',
     name: 'Self',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Self.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/User/User.vue')
   },{
     path: '/sign',
     name: 'Sign',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Sign.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Sign/Sign.vue')
   },
-  
-  
-  
-  // {
-  //   path: '/record_mobile',
-  //   name: 'RecordMobile',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Record.vue')
-  // },{
-  //   path: '/affair_mobile',
-  //   name: 'AffairMobile',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Affair.vue')
-  // },{
-  //   path: '/thought_mobile',
-  //   name: 'ThoughtMobile',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_Thought.vue')
-  // },{
-  //   path: '/newAffair_mobile',
-  //   name: 'NewAffairOnlayAffair',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewAffair.vue')
-  // },{
-  //   path: '/newThought_mobile',
-  //   name: 'NewThoughtOnlayAffair',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/mobile/m_NewThought.vue')
-  // }
 ]
 
 const router = createRouter({

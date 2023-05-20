@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url("./../less/App.less");
+@import url("./../App.less");
 .EditorAffairPanel {
     position: fixed;
     left: 0;
@@ -181,6 +181,9 @@ export default {
             &::placeholder {
                 color: #ccc;
             }
+        }
+        .NewAffairName{
+            font-weight: bold;
         }
         .NewAffairDescribe {
             margin-top: 4px;

@@ -141,5 +141,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url(./../less/Sign.less);
+@import url(./Sign.less);
 </style>

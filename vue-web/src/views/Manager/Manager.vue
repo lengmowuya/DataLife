@@ -1,27 +1,16 @@
 <template>
     <div id="AffairPage">
         <div class="PageCore">
-            <FinishBlock></FinishBlock>
             <div class="MyAffairBigBlock">
-                <div class="AffairListTools">
-                    <div class="CreateAffair" @click="OpenNewAffairPanel()">
-                        创建事务
-                    </div>
-                    <div class="AllAffairList" @click="$router.push({name:'ManagerSelf'})">
-                        管理全部
-                    </div>
-                </div>
                 <div class="MyAffair">
                     <div class="NullBlockTip" v-if="AffairList.length <= 0">
                         您暂无事务,先创建一个吧!
                     </div>
-                    <div v-for="(item, index) in AffairList" :key="index" @click="
-                            CompletePanel.onComplete = true;
-                            CompletePanel.TargetAffair = item;
-                        " :class="{
+                    <div v-for="(item, index) in AffairList" :key="index" :class="{
                             AffairLi: true,
                             active: activeAffairId == item._id,
-                        }">
+                        }"
+                        title="编辑这个事务!" @click="OpenEditorPanel(item)" >
                         <div class="AffairContent">
                             <div class="AffairIconBlock">
                                 <div class="AffairIcon">
@@ -38,36 +27,36 @@
                                 <p class="AffairLiDescribe">
                                     {{ item.describe }}
                                 </p>
+                                <span class="AffairLevel"
+                                    v-show="item.record.length > 0">Lv.{{ item.record.length }}</span>
+                            </div>
+                            <div class="AffairTools">
+                                <button class="AffairEditorButton">
+                                    <i class="el-icon-s-tools"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- 完成该事务板块(默认隐藏) -->
-        <CompleteAffair :onComplete="CompletePanel.onComplete" :TargetAffair="CompletePanel.TargetAffair"
-            @getAllAffair="getAllAffair" @closePanel="closeCompleteAffairPanel">
-        </CompleteAffair>
-        <NewAffairPanel ref="NewAffairPanel"></NewAffairPanel>
+        <!-- 编辑该事务板块(默认隐藏) -->
+        <EditorAffairPanel ref="EditorPanel">
+        </EditorAffairPanel>
     </div>
 </template>
 <script>
-import NewAffairPanel from "./../components/NewAffairPanel.vue";
-import FinishBlock from "./../components/FinishBlock.vue";
-import CompleteAffair from "./../components/CompleteAffair.vue";
+import EditorAffairPanel from "./../../components/EditorAffairPanel.vue";
 export default {
     components: {
-        NewAffairPanel,
-        FinishBlock,
-        CompleteAffair,
+        EditorAffairPanel,
     },
     data() {
         return {
-            CompletePanel: {
-                onComplete: false,
+            EditorPanelInfo: {
+                showPanel: false,
                 TargetAffair: null,
             },
-            NewAffairPanel: {},
             AllAffairDay: 0,
             RecordShowDate: null,
             NowDate: {
@@ -83,31 +72,22 @@ export default {
             RecordList: [],
             activeAffairId: "",
             IconList: [],
+            // 新建事务板块信息
+            NewBlock: {
+                name: "",
+                describe: "",
+            },
         };
     },
     methods: {
-        OpenNewAffairPanel() {
-            this.$refs.NewAffairPanel.Open();
+        OpenEditorPanel(item){
+            this.$refs.EditorPanel.Open(item)
         },
-        keyDown() {},
         // 切换选中的事务
-        changeActiveAffair(id) {
-            this.activeAffairId = id;
-        },
-        closeCompleteAffairPanel() {
-            this.CompletePanel.onComplete = false;
-        },
-        // 获取所有图标
-        getAllIcon() {
-            this.axios
-                .get(this.Tool.config.address + "/icon/all")
-                .then((res) => {
-                    this.IconList = res.data;
-                });
+        closeEditorPanel() {
+            this.EditorPanelInfo.showPanel = false;
         },
         // 获取所有事务
-        /*
-         */
         getAllAffair() {
             let that = this;
             this.axios
@@ -117,11 +97,7 @@ export default {
                         this.$store.state.user.id
                 )
                 .then((res) => {
-                    this.AffairList.length == 0;
-                    res.data.forEach((item) => {
-                        this.AffairList.push(item);
-                    });
-                    // this.AffairList = res.data;
+                    this.AffairList = res.data;
                     this.RecordList = [];
                     this.HistoryRecord = [];
                     this.AffairList.forEach((item) => {
@@ -197,37 +173,24 @@ export default {
                     });
                 });
         },
+        // 获取所有图标
+        getAllIcon() {
+            this.axios
+                .get(this.Tool.config.address + "/icon/all")
+                .then((res) => {
+                    this.IconList = res.data;
+                });
+        },
     },
     computed: {
-        isToday(data) {
-            let NowData = this.NowDate.data;
-            if (
-                data.year == NowData &&
-                data.month == NowData.month &&
-                data.day == NowData.day
-            ) {
-                return true;
-            }
-            return false;
-        },
     },
     created() {},
     mounted() {
-        // 初始化数据
-        this.NowDate.data = this.Tool.FormatDate(this.NowDate.time);
-        this.NowDate.Date = new Date(this.NowDate.time);
         this.getAllAffair();
         this.getAllIcon();
-        // 页面标题
-        document.title = "DataLife-" + "事务";
-        // 跳转移动端
-        if (document.documentElement.clientWidth < 1000) {
-            this.$router.push("affair_mobile");
-        }
-        this.keyDown();
     },
 };
 </script>
 <style lang="less" scoped>
-@import "./../less/Affair.less";
+@import "./Manager.less";
 </style>

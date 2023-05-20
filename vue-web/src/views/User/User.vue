@@ -67,5 +67,5 @@ export default {
 };
 </script>
 <style lang="less">
-@import url("./../less/Self.less");
+@import url("./Self.less");
 </style>

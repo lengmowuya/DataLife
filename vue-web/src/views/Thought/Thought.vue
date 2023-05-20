@@ -191,5 +191,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    @import './../less/Thought.less';
+    @import './Thought.less';
 </style>

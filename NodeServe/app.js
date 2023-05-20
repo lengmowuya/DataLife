@@ -1,18 +1,22 @@
+// 1.引入包
 const bodyParser = require('body-parser');
-let mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const port = 3000;
-require('./db.js');
-require('./schema.js');
-let thoughtRouter = require('./thought.js');
-let affairRouter = require('./affair.js');
-let UserRouter = require('./UserRouter.js');
-let Export = require('./schema.js');
-let TokenTools = require('./jsonwebtoken.js');
+const router = require('./router/Router.js');
+require('./mongodb/db.js');
+require('./mongodb/schema.js');
+
+
+
+// let TokenTools = require('./api/jsonwebtoken.js');
+
+// 3.使用中间件
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-//设置跨域访问
+
+// 4.设置跨域访问
 app.all("*",function(req,res,next){
     //设置允许跨域的域名，*代表允许任意域名跨域
     res.header("Access-Control-Allow-Origin","*");
@@ -26,10 +30,8 @@ app.all("*",function(req,res,next){
     else
         next();
 })
-// 添加感悟
-app.get('/test',(req,res)=>{
-    res.send({type:'success'});
-})
+
+app.use(router);
 // app.use((req,res,next)=>{
 //     if(!TokenTools.whiteList.includes(req.url)){
 //         TokenTools.verifyToken(req.header.authorization)
@@ -39,9 +41,8 @@ app.get('/test',(req,res)=>{
 //         next()
 //     }
 // })
-app.use(thoughtRouter);
-app.use(affairRouter);
-app.use(UserRouter);
+
+
 app.listen(port,()=>{
     console.log('服务器正在运行...');
 })

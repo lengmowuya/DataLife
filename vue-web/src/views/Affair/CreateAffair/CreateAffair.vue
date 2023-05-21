@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url("./../App.less");
+@import url("./../../../App.less");
 .EditorAffairPanel {
     position: fixed;
     left: 0;

@@ -1,62 +1,21 @@
-<template>
-    <div id="AffairPage">
-        <div class="PageCore">
-            <div class="MyAffairBigBlock">
-                <div class="MyAffair">
-                    <div class="NullBlockTip" v-if="AffairList.length <= 0">
-                        您暂无事务,先创建一个吧!
-                    </div>
-                    <div v-for="(item, index) in AffairList" :key="index" :class="{
-                            AffairLi: true,
-                            active: activeAffairId == item._id,
-                        }"
-                        title="编辑这个事务!" @click="OpenEditorPanel(item)" >
-                        <div class="AffairContent">
-                            <div class="AffairIconBlock">
-                                <div class="AffairIcon">
-                                    <svg class="iconBackground" aria-hidden="true">
-                                        <use :xlink:href="'#icon-' + item.icon" />
-                                    </svg>
-                                    <svg class="icon" aria-hidden="true">
-                                        <use :xlink:href="'#icon-' + item.icon" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="AffairText">
-                                <p class="AffairLiName">{{ item.name }}</p>
-                                <p class="AffairLiDescribe">
-                                    {{ item.describe }}
-                                </p>
-                                <span class="AffairLevel"
-                                    v-show="item.record.length > 0">Lv.{{ item.record.length }}</span>
-                            </div>
-                            <div class="AffairTools">
-                                <button class="AffairEditorButton">
-                                    <i class="el-icon-s-tools"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 编辑该事务板块(默认隐藏) -->
-        <EditorAffair ref="EditorPanel">
-        </EditorAffair>
-    </div>
-</template>
-<script>
-import EditorAffair from "./EditorAffair/EditorAffair.vue";
+import CreateAffair from "./CreateAffair/CreateAffair.vue";
+import FinishBlock from "./FinishBlock/FinishBlock.vue";
+import ComplateAffair from "./ComplateAffair/ComplateAffair.vue";
+import AffairLi from "./AffairLi/AffairLi.vue";
 export default {
     components: {
-        EditorAffair,
+        CreateAffair,
+        FinishBlock,
+        ComplateAffair,
+        AffairLi
     },
     data() {
         return {
-            EditorPanelInfo: {
-                showPanel: false,
+            CompletePanel: {
+                onComplete: false,
                 TargetAffair: null,
             },
+            CreateAffair: {},
             AllAffairDay: 0,
             RecordShowDate: null,
             NowDate: {
@@ -72,22 +31,31 @@ export default {
             RecordList: [],
             activeAffairId: "",
             IconList: [],
-            // 新建事务板块信息
-            NewBlock: {
-                name: "",
-                describe: "",
-            },
         };
     },
     methods: {
-        OpenEditorPanel(item){
-            this.$refs.EditorPanel.Open(item)
+        OpenNewAffairPanel() {
+            this.$refs.CreateAffair.Open();
         },
+        keyDown() {},
         // 切换选中的事务
-        closeEditorPanel() {
-            this.EditorPanelInfo.showPanel = false;
+        changeActiveAffair(id) {
+            this.activeAffairId = id;
+        },
+        closeCompleteAffairPanel() {
+            this.CompletePanel.onComplete = false;
+        },
+        // 获取所有图标
+        getAllIcon() {
+            this.axios
+                .get(this.Tool.config.address + "/icon/all")
+                .then((res) => {
+                    this.IconList = res.data;
+                });
         },
         // 获取所有事务
+        /*
+         */
         getAllAffair() {
             let that = this;
             this.axios
@@ -97,7 +65,11 @@ export default {
                         this.$store.state.user.id
                 )
                 .then((res) => {
-                    this.AffairList = res.data;
+                    this.AffairList.length == 0;
+                    res.data.forEach((item) => {
+                        this.AffairList.push(item);
+                    });
+                    // this.AffairList = res.data;
                     this.RecordList = [];
                     this.HistoryRecord = [];
                     this.AffairList.forEach((item) => {
@@ -173,24 +145,29 @@ export default {
                     });
                 });
         },
-        // 获取所有图标
-        getAllIcon() {
-            this.axios
-                .get(this.Tool.config.address + "/icon/all")
-                .then((res) => {
-                    this.IconList = res.data;
-                });
-        },
     },
     computed: {
+        isToday(data) {
+            let NowData = this.NowDate.data;
+            if (
+                data.year == NowData &&
+                data.month == NowData.month &&
+                data.day == NowData.day
+            ) {
+                return true;
+            }
+            return false;
+        },
     },
     created() {},
     mounted() {
+        // 初始化数据
+        this.NowDate.data = this.Tool.FormatDate(this.NowDate.time);
+        this.NowDate.Date = new Date(this.NowDate.time);
         this.getAllAffair();
         this.getAllIcon();
+        // 页面标题
+        document.title = "DataLife-" + "事务";
+        this.keyDown();
     },
 };
-</script>
-<style lang="less" scoped>
-@import "./Manager.less";
-</style>

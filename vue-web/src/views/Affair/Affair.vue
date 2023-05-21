@@ -5,10 +5,10 @@
             <div class="MyAffairBigBlock">
                 <div class="AffairListTools">
                     <div class="CreateAffair" @click="OpenNewAffairPanel()">
-                        创建事务
+                        <i class="el-icon-s-management"></i>创建事务
                     </div>
                     <div class="AllAffairList" @click="$router.push({name:'ManagerSelf'})">
-                        管理全部
+                        <i class="el-icon-menu"></i>管理全部
                     </div>
                 </div>
                 <div class="MyAffair">

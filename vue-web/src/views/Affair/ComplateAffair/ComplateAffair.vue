@@ -35,6 +35,7 @@ export default {
             }
             let info = {
                 affair: TargetAffair._id,
+                owner:TargetAffair.owner,
                 sentence: pushSentence,
             };
             this.axios
@@ -65,6 +66,8 @@ export default {
     align-items: center;
     justify-content: center;
     max-width: 100vw;
+    opacity: 0;
+    animation:show 0.3s 1 forwards;
     .PushAlert {
         width: 100%;
         max-width: 560px;

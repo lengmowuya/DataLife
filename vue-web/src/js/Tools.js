@@ -15,6 +15,15 @@ let Tool = {
         }
         return date;
     },
+    CreateDate(obj,time){
+        obj.data = {
+            year:time.getFullYear(),
+            month:time.getMonth()+1,
+            day:time.getDate(),
+            hour:time.getHours(),
+            min:time.getMinutes()
+        }
+    },
     FormatDateWeekChinese(number){
         let name = "一";
         switch(number){

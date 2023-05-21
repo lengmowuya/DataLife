@@ -21,12 +21,17 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     img{
         width:120px;
+        height:120px;
         border-radius: 50%;
         border:2px solid #eee;
         margin-bottom:16px;
+    }
+    .userInfo{
+        margin-left:10px;
+        height:120px;
     }
     h6{
         font-size:18px;
@@ -67,12 +72,15 @@
         }
     }
     .MyAffairCareer{
-        background: linear-gradient(220.55deg, #3793FF 0%, #0017E4 100%);
-        background: linear-gradient(220.55deg, #00B960 0%, #00552C 100%);
+        // background: linear-gradient(220.55deg, #3793FF 0%, #0017E4 100%);
+        // background: linear-gradient(220.55deg, #00B960 0%, #00552C 100%);
+        background:@mainColor2;
     }
     .ThoughtCareer{
         // background:chocolate;
         margin-left: 16px;
-        background: linear-gradient(220.55deg, #FFD439 0%, #FF7A00 100%);
+        background:@mainColor2;
+
+        // background: linear-gradient(220.55deg, #FFD439 0%, #FF7A00 100%);
     }
 }

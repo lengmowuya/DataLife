@@ -132,23 +132,23 @@ export default {
                                         this.HistoryRecord.push(newDate);
                                     }
                                 }
-                                for (
-                                    let j = 0;
-                                    j < this.HistoryRecord.length;
-                                    j++
-                                ) {
-                                    let HisDate = this.HistoryRecord[j].data;
-                                    let TargetRecord = record.data;
-                                    let Date = this.HistoryRecord[j];
-                                    if (
-                                        HisDate.year == TargetRecord.year &&
-                                        HisDate.month == TargetRecord.month &&
-                                        HisDate.day == TargetRecord.day
-                                    ) {
-                                        Date.record.push(record);
-                                        break;
-                                    }
-                                }
+                                // for (
+                                //     let j = 0;
+                                //     j < this.HistoryRecord.length;
+                                //     j++
+                                // ) {
+                                //     let HisDate = this.HistoryRecord[j].data;
+                                //     let TargetRecord = record.data;
+                                //     let Date = this.HistoryRecord[j];
+                                //     if (
+                                //         HisDate.year == TargetRecord.year &&
+                                //         HisDate.month == TargetRecord.month &&
+                                //         HisDate.day == TargetRecord.day
+                                //     ) {
+                                //         Date.record.push(record);
+                                //         break;
+                                //     }
+                                // }
                                 this.AllAffairDay = 0;
                                 this.HistoryRecord.forEach((item) => {
                                     if (item.record.length >= 1) {
@@ -158,16 +158,16 @@ export default {
                             }
                         }
                     });
-                    // 对记录进行时间排序
-                    this.RecordList.sort((a, b) => {
-                        if (a.data.hour != b.data.hour) {
-                            return b.data.hour - a.data.hour;
-                        } else if (a.data.min != b.data.min) {
-                            return b.data.min - a.data.min;
-                        } else {
-                            return b.data.sec - a.data.sec;
-                        }
-                    });
+                    // // 对记录进行时间排序
+                    // this.RecordList.sort((a, b) => {
+                    //     if (a.data.hour != b.data.hour) {
+                    //         return b.data.hour - a.data.hour;
+                    //     } else if (a.data.min != b.data.min) {
+                    //         return b.data.min - a.data.min;
+                    //     } else {
+                    //         return b.data.sec - a.data.sec;
+                    //     }
+                    // });
                     this.AffairList.sort((a, b) => {
                         return b.record.length - a.record.length;
                     });

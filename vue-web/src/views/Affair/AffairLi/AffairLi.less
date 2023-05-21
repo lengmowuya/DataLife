@@ -1,6 +1,6 @@
 @import url("./../../../App.less");
 .AffairLi{
-    padding:8px 0px;
+    padding:4px 0px;
     margin:12px 0px;
     width:100%;
     background:#fff;
@@ -9,9 +9,9 @@
     transition:all 0.25s;
     display:flex;
     transition:all 0.25s;
-    border-radius: 4px;
-    border:1px solid #d8dee499;
-    box-shadow: 2px 2px 15px 0 rgba(55 ,99 ,170, 11%), -8px -8px 20px 0 #fff;
+    border-radius: 8px;
+    border:1px solid rgba(55 ,99 ,170, 20%);
+    box-shadow: 2px 2px 15px 0 rgba(55 ,99 ,170, 20%), -8px -8px 20px 0 #fff;
     position: relative;
     overflow: hidden;
     // max-height:80px;
@@ -72,7 +72,7 @@
         max-width: calc(100% - 70px);
         .AffairLiName{
             font-size:15px;
-            color:#252525;
+            color:@mainColor;
             font-weight: bold;   
             user-select: none;
             white-space: nowrap;
@@ -84,7 +84,7 @@
         .AffairLiDescribe{
             margin-top:2px;
             font-size:14px;
-            color:#98a3b799;
+            color:@mainColor2;
             user-select: none;
             white-space: nowrap;
             overflow: hidden;

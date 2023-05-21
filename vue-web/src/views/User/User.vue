@@ -3,7 +3,11 @@
     <!-- 用户信息 -->
     <div class="UserInfo">
       <img src="https://avatars.githubusercontent.com/u/50391842?v=4" alt="">
-      <h6>{{ $store.state.user.email }}</h6>
+      <div class="userInfo">
+        <h1>冷漠乌鸦</h1>
+        <h6>{{ $store.state.user.email }}</h6>
+      </div>
+      
     </div>
     <!-- 生涯详情 -->
     <div class="CareerBlock">
@@ -67,5 +71,5 @@ export default {
 };
 </script>
 <style lang="less">
-@import url("./Self.less");
+@import url("./User.less");
 </style>

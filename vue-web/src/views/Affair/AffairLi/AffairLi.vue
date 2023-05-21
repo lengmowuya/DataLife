@@ -40,7 +40,7 @@
 
         },
         mounted(){
-            console.log(this.item);
+            // console.log(this.item);
         }
     }
 </script>

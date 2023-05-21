@@ -20,6 +20,8 @@
 @mainColor:#f83621;
 @opacityMain:#f8362166;
 @mainColor:#205295;
+@mainColor2:#20529599;
+@mainColor3:#20529555;
 @opacityMain:#2C74B3;
 
 body{
@@ -112,55 +114,60 @@ body::-webkit-scrollbar{
         }
     }
 }
-// 移动端导航栏
-#MobileDataLifeNav{
-    flex-shrink: 0;
-    width:100%;
-    height:54px;
-    display:flex;
-    justify-content: center;
-    background:#fff;
-    border-radius: 0 0 4px 4px;
-    padding:0px 20px;
-    box-sizing: border-box;
-    border-top:1px solid #eee;
-    position: fixed;
-    left:0;
-    bottom:0;
-    z-index: 999999999;
-    font-family: caner;
-    a{
-        margin-right:16px;
-        width:75px;
-        height:100%;
-        text-align: center;
-        font-size:12px;
-        cursor: pointer;
-        user-select: none;
-        transition:all 0.3s;
-        text-decoration: none;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        color:#98a3b7;
-        box-sizing: border-box;
-        flex-direction: column;
-        transition: all 0.3s;
-        i{
-            margin-bottom: 3px;
-            font-size:26px;
-        }
-        &.router-link-active{
-            color:@mainColor;
-            border-color:@mainColor;
-        }
-        &.router-link-active i{
-            color:@mainColor;
-        }
-        &:hover{
-            a{
-                color:@mainColor;
-            }
-        }
+@keyframes show {
+    to{
+      opacity: 1;
     }
 }
+// // 移动端导航栏
+// #MobileDataLifeNav{
+//     flex-shrink: 0;
+//     width:100%;
+//     height:54px;
+//     display:flex;
+//     justify-content: center;
+//     background:#fff;
+//     border-radius: 0 0 4px 4px;
+//     padding:0px 20px;
+//     box-sizing: border-box;
+//     border-top:1px solid #eee;
+//     position: fixed;
+//     left:0;
+//     bottom:0;
+//     z-index: 999999999;
+//     font-family: caner;
+//     a{
+//         margin-right:16px;
+//         width:75px;
+//         height:100%;
+//         text-align: center;
+//         font-size:12px;
+//         cursor: pointer;
+//         user-select: none;
+//         transition:all 0.3s;
+//         text-decoration: none;
+//         display:flex;
+//         justify-content: center;
+//         align-items: center;
+//         color:#98a3b7;
+//         box-sizing: border-box;
+//         flex-direction: column;
+//         transition: all 0.3s;
+//         i{
+//             margin-bottom: 3px;
+//             font-size:26px;
+//         }
+//         &.router-link-active{
+//             color:@mainColor;
+//             border-color:@mainColor;
+//         }
+//         &.router-link-active i{
+//             color:@mainColor;
+//         }
+//         &:hover{
+//             a{
+//                 color:@mainColor;
+//             }
+//         }
+//     }
+// }

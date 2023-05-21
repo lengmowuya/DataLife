@@ -1,0 +1,116 @@
+@import url("./../../../../App.less");
+    .FinishRecord {
+      background: #fff;
+      color: #363636;
+      background: #fff;
+      box-shadow: 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
+      padding: 10px;
+      margin-right: 12px;
+      border-radius: 6px;
+      flex-direction: column;
+      display: flex;
+      margin-bottom: 12px;
+      flex-grow: 1;
+      width: 20%;
+      max-width: calc(25% - 10.5px);
+      box-sizing: border-box;
+      transition: all 0.25s;
+      &:nth-child(4n) {
+        margin-right: 0px;
+      }
+      &:hover {
+        .morePanel {
+          opacity: 1 !important;
+        }
+      }
+      .FinishRecordHeader {
+        display: flex;
+        .FinishRecordIcon {
+          background: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          font-size: 36px;
+          width: 42px;
+          height: 42px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          border-radius: 12px;
+          margin: 5px;
+          overflow: hidden;
+          position: relative;
+          .iconBackground {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            filter: blur(8px);
+            opacity: 0.2;
+          }
+          .icon {
+            // font-size:35px;
+          }
+        }
+        .FinishRecordText {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          padding: 5px;
+          flex-grow: 1;
+          font-family: caner;
+          .RecordName {
+            flex-grow: 1;
+            font-size: 15px;
+            letter-spacing: 1px;
+            user-select: none;
+            line-height: 26px;
+            color:@mainColor2;
+            font-weight: bold;
+            font-family: initial;
+          }
+          .RecordTime {
+            font-size: 13px;
+            opacity: 0.6;
+            user-select: none;
+          }
+        }
+      }
+      .RecordSentence {
+        padding: 5px;
+        font-size: 15px;
+        line-height: 1.35em;
+        // text-indent: 2em;
+        letter-spacing: 0.5px;
+        transition: all 0.25s;
+        cursor: pointer;
+        // width:100%;
+        color: #98a3b7;
+        // box-sizing: border-box;
+        white-space: pre-wrap;
+        // word-wrap: break-word;
+        font-family: caner;
+      }
+      .morePanel {
+        opacity: 0;
+        transition: all 0.25s;
+        .button {
+          transition: all 0.25s;
+          background: #fff;
+          line-height: 21px;
+          padding: 5px;
+          font-size: 16px;
+          width: 20px;
+          text-align: center;
+          border-radius: 4px;
+          cursor: pointer;
+          color: #98a3b799;
+          &:hover {
+            background: #f9f9f9;
+            color: red;
+          }
+        }
+      }
+    }

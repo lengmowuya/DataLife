@@ -62,180 +62,69 @@
       }
     }
   }
-  .CoreTop{
-    display:flex;
-    flex-direction: column;
-      background: #fff;
-    box-shadow: 0 4px 20px rgba(0, 25, 104, 0.05);
-    border-radius: 6px;
-    padding:10px;
-    padding-top:14px;
-  
-  }
-  .FinishBlock {
+.CoreTop{
+  display:flex;
+  flex-direction: column;
     background: #fff;
-    background:#e9e9f0;
-    min-height: 400px;
-    padding: 15px;
-    box-sizing: border-box;
-    display: flex;
+  box-shadow: 0 4px 20px rgba(0, 25, 104, 0.05);
+  border-radius: 6px;
+  padding:10px;
+  padding-top:14px;
+
+}
+.FinishBlock {
+  background: #fff;
+  background:#e9e9f0;
+  min-height: 400px;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  order: 1;
+  height: 100vh;
+  max-height: calc(100vh - 50px);
+  flex-grow: 1;
+  .FinishCore{
+    max-width: 1200px;
+      display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    order: 1;
-    height: 100vh;
-    max-height: calc(100vh - 50px);
-    flex-grow: 1;
-    .FinishCore{
-      max-width: 1200px;
-        display: flex;
-      flex-direction: column;
-    }
-    .FinishDay {
-      text-align: center;
-      font-size: 16px;
-      padding: 16px 0px;
-      display: flex;
-      justify-content: center;
-      .text {
-        height: 20px;
-        font-family: caner;
-        color: #333;
-        user-select: none;
-        border-radius: 6px;
-        line-height: 20px;
-        overflow: hidden;
-        padding: 0px 12px;
-      }
-      .length {
-        margin-left: 4px;
-        height: 20px;
-        padding: 0px 8px;
-        line-height: 20px;
-        font-family: caner;
-        font-size: 14px;
-        background: #00a1d655;
-        letter-spacing: 1px;
-        color: #fff;
-        border-radius: 10px;
-      }
-    }
-    .FinishRecordList {
-      display: flex;
-      flex-wrap: wrap;
-      margin-right: -5px;
-      padding-top: 10px;
-    }
-    .FinishRecord {
-      background: #fff;
-      color: #363636;
-      background: #fff;
-      box-shadow: 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
-      padding: 10px;
-      margin-right: 12px;
+  }
+  .FinishDay {
+    text-align: center;
+    font-size: 16px;
+    padding: 16px 0px;
+    display: flex;
+    justify-content: center;
+    .text {
+      height: 20px;
+      font-family: caner;
+      color: #333;
+      user-select: none;
       border-radius: 6px;
-      flex-direction: column;
-      display: flex;
-      margin-bottom: 12px;
-      flex-grow: 1;
-      width: 20%;
-      max-width: calc(25% - 10.5px);
-      box-sizing: border-box;
-      transition: all 0.25s;
-      &:nth-child(4n) {
-        margin-right: 0px;
-      }
-      &:hover {
-        .morePanel {
-          opacity: 1 !important;
-        }
-      }
-      .FinishRecordHeader {
-        display: flex;
-        .FinishRecordIcon {
-          background: #fff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-shrink: 0;
-          font-size: 36px;
-          width: 42px;
-          height: 42px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-shrink: 0;
-          border-radius: 12px;
-          margin: 5px;
-          overflow: hidden;
-          position: relative;
-          .iconBackground {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            filter: blur(8px);
-            opacity: 0.2;
-          }
-          .icon {
-            // font-size:35px;
-          }
-        }
-        .FinishRecordText {
-          display: flex;
-          flex-wrap: wrap;
-          flex-direction: column;
-          padding: 5px;
-          flex-grow: 1;
-          font-family: caner;
-          .RecordName {
-            flex-grow: 1;
-            font-size: 15px;
-            letter-spacing: 1px;
-            user-select: none;
-            line-height: 26px;
-          }
-          .RecordTime {
-            font-size: 13px;
-            opacity: 0.6;
-            user-select: none;
-          }
-        }
-      }
-      .RecordSentence {
-        padding: 5px;
-        font-size: 15px;
-        line-height: 1.35em;
-        // text-indent: 2em;
-        letter-spacing: 0.5px;
-        transition: all 0.25s;
-        cursor: pointer;
-        // width:100%;
-        color: #98a3b7;
-        // box-sizing: border-box;
-        white-space: pre-wrap;
-        // word-wrap: break-word;
-        font-family: caner;
-      }
-      .morePanel {
-        opacity: 0;
-        transition: all 0.25s;
-        .button {
-          transition: all 0.25s;
-          background: #fff;
-          line-height: 21px;
-          padding: 5px;
-          font-size: 16px;
-          width: 20px;
-          text-align: center;
-          border-radius: 4px;
-          cursor: pointer;
-          color: #98a3b799;
-          &:hover {
-            background: #f9f9f9;
-            color: red;
-          }
-        }
-      }
+      line-height: 20px;
+      overflow: hidden;
+      padding: 0px 12px;
+    }
+    .length {
+      margin-left: 4px;
+      height: 20px;
+      padding: 0px 8px;
+      line-height: 20px;
+      font-family: caner;
+      font-size: 14px;
+      background: #00a1d655;
+      letter-spacing: 1px;
+      color: #fff;
+      border-radius: 10px;
     }
   }
+  .FinishRecordList {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    padding-top: 10px;
+  }
+
+}

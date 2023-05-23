@@ -38,10 +38,13 @@ export default {
                         let res = data.res;
                         let myUser = data.myUser;
                         let log = res.data.type;
+                        console.log(data);
                         myUser.id = res.data.id;
                         if (log == "success") {
                             this.$store.state.user = myUser;
                             this.$store.state.isLogin = true;
+                            // 保存token
+                            localStorage.setItem('token',res.data.token);
                             if (isRemember) {
                                 this.Tool.writeUserStorage(
                                     myUser.email,
@@ -78,7 +81,7 @@ export default {
         },
     },
     beforeCreate() {
-        // BindVueToWork();
+        // this.BindVueToWork();
         this.Work.prototype = this;
         this.Work.__proto__ = this;
         this.Work.User.__proto__ = this.Work.__proto__;

@@ -25,26 +25,25 @@ let User = {
     // 用户登录
     LoginUser(User) {
         let request = new Promise((resolve, reject) => {
-            let myUser = {
-                name: User.email,
-                email: User.email,
-                passward: User.passward
-            }
-            if (myUser.email.trim() == '' || myUser.passward.trim() == '') {
-                reject("DataError");
-                return;
-            }
-            this.axios.post(this.Tool.config.address + '/user/login', myUser)
-                .then((res) => {
-                    resolve({
-                        res,
-                        myUser
-                    });
-                })
-                .catch((error) => {
-                    reject("NetError", error);
-                })
-        });
+                let myUser = {
+                    name: User.email,
+                    email: User.email,
+                    passward: User.passward
+                }
+                if (myUser.email.trim() == '' || myUser.passward.trim() == '') {
+                    reject("DataError");
+                    return;
+                }
+                this.axios.post(this.Tool.config.address + '/user/login', myUser)
+                    .then((res) => {
+                        resolve({
+                            res,
+                            myUser
+                        });
+                    }).catch((error) => {
+                        reject("NetError", error);
+                    })
+            });
         return request;
     },
     TestServer() {
@@ -53,8 +52,7 @@ let User = {
             this.axios.get(this.Tool.config.address + '/test')
                 .then(() => {
                     resolve();
-                })
-                .catch((error) => {
+                }).catch((error) => {
                     if (error) {
                         reject(error);
                     }
@@ -74,7 +72,6 @@ let Affair = {
                 reject('DataError');
             } else {
                 // 增添事务所有者
-                // NewAffair.owner = this.$store.state.user.id;
                 this.axios.post(this.Tool.config.address + '/affair/add', NewAffair)
                     .then(() => {
                         resolve();
@@ -90,8 +87,6 @@ let Affair = {
         let request = new Promise((resolve, reject) => {
             this.axios.post(this.Tool.config.address + '/affair/remove', {id})
                 .then(() => {
-                    // this.Editor.onEditorAffair = false;
-                    // this.getAllAffair();
                     resolve();
                 })
                 .catch(() => {
@@ -104,7 +99,6 @@ let Affair = {
     UpdateAffair(NewAffair) {
         let request = new Promise((resolve, reject) => {
             if (NewAffair.name.trim() == '' || NewAffair.describe.trim() == '' || NewAffair.icon.trim() == '') {
-                // alert("事务新信息不能为空!");
                 reject('DataError');
             } else {
                 this.axios.post(this.Tool.config.address + '/affair/update', NewAffair)
@@ -152,7 +146,6 @@ let AffairRecord = {
         let request = new Promise((resolve, reject) => {
             if (this.pushSentence.trim() == '') {
                 alert("请填入您的总结");
-                // resolve();
                 reject('DataError');
                 return;
             }
@@ -163,12 +156,7 @@ let AffairRecord = {
             this.axios.post(this.Tool.config.address + '/affairRecord/add', info)
                 .then(() => {
                     resolve();
-                    // this.getAllAffair();
-                    // this.onPushRecord = false;
-                    // this.pushAffair = null;
-                    // this.pushSentence = '';
-                })
-                .catch(() => {
+                }).catch(() => {
                     reject('NetError');
                 })
         });
@@ -180,8 +168,6 @@ let AffairRecord = {
                     id
                 })
                 .then(() => {
-                    // this.Editor.onEditorAffair = false;
-                    // this.getAllAffair();
                     resolve();
                 })
         })
@@ -195,13 +181,8 @@ let Icon = {
         let request = new Promise((resolve, reject) => {
             this.axios.get(this.Tool.config.address + '/icon/all')
                 .then(res => {
-                    // this.IconList = res.data;
-                    // if(this.Editor.NewAffair.icon == ''){
-                    //     this.Editor.NewAffair.icon = this.IconList[0].font_class;
-                    // }
                     resolve(res);
-                })
-                .catch(() => {
+                }).catch(() => {
                     reject('NetError');
                 })
         });
@@ -227,28 +208,22 @@ let Thought = {
                 reject("DataError", 'type');
                 return;
             }
-            // let that = this;
             this.axios.post(this.Tool.config.address + '/thought/add', data)
                 .then(() => {
-                    //   that.updateDate();
                     resolve();
                 });
-            // this.writeText = "";
         });
         return request;
     },
     //删除短文
     RemoveThought(_id) {
         let request = new Promise((resolve, reject) => {
-            // let that = this;
             this.axios.post(this.Tool.config.address + '/thought/remove', {
                     _id
                 })
                 .then(() => {
-                    // that.updateDate();
                     resolve();
-                })
-                .catch(() => {
+                }).catch(() => {
                     reject('NetError');
                 })
         })

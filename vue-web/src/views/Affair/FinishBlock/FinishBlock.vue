@@ -74,7 +74,7 @@ export default {
 
     // 将记录按日期归档
     const CreateDateList = (recordList)=>{
-      console.log(recordList);
+      // console.log(recordList);
       let dateObj = recordList.reduce((prev,item)=>{
         let time = new Date(item.time);
         item.time = time;

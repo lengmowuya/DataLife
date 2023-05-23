@@ -27,7 +27,7 @@
             </div>
             <div class="deleteButton">
                 <button title="警告,删除不可撤销!" @click="RemoveAffair()">
-                    移除 !</button>
+                    <el-icon><DeleteFilled /></el-icon> 移除 !</button>
             </div>
         </div>
     </div>

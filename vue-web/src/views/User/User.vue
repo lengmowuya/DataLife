@@ -6,6 +6,8 @@
       <div class="userInfo">
         <h1>冷漠乌鸦</h1>
         <h6>{{ $store.state.user.email }}</h6>
+        <!-- <el-button type="danger" :icon="Delete" circle /> -->
+        <el-button type="danger" round>登出</el-button>
       </div>
       
     </div>

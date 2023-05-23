@@ -15,7 +15,8 @@
         <p class="RecordTime">{{ Tool.getTimeString(item.data) }}</p>
       </div>
       <div class="morePanel">
-        <i class="el-icon-delete-solid button" title="删除" @click="removeAffairRecord(item._id)"></i>
+        <!-- <i class="el-icon-delete-solid button" ></i> -->
+        <el-icon title="删除" @click="removeAffairRecord(item._id)"><DeleteFilled /></el-icon>
       </div>
     </div>
     <pre class="RecordSentence">{{ item.sentence }}</pre>

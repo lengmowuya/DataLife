@@ -32,7 +32,8 @@
                             </div>
                             <div class="AffairTools">
                                 <button class="AffairEditorButton">
-                                    <i class="el-icon-s-tools"></i>
+                                    <!-- <i class="el-icon-s-tools"></i> -->
+                                    <el-icon><Tools /></el-icon>
                                 </button>
                             </div>
                         </div>

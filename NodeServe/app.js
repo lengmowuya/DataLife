@@ -31,6 +31,9 @@ app.all("*",function(req,res,next){
         next();
 })
 
+app.get('/test',(req,res)=>{
+    res.json({type:'success'});
+})
 app.use(router);
 // app.use((req,res,next)=>{
 //     if(!TokenTools.whiteList.includes(req.url)){

@@ -21,6 +21,18 @@ app.post('/affair/remove',(req,res)=>{
         res.send();
     })
 })
+// 获取单个事务
+app.get('/affair/single/:userId/:affairId',(req,res)=>{
+    Export.Affair.findById(req.params.affairId)
+        .populate('record')
+        .then(result=>{
+            res.send(result);
+            // result.forEach(item=>{
+            //     item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
+            //     item.save();
+            // })
+        })
+})
 // 获取所有事务
 app.get('/affair/all/:userId',(req,res)=>{
     Export.Affair.find({owner:req.params.userId})

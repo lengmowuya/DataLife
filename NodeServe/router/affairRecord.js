@@ -6,7 +6,7 @@ const {FormatDate} = require('./../tools/date.tool')
 
 // 获取用户今天的记录
 app.get('/affairRecord/today/:userId',(req,res)=>{
-    let today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()+1);
+    let today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
     // console.log(today);
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:today}})
         .populate('affair')
@@ -56,13 +56,13 @@ app.post('/affairRecord/add',(req,res)=>{
         .then(affairRecord=>{
             // 添加外键
             Export.Affair.findOne({_id:req.body.affair})
-            .then(affair=>{
-                if(!Array.isArray(affair.record)){
-                    affair.record = [];
-                }
-                affair.record.push(affairRecord._id);
-                affair.save();
-            })
+                .then(affair=>{
+                    if(!Array.isArray(affair.record)){
+                        affair.record = [];
+                    }
+                    affair.record.push(affairRecord._id);
+                    affair.save();
+                })
             res.send({type:'success'});
         })
 })

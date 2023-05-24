@@ -7,7 +7,10 @@ let AffairSchema = {
         type:Boolean,
         default:false
     },
-    time:Number,
+    time:{
+        type:Date,
+        default:new Date()
+    },
     icon:{
         type:String,
         default:"dakaqiandao"

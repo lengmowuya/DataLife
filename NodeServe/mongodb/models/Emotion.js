@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 // 感悟-状态
 let  EmotionSchema = {
     name:String,
-    time:Number
+    time:{
+        type:Date,
+        default:new Date()
+    }
 }
 const Emotion = mongoose.model('Emotion',EmotionSchema,"Emotion");
 

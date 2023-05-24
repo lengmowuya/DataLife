@@ -52,6 +52,7 @@ app.post('/affairRecord/add',(req,res)=>{
         // time:new Date().getTime(),
         // data:FormatDate(new Date().getTime())
     }
+    // delete req.body.time;
     new Export.AffairRecord(AffairRecord).save()
         .then(affairRecord=>{
             // 添加外键

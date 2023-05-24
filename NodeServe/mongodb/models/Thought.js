@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 // 感悟-短文
 let  ThoughtSchema = {
     text:String,
-    time:Number,
+    time:{
+        type:Date,
+        default:new Date()
+    },
     emotion:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Emotion'

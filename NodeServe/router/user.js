@@ -8,17 +8,17 @@ const jwt = require('./../api/jwt.js');
 // 注册用户
 app.post('/user/sign',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
-    req.body.time = new Date().getTime();
+    delete req.body.time;
     Export.User.findOne({email:req.body.email})
     .then((result)=>{
-        console.log(result);
+        // console.log(result);
         if(result == undefined){
             new Export.User(req.body).save((err,result)=>{
                 if(err) res.send({type:'ERROR'});
-                res.send({type:'success',id:result._id,token: jwt.sign({ _id: result._id })});
+                res.send({type:'success',id:result._id,token: jwt.sign({ _id: result._id }),user:result});
             });
         }else{
-            res.send({type:'error'});
+            res.send({type:'exist'});
         }
     })
 
@@ -28,11 +28,12 @@ app.post('/user/sign',(req,res)=>{
 app.post('/user/login',(req,res)=>{
     // console.log(req.body);
     Export.User.findOne({email:req.body.email})
+        select({passward:0})
         .then((result)=>{
             if(result == undefined){
                 res.send({type:'null'});
             }else if(result.passward == req.body.passward){
-                res.send({type:'success',id:result._id,token:jwt.sign({ _id: result._id })});
+                res.send({type:'success',id:result._id,token:jwt.sign({ _id: result._id }),user:result});
             }else{
                 res.send({type:'error'});
             }

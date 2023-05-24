@@ -7,8 +7,10 @@ const {FormatDate} = require('./../tools/date.tool')
 // 添加事务
 app.post('/affair/add',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
-    req.body.time = new Date().getTime();
+    // req.body.time = new Date().getTime();
+    delete req.body.time;
     req.body.icon = "miaosha";
+    
     new Export.Affair(req.body).save((err,result)=>{
         if(err) res.send({type:'error'});
         res.send({type:'success'});

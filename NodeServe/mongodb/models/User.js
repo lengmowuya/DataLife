@@ -1,8 +1,18 @@
 const mongoose = require("mongoose");
 let UserSchema = {
-    name:String,
+    name:{
+        type:String,
+        default:'DataLife-新用户'
+    },
     telephone:Number,
-    time:Number,
+    time:{
+        type:Date,
+        default:new Date()
+    },
+    headImg:{
+        type:String,
+        default:'http://pic.imeitou.com/uploads/allimg/2021040523/dwbiqhq3dmx.png'
+    },
     email:String,
     passward:String
 }

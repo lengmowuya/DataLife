@@ -6,10 +6,10 @@ let  ThoughtSchema = {
         type:Date,
         default:new Date()
     },
-    emotion:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Emotion'
-    },
+    // emotion:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Emotion'
+    // },
     owner:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

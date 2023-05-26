@@ -28,7 +28,6 @@ app.post('/user/sign',(req,res)=>{
 app.post('/user/login',(req,res)=>{
     // console.log(req.body);
     Export.User.findOne({email:req.body.email})
-        select({passward:0})
         .then((result)=>{
             if(result == undefined){
                 res.send({type:'null'});

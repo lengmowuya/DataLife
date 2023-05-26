@@ -10,7 +10,7 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import Work from './js/work.js'
-import Tool from './js/tools.js'
+import Tool from './js/Tools.js'
 import Config from './js/config.js'
 // import './aliFont.css'
 import './aliFont.js'

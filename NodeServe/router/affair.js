@@ -18,10 +18,17 @@ app.post('/affair/add',(req,res)=>{
 })
 // 删除事务
 app.post('/affair/remove',(req,res)=>{
-    Export.Affair.remove({_id:req.body.id},(err,result)=>{
-        if(err) res.send({type:'error'});
-        res.send();
-    })
+    Export.Affair.findById(req.body.id)
+        .then(result=>{
+            result.record.forEach(item=>{
+                Export.AffairRecord.deleteOne({_id:item._id},(err,result)=>{
+                })
+            })
+            Export.Affair.deleteOne({_id:req.body.id},(err,result)=>{
+                res.send({type:'success'});
+            })
+        })
+
 })
 // 获取单个事务
 app.get('/affair/single/:userId/:affairId',(req,res)=>{
@@ -47,15 +54,17 @@ app.get('/affair/all/:userId',(req,res)=>{
             // })
         })
 })
+// 修改事务
 app.post('/affair/update',(req,res)=>{
     let data = {
         name:req.body.name,
         describe:req.body.describe,
         icon:req.body.icon
     }
-    Export.Affair.update({_id:req.body._id},data)
+    Export.Affair.updateOne({_id:req.body.id},data)
         .then(()=>{
-            res.send("success");
+            res.send({type:'success'});
+            
         })
 })
 

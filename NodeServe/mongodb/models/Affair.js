@@ -9,7 +9,7 @@ let AffairSchema = {
     },
     time:{
         type:Date,
-        default:new Date()
+        default:new Date(new Date() + 8*60*60)
     },
     icon:{
         type:String,

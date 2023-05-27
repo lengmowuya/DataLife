@@ -5,8 +5,7 @@ const Export = require('./../mongodb/schema');
 
 // 添加感悟
 app.post('/thought/add',(req,res)=>{
-    // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
-    // req.body.time = new Date().getTime();
+    console.log(new Date(new Date().getTime() + 8 * 60 * 60));
     delete req.body.time;
     new Export.Thought(req.body).save((err,result)=>{
         if(err) res.send({type:'error'});
@@ -15,7 +14,6 @@ app.post('/thought/add',(req,res)=>{
 })
 // 删除感悟
 app.post('/thought/remove',(req,res)=>{
-    // console.log(req.body);
     Export.Thought.remove({_id:req.body._id},(err,result)=>{
         if(err) res.send({type:'error'});
         res.send();
@@ -27,10 +25,34 @@ app.get('/thought/all/:userId',(req,res)=>{
         // .populate('emotion')
         .then(result=>{
             res.send(result);
-            // result.forEach(item=>{
-            //     item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
-            //     item.save();
-            // })
+        })
+})
+// 获取用户想法累计数量
+app.get('/thought/length/:userId',(req,res)=>{
+    Export.Thought.find({owner:req.params.userId})
+        .then(result=>{
+            res.send({length:result.length});
+        })
+})
+// 获取用户想法累计天数
+app.get('/thought/days/:userId',(req,res)=>{
+    Export.Thought.find({owner:req.params.userId})
+        .then(result=>{
+            let days = 0;
+            let daysObj = result.reduce((prev,item)=>{
+                let str = new Date(item.time).toDateString();
+                // console.log(item.str);
+                if(prev[str] == undefined){
+                    prev[str] = [];
+                }
+                prev[str].push(item);
+                return prev;
+            },{})
+            for(let key in daysObj){
+                days++;
+            }
+            res.send({days});
+
         })
 })
 

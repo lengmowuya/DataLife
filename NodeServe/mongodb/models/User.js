@@ -7,7 +7,7 @@ let UserSchema = {
     telephone:Number,
     time:{
         type:Date,
-        default:new Date()
+        default:new Date(new Date() + 8*60*60)
     },
     headImg:{
         type:String,

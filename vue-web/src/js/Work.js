@@ -64,6 +64,7 @@ let User = {
                         // this.$store.state.user = myUser;
                         // this.$store.state.isLogin = true;
                         let user = res.data.user;
+                        console.log(user);
                         localStorage.setItem('token',res.data.token);
                         localStorage.setItem('id',user._id);
                         localStorage.setItem('name',user.name);

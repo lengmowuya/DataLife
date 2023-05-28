@@ -84,4 +84,10 @@ if(Tool.config.process == "development"){
 }else{
     Tool.config.address = "http://" + "101.35.144.20:3000";
 }
+
+if(Tool.config.process == "development"){
+    Tool.config.mobileAddress = "http://192.168.1.9:5173";
+}else{
+    Tool.config.mobileAddress = "http://101.35.144.20:5173";
+}
 module.exports = Tool;

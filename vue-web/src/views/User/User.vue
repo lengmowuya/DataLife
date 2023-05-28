@@ -10,6 +10,9 @@
       </div>
       
     </div>
+    <div class="chart">
+
+    </div>
     <!-- 生涯详情 -->
     <div class="CareerBlock">
       <!-- 事务生涯统计 -->
@@ -51,54 +54,129 @@
 </template>
 <script>
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import * as echarts from 'echarts';
+import 'dayjs/locale/zh-cn'
+import dayjs from 'dayjs';
+dayjs.locale('zh-cn');
+import {defineComponent , ref , computed , toRefs , getCurrentInstance} from 'vue'
+
 export default {
   data() {
     return {
-      RecordList: [],
       affairRecordLength:0,
       affairRecordDays:0,
       thoughtLength:0,
       thoughtDays:0,
-      List: [],
-      dateList: [],
       user:{
         id:'',
         headImg:'',
         name:'',
         email:''
       },
-
+      xAxis:[],
+      ChartData:[],
+      myChart:null,
     };
   },
   mounted() {
-    this.RecordList = this.$store.state.AffairRecordList;
-    this.List = this.$store.state.ThoughtRecordList;
+    // this.RecordList = this.$store.state.AffairRecordList;
+    // this.List = this.$store.state.ThoughtRecordList;
     this.user.id = localStorage.getItem('id');
     this.user.headImg = localStorage.getItem('headImg');
     this.user.name = localStorage.getItem('name');
     this.user.email = localStorage.getItem('email');
+
     this.axios.get(this.Tool.config.address + '/affairRecord/days/'+this.user.id)
       .then((docs) => {
-          this.affairRecordDays = docs.data.days;
+          this.$data.affairRecordDays = docs.data.days;
       })
-      this.axios.get(this.Tool.config.address + '/affairRecord/length/'+this.user.id)
+    this.axios.get(this.Tool.config.address + '/affairRecord/length/'+this.user.id)
       .then((docs) => {
-          this.affairRecordLength= docs.data.length;
+          this.$data.affairRecordLength= docs.data.length;
       })
-      this.axios.get(this.Tool.config.address + '/thought/days/'+this.user.id)
+    this.axios.get(this.Tool.config.address + '/thought/days/'+this.user.id)
       .then((docs) => {
-          this.thoughtDays = docs.data.days;
+          this.$data.thoughtDays = docs.data.days;
       })
-      this.axios.get(this.Tool.config.address + '/thought/length/'+this.user.id)
+    this.axios.get(this.Tool.config.address + '/thought/length/'+this.user.id)
       .then((docs) => {
-          this.thoughtLength = docs.data.length;
+          this.$data.thoughtLength = docs.data.length;
       })
+
+    // 梳理出7天
+    let days = [];
+    while(days.length < 7){
+        if(days.length == 0){
+            days.push(dayjs(new Date()));
+        }else{
+            // 倒推一天
+            let prev = days[0];
+            // console.log(prev);
+            days.unshift(dayjs(prev).add(-1,'day'));
+        }
+    }
+
+    for(let i = 0;i < days.length;i++){
+        let item = days[i];
+        days[i] = dayjs(item).format('dddd').replace('星期','周');
+    }
+
+    // console.log(days);
+    // Vue.set(this.data,'xAxis',days);
+    this.$data.xAxis = days;
+
+    // 装载Echarts
+    this.$data.myChart = echarts.init(document.querySelector('.chart'));
+    // this.chartOption = ;
+    // this.$data.myChart.setOption({
+    //   xAxis: {
+    //     type: 'category',
+    //     data: this.$data.xAxis
+    //   },
+    //   yAxis: {
+    //     type: 'value'
+    //   },
+    //   series: [
+    //     {
+    //       data:this.$data.ChartData,
+          // type: 'bar',
+    //       // smooth: true
+    //     }
+    //   ]
+    // });
+    // 获取recent数据
+    this.axios.get(this.Tool.config.address+'/affairRecord/recent7/'+this.user.id)
+        .then(docs=>{
+            // console.log(docs.data);
+            let mapList = this.xAxis.concat();
+            let data = docs.data.reduce((prev,item,i)=>{
+                let week = dayjs(new Date(item.time)).format('dddd').replace('星期','周');
+                // 对比归类
+                for(let j = 0;j<mapList.length;j++){
+                    if(week == mapList[j]){
+                        if(prev[j] == undefined){
+                            prev[j] = 0;
+                        }
+                        prev[j]++;
+                    }
+                }
+                return prev;
+            },[]);
+            // console.log(data);
+            this.$data.ChartData = data;
+            this.drawChart();
+          })
+    // setInterval(()=>{
+    //   // this.$forceUpdate();
+    //   this.drawChart();
+    // },1000)
   },
-  updated(){
+  Updated(){
     this.user.id = localStorage.getItem('id');
     this.user.headImg = localStorage.getItem('headImg');
     this.user.name = localStorage.getItem('name');
     this.user.email = localStorage.getItem('email');
+
   },
   methods:{
     loginOut(){
@@ -109,6 +187,25 @@ export default {
       localStorage.setItem('email','');
       this.$store.state.isLogin = false;
       this.$router.push("sign");
+    },
+    drawChart(){
+      this.$data.myChart.setOption({
+          xAxis: {
+            type: 'category',
+            data: this.$data.xAxis
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              // data:[8, 9, 1, 1, 1, 10, 6],
+              data:this.$data.ChartData,
+              type: 'line',
+              smooth: true
+            }
+          ]
+        });
     }
   }
 };

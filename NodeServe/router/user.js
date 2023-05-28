@@ -15,7 +15,15 @@ app.post('/user/sign',(req,res)=>{
         if(result == undefined){
             new Export.User(req.body).save((err,result)=>{
                 if(err) res.send({type:'ERROR'});
-                res.send({type:'success',id:result._id,token: jwt.sign({ _id: result._id }),user:result});
+
+                // 去掉敏感数据
+                let userCopy = {
+                    _id:result._id,
+                    email:result.email,
+                    name:result.name,
+                    headImg:result.headImg
+                };
+                res.send({type:'success',id:result._id,token: jwt.sign({ _id: result._id }),user:userCopy});
             });
         }else{
             res.send({type:'exist'});
@@ -32,7 +40,15 @@ app.post('/user/login',(req,res)=>{
             if(result == undefined){
                 res.send({type:'null'});
             }else if(result.passward == req.body.passward){
-                res.send({type:'success',id:result._id,token:jwt.sign({ _id: result._id }),user:result});
+                
+                // 去掉敏感数据
+                let userCopy = {
+                    _id:result._id,
+                    email:result.email,
+                    name:result.name,
+                    headImg:result.headImg
+                };
+                res.send({type:'success',id:result._id,token:jwt.sign({ _id: result._id }),user:userCopy});
             }else{
                 res.send({type:'error'});
             }

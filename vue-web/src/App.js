@@ -71,7 +71,10 @@ export default {
             this.$store.state.user.headImg = localStorage.getItem('headImg');
         }
         
-
+        if(document.body.clientWidth < 800){
+            console.log(document.body.clientWidth);
+            window.location.href= this.Tool.config.mobileAddress;
+        }
     },
     updated() {
         if (localStorage.getItem('id') == "" || localStorage.getItem('id') == undefined) {
@@ -81,6 +84,10 @@ export default {
             this.$store.state.user.email = localStorage.getItem('email');
             this.$store.state.user.name = localStorage.getItem('name');
             this.$store.state.user.headImg = localStorage.getItem('headImg');
+        }
+        if(document.body.clientWidth < 800){
+            console.log(document.body.clientWidth);
+            window.location.href= this.Tool.config.mobileAddress;
         }
     },
 };

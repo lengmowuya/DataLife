@@ -12,6 +12,7 @@
 }
 .PageCore{
     width:100vw;
+    min-width: 1000px;
     overflow: hidden;
     margin:0 auto;
     display:flex;
@@ -22,8 +23,9 @@
     overflow: hidden;
     width:30%;
     flex-grow: 1;
-    max-width: 400px;
+    max-width: 460px;
     box-sizing: border-box;
+    min-width: 300px;
     .AffairListTools{
         display:flex;
         height:40px;
@@ -40,8 +42,16 @@
             cursor: pointer;
             user-select: none;
             transition:all 0.25s;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            i{
+                font-size:20px;
+                margin-right: 3px;
+                margin-top:-2px;
+            }
             &:hover{
-                color:#232323;
+                color:#205295;
             }
         }
     }

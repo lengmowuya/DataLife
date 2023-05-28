@@ -3,7 +3,7 @@ let User = {
     SignUser(SignBlock) {
         let request = new Promise((resolve, reject) => {
             let myUser = {
-                name: SignBlock.email,
+                // name: SignBlock.email,
                 email: SignBlock.email,
                 passward: SignBlock.passward
             }
@@ -26,7 +26,7 @@ let User = {
     LoginUser(User) {
         let request = new Promise((resolve, reject) => {
                 let myUser = {
-                    name: User.email,
+                    // name: User.email,
                     email: User.email,
                     passward: User.passward
                 }
@@ -44,6 +44,52 @@ let User = {
                         reject("NetError", error);
                     })
             });
+        return request;
+    },
+    LoginUserGlobal(user){
+        // 用户登录
+        // if (this.$store.state.isLogin) {
+        //     return new Promise((resolve, reject) => {
+        //         resolve();
+        //     });
+        // }
+        let request = new Promise((resolve,reject)=>{
+            this.LoginUser(user).then(
+                (data) => {
+                    let res = data.res;
+                    let myUser = data.myUser;
+                    let log = res.data.type;
+                    myUser.id = res.data.id;
+                    if (log == "success") {
+                        // this.$store.state.user = myUser;
+                        // this.$store.state.isLogin = true;
+                        let user = res.data.user;
+                        localStorage.setItem('token',res.data.token);
+                        localStorage.setItem('id',user._id);
+                        localStorage.setItem('name',user.name);
+                        localStorage.setItem('email',user.email);
+                        localStorage.setItem('headImg',user.headImg);
+                        // this.$router.push("affair");
+                        resolve(res.data);
+                    } else if (log == "null") {
+                        alert("未找到用户");
+                        reject();
+                    } else if (log == "error") {
+                        alert("密码错误");
+                        reject();
+                    }
+                }).catch((ErrorTip) => {
+                    if (ErrorTip == "DataError") {
+                        alert("邮箱和密码请勿为空");
+                    } else if (ErrorTip == "NetError") {
+                        alert("服务请求错误");
+                    } else {
+                        alert("未知错误");
+                        // console.log(ErrorTip);
+                    }
+                    reject(ErrorTip);
+                })
+        })
         return request;
     },
     TestServer() {

@@ -4,7 +4,7 @@ let  EmotionSchema = {
     name:String,
     time:{
         type:Date,
-        default:new Date()
+        default:Date.now
     }
 }
 const Emotion = mongoose.model('Emotion',EmotionSchema,"Emotion");

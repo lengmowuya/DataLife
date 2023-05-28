@@ -16,6 +16,7 @@
                 <span class="goLogin" @click="onSign=false">已有账号?转去登录</span>
             </div>
         </div>
+
         <div id="LoginBlock" v-if="!onSign">
             <div class="Header">
                 <p class="title" @click="onSign=!onSign">现在就登录</p>
@@ -73,46 +74,17 @@ export default {
                 }
             );
         },
-        // 用户登录
-        LoginUser(isRemember) {
-            if (this.$store.state.isLogin) {
-                //   resolve();
-                return;
-            }
-            this.Work.User.LoginUser(this.SignBlock).then(
-                (data) => {
-                    let res = data.res;
-                    let myUser = data.myUser;
-                    let log = res.data.type;
-                    myUser.id = res.data.id;
-                    if (log == "success") {
-                        this.$store.state.user = myUser;
-                        this.$store.state.isLogin = true;
-                        if (isRemember) {
-                            this.Tool.writeUserStorage(
-                                myUser.email,
-                                myUser.passward
-                            );
-                        }
-                        this.$router.push("affair");
-                    } else if (log == "null") {
-                        alert("未找到用户");
-                    } else if (log == "error") {
-                        alert("密码错误");
-                    }
-                },
-                (ErrorTip) => {
-                    if (ErrorTip == "DataError") {
-                        alert("邮箱和密码请勿为空");
-                    } else if (ErrorTip == "NetError") {
-                        alert("服务请求错误");
-                    } else {
-                        alert("未知错误");
-                        console.log(ErrorTip);
-                    }
-                }
-            );
-        },
+        LoginUser(){
+            // console.log(this.SignBlock);
+            this.Work.User.LoginUserGlobal(this.SignBlock)
+                .then((data)=>{
+                    console.log(data);
+                    this.$store.state.user = data.user;
+                    this.$store.state.user.id = data.user._id;
+                    // this.$store.state.isLogin = true;
+                    this.$router.push("affair");
+                })
+        }
     },
     mounted() {
         document.title = "DataLife-" + "登录/注册";
@@ -126,16 +98,16 @@ export default {
                 this.nodeError = true;
             }
         );
-        if (this.$store.state.user.email == "") {
-            let user = this.Tool.getUserStorage();
-            if (user.email == "" || user.email == undefined) {
-                return;
-            }
-            this.SignBlock.email = user.email;
-            this.SignBlock.passward = user.passward;
-            this.$store.state.user.email = user.email;
-            this.$store.state.user.passward = user.passward;
-        }
+        // if (this.$store.state.user.email == "") {
+        //     let user = this.Tool.getUserStorage();
+        //     if (user.email == "" || user.email == undefined) {
+        //         return;
+        //     }
+        //     this.SignBlock.email = user.email;
+        //     this.SignBlock.passward = user.passward;
+        //     this.$store.state.user.email = user.email;
+        //     this.$store.state.user.passward = user.passward;
+        // }
     },
 };
 </script>

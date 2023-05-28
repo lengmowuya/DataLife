@@ -4,7 +4,7 @@ let  ThoughtSchema = {
     text:String,
     time:{
         type:Date,
-        default:new Date(new Date() + 8*60*60)
+        default:Date.now
     },
     // emotion:{
     //     type: mongoose.Schema.Types.ObjectId,

@@ -26,58 +26,16 @@ export default {
             this.Work.Thought.__proto__ = this.Work.__proto__;
         },
         // 用户登录
-        LoginUser(isRemember, User) {
+        LoginUser(User) {
             // let that = this;
-            let request = new Promise((resolve, reject) => {
-                if (this.$store.state.isLogin) {
-                    resolve();
-                    return;
-                }
-                this.Work.User.LoginUser(User).then(
-                    (data) => {
-                        let res = data.res;
-                        let myUser = data.myUser;
-                        let log = res.data.type;
-                        console.log(data);
-                        myUser.id = res.data.id;
-                        if (log == "success") {
-                            this.$store.state.user = myUser;
-                            this.$store.state.isLogin = true;
-                            // 保存token
-                            localStorage.setItem('token',res.data.token);
-                            if (isRemember) {
-                                this.Tool.writeUserStorage(
-                                    myUser.email,
-                                    myUser.passward
-                                );
-                            }
-                            resolve();
-                            if (this.$route.path == "/login") {
-                                this.$router.push("affair");
-                            }
-                            // console.log(that.$route.path);
-                        } else if (log == "null") {
-                            alert("未找到用户");
-                            reject();
-                        } else if (log == "error") {
-                            alert("密码错误");
-                            reject();
-                        }
-                    },
-                    (ErrorTip) => {
-                        if (ErrorTip == "DataError") {
-                            alert("邮箱和密码请勿为空");
-                        } else if (ErrorTip == "NetError") {
-                            alert("服务请求错误");
-                        } else {
-                            alert("未知错误");
-                            console.log(ErrorTip);
-                        }
-                        reject();
-                    }
-                );
-            });
-            return request;
+            this.Work.User.LoginUserGlobal(this.SignBlock)
+                .then((data)=>{
+                    console.log(data);
+                    this.$store.state.user = data.user;
+                    this.$store.state.user.id = data.user._id;
+                    this.$store.state.isLogin = true;
+                    this.$router.push("affair");
+                })
         },
     },
     beforeCreate() {
@@ -91,12 +49,8 @@ export default {
         this.Work.Thought.__proto__ = this.Work.__proto__;
     },
     mounted() {
-        this.$store.state.NowDate = {
-            time: new Date().getTime(),
-            data: {},
-            Date: new Date(),
-        };
         this.BindVueToWork();
+        // 是否显示Nav
         this.$watch(
             () => this.$route,
             (count, prevCount) => {
@@ -107,29 +61,26 @@ export default {
                 }
             }
         );
-        if (this.$store.state.user.email == "") {
-            let user = this.Tool.getUserStorage();
-            if (user.email == "" || user.email == undefined) {
-                return;
-            }
-            this.$store.state.user.email = user.email;
-            this.$store.state.user.passward = user.passward;
+
+        if (localStorage.getItem('id') == "" || localStorage.getItem('id') == undefined) {
+            this.$router.push("sign");
+        }else{
+            this.$store.state.user.id = localStorage.getItem('id');
+            this.$store.state.user.email = localStorage.getItem('email');
+            this.$store.state.user.name = localStorage.getItem('name');
+            this.$store.state.user.headImg = localStorage.getItem('headImg');
         }
-        this.LoginUser(false, this.$store.state.user)
-            .then(() => {
-                this.Work.Affair.GetAllAffair().then(
-                    (res) => {
-                        this.$store.state.AffairList = res.data;
-                    },
-                    () => {
-                        alert("服务请求错误-ERROR");
-                    }
-                );
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        
+
     },
     updated() {
+        if (localStorage.getItem('id') == "" || localStorage.getItem('id') == undefined) {
+            this.$router.push("sign");
+        }else{
+            this.$store.state.user.id = localStorage.getItem('id');
+            this.$store.state.user.email = localStorage.getItem('email');
+            this.$store.state.user.name = localStorage.getItem('name');
+            this.$store.state.user.headImg = localStorage.getItem('headImg');
+        }
     },
 };

@@ -55,31 +55,22 @@ let Tool = {
         return data.month + '-' + data.day;
     },
     getTimeString(data){
-    let hourName = '';
-    let hour = data.hour;
-    if(hour <= 6){
-        hourName = "凌晨";
-    }else if(hour <= 10){
-        hourName = "上午";
-    }else if(hour <= 12){
-        hourName = "中午";
-    }else if(hour <= 17){
-        hourName = "下午";
-    }else if(hour <= 21){
-        hourName = "晚上";
-    }else{
-        hourName = "半夜";
-    }
-    return hourName + '' + data.hour + ':' + data.min;
-    },
-    writeUserStorage(email,passward){
-        localStorage.setItem('email',email);
-        localStorage.setItem('passward',passward);
-    },
-    getUserStorage(){
-        let email = localStorage.getItem('email');
-        let passward = localStorage.getItem('passward');
-        return {email,passward};
+        let hourName = '';
+        let hour = data.hour;
+        if(hour <= 6){
+            hourName = "凌晨";
+        }else if(hour <= 10){
+            hourName = "上午";
+        }else if(hour <= 12){
+            hourName = "中午";
+        }else if(hour <= 17){
+            hourName = "下午";
+        }else if(hour <= 21){
+            hourName = "晚上";
+        }else{
+            hourName = "半夜";
+        }
+        return hourName + '' + data.hour + ':' + data.min;
     }
 }
 

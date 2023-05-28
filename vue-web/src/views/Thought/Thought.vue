@@ -7,13 +7,13 @@
                 <!-- 短文输入框 -->
                 <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
                 <!-- 状态列表(默认隐藏) -->
-                <div class="EmotionList" v-show="showEmotionList">
+                <!-- <div class="EmotionList" v-show="showEmotionList">
                     <ul>
                         <li v-for="(item,index) in EmotionList"  :class="{active:item._id == thoughtEmotion._id}" :key="index" @click="changeEmotion(item)">{{item.name}}</li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="EnterTools">
-                    <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button>
+                    <!-- <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button> -->
                     <button class="EnterButton" @click="writeThou">记录</button>
                 </div>
 
@@ -26,14 +26,14 @@
                 <ul class="CurrentDateList">
                     <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
                         <div class="ThoughtMain">
-                            <pre class="ThoughtText">{{li.text}}</pre>
                             <div class="ThoughtDetails">
-                                <span class="ThoughtEmotion" v-if="li.emotion != null">
+                                <!-- <span class="ThoughtEmotion" v-if="li.emotion != null">
                                     {{li.emotion.name}}
-                                </span>
+                                </span> -->
                                 <span class="thou_time">{{Tool.getTimeString(li.date)}}</span>
                                 <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
                             </div>
+                            <pre class="ThoughtText">{{li.text}}</pre>
                         </div>
                     </li>
                 </ul>

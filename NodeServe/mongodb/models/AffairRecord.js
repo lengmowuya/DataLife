@@ -5,7 +5,7 @@ let AffairRecordSchema = {
     sentence:String,
     time:{
         type:Date,
-        default:new Date(new Date().getTime() + 8 * 60 * 60)
+        default:Date.now
     },
     owner:{
         type: mongoose.Schema.Types.ObjectId,

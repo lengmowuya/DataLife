@@ -23,10 +23,10 @@
 }
 .MyAffairBigBlock{
     width:100%;
-    background:#f6f7f9;
-    box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
+    // background:#f6f7f9;
+    // box-shadow:inset 0px 0px 20px 0 rgba(55,99,170,0.11);
     max-height: calc(100vh - 90px);
-    border:1px solid #d8dee4;
+    // border:1px solid #d8dee4;
     // border-left:1px solid #d8dee4;
     flex-grow: 0;
     max-width: 1000px;
@@ -57,14 +57,20 @@
 .MyAffair{
     width:100%;
     display:flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding:10px;
     // padding-top:12px;
     flex-grow: 0;
     box-sizing: border-box;
     min-height: 300px;
     overflow: auto;
-    max-height: calc(100% - 0px);
+    // flex:1 ;
+    // height:100%;
+    // max-height: calc(100% - 0px);
+    overflow: hidden;
     &::-webkit-scrollbar{
         overflow: hidden;
         width:0px;
@@ -83,15 +89,15 @@
         margin:8px 8px;
         // width:100%;
         height:68px;
+        max-height: 68px;
+        overflow: hidden;
         width:calc(50% - 16px);
         // min-width: 34%;
-
         max-width: calc(50% - 16px);
         // min-width: 300px;
         box-sizing: border-box;
-        flex-grow: 1;
         background:#fff;
-        flex-grow: 1;
+        flex-grow: 0 !important;
         cursor: pointer;
         transition:all 0.25s;
         display:flex;

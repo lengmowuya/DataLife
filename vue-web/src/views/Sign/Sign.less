@@ -10,26 +10,31 @@
     overflow: hidden;
     box-sizing: border-box;
     .backgroundLogo{
-        width:100%;
+        // width:100%;
         overflow: hidden;
         position: absolute;
         top:30%;
         left:50%;
         transform: translateX(-50%) ;
         font-size:500px;
-        line-height: 500px; 
-        height: 500px;
+        // line-height: 500px; 
+        // height: 500px;
         color:@mainColor;
         user-select: none;
         font-weight: bold;
         z-index:1;
-        transition:all 0.25s;
+        transition:all 0.5s;
         text-align: center;
+        opacity: 0.1;
     }
     &.onSign{
         .backgroundLogo{
             position: absolute;
-            top:2% !important;
+            top:-30% !important;
+            left:-30% !important;
+            transform: rotate(-360deg);
+            font-size:800px;
+            opacity: 0.05;
         }
     }
 }

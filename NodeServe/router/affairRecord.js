@@ -7,12 +7,11 @@ const dayjs = require('dayjs');
 
 // 获取用户今天的记录
 app.get('/affairRecord/today/:userId',(req,res)=>{
-    let today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
     // console.log(new Date());
+    let today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:today}})
         .populate('affair')
         .then(result=>{
-            // console.log(result);
             res.send(result);
         })
 })
@@ -30,12 +29,9 @@ app.get('/affairRecord/recent7/:userId',(req,res)=>{
     let startDate = dayjs(new Date()).add(-7,'day');
     let endDate = new Date();
 
-    // console.log(startDate,endDate)
-    // console.log(dayjs);
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:startDate,$lte:endDate}})
         .populate('affair')
         .then(result=>{
-            // console.log(result);
             res.send(result);
         })
 })
@@ -44,12 +40,9 @@ app.get('/affairRecord/recent7/:userId',(req,res)=>{
     let startDate = dayjs(new Date()).add(-30,'day');
     let endDate = new Date();
 
-    // console.log(startDate,endDate)
-    // console.log(dayjs);
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:startDate,$lte:endDate}})
         .populate('affair')
         .then(result=>{
-            // console.log(result);
             res.send(result);
         })
 })
@@ -61,7 +54,6 @@ app.get('/affairRecord/date/:userId',(req,res)=>{
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:startDate,$lte:endDate}})
         .populate('affair')
         .then(result=>{
-            // console.log(result);
             res.send(result);
         })
 })
@@ -75,8 +67,6 @@ app.post('/affairRecord/remove',(req,res)=>{
 // 添加记录
 app.post('/affairRecord/add',(req,res)=>{
     // 创建新记录
-    console.log(new Date(new Date().getTime() + 8 * 60 * 60));
-    // console.log(req.body);
     let  AffairRecord = {
         sentence:req.body.sentence,
         owner:req.body.owner,
@@ -114,7 +104,6 @@ app.get('/affairRecord/days/:userId',(req,res)=>{
             let days = 0;
             let daysObj = result.reduce((prev,item)=>{
                 let str = new Date(item.time).toDateString();
-                // console.log(item.str);
                 if(prev[str] == undefined){
                     prev[str] = [];
                 }

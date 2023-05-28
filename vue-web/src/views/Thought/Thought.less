@@ -11,8 +11,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background:#f6f7f9;
-        padding:60px 0px;
+        // background:#f6f7f9;
+        padding:20px 0px;
     }
     // 短语生涯数据
     .ThoughtCareer{
@@ -51,6 +51,8 @@
         margin-top:20px;
         max-width: 600px;
         flex-direction: column;
+
+        position: relative;
         textarea{
             flex-grow: 1;
             border:2px solid rgba(55,99,170,0.1);
@@ -61,6 +63,8 @@
             padding:8px;
             transition:all 0.25s;
             font-family: caner;
+            height:100px;
+            padding-bottom:38px;
             &::placeholder{
                 color:#98a3b7;
             }
@@ -69,12 +73,17 @@
             }
             &:focus{
                 border-color:@mainColor;
+                height:200px;
             }
         }
         .EnterTools{
             padding-top:8px;
             display:flex;
-            justify-content: space-between;
+            // justify-content: space-between;
+            justify-content: flex-end;
+            position: absolute;
+            right:6px;
+            bottom:6px;
             .EnterEmontion{
                 border:2px solid rgba(55,99,170,0.1);
                 background:#fff;
@@ -97,9 +106,9 @@
                 }
             }
             .EnterButton{
-                width:120px;
+                width:90px;
                 flex-shrink: 0;
-                height:34px;
+                height:30px;
                 font-family: caner;
                 border:none;
                 background:@mainColor;
@@ -162,7 +171,7 @@
     .ThougthList{
         list-style: none;
         max-width: 800px;
-        margin:40px auto;
+        margin:20px auto;
         padding-bottom:20px;
         display:flex;
         justify-content: center;
@@ -173,15 +182,16 @@
             flex-direction: row;
             flex-wrap: wrap;
             background:#fff;
-            border-radius: 6px;
-            padding:18px 16px;
-            margin-top:38px;
-            background:#fff;
+            border-radius: 12px;
+            padding:14px;
+            margin-top:20px;
+            background:#f6f7f9;
             box-sizing: border-box;
+            box-shadow: inset 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
             .DateLiTitle{
                 height:30px;
                 // font-weight: bold;
-                font-size: 14px;
+                // font-size: 14px;
                 user-select: none;
                 color:#98a3b7;
                 display:flex;
@@ -189,6 +199,8 @@
                 align-items: center;
                 margin:6px;
                 margin-top:-10px;
+                font-weight: bold;
+                padding:10px;
                 .DateThoughtNumber{
                     font-size:12px;
                     color:#fff;
@@ -207,14 +219,14 @@
                 flex-wrap: wrap;
             }
             .ThougthLi{
-                padding:20px;
+                padding:10px;
                 border-radius:6px;
                 margin-bottom:10px;
                 display:flex;
                 width:100%;
                 box-sizing: border-box;
                 flex-grow: 1;
-                background:#fff;
+                // background:#fff;
                 transition: all 0.25s;
                 &:hover{
                     border-color: @mainColor;
@@ -281,6 +293,7 @@
                             display: none;
                             font-family: caner;
                             user-select: none;
+                            font-size:12px;
                             &:hover{
                                 background:rgba(255, 0, 0,1);
                             }

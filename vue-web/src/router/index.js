@@ -37,8 +37,9 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to,from,next)=>{
-  let user = vuex.state.user;
-  if(user == undefined ||user.email == undefined || user.email == '' && to.path != '/sign'){
+  // let user = vuex.state.user;
+  let id = localStorage.getItem('id');
+  if((id == "" || id == undefined|| id == 'undefined') && to.path != '/sign'){
     next("/sign");
   }else{
     next();

@@ -15,7 +15,7 @@ Icon.find({},(err,res)=>{
     if(res.length == 0){
         let glyphs = FontInfo.glyphs;
         for(let i = 0;i<glyphs.length;i++){
-            new Export.IconModel(glyphs[i]).save();
+            new Icon(glyphs[i]).save();
         }
     }
 })

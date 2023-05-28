@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
+/node_modules
 /dist
-
+DataLife.json
 
 # local env files
 .env.local

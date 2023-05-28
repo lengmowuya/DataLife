@@ -27,7 +27,7 @@ const routes = [
     path: '/sign',
     name: 'Sign',
     component: () => import(/* webpackChunkName: "about" */ '../views/Sign/Sign.vue')
-  },
+  }
 ]
 
 const router = createRouter({

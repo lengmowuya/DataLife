@@ -45,6 +45,7 @@
 <script>
 import RecordLi from './RecordLi/RecordLi.vue'
 export default {
+  name:'FinishBlock',
   components: {
     RecordLi
   },

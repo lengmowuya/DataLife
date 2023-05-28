@@ -61,6 +61,7 @@ dayjs.locale('zh-cn');
 import {defineComponent , ref , computed , toRefs , getCurrentInstance} from 'vue'
 
 export default {
+  name:'User',
   data() {
     return {
       affairRecordLength:0,

@@ -19,6 +19,7 @@
 
 <script>
 export default {
+    name:'ComplateAffair',
     props: ["onComplete", "TargetAffair"],
     data() {
         return {
@@ -42,7 +43,10 @@ export default {
                 .post(this.Tool.config.address + "/affairRecord/add", info)
                 .then(() => {
                     this.$emit("getAllAffair");
-                    this.$emit("closePanel");
+                    // this.$emit("closePanel");
+                    console.log(this.$parent);
+                    this.$parent.getAllAffair();
+                    // this.getAllAffair();
                     this.pushSentence = "";
                 });
         },

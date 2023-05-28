@@ -43,6 +43,7 @@
 </template>
 <script>
 export default {
+    name:'Thought',
       data(){
       return {
         List:[],
@@ -79,10 +80,10 @@ export default {
                 alert("记录内容不能为空");
                 return;
             }
-            if(this.thoughtEmotion._id == null){
-                alert("请选择一个状态");
-                return;
-            }
+            // if(this.thoughtEmotion._id == null){
+            //     alert("请选择一个状态");
+            //     return;
+            // }
             let that = this;
             this.axios.post(this.Tool.config.address + '/thought/add',data)
                 .then(()=>{

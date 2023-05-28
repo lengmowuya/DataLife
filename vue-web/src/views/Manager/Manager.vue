@@ -49,6 +49,7 @@
 <script>
 import EditorAffair from "./EditorAffair/EditorAffair.vue";
 export default {
+    name:'Manager',
     components: {
         EditorAffair,
     },

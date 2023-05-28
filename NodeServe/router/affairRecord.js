@@ -59,10 +59,12 @@ app.get('/affairRecord/date/:userId',(req,res)=>{
 })
 // 删除指定记录
 app.post('/affairRecord/remove',(req,res)=>{
-    Export.AffairRecord.remove({_id:req.body.id},(err,result)=>{
-        if(err) res.send({type:'error'});
-        res.send();
-    })
+    Export.AffairRecord.deleteOne({_id:req.body.id})
+        .then(()=>{
+            res.send({type:'success'});
+        }).catch((err)=>{
+            res.send({type:'error'})
+        })
 })
 // 添加记录
 app.post('/affairRecord/add',(req,res)=>{

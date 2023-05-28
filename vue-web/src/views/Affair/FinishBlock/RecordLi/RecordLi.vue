@@ -26,6 +26,7 @@
 <script>
 //import x from ''
 export default {
+  name:'RecordLi',
   components: {
 
   },
@@ -39,7 +40,14 @@ export default {
 
   },
   methods: {
-
+    removeAffairRecord(id){
+      if(confirm('你确定要删除改记录吗')){
+        this.Work.AffairRecord.RemoveAffairRecord(id)
+          .then(doc=>{
+            this.$forceUpdate();
+          })
+      }
+    }
   },
 }
 </script>

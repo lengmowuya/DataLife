@@ -37,6 +37,7 @@
 
 <script>
 export default {
+    name:'CreateAffair',
     data() {
         return {
             // 编辑板块信息

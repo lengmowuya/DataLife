@@ -1,3 +1,5 @@
+import axios from 'axios'
+import Tool from './Tools'
 // 用户相关业务
 let User = {
     SignUser(SignBlock) {
@@ -11,7 +13,7 @@ let User = {
                 reject("DataError");
                 return;
             }
-            this.axios.post(this.Tool.config.address + '/user/sign', myUser)
+            axios.post(Tool.config.address + '/user/sign', myUser)
                 .then((res) => {
                     resolve({
                         res,
@@ -34,7 +36,7 @@ let User = {
                     reject("DataError");
                     return;
                 }
-                this.axios.post(this.Tool.config.address + '/user/login', myUser)
+                axios.post(Tool.config.address + '/user/login', myUser)
                     .then((res) => {
                         resolve({
                             res,
@@ -61,8 +63,6 @@ let User = {
                     let log = res.data.type;
                     myUser.id = res.data.id;
                     if (log == "success") {
-                        // this.$store.state.user = myUser;
-                        // this.$store.state.isLogin = true;
                         let user = res.data.user;
                         console.log(user);
                         localStorage.setItem('token',res.data.token);
@@ -70,7 +70,6 @@ let User = {
                         localStorage.setItem('name',user.name);
                         localStorage.setItem('email',user.email);
                         localStorage.setItem('headImg',user.headImg);
-                        // this.$router.push("affair");
                         resolve(res.data);
                     } else if (log == "null") {
                         alert("未找到用户");
@@ -96,7 +95,7 @@ let User = {
     TestServer() {
         let request = new Promise((resolve, reject) => {
             // 检测与服务器连接
-            this.axios.get(this.Tool.config.address + '/test')
+            axios.get(Tool.config.address + '/test')
                 .then(() => {
                     resolve();
                 }).catch((error) => {
@@ -119,7 +118,7 @@ let Affair = {
                 reject('DataError');
             } else {
                 // 增添事务所有者
-                this.axios.post(this.Tool.config.address + '/affair/add', NewAffair)
+                axios.post(Tool.config.address + '/affair/add', NewAffair)
                     .then(() => {
                         resolve();
                     }, () => {
@@ -132,7 +131,7 @@ let Affair = {
     // 删除事务
     RemoveAffair(id) {
         let request = new Promise((resolve, reject) => {
-            this.axios.post(this.Tool.config.address + '/affair/remove', {id})
+            axios.post(Tool.config.address + '/affair/remove', {id})
                 .then(() => {
                     resolve();
                 })
@@ -148,7 +147,7 @@ let Affair = {
             if (NewAffair.name.trim() == '' || NewAffair.describe.trim() == '' || NewAffair.icon.trim() == '') {
                 reject('DataError');
             } else {
-                this.axios.post(this.Tool.config.address + '/affair/update', NewAffair)
+                axios.post(Tool.config.address + '/affair/update', NewAffair)
                     .then(() => {
                         resolve();
                     })
@@ -163,7 +162,7 @@ let Affair = {
     // 获取所有事务
     GetAllAffair() {
         let request = new Promise((resolve,reject)=>{
-            this.axios.get(this.Tool.config.address + '/affair/all/' + this.$store.state.user.id)
+            axios.get(Tool.config.address + '/affair/all/' + localStorage.getItem('id'))
                 .then(res => {
                     resolve(res);
                 },()=>{
@@ -189,29 +188,29 @@ let Affair = {
 // 事务记录相关业务
 let AffairRecord = {
     // 新增事务记录
-    AddAffairRecord() {
-        let request = new Promise((resolve, reject) => {
-            if (this.pushSentence.trim() == '') {
-                alert("请填入您的总结");
-                reject('DataError');
-                return;
-            }
-            let info = {
-                affair: this.pushAffair._id,
-                sentence: this.pushSentence
-            }
-            this.axios.post(this.Tool.config.address + '/affairRecord/add', info)
-                .then(() => {
-                    resolve();
-                }).catch(() => {
-                    reject('NetError');
-                })
-        });
-        return request;
-    },
+    // AddAffairRecord(details) {
+    //     let request = new Promise((resolve, reject) => {
+    //         if (details.pushSentence.trim() == '') {
+    //             alert("请填入您的总结");
+    //             reject('DataError');
+    //             return;
+    //         }
+    //         let info = {
+    //             affair: details.pushAffair._id,
+    //             sentence: details.pushSentence
+    //         }
+    //         axios.post(Tool.config.address + '/affairRecord/add', info)
+    //             .then(() => {
+    //                 resolve();
+    //             }).catch(() => {
+    //                 reject('NetError');
+    //             })
+    //     });
+    //     return request;
+    // },
     RemoveAffairRecord(id) {
         let request = new Promise((resolve, reject) => {
-            this.axios.post(this.Tool.config.address + '/affairRecord/remove', {
+            axios.post(Tool.config.address + '/affairRecord/remove', {
                     id
                 })
                 .then(() => {
@@ -226,7 +225,7 @@ let Icon = {
     // 获取所有图标
     GetAllIcon() {
         let request = new Promise((resolve, reject) => {
-            this.axios.get(this.Tool.config.address + '/icon/all')
+            axios.get(Tool.config.address + '/icon/all')
                 .then(res => {
                     resolve(res);
                 }).catch(() => {
@@ -239,33 +238,34 @@ let Icon = {
 // 短文相关业务
 let Thought = {
     //新增短文
-    WriteThought() {
-        let request = new Promise((resolve, reject) => {
-            let data = {
-                text: this.writeText,
-                emotion: this.thoughtEmotion._id,
-                owner: this.$store.state.user.id
-            }
-            if (this.writeText.trim() == "") {
-                // alert("记录内容不能为空");
-                reject("DataError", 'trim');
-                return;
-            } else if (this.thoughtEmotion._id == null) {
-                // alert("请选择一个状态");
-                reject("DataError", 'type');
-                return;
-            }
-            this.axios.post(this.Tool.config.address + '/thought/add', data)
-                .then(() => {
-                    resolve();
-                });
-        });
-        return request;
-    },
+    // WriteThought(info) {
+    //     let request = new Promise((resolve, reject) => {
+    //         let data = {
+    //             text: info.writeText,
+    //             emotion: info.thoughtEmotion._id,
+    //             owner: localStorage.getItem('id')
+    //         }
+    //         if (info.writeText.trim() == "") {
+    //             // alert("记录内容不能为空");
+    //             reject("DataError", 'trim');
+    //             return;
+    //         } 
+    //         // else if (info.thoughtEmotion._id == null) {
+    //         //     // alert("请选择一个状态");
+    //         //     reject("DataError", 'type');
+    //         //     return;
+    //         // }
+    //         axios.post(Tool.config.address + '/thought/add', data)
+    //             .then(() => {
+    //                 resolve();
+    //             });
+    //     });
+    //     return request;
+    // },
     //删除短文
     RemoveThought(_id) {
         let request = new Promise((resolve, reject) => {
-            this.axios.post(this.Tool.config.address + '/thought/remove', {
+            axios.post(Tool.config.address + '/thought/remove', {
                     _id
                 })
                 .then(() => {

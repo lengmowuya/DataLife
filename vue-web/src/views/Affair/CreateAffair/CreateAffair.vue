@@ -1,5 +1,5 @@
 <template>
-    <div class="EditorAffairPanel" v-if="showPanel">
+    <div class="EditorAffairPanel" v-if="onCreateAffair">
         <div class="PushAlert">
             <h1>新建事务</h1>
             <div class="AffairIcon" @click="Editor.showIconList = !Editor.showIconList">
@@ -21,9 +21,11 @@
                 title="描述" />
             <p class="SentenceThum">{{ pushSentence }}</p>
             <div class="PushTools">
-                <button class="affirm" @click="AddAffair()">完成</button>
+                <button class="affirm" @click="AddAffair()">
+                    <el-icon><Select /></el-icon>完成
+                </button>
                 <button class="cancel" @click="Close()">
-                    取消
+                    <el-icon><CloseBold /></el-icon>取消
                 </button>
             </div>
             <!-- <div class="deleteButton">
@@ -41,7 +43,7 @@ export default {
     data() {
         return {
             // 编辑板块信息
-            showPanel: false,
+            // showPanel: false,
             Editor: {
                 NewAffair: {
                     name: "",
@@ -53,6 +55,7 @@ export default {
             iconList: [],
         };
     },
+    props:['onCreateAffair'],
     methods: {
         AddAffair() {
             let NewAffair = this.Editor.NewAffair;
@@ -75,10 +78,12 @@ export default {
                 });
         },
         Open() {
-            this.showPanel = true;
+            // this.onCreateAffair = true;
+            this.$parent.showCreateAffair(true);
         },
         Close() {
-            this.showPanel = false;
+            this.$parent.showCreateAffair(false);
+
         },
     },
     mounted() {

@@ -4,7 +4,7 @@
             <FinishBlock></FinishBlock>
             <div class="MyAffairBigBlock">
                 <div class="AffairListTools">
-                    <div class="CreateAffair" @click="OpenNewAffairPanel()">
+                    <div class="CreateAffair" @click="onCreateAffair = true">
                         <el-icon><CirclePlusFilled /></el-icon>创建事务
                     </div>
                     <div class="AllAffairList" @click="$router.push({name:'ManagerSelf'})">
@@ -16,28 +16,68 @@
                         您暂无事务,先创建一个吧!
                     </div>
                     <AffairLi v-for="(item, index) in AffairList" :key="index" @click="
-                        CompletePanel.onComplete = true;
-                        CompletePanel.TargetAffair = item;
+                        onCompleteRecord = true;
+                        CompleteAffair = item;
                     " :item="item"></AffairLi>
-                    <!-- <div  :class="{
-                            AffairLi: true,
-                            active: activeAffairId == item._id,
-                        }">
-
-                    </div> -->
                 </div>
             </div>
         </div>
         <!-- 完成该事务板块(默认隐藏) -->
-        <ComplateAffair :onComplete="CompletePanel.onComplete" :TargetAffair="CompletePanel.TargetAffair"
-            @getAllAffair="getAllAffair" @closePanel="closeCompleteAffairPanel">
+        <ComplateAffair 
+            :onCompleteRecord="onCompleteRecord" :CompleteAffair="CompleteAffair">
         </ComplateAffair>
-        <CreateAffair ref="CreateAffair"></CreateAffair>
+        <CreateAffair :onCreateAffair="onCreateAffair"></CreateAffair>
     </div>
 </template>
 <script>
-    import Affair  from './Affair.js';
-    export default Affair;
+    import CreateAffair from "./CreateAffair/CreateAffair.vue";
+    import FinishBlock from "./FinishBlock/FinishBlock.vue";
+    import ComplateAffair from "./ComplateAffair/ComplateAffair.vue";
+    import AffairLi from "./AffairLi/AffairLi.vue";
+    export default {
+        name:'Affair',
+        components: {
+            CreateAffair,
+            FinishBlock,
+            ComplateAffair,
+            AffairLi
+        },
+        data() {
+            return {
+                CompleteAffair: null,
+                onCreateAffair:false,
+                onCompleteRecord:false,
+                // CreateAffair: {},
+                AffairList: [],
+            };
+        },
+        methods: {
+            // 获取所有事务
+            getAllAffair() {
+                this.axios.get(
+                        this.Tool.config.address +
+                            "/affair/all/" +
+                            this.$store.state.user.id
+                    )
+                    .then((res) => {
+                        this.$data.AffairList = res.data;
+                        // this.$forceUpdate();
+                    });
+            },
+            showCreateAffair(bool){
+                this.onCreateAffair = bool;
+            },
+            showCompleteRecord(bool){
+                this.onCompleteRecord = bool;
+            }
+        },
+        mounted() {
+            // 初始化数据
+            this.getAllAffair();
+            // 页面标题
+            document.title = "DataLife";
+        },
+    };
 </script>
 <style lang="less" scoped>
     @import "./Affair.less";

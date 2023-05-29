@@ -1,54 +1,62 @@
 <template>
   <div id="SelfPage">
-    <!-- 用户信息 -->
-    <div class="UserInfo">
-      <img :src="user.headImg" alt="">
-      <div class="userInfo">
-        <h1>{{user.name}}</h1>
-        <h6>{{ user.email}}</h6>
-        <el-button type="danger" @click="loginOut()" round>登出</el-button>
+    <div class="Head">
+          <!-- 用户信息 -->
+    <div class="HeadLeft">
+      <div class="User">
+        <img :src="user.headImg" alt="">
+        <div class="userInfo">
+          <h1>{{user.name}}</h1>
+          <h6>{{ user.email}}</h6>
+          <el-button type="danger" @click="loginOut()" round>登出</el-button>
+        </div>
+        
       </div>
-      
     </div>
-    <div class="chart">
+    <div class="HeadRight">
+      <div class="chart">
 
+      </div>
+      <!-- 生涯详情 -->
+      <div class="CareerBlock">
+        <!-- 事务生涯统计 -->
+        <div class="MyAffairCareer">
+          <p class="CareerTitle">
+            <el-icon><CircleCheck /></el-icon>事务
+          </p>
+          <div class="AffairLevelBlock">
+            <span class="AllRecordLength">
+              <span class="LabelName">完成记录:</span>
+              {{ affairRecordLength }}
+              <span class="LabelName"></span>
+            </span>
+          </div>
+          <div class="AffiarCareerDayBlock">
+            <span class="AllAffairLength">
+              <span class="LabelName">累计天数:</span>
+              {{ affairRecordDays }}
+              <!-- <span class="LabelName">天</span> -->
+            </span>
+          </div>
+        </div>
+        <!-- 短语生涯统计 -->
+        <div class="ThoughtCareer">
+          <p class="CareerTitle">
+            <el-icon><ChatLineSquare /></el-icon>
+              短语</p>
+          <span class="RecordBlock"
+            ><span class="LabelName">累计天数:</span> 
+            {{ thoughtDays }}
+            <!-- <span class="LabelName"> 天</span> -->
+          </span>
+          <span class="RecordBlock"
+            ><span class="LabelName">累计记录:</span> 
+            {{ thoughtLength }}
+            <!-- <span class="LabelName"> 条</span> -->
+          </span>
+        </div>
+      </div>
     </div>
-    <!-- 生涯详情 -->
-    <div class="CareerBlock">
-      <!-- 事务生涯统计 -->
-      <div class="MyAffairCareer">
-        <p class="CareerTitle">
-          <el-icon><CircleCheck /></el-icon>事务
-        </p>
-        <div class="AffairLevelBlock">
-          <span class="AllRecordLength">
-            <span class="LabelName">总等级</span>
-            {{ affairRecordLength }}
-            <span class="LabelName">级</span>
-          </span>
-        </div>
-        <div class="AffiarCareerDayBlock">
-          <span class="AllAffairLength">
-            <span class="LabelName">累计天数</span>
-            {{ affairRecordDays }}
-            <span class="LabelName">天</span>
-          </span>
-        </div>
-      </div>
-      <!-- 短语生涯统计 -->
-      <div class="ThoughtCareer">
-        <p class="CareerTitle">
-          <el-icon><ChatLineSquare /></el-icon>
-            短语</p>
-        <span class="RecordBlock"
-          ><span class="LabelName">总数</span> {{ thoughtDays
-          }}<span class="LabelName"> 天</span></span
-        >
-        <span class="RecordBlock"
-          ><span class="LabelName">累计</span> {{ thoughtLength
-          }}<span class="LabelName"> 条</span></span
-        >
-      </div>
     </div>
   </div>
 </template>
@@ -80,8 +88,6 @@ export default {
     };
   },
   mounted() {
-    // this.RecordList = this.$store.state.AffairRecordList;
-    // this.List = this.$store.state.ThoughtRecordList;
     this.user.id = localStorage.getItem('id');
     this.user.headImg = localStorage.getItem('headImg');
     this.user.name = localStorage.getItem('name');

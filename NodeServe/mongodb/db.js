@@ -1,6 +1,6 @@
 let mongoose = require("mongoose");
 let db = mongoose.connection;
-let dbConfig = require("./../../DataLife.json");
+let dbConfig = require("./../../../DataLife.json");
 db.on('error',()=>{
     console.log("数据库异常!");
 })

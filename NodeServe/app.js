@@ -1,16 +1,14 @@
 // 1.引入包
 const bodyParser = require('body-parser');
-// const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const port = 3000;
 const router = require('./router/Router.js');
+
+// console.log(process.env.NODE_ENV);
 require('./mongodb/db.js');
 require('./mongodb/schema.js');
 
-
-
-// let TokenTools = require('./api/jsonwebtoken.js');
 
 // 3.使用中间件
 app.use(bodyParser.urlencoded({extended:false}));
@@ -35,16 +33,6 @@ app.get('/test',(req,res)=>{
     res.json({type:'success'});
 })
 app.use(router);
-// app.use((req,res,next)=>{
-//     if(!TokenTools.whiteList.includes(req.url)){
-//         TokenTools.verifyToken(req.header.authorization)
-//             .then(res=>{next()})
-//             .catch(e=>{res.status(401).send('invalid token')})
-//     }else{
-//         next()
-//     }
-// })
-
 
 app.listen(port,()=>{
     console.log('服务器正在运行...');

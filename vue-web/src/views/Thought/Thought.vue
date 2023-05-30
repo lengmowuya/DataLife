@@ -6,30 +6,24 @@
             <div class="EnterBlock">
                 <!-- 短文输入框 -->
                 <textarea v-model="writeText" cols="30" rows="6" style="resize:none" placeholder="一个事物也许不止一种看法呢......" ></textarea>
-                <!-- 状态列表(默认隐藏) -->
-                <!-- <div class="EmotionList" v-show="showEmotionList">
-                    <ul>
-                        <li v-for="(item,index) in EmotionList"  :class="{active:item._id == thoughtEmotion._id}" :key="index" @click="changeEmotion(item)">{{item.name}}</li>
-                    </ul>
-                </div> -->
                 <div class="EnterTools">
-                    <!-- <button :class="{active:thoughtEmotion._id != undefined,EnterEmontion:true}" @click="showEmotionList = !showEmotionList">{{thoughtEmotion.name}}</button> -->
-                    <button class="EnterButton" @click="writeThou">记录</button>
+                    <button class="EnterButton" @click="writeThou"><el-icon><EditPen /></el-icon>记录</button>
                 </div>
 
             </div>
         </div>
         <!-- 历史列表块 -->
-        <ul class="ThougthList" v-if="List.length>0">
+        <ul class="ThougthList">
+            <div class="NullBlockTip" v-if="List.length <= 0">
+                <el-icon><IceCreamRound /></el-icon>
+                给生活来一点记录!
+            </div>
             <div class="DateLi" v-for="(item,key) in dateList" :key="key">
                 <p class="DateLiTitle">{{item.showName}} <span class="DateThoughtNumber" v-if="false">{{item.thoughtList.length}} 感悟</span></p>
                 <ul class="CurrentDateList">
                     <li v-for="(li,key) in item.thoughtList" :key="key" class="ThougthLi">
                         <div class="ThoughtMain">
                             <div class="ThoughtDetails">
-                                <!-- <span class="ThoughtEmotion" v-if="li.emotion != null">
-                                    {{li.emotion.name}}
-                                </span> -->
                                 <span class="thou_time">{{Tool.getTimeString(li.date)}}</span>
                                 <span @click="destoryThou(li._id)" class="DestoryThought">删除</span>
                             </div>

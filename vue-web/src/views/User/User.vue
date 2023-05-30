@@ -8,7 +8,9 @@
         <div class="userInfo">
           <h1>{{user.name}}</h1>
           <h6>{{ user.email}}</h6>
-          <el-button type="danger" @click="loginOut()" round>登出</el-button>
+          <div class="menu">
+            <el-button type="danger" @click="loginOut()" round>登出</el-button>
+          </div>
         </div>
         
       </div>
@@ -109,7 +111,6 @@ export default {
       .then((docs) => {
           this.$data.thoughtLength = docs.data.length;
       })
-
     // 梳理出7天
     let days = [];
     while(days.length < 7){
@@ -122,39 +123,16 @@ export default {
             days.unshift(dayjs(prev).add(-1,'day'));
         }
     }
-
     for(let i = 0;i < days.length;i++){
         let item = days[i];
         days[i] = dayjs(item).format('dddd').replace('星期','周');
     }
-
-    // console.log(days);
-    // Vue.set(this.data,'xAxis',days);
     this.$data.xAxis = days;
-
     // 装载Echarts
     this.$data.myChart = echarts.init(document.querySelector('.chart'));
-    // this.chartOption = ;
-    // this.$data.myChart.setOption({
-    //   xAxis: {
-    //     type: 'category',
-    //     data: this.$data.xAxis
-    //   },
-    //   yAxis: {
-    //     type: 'value'
-    //   },
-    //   series: [
-    //     {
-    //       data:this.$data.ChartData,
-          // type: 'bar',
-    //       // smooth: true
-    //     }
-    //   ]
-    // });
     // 获取recent数据
     this.axios.get(this.Tool.config.address+'/affairRecord/recent7/'+this.user.id)
         .then(docs=>{
-            // console.log(docs.data);
             let mapList = this.xAxis.concat();
             let data = docs.data.reduce((prev,item,i)=>{
                 let week = dayjs(new Date(item.time)).format('dddd').replace('星期','周');
@@ -169,14 +147,9 @@ export default {
                 }
                 return prev;
             },[]);
-            // console.log(data);
             this.$data.ChartData = data;
             this.drawChart();
           })
-    // setInterval(()=>{
-    //   // this.$forceUpdate();
-    //   this.drawChart();
-    // },1000)
   },
   Updated(){
     this.user.id = localStorage.getItem('id');
@@ -187,7 +160,6 @@ export default {
   },
   methods:{
     loginOut(){
-      // console.log('uuu');
       localStorage.setItem('id','');
       localStorage.setItem('headImg','');
       localStorage.setItem('name','');
@@ -208,7 +180,7 @@ export default {
             {
               // data:[8, 9, 1, 1, 1, 10, 6],
               data:this.$data.ChartData,
-              type: 'line',
+              type: 'bar',
               smooth: true
             }
           ]
@@ -217,6 +189,6 @@ export default {
   }
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @import url("./User.less");
 </style>

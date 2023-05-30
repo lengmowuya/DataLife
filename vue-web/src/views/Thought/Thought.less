@@ -4,6 +4,11 @@
     box-sizing: border-box;
     margin:0 auto;
     width:100%;
+    background:#fff;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
     .Header{
         padding-top:40px;
         width:100%;
@@ -12,36 +17,9 @@
         justify-content: center;
         align-items: center;
         // background:#f6f7f9;
+        background:#f6f7f9;
         padding:20px 0px;
     }
-    // 短语生涯数据
-    // .ThoughtCareer{
-    //     width:100%;
-    //     display:flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     .LabelName{
-    //         margin-right:4px;
-    //         font-size:18px;
-    //         user-select: none;
-    //         color:#999;
-    //         color:#98a3b7;
-    //         cursor: pointer;
-    //         user-select: none;
-    //         font-family: caner;
-    //     }
-    //     .RecordBlock{
-    //         padding:0px 16px;
-    //         color:gold;
-    //         border-radius: 4px;
-    //         font-size:18px;
-    //         margin-right:16px;
-    //         user-select: none;
-    //     }
-    //     .AverageRecord{
-    //         margin:0px;
-    //     }
-    //         }
     // 输入板块
     .EnterBlock{
         width:600px;
@@ -51,7 +29,7 @@
         margin-top:20px;
         max-width: 600px;
         flex-direction: column;
-
+        flex-shrink: 0;
         position: relative;
         textarea{
             flex-grow: 1;
@@ -119,59 +97,24 @@
                 font-size: 14px;
                 user-select: none;
                 border-radius: 24px;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                i{
+                    margin-right: 2px;
+                }
                 &:hover{
                     opacity: 0.8;
                 }
             }
         }
-        // 输入板块-状态块选择
-        // .EmotionList{
-        //     background:#fff;
-        //     padding:10px;
-        //     margin-top:5px;
-        //     box-shadow: 0 11px 12px 0 rgb(106 115 133 / 10%) inset;
-        //     border-radius: 8px;
-        //     ul{
-        //         list-style: none;
-        //         display:flex;
-        //         flex-wrap: wrap;
-        //         li{
-        //             width:62px;
-        //             height:24px;
-        //             border:1px solid #f2f2f2;
-        //             border:2px solid #98a3b733;
-        //             cursor: pointer;
-        //             color:#98a3b7;
-        //             border-radius:26px;
-        //             font-size:14px;
-        //             margin-right: 6px;
-        //             user-select: none;
-        //             display:flex;
-        //             justify-content: center;
-        //             align-items: center;
-        //             transition:all 0.25s;
-        //             margin-bottom:5px;
-        //             padding:0px 6px;
-        //             font-family: caner;
-        //             flex-grow: 1;
-        //             &.active{
-        //                 border-color:@mainColor;
-        //                 color:@mainColor;
-        //             }
-        //             &:hover{
-        //                 border-color:@mainColor;
-        //                 background:@mainColor;
-        //                 color:#fff;
-        //             }
-        //         }
-        //     }
-        // }
     }
     // 历史短文列表
     .ThougthList{
         list-style: none;
-        max-width: 800px;
+        max-width: 600px;
         margin:20px auto;
+        flex-grow: 1;
         padding-bottom:20px;
         display:flex;
         justify-content: center;
@@ -187,7 +130,7 @@
             background:#fff;
             border-radius: 12px;
             padding:14px;
-            margin-top:20px;
+            margin-bottom:40px;
             background:#f6f7f9;
             box-sizing: border-box;
             box-shadow: inset 2px 2px 15px 0 rgba(55, 99, 170, 0.11), -8px -8px 20px 0 #fff;
@@ -316,3 +259,21 @@
 
     }
 }
+.NullBlockTip{
+    width:100%;
+    height: 100%;
+    flex-grow: 1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:#98a3b7;
+    font-size:20px;
+    user-select: none;
+    flex-direction: column;
+    opacity: 0.3;
+    i{
+        font-size:100px;
+        margin-bottom:10px;
+    }
+    
+  }

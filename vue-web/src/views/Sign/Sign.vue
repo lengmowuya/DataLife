@@ -10,7 +10,7 @@
                 <input type="text" class="email" title="邮箱地址" placeholder="邮箱地址" v-model="SignBlock.email" />
                 <input type="password" class="password" title="您的密码" placeholder="您的密码" v-model="SignBlock.passward"
                     @keydown.enter="SignUser()" />
-                <input type="button" class="submit" value="完成" @click="SignUser()" />
+                <input type="button" class="submit" value="注册账号" @click="SignUser()" />
             </div>
             <div class="Footer">
                 <span class="goLogin" @click="onSign=false">已有账号?转去登录</span>
@@ -26,7 +26,7 @@
                 <input type="text" class="email" title="邮箱地址" placeholder="邮箱地址" v-model="SignBlock.email" />
                 <input type="password" class="password" title="您的密码" placeholder="您的密码" v-model="SignBlock.passward"
                     @keydown.enter="LoginUser()" />
-                <input type="button" class="submit" value="登录" @click="LoginUser(true)" />
+                <input type="button" class="submit" value="登录账号" @click="LoginUser(true)" />
             </div>
             <div class="Footer">
                 <span class="goLogin" @click="onSign=true">新用户注册</span>
@@ -53,24 +53,25 @@ export default {
         SignUser() {
             this.Work.User.SignUser(this.SignBlock).then(
                 (data) => {
-                    let res = data.res;
-                    let myUser = data.myUser;
-                    let log = res.data.type;
-                    myUser.id = res.data.id;
+                    console.log(data);
+                    let log = data.type;
                     if (log == "success") {
-                        this.$store.state.user = myUser;
+                        this.$store.state.user = data.user;
                         this.$router.push("affair");
+                    } else if (log == "exist") {
+                        alert("该用户已存在,请直接登录");
+                        this.onSign = false;
                     } else if (log == "error") {
-                        alert("该用户已存在");
+                        alert("未知错误,请直接联系DataLife管理人员!");
                     }
                 },
                 (ErrorTip) => {
                     if (ErrorTip == "DataError") {
                         alert("邮箱和密码请勿为空");
                     } else if (ErrorTip == "NetError") {
-                        alert("服务请求错误");
+                        alert("服务请求错误,请直接联系DataLife管理人员!");
                     } else {
-                        alert("未知错误");
+                        alert("未知错误,请直接联系DataLife管理人员!");
                     }
                 }
             );
@@ -81,7 +82,7 @@ export default {
                 .then((data)=>{
                     console.log(data);
                     this.$store.state.user = data.user;
-                    this.$store.state.user.id = data.user._id;
+                    // this.$store.state.user.id = data.user.id;
                     // this.$store.state.isLogin = true;
                     this.$router.push("affair");
                 })
@@ -99,16 +100,6 @@ export default {
                 this.nodeError = true;
             }
         );
-        // if (this.$store.state.user.email == "") {
-        //     let user = this.Tool.getUserStorage();
-        //     if (user.email == "" || user.email == undefined) {
-        //         return;
-        //     }
-        //     this.SignBlock.email = user.email;
-        //     this.SignBlock.passward = user.passward;
-        //     this.$store.state.user.email = user.email;
-        //     this.$store.state.user.passward = user.passward;
-        // }
     },
 };
 </script>

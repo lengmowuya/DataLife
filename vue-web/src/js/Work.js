@@ -15,10 +15,7 @@ let User = {
             }
             axios.post(Tool.config.address + '/user/sign', myUser)
                 .then((res) => {
-                    resolve({
-                        res,
-                        myUser
-                    });
+                    resolve(res.data);
                 })
         });
         return request;
@@ -38,10 +35,7 @@ let User = {
                 }
                 axios.post(Tool.config.address + '/user/login', myUser)
                     .then((res) => {
-                        resolve({
-                            res,
-                            myUser
-                        });
+                        resolve(res.data);
                     }).catch((error) => {
                         reject("NetError", error);
                     })
@@ -58,19 +52,19 @@ let User = {
         let request = new Promise((resolve,reject)=>{
             this.LoginUser(user).then(
                 (data) => {
-                    let res = data.res;
-                    let myUser = data.myUser;
-                    let log = res.data.type;
-                    myUser.id = res.data.id;
+                    // let res = data.res;
+                    let user = data.user;
+                    let log = data.type;
+                    user.id = user._id;
                     if (log == "success") {
-                        let user = res.data.user;
-                        console.log(user);
-                        localStorage.setItem('token',res.data.token);
-                        localStorage.setItem('id',user._id);
+                        let user = data.user;
+                        // console.log(user);
+                        localStorage.setItem('token',data.token);
+                        localStorage.setItem('id',user.id);
                         localStorage.setItem('name',user.name);
                         localStorage.setItem('email',user.email);
                         localStorage.setItem('headImg',user.headImg);
-                        resolve(res.data);
+                        resolve(data);
                     } else if (log == "null") {
                         alert("未找到用户");
                         reject();

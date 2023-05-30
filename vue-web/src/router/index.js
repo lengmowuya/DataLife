@@ -1,6 +1,10 @@
-import { createRouter, createWebHistory ,createWebHashHistory} from 'vue-router'
-import vuex from './../store/index'
-import Thought from '../views/Thought/Thought.vue'
+import { createRouter ,createWebHashHistory} from 'vue-router'
+// import vuex from './../store/index'
+// import Thought from '../views/Thought/Thought.vue'
+// import Affair from '../views/Affair/Affair.vue'
+// import Manager from '../views/Manager/Manager.vue'
+// import User from '../views/User/User.vue'
+// import Sign from '../views/Sign/Sign.vue'
 
 const routes = [
   {
@@ -10,23 +14,24 @@ const routes = [
   {
     path: '/thought',
     name: 'Thought',
-    component: Thought
+    component: () => import(/* webpackChunkName: "Thought" */ '../views/Thought/Thought.vue')
   },{
     path: '/affair',
     name: 'Affair',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Affair/Affair.vue')
+    component: () => import(/* webpackChunkName: "Affair" */ '../views/Affair/Affair.vue')
   },{
     path: '/affair/manager',
     name: 'ManagerSelf',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Manager/Manager.vue')
+    component: () => import(/* webpackChunkName: "Manager" */ '../views/Manager/Manager.vue')
   },{
     path: '/self',
     name: 'Self',
-    component: () => import(/* webpackChunkName: "about" */ '../views/User/User.vue')
-  },{
+    component: () => import(/* webpackChunkName: "User" */ '../views/User/User.vue')
+  }
+  ,{
     path: '/sign',
     name: 'Sign',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Sign/Sign.vue')
+    component: () => import(/* webpackChunkName: "Sign" */ '../views/Sign/Sign.vue')
   }
 ]
 

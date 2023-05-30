@@ -1,5 +1,7 @@
 @import url("./../../App.less");
+
 #SelfPage{
+    width:100%;
     display:flex;
     flex-direction: row;
     // align-items: center;
@@ -41,9 +43,10 @@
         content:'近期活跃';
         position: absolute;
         left:50%;
-        top:10px;
+        top:20px;
         transform: translateX(-50%);
-        color:#ccc;
+        color:#5c7bd9;
+        font-weight: bold;
         font-size:14px;
     }
 }
@@ -61,14 +64,14 @@
     position: relative;
     overflow: hidden;
     flex-grow: 1;
-    ::after{
+    &::after{
         content: '';
         position: absolute;
         left:0px;
         top:0px;
         height:100px;
         width:100%;
-        background:#20529522;
+        background:#20529533;
     }
     img{
         margin-top:30px;
@@ -94,6 +97,15 @@
         line-height: 30px;
         margin-bottom:4px;
         font-weight: normal;
+    }
+    .menu{
+        position: absolute;
+        left:50%;
+        bottom:20px;
+        transform: translateX(-50%);
+        button{
+            padding:0px 50px;
+        }
     }
 }
 .CareerBlock{

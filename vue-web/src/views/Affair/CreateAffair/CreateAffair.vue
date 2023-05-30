@@ -66,6 +66,7 @@ export default {
                     this.Editor.NewAffair.describe = "";
                     // this.getAllAffair();
                     this.Close();
+                    this.$parent.getAllAffair();
                 });
         },
         // 获取所有图标
@@ -92,6 +93,6 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     @import url('./CreateAffair.less');
 </style>

@@ -45,7 +45,7 @@ export default {
                 .post(this.Tool.config.address + "/affairRecord/add", info)
                 .then(() => {
                     // this.$emit("getAllAffair");
-                    this.$parent.getAllAffair();
+                    this.$parent.refreshFinishBlock();
                     this.showPanel(false);
                     this.pushSentence = "";
                 });
@@ -62,6 +62,6 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
     @import url('./ComplateAffair.less');
 </style>

@@ -1,7 +1,6 @@
 <template>
   <!-- 完成的记录板块 -->
   <div class="FinishBlock" v-if="RecordShowDate">
-    <!-- <div class="FinishBlock"> -->
     <!-- 选择的日期头 -->
     <div class="FinishCore">
       <div class="CoreTop">
@@ -22,9 +21,9 @@
               active:
                 Tool.getDateString(RecordShowDate.data) ==
                 Tool.getDateString(item.data),
-            }" @click="
-  (RecordShowDate = dateList[i]), (Record.activeIndex = i)
-  ">
+            }" 
+                @click="(RecordShowDate = dateList[i]), (Record.activeIndex = i)
+              ">
               <span class="HistroyDateIntraday">{{
                 Tool.getMiniDateString(item.data)
               }}</span>
@@ -34,6 +33,10 @@
       </div>
       <!-- 日期下的记录列表 -->
       <div class="FinishRecordList">
+        <div class="NullBlockTip" v-if="RecordShowDate.record.length <= 0">
+            <el-icon><CopyDocument /></el-icon>
+            今日无完成记录,请速度完成一个.
+        </div>
         <!-- 记录块 -->
         <RecordLi v-for="(item, index) in RecordShowDate.record" :key="index" :item="item">
         </RecordLi>
@@ -69,12 +72,8 @@ export default {
         .then(() => {
         });
     },
-  },
-  updated() { },
-  mounted() {
-
     // 将记录按日期归档
-    const CreateDateList = (recordList)=>{
+    CreateDateList (recordList){
       // console.log(recordList);
       let dateObj = recordList.reduce((prev,item)=>{
         let time = new Date(item.time);
@@ -93,10 +92,9 @@ export default {
       }
       this.recordDateList = recordDateList;
       return recordDateList;
-    }
-
+    },
     // 生成当月日期表
-    const extendDateList = ()=>{
+    extendDateList(){
       let dateList = new Array(30);
       // time每次递减一天,并创建Data
       for(let i = 0; i < dateList.length ; i++ ){
@@ -117,14 +115,19 @@ export default {
       })
       this.dateList = dateList;
       this.RecordShowDate = dateList[0];
+    },
+    confirm(){
+      // 获取所有记录
+      this.axios.get(this.Tool.config.address + '/affairRecord/all/' + this.$store.state.user.id)
+        .then(docs => {
+          this.CreateDateList(docs.data);
+          this.extendDateList();
+        })
     }
-
-    // 获取所有记录
-    this.axios.get(this.Tool.config.address + '/affairRecord/all/' + this.$store.state.user.id)
-      .then(docs => {
-        CreateDateList(docs.data);
-        extendDateList();
-      })
+  },
+  updated() { },
+  mounted() {
+    this.confirm();
   },
 };
 </script>

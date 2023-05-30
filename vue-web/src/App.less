@@ -8,10 +8,10 @@
     }
 }
 // 苍耳云黑
-@font-face{
-    font-family: caner;
-    src:url(./assets/font/CangErJinKai01-9128-W04-5.otf);
-}
+// @font-face{
+//     font-family: caner;
+//     src:url(./assets/font/CangErJinKai01-9128-W04-5.otf);
+// }
 
 // @font-face{
 //     font-family: lanting;
@@ -114,6 +114,12 @@ body::-webkit-scrollbar{
         }
     }
 }
+#View{
+    width:100%;
+    flex-grow: 1;
+    display:flex;
+    position: relative;
+}
 @keyframes show {
     to{
       opacity: 1;
@@ -131,55 +137,44 @@ body::-webkit-scrollbar{
         top:0px;
     }
 }
-// // 移动端导航栏
-// #MobileDataLifeNav{
-//     flex-shrink: 0;
-//     width:100%;
-//     height:54px;
-//     display:flex;
-//     justify-content: center;
-//     background:#fff;
-//     border-radius: 0 0 4px 4px;
-//     padding:0px 20px;
-//     box-sizing: border-box;
-//     border-top:1px solid #eee;
-//     position: fixed;
-//     left:0;
-//     bottom:0;
-//     z-index: 999999999;
-//     font-family: caner;
-//     a{
-//         margin-right:16px;
-//         width:75px;
-//         height:100%;
-//         text-align: center;
-//         font-size:12px;
-//         cursor: pointer;
-//         user-select: none;
-//         transition:all 0.3s;
-//         text-decoration: none;
-//         display:flex;
-//         justify-content: center;
-//         align-items: center;
-//         color:#98a3b7;
-//         box-sizing: border-box;
-//         flex-direction: column;
-//         transition: all 0.3s;
-//         i{
-//             margin-bottom: 3px;
-//             font-size:26px;
-//         }
-//         &.router-link-active{
-//             color:@mainColor;
-//             border-color:@mainColor;
-//         }
-//         &.router-link-active i{
-//             color:@mainColor;
-//         }
-//         &:hover{
-//             a{
-//                 color:@mainColor;
-//             }
-//         }
-//     }
+
+// .fade{
 // }
+// .fade-enter-active, .fade-leave-active {
+//     // transition: opacity .2s;
+//     transition: all 0.3s;
+//     // opacity: 1;
+//     position: relative;
+//     left:0px;
+//     top:0px;
+// }
+// .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+//     opacity: 0;
+//     position: relative;
+//     left:0px;
+//     top:30px;
+
+// }
+.fade-enter-active {
+    animation: fade-in ease-out .25s ;
+    // z-index: 99999;
+}
+.fade-leave-active {
+    animation: fade-in ease-out .25s reverse;
+}
+@keyframes fade-in {
+    0% {
+        position: absolute;
+        left:0px;
+        top:30px;
+        opacity: 0.6;
+        z-index: -999;
+    }
+    100% {
+        position: absolute;
+        left:0px;
+        top:0px;
+        opacity: 1;
+        z-index: 999;
+    }
+}

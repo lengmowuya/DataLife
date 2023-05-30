@@ -1,7 +1,7 @@
 <template>
     <div id="AffairPage">
         <div class="PageCore">
-            <FinishBlock></FinishBlock>
+            <FinishBlock ref="FinishBlock"></FinishBlock>
             <div class="MyAffairBigBlock">
                 <div class="AffairListTools">
                     <div class="CreateAffair" @click="onCreateAffair = true">
@@ -13,6 +13,8 @@
                 </div>
                 <div class="MyAffair">
                     <div class="NullBlockTip" v-if="AffairList.length <= 0">
+
+                        <el-icon><FolderOpened /></el-icon>
                         您暂无事务,先创建一个吧!
                     </div>
                     <AffairLi v-for="(item, index) in AffairList" :key="index" @click="
@@ -52,6 +54,9 @@
             };
         },
         methods: {
+            refreshFinishBlock(){
+                this.$refs.FinishBlock.confirm();
+            },
             // 获取所有事务
             getAllAffair() {
                 this.axios.get(

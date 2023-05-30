@@ -12,7 +12,14 @@
                 <el-icon><UserFilled /></el-icon>生涯
             </router-link>
         </header>
-        <router-view />
+        <!-- <router-view /> -->
+        <div id="View">
+            <router-view v-slot="{ Component }">
+                <transition name="fade">
+                  <component :is="Component" />
+                </transition>
+            </router-view>
+        </div>
     </div>
 </template>
 <script>

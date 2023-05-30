@@ -80,7 +80,7 @@
             // 初始化数据
             this.getAllAffair();
             // 页面标题
-            document.title = "DataLife";
+            document.title = "DataLife-首页";
         },
     };
 </script>

@@ -2,7 +2,11 @@
     <div id="DataLife">
         <p class="errorHint" v-if="nodeError">NetError:服务链接错误,请联系DalaLife管理员!</p>
         <!-- 桌面端导航栏 -->
+
         <header id="DataLifeNav" v-if="showNav">
+            <div id="Logo">
+                <img src="./assets/logo.png" alt="">
+            </div>
             <router-link to="/affair">
                 <el-icon><HomeFilled /></el-icon>事务
             </router-link>

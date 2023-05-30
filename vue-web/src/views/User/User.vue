@@ -150,6 +150,7 @@ export default {
             this.$data.ChartData = data;
             this.drawChart();
           })
+    document.title = "DataLife-我的生涯";
   },
   Updated(){
     this.user.id = localStorage.getItem('id');

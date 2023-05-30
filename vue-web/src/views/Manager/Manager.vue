@@ -89,6 +89,8 @@ export default {
     },
     mounted() {
         this.getAllAffair();
+        document.title = "DataLife-管理事务";
+
     },
 };
 </script>

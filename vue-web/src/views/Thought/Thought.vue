@@ -182,6 +182,7 @@ export default {
     },
     mounted(){
         this.updateDate();
+        document.title = "DataLife-想法短语";
     }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div id="DataLife">
+        <p class="errorHint" v-if="nodeError">NetError:服务链接错误,请联系DalaLife管理员!</p>
         <!-- 桌面端导航栏 -->
         <header id="DataLifeNav" v-if="showNav">
             <router-link to="/affair">

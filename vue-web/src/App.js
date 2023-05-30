@@ -13,6 +13,7 @@ export default {
             },
             showEmotionList: false,
             date: {},
+            nodeError:false
         };
     },
     methods: {
@@ -75,6 +76,17 @@ export default {
             console.log(document.body.clientWidth);
             window.location.href= this.Tool.config.mobileAddress;
         }
+
+        this.Work.User.TestServer().then(
+            () => {
+                this.nodeError = false;
+            },
+            (error) => {
+                console.log(error);
+                this.nodeError = true;
+            }
+        );
+        // console.log(process.env.NODE_ENV);
     },
     updated() {
         if (localStorage.getItem('id') == "" || localStorage.getItem('id') == undefined) {

@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
+
 //import x from ''
 export default {
   name:'RecordLi',
@@ -44,7 +46,13 @@ export default {
       if(confirm('你确定要删除改记录吗')){
         this.Work.AffairRecord.RemoveAffairRecord(id)
           .then(doc=>{
-            this.$forceUpdate();
+            this.$parent.confirm();
+              ElMessage({
+                  showClose: true,
+                  message: '该记录已删除',
+                  // type: 'success',
+              })
+            // this.$forceUpdate();
           })
       }
     }

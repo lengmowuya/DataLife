@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
 export default {
     name:'EditorAffair',
     props: [""],
@@ -63,9 +64,19 @@ export default {
                     // this.$emit("closeEditorPanel");
                     this.Close();
                     this.$parent.getAllAffair();
+                    ElMessage({
+                        showClose: true,
+                        message: '修改完成!',
+                        type: 'success',
+                    })
                 })
                 .catch(()=>{
-                    alert("修改失败！");
+                    // alert("修改失败！");
+                    ElMessage({
+                        showClose: true,
+                        message: '修改错误!',
+                        type: 'error',
+                    })
                 })
         },
         // 删除事务
@@ -75,6 +86,10 @@ export default {
                     .then(()=>{
                         this.Close();
                         this.$parent.getAllAffair();
+                        ElMessage({
+                            showClose: true,
+                            message: '事务已删除'
+                        })
                     })
             }
         },

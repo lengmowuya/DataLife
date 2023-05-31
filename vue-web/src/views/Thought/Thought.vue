@@ -36,6 +36,7 @@
     </div>
 </template>
 <script>
+import { ElMessage } from 'element-plus'
 export default {
     name:'Thought',
       data(){
@@ -81,18 +82,30 @@ export default {
             let that = this;
             this.axios.post(this.Tool.config.address + '/thought/add',data)
                 .then(()=>{
-                  that.updateDate();
+                    that.updateDate();
+                    ElMessage({
+                        showClose: true,
+                        message: '记录成功!',
+                        type: 'success',
+                    })
+                    this.writeText = "";
                 });
-            this.writeText = "";
         },
         //用户删除短语
         destoryThou(_id){
+            if(!confirm('确定删除该短语吗?')){
+                return;
+            }
             let data = {
                 _id
             }
             let that = this;
             this.axios.post(this.Tool.config.address + '/thought/remove',data)
             .then(()=>{
+                ElMessage({
+                    showClose: true,
+                    message: '已删除该短语',
+                })
                 that.updateDate();
             });
         },

@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
+
 export default {
     name:'ComplateAffair',
     props: ["onCompleteRecord", "CompleteAffair"],
@@ -47,6 +49,11 @@ export default {
                     // this.$emit("getAllAffair");
                     this.$parent.refreshFinishBlock();
                     this.showPanel(false);
+                    ElMessage({
+                        showClose: true,
+                        message: '事务已完成!',
+                        type: 'success',
+                    })
                     this.pushSentence = "";
                 });
         },

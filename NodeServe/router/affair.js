@@ -21,12 +21,12 @@ app.post('/affair/remove',(req,res)=>{
     Export.Affair.findById(req.body.id)
         .then(result=>{
             result.record.forEach(item=>{
-                Export.AffairRecord.deleteOne({_id:item._id},(err,result)=>{
+                Export.AffairRecord.deleteOne({_id:item._id})
+            })
+            Export.Affair.deleteOne({_id:req.body.id})
+                .then((result)=>{
+                    res.send({type:'success'});
                 })
-            })
-            Export.Affair.deleteOne({_id:req.body.id},(err,result)=>{
-                res.send({type:'success'});
-            })
         })
 
 })
@@ -61,11 +61,22 @@ app.post('/affair/update',(req,res)=>{
         describe:req.body.describe,
         icon:req.body.icon
     }
-    Export.Affair.updateOne({_id:req.body.id},data)
-        .then(()=>{
+    // console.log(req.body);
+    Export.Affair.updateOne({_id:req.body._id},data,(err,result)=>{
+        if(err){
+            console.log(err);
+            res.send({type:'error'});
+
+        }else{
+            console.log(result);
             res.send({type:'success'});
-            
-        })
+
+        }
+    })
+        // .then((result)=>{
+        //     console.log(result);
+        // }).catch(()=>{
+        // })
 })
 
 

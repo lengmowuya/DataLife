@@ -21,7 +21,9 @@
         <div id="View">
             <router-view v-slot="{ Component }">
                 <transition name="fade">
-                  <component :is="Component" />
+                    <!-- <keep-alive include="User,Thought" > -->
+                        <component :is="Component" />
+                    <!-- </keep-alive> -->
                 </transition>
             </router-view>
         </div>

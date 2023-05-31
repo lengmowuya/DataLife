@@ -5,6 +5,7 @@ import { createRouter ,createWebHashHistory} from 'vue-router'
 // import Manager from '../views/Manager/Manager.vue'
 // import User from '../views/User/User.vue'
 // import Sign from '../views/Sign/Sign.vue'
+import {defineAsyncComponent} from 'vue'
 
 const routes = [
   {
@@ -14,24 +15,24 @@ const routes = [
   {
     path: '/thought',
     name: 'Thought',
-    component: () => import(/* webpackChunkName: "Thought" */ '../views/Thought/Thought.vue')
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "Thought" */ '../views/Thought/Thought.vue'))
   },{
     path: '/affair',
     name: 'Affair',
-    component: () => import(/* webpackChunkName: "Affair" */ '../views/Affair/Affair.vue')
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "Affair" */ '../views/Affair/Affair.vue'))
   },{
     path: '/affair/manager',
     name: 'ManagerSelf',
-    component: () => import(/* webpackChunkName: "Manager" */ '../views/Manager/Manager.vue')
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "Manager" */ '../views/Manager/Manager.vue'))
   },{
     path: '/self',
     name: 'Self',
-    component: () => import(/* webpackChunkName: "User" */ '../views/User/User.vue')
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "User" */ '../views/User/User.vue'))
   }
   ,{
     path: '/sign',
     name: 'Sign',
-    component: () => import(/* webpackChunkName: "Sign" */ '../views/Sign/Sign.vue')
+    component: defineAsyncComponent(() => import(/* webpackChunkName: "Sign" */ '../views/Sign/Sign.vue'))
   }
 ]
 

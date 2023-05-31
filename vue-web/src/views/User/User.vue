@@ -97,19 +97,19 @@ export default {
 
     this.axios.get(this.Tool.config.address + '/affairRecord/days/'+this.user.id)
       .then((docs) => {
-          this.$data.affairRecordDays = docs.data.days;
+          this.affairRecordDays = docs.data.days;
       })
     this.axios.get(this.Tool.config.address + '/affairRecord/length/'+this.user.id)
       .then((docs) => {
-          this.$data.affairRecordLength= docs.data.length;
+          this.affairRecordLength= docs.data.length;
       })
     this.axios.get(this.Tool.config.address + '/thought/days/'+this.user.id)
       .then((docs) => {
-          this.$data.thoughtDays = docs.data.days;
+          this.thoughtDays = docs.data.days;
       })
     this.axios.get(this.Tool.config.address + '/thought/length/'+this.user.id)
       .then((docs) => {
-          this.$data.thoughtLength = docs.data.length;
+          this.thoughtLength = docs.data.length;
       })
     // 梳理出7天
     let days = [];
@@ -127,9 +127,9 @@ export default {
         let item = days[i];
         days[i] = dayjs(item).format('dddd').replace('星期','周');
     }
-    this.$data.xAxis = days;
+    this.xAxis = days;
     // 装载Echarts
-    this.$data.myChart = echarts.init(document.querySelector('.chart'));
+    this.myChart = echarts.init(document.querySelector('.chart'));
     // 获取recent数据
     this.axios.get(this.Tool.config.address+'/affairRecord/recent7/'+this.user.id)
         .then(docs=>{
@@ -147,7 +147,7 @@ export default {
                 }
                 return prev;
             },[]);
-            this.$data.ChartData = data;
+            this.ChartData = data;
             this.drawChart();
           })
     document.title = "DataLife-我的生涯";
@@ -157,7 +157,7 @@ export default {
     this.user.headImg = localStorage.getItem('headImg');
     this.user.name = localStorage.getItem('name');
     this.user.email = localStorage.getItem('email');
-
+    this.drawChart();
   },
   methods:{
     loginOut(){

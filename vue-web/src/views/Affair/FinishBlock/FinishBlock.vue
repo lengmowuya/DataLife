@@ -125,7 +125,6 @@ export default {
         })
     }
   },
-  updated() { },
   mounted() {
     this.confirm();
   },

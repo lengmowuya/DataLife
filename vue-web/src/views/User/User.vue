@@ -153,10 +153,10 @@ export default {
     document.title = "DataLife-我的生涯";
   },
   Updated(){
-    this.user.id = localStorage.getItem('id');
-    this.user.headImg = localStorage.getItem('headImg');
-    this.user.name = localStorage.getItem('name');
-    this.user.email = localStorage.getItem('email');
+    // this.user.id = localStorage.getItem('id');
+    // this.user.headImg = localStorage.getItem('headImg');
+    // this.user.name = localStorage.getItem('name');
+    // this.user.email = localStorage.getItem('email');
     this.drawChart();
   },
   methods:{

@@ -38,10 +38,6 @@ export default {
     name:'SignBlock',
     data() {
         return {
-            // formatError:{
-            //     email:false,
-            //     passward:false
-            // },
             type:{
                 isSendCode:false,
                 sendCodeButtonText:'获取验证码'
@@ -60,7 +56,7 @@ export default {
         },
         sendEmailCode(){
             this.type.isSendCode = true;
-            ElMessageBox.alert('一封带着验证码的邮件已发送至您的邮箱，请注意查收。', '提示', {
+            ElMessageBox.alert('验证码邮件已发送至您的邮箱，请注意查收。', '提示', {
                 confirmButtonText: 'OK',
             });
             let time = 0;
@@ -126,13 +122,10 @@ export default {
             );
         },
         LoginUser(){
-            // console.log(this.SignBlock);
             this.Work.User.LoginUserGlobal(this.SignBlock)
                 .then((data)=>{
                     console.log(data);
                     this.$store.state.user = data.user;
-                    // this.$store.state.user.id = data.user.id;
-                    // this.$store.state.isLogin = true;
                     this.$router.push("affair");
                 })
         }
@@ -141,7 +134,6 @@ export default {
         formatEmailError(){
             if(this.SignBlock.email.trim() == '') return false;
             let myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
-            // console.log(myReg.test(this.SignBlock.email));
             return !myReg.test(this.SignBlock.email);
         }
     },

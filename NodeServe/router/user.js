@@ -4,7 +4,7 @@ const app = express();
 const Export = require('./../mongodb/schema');
 // const md5 = require('md5');
 const jwt = require('./../api/jwt.js');
-
+const sendEmail = require('./../api/sendEmail')
 // 注册用户
 app.post('/user/sign',(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);

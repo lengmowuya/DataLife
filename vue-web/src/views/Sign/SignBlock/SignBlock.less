@@ -53,7 +53,6 @@
         input{
             height:40px;
             width:400px;
-            margin-top:20px;
             border:2px solid @mainColor;
             border-radius: 6px;
             transition: all 0.25s;
@@ -98,4 +97,46 @@
             }
         }
     }
+    .Form{
+        max-width: 450px;
+    }
+    .FormLine{
+        width:400px;
+        display:flex;
+        margin-top:20px;
+        &.error{
+            input{
+                border-color: red;
+            }
+            .formErrorHint{
+                display:block;
+            }
+        }
+        .formErrorHint{
+            color:red;
+            padding:3px;
+            padding-bottom:5px;
+            font-size: 12px;
+            font-weight: bold;
+            display:none;
+        }
+    }
+    .EmailCode{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        input{
+            width: auto;
+            flex-shrink: 1;
+            min-width: 0px;
+        }
+        button{
+            padding:4px 12px;
+            letter-spacing: 1px;
+            height: 100%;
+            margin-left:10px;
+            flex-grow: 1;
+        }
+    }
+
 }

@@ -7,10 +7,24 @@
             <p class="title" @click="toLoginPage()">注册</p>
         </div>
         <div class="Form">
-            <input type="text" class="email" title="邮箱地址" placeholder="邮箱地址" v-model="SignBlock.email" />
-            <input type="password" class="password" title="您的密码" placeholder="您的密码" v-model="SignBlock.passward"
+            <div :class="[{FormLine:true},{error:formatEmailError}]" >
+                <input type="text" class="email" title="邮箱地址" placeholder="邮箱地址" v-model="SignBlock.email" />
+                <p class="formErrorHint" >
+                    请输入有效格式的邮箱地址
+                </p>
+            </div>
+            <div class="FormLine EmailCode">
+                <input type="text" title="邮箱验证码" placeholder="验证码" v-model="SignBlock.emailCode" /> 
+                <el-button type="primary" @click="sendEmailCode()" :disabled="type.isSendCode">{{type.sendCodeButtonText}}</el-button>
+            </div>
+            <div class="FormLine">
+                <input type="password" class="password" title="您的密码" placeholder="您的密码" v-model="SignBlock.passward"
                 @keydown.enter="SignUser()" />
-            <input type="button" class="submit" value="注册账号" @click="SignUser()" />
+            </div>
+            <br>
+            <div class="FormLine">
+                <input type="button" class="submit" value="注册账号" @click="SignUser()" />
+            </div>
         </div>
         <div class="Footer">
             <span class="goLogin" @click="toLoginPage()"><el-icon><Back /></el-icon>转去登录</span>
@@ -19,12 +33,22 @@
 </template>
 
 <script>
+import { ElMessage,ElMessageBox } from 'element-plus'
 export default {
     name:'SignBlock',
     data() {
         return {
+            // formatError:{
+            //     email:false,
+            //     passward:false
+            // },
+            type:{
+                isSendCode:false,
+                sendCodeButtonText:'获取验证码'
+            },
             SignBlock: {
                 email: "",
+                emailCode:"",
                 passward: "",
             },
         };
@@ -33,6 +57,22 @@ export default {
         toLoginPage(){
             // this.$parent.changePage(false);
             this.$emit('changePage',false);
+        },
+        sendEmailCode(){
+            this.type.isSendCode = true;
+            ElMessageBox.alert('一封带着验证码的邮件已发送至您的邮箱，请注意查收。', '提示', {
+                confirmButtonText: 'OK',
+            });
+            let time = 0;
+            let interval = setInterval(()=>{
+                this.type.sendCodeButtonText = 30 - time +'秒后重新获取';
+                time++;
+                if(time >= 30){
+                    clearInterval(interval);
+                    this.type.isSendCode = false;
+                    this.type.sendCodeButtonText = '获取验证码';
+                }
+            },1000)
         },
         // 注册新用户
         SignUser() {
@@ -44,19 +84,43 @@ export default {
                         this.$store.state.user = data.user;
                         this.$router.push("affair");
                     } else if (log == "exist") {
-                        alert("该用户已存在,请直接登录");
-                        this.onSign = false;
+                        ElMessage({
+                            showClose: true,
+                            message: '该用户已存在,请直接登录',
+                        })
+                        // this.onSign = false;
+                        this.toLoginPage();
                     } else if (log == "error") {
-                        alert("未知错误,请直接联系DataLife管理人员!");
+                        ElMessage({
+                            showClose: true,
+                            duration:0,
+                            message: '未知错误,请直接联系DataLife管理人员!',
+                            type: 'error'
+                        })
                     }
                 },
                 (ErrorTip) => {
                     if (ErrorTip == "DataError") {
-                        alert("邮箱和密码请勿为空");
+                        ElMessage({
+                            showClose: true,
+                            message: '邮箱和密码请勿为空',
+                            duration:1000,
+                            type: 'warning'
+                        })
                     } else if (ErrorTip == "NetError") {
-                        alert("服务请求错误,请直接联系DataLife管理人员!");
+                        ElMessage({
+                            showClose: true,
+                            duration:0,
+                            message: '服务请求错误,请直接联系DataLife管理人员!',
+                            type: 'error'
+                        })
                     } else {
-                        alert("未知错误,请直接联系DataLife管理人员!");
+                        ElMessage({
+                            showClose: true,
+                            duration:0,
+                            message: '未知错误,请直接联系DataLife管理人员!',
+                            type: 'error'
+                        })
                     }
                 }
             );
@@ -71,6 +135,14 @@ export default {
                     // this.$store.state.isLogin = true;
                     this.$router.push("affair");
                 })
+        }
+    },
+    computed:{
+        formatEmailError(){
+            if(this.SignBlock.email.trim() == '') return false;
+            let myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+            // console.log(myReg.test(this.SignBlock.email));
+            return !myReg.test(this.SignBlock.email);
         }
     },
     mounted() {

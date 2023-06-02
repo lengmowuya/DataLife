@@ -5,7 +5,8 @@
 
         <header id="DataLifeNav" v-if="showNav">
             <div id="Logo">
-                <img src="./assets/logo.png" alt="">
+                <img src="./assets/DataLife.png" alt="">
+                DataLife
             </div>
             <router-link to="/affair">
                 <el-icon><HomeFilled /></el-icon>事务

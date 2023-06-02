@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 const router = require('./router/Router.js');
 
-// console.log(process.env.NODE_ENV);
 require('./mongodb/db.js');
 require('./mongodb/schema.js');
 

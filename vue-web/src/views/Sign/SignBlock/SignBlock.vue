@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="FormLine EmailCode">
-                <input type="text" title="邮箱验证码" placeholder="验证码" v-model="SignBlock.emailCode" /> 
+                <input type="text" maxlength="6" title="邮箱验证码" placeholder="验证码" v-model="SignBlock.emailCode" /> 
                 <el-button type="primary" @click="sendEmailCode()" :disabled="type.isSendCode">{{type.sendCodeButtonText}}</el-button>
             </div>
             <div class="FormLine">
@@ -55,6 +55,15 @@ export default {
             this.$emit('changePage',false);
         },
         sendEmailCode(){
+            // 地址有效性验证
+            if(this.SignBlock.email.trim() == '' || this.formatEmailError){
+                ElMessage({
+                    showClose: true,
+                    message: '请输入有效的邮箱地址!',
+                })
+                return;
+            }
+            this.Work.User.sendEmailCode(this.SignBlock.email);
             this.type.isSendCode = true;
             ElMessageBox.alert('验证码邮件已发送至您的邮箱，请注意查收。', '提示', {
                 confirmButtonText: 'OK',
@@ -133,7 +142,9 @@ export default {
     computed:{
         formatEmailError(){
             if(this.SignBlock.email.trim() == '') return false;
-            let myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+            // let myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+            let myReg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+            
             return !myReg.test(this.SignBlock.email);
         }
     },

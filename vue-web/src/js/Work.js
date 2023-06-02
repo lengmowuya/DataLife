@@ -6,6 +6,7 @@ let User = {
         let request = new Promise((resolve, reject) => {
             let myUser = {
                 // name: SignBlock.email,
+                emailCode:SignBlock.emailCode,
                 email: SignBlock.email,
                 passward: SignBlock.passward
             }
@@ -40,6 +41,17 @@ let User = {
                         reject("NetError", error);
                     })
             });
+        return request;
+    },
+    sendEmailCode(address){
+        let request = new Promise((resolve, reject) => {
+            axios.post(Tool.config.address + '/user/sign/sendEmailCode', {email:address})
+                .then((res) => {
+                    resolve(res.data);
+                }).catch((error) => {
+                    reject("NetError", error);
+                })
+        });
         return request;
     },
     LoginUserGlobal(user){

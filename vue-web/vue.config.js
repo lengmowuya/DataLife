@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'?'/DataLife/':'',
+    // publicPath: process.env.NODE_ENV === 'production'?'/DataLife/':'',
     configureWebpack:{
         module: {
             rules: [

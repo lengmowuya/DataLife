@@ -1,12 +1,12 @@
 {
-    "files.exclude": {
-            "**/node_modules/": true,
-            "another_large_folder_to_ignore": true
-    },
-    "files.watcherExclude": {
-            "**/node_modules/": true,
-            "another_large_folder_to_ignore": true
-    },
+    // "files.exclude": {
+    //         "**/node_modules/": true,
+    //         "another_large_folder_to_ignore": true
+    // },
+    // "files.watcherExclude": {
+    //         "**/node_modules/": true,
+    //         "another_large_folder_to_ignore": true
+    // },
     "[yaml]": {
         "editor.tabSize": 4
     },

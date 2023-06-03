@@ -9,7 +9,7 @@ import ElementPlus  from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-import Work from './js/work.js'
+import Work from './js/Work.js'
 import Tool from './js/Tools.js'
 import Config from './js/config.js'
 // import './iconfont1.css'

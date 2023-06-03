@@ -4,10 +4,10 @@
     <div class="FinishRecordHeader">
       <div class="FinishRecordIcon">
         <svg class="iconBackground" aria-hidden="true">
-          <use :xlink:href="'#icon-' + item.affair.icon" />
+          <use :xlink:href="`#icon${item.affair.icon.group}-${item.affair.icon.font_class}`" />
         </svg>
         <svg class="icon" aria-hidden="true">
-          <use :xlink:href="'#icon-' + item.affair.icon" />
+          <use :xlink:href="`#icon${item.affair.icon.group}-${item.affair.icon.font_class}`" />
         </svg>
       </div>
       <div class="FinishRecordText">

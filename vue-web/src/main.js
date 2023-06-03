@@ -12,8 +12,10 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import Work from './js/work.js'
 import Tool from './js/Tools.js'
 import Config from './js/config.js'
-// import './aliFont.css'
-import './aliFont.js'
+// import './iconfont1.css'
+// import './iconfont2.css'
+import './iconfont1.js'
+import './iconfont2.js'
 const app = createApp(App)
 // 加入全局工具库
 app.config.globalProperties.Tool = Tool;

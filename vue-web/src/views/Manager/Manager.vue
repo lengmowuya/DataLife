@@ -15,10 +15,10 @@
                             <div class="AffairIconBlock">
                                 <div class="AffairIcon">
                                     <svg class="iconBackground" aria-hidden="true">
-                                        <use :xlink:href="'#icon-' + item.icon" />
+                                        <use :xlink:href="`#icon${item.icon.group}-${item.icon.font_class}`" />
                                     </svg>
                                     <svg class="icon" aria-hidden="true">
-                                        <use :xlink:href="'#icon-' + item.icon" />
+                                        <use :xlink:href="`#icon${item.icon.group}-${item.icon.font_class}`" />
                                     </svg>
                                 </div>
                             </div>

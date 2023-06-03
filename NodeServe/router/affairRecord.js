@@ -3,62 +3,62 @@ const app = express();
 const Export = require('./../mongodb/schema');
 const mongoose = require("mongoose");
 const {FormatDate} = require('./../tools/date.tool')
+const jwt = require('./../api/jwt.js');
 const dayjs = require('dayjs');
 
 // 获取用户今天的记录
-app.get('/affairRecord/today/:userId',(req,res)=>{
-    // console.log(new Date());
+app.get('/affairRecord/today/:userId',jwt.verify,(req,res)=>{
     let today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:today}})
-        .populate('affair')
+        .populate({ path: "affair",populate: { path: 'icon' }})
         .then(result=>{
             res.send(result);
         })
 })
 // 获取用户所有的Record
-app.get('/affairRecord/all/:userId',(req,res)=>{
+app.get('/affairRecord/all/:userId',jwt.verify,(req,res)=>{
     Export.AffairRecord.find({owner:req.params.userId})
-        .populate('affair')
+        .populate({ path: "affair",populate: { path: 'icon' }})
         .then(result=>{
             res.send(result);
         })
 })
 
 // 获取用户7天内的记录
-app.get('/affairRecord/recent7/:userId',(req,res)=>{
+app.get('/affairRecord/recent7/:userId',jwt.verify,(req,res)=>{
     let startDate = dayjs(new Date()).add(-7,'day');
     let endDate = new Date();
 
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:startDate,$lte:endDate}})
-        .populate('affair')
+        .populate({ path: "affair",populate: { path: 'icon' }})
         .then(result=>{
             res.send(result);
         })
 })
 // 获取用户30天内的记录
-app.get('/affairRecord/recent7/:userId',(req,res)=>{
+app.get('/affairRecord/recent30/:userId',jwt.verify,(req,res)=>{
     let startDate = dayjs(new Date()).add(-30,'day');
     let endDate = new Date();
 
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:startDate,$lte:endDate}})
-        .populate('affair')
+        .populate({ path: "affair",populate: { path: 'icon' }})
         .then(result=>{
             res.send(result);
         })
 })
 
 // 获取用户范围日期内的记录
-app.get('/affairRecord/date/:userId',(req,res)=>{
+app.get('/affairRecord/date/:userId',jwt.verify,(req,res)=>{
     let startDate;
     let endDate;
     Export.AffairRecord.find({owner:req.params.userId,time:{$gte:startDate,$lte:endDate}})
-        .populate('affair')
+        .populate({ path: "affair",populate: { path: 'icon' }})
         .then(result=>{
             res.send(result);
         })
 })
 // 删除指定记录
-app.post('/affairRecord/remove',(req,res)=>{
+app.post('/affairRecord/remove',jwt.verify,(req,res)=>{
     Export.AffairRecord.deleteOne({_id:req.body.id})
         .then(()=>{
             res.send({type:'success'});
@@ -67,7 +67,7 @@ app.post('/affairRecord/remove',(req,res)=>{
         })
 })
 // 添加记录
-app.post('/affairRecord/add',(req,res)=>{
+app.post('/affairRecord/add',jwt.verify,(req,res)=>{
     // 创建新记录
     let  AffairRecord = {
         sentence:req.body.sentence,
@@ -93,14 +93,14 @@ app.post('/affairRecord/add',(req,res)=>{
 })
 
 // 获取用户事务记录累计数量
-app.get('/affairRecord/length/:userId',(req,res)=>{
+app.get('/affairRecord/length/:userId',jwt.verify,(req,res)=>{
     Export.AffairRecord.find({owner:req.params.userId})
         .then(result=>{
             res.send({length:result.length});
         })
 })
 // 获取用户事务记录累计天数
-app.get('/affairRecord/days/:userId',(req,res)=>{
+app.get('/affairRecord/days/:userId',jwt.verify,(req,res)=>{
     Export.AffairRecord.find({owner:req.params.userId})
         .then(result=>{
             let days = 0;

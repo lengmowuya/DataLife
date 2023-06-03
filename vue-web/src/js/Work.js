@@ -1,5 +1,39 @@
 import axios from 'axios'
 import Tool from './Tools'
+import { ElMessage } from 'element-plus'
+import router from './../router';
+// 请求拦截器-添加token信息
+axios.interceptors.request.use(function (config) {
+    config.headers.token = localStorage.getItem('token');
+    return config;
+  }, function (error) {
+    // axios发生错误的处理
+    return Promise.reject(error);
+  });
+// 请求响应器-响应token是否正常
+axios.interceptors.response.use(res => {
+    // console.log(res);
+    if(res.data.error ==  1 && res.data.type == 'tokenError'){
+        ElMessage({
+            message: "用户Token已过期,请重新登录",
+            type: 'error',
+            duration: 5 * 1000
+        })
+        router.push("sign");
+        return Promise.reject(new Error("Error Message"))
+    }
+    else {
+        return Promise.resolve(res)
+    }
+    },
+    err => {
+        ElMessage({
+            message: err.data.message,
+            type: 'error',
+            duration: 5 * 1000
+        })
+})
+
 // 用户相关业务
 let User = {
     SignUser(SignBlock) {
@@ -56,11 +90,6 @@ let User = {
     },
     LoginUserGlobal(user){
         // 用户登录
-        // if (this.$store.state.isLogin) {
-        //     return new Promise((resolve, reject) => {
-        //         resolve();
-        //     });
-        // }
         let request = new Promise((resolve,reject)=>{
             this.LoginUser(user).then(
                 (data) => {
@@ -70,7 +99,6 @@ let User = {
                     user.id = user._id;
                     if (log == "success") {
                         let user = data.user;
-                        // console.log(user);
                         localStorage.setItem('token',data.token);
                         localStorage.setItem('id',user.id);
                         localStorage.setItem('name',user.name);

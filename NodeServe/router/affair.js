@@ -3,22 +3,22 @@ const app = express();
 const Export = require('./../mongodb/schema');
 const mongoose = require("mongoose");
 const {FormatDate} = require('./../tools/date.tool')
-
+const jwt = require('./../api/jwt.js');
 // 添加事务
-app.post('/affair/add',(req,res)=>{
+app.post('/affair/add',jwt.verify,(req,res)=>{
     // req.body.emotion = mongoose.Types.ObjectId(req.body.emotion);
     // req.body.time = new Date().getTime();
     delete req.body.time;
-    req.body.icon = "miaosha";
-    
+    // req.body.icon = "miaosha";
     new Export.Affair(req.body).save((err,result)=>{
-        if(err) res.send({type:'error'});
+        if(err) {res.send({type:'error'});return;};
         res.send({type:'success'});
     });
 })
 // 删除事务
-app.post('/affair/remove',(req,res)=>{
+app.post('/affair/remove',jwt.verify,(req,res)=>{
     Export.Affair.findById(req.body.id)
+        .populate('icon')
         .then(result=>{
             result.record.forEach(item=>{
                 Export.AffairRecord.deleteOne({_id:item._id})
@@ -31,8 +31,9 @@ app.post('/affair/remove',(req,res)=>{
 
 })
 // 获取单个事务
-app.get('/affair/single/:userId/:affairId',(req,res)=>{
+app.get('/affair/single/:userId/:affairId',jwt.verify,(req,res)=>{
     Export.Affair.findById(req.params.affairId)
+        .populate('icon')
         .populate('record')
         .then(result=>{
             res.send(result);
@@ -43,19 +44,17 @@ app.get('/affair/single/:userId/:affairId',(req,res)=>{
         })
 })
 // 获取所有事务
-app.get('/affair/all/:userId',(req,res)=>{
+app.get('/affair/all/:userId',jwt.verify,(req,res)=>{
+    // console.log(req.headers.token);
     Export.Affair.find({owner:req.params.userId})
+        .populate('icon')
         .populate('record')
         .then(result=>{
             res.send(result);
-            // result.forEach(item=>{
-            //     item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
-            //     item.save();
-            // })
         })
 })
 // 修改事务
-app.post('/affair/update',(req,res)=>{
+app.post('/affair/update',jwt.verify,(req,res)=>{
     let data = {
         name:req.body.name,
         describe:req.body.describe,

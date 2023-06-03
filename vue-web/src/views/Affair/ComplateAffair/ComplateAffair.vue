@@ -9,7 +9,7 @@
             <textarea type="text" v-model="pushSentence" class="PushSentence" placeholder="总结这次完成"></textarea>
             <div class="PushTools">
                 <button :class="[{affirm:true},{active:!isEmpty}]" @click.prevent="addAffairRecord()">
-                    <el-icon><Select /></el-icon>确认
+                    <el-icon><Select /></el-icon>完成
                 </button>
                 <button class="cancel" @click="showPanel(false)">
                     <el-icon><CloseBold /></el-icon>取消

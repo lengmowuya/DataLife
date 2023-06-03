@@ -12,8 +12,8 @@ let AffairSchema = {
         default:Date.now
     },
     icon:{
-        type:String,
-        default:"dakaqiandao"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Icon'
     },
     record:[
         {

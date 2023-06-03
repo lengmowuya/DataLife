@@ -20,7 +20,7 @@ app.post('/user/sign/sendEmailCode',(req,res)=>{
 app.post('/user/sign',(req,res)=>{
     delete req.body.time;
     // 判断邮箱验证码并查看是否过期
-    console.log(userCodeTable);
+    // console.log(userCodeTable);
     // undefined地址避免
     if(userCodeTable[req.body.email] == undefined){
         {res.send({type:'codeLess'});return;}
@@ -32,7 +32,7 @@ app.post('/user/sign',(req,res)=>{
     Export.User.findOne({email:req.body.email})
         .then((result)=>{
             // 判断用户是否存在
-            if(result == undefined){res.send({type:'exist'});return;}
+            if(result != undefined){res.send({type:'exist'});return;}
 
             new Export.User(req.body).save((err,result)=>{
                 if(err) res.send({type:'ERROR'});

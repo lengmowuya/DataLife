@@ -87,6 +87,12 @@ export default {
                     let log = data.type;
                     if (log == "success") {
                         this.$store.state.user = data.user;
+                        ElMessage({
+                            showClose: true,
+                            message: '注册成功,欢迎您!',
+                            type: 'success'
+                        })
+                        // this.$router.push("/affair");
                         this.$router.push("affair");
                     } else if (log == "exist") {
                         ElMessage({

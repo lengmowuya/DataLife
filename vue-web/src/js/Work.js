@@ -50,6 +50,13 @@ let User = {
             }
             axios.post(Tool.config.address + '/user/sign', myUser)
                 .then((res) => {
+                    let user = res.data.user;
+                    console.log(res);
+                    localStorage.setItem('token',res.data.token);
+                    localStorage.setItem('id',user._id);
+                    localStorage.setItem('name',user.name);
+                    localStorage.setItem('email',user.email);
+                    localStorage.setItem('headImg',user.headImg);
                     resolve(res.data);
                 })
         });

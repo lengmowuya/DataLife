@@ -1,4 +1,5 @@
 export default {
+    name:'App',
     data() {
         return {
             showNav: true,
@@ -98,7 +99,6 @@ export default {
             this.$store.state.user.headImg = localStorage.getItem('headImg');
         }
         if(document.body.clientWidth < 800){
-            console.log(document.body.clientWidth);
             window.location.href= this.Tool.config.mobileAddress;
         }
     },

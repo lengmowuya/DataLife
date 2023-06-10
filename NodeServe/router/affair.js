@@ -37,15 +37,10 @@ app.get('/affair/single/:userId/:affairId',jwt.verify,(req,res)=>{
         .populate('record')
         .then(result=>{
             res.send(result);
-            // result.forEach(item=>{
-            //     item.owner =  mongoose.Types.ObjectId('6173b2ab895c17975d21f24c');
-            //     item.save();
-            // })
         })
 })
 // 获取所有事务
 app.get('/affair/all/:userId',jwt.verify,(req,res)=>{
-    // console.log(req.headers.token);
     Export.Affair.find({owner:req.params.userId})
         .populate('icon')
         .populate('record')
@@ -60,14 +55,13 @@ app.post('/affair/update',jwt.verify,(req,res)=>{
         describe:req.body.describe,
         icon:req.body.icon
     }
-    // console.log(req.body);
-    Export.Affair.updateOne({_id:req.body._id},data,(err,result)=>{
+    Export.Affair.updateOne({_id:req.body.id},data,(err,result)=>{
         if(err){
-            console.log(err);
+            // console.log(err);
             res.send({type:'error'});
 
         }else{
-            console.log(result);
+            // console.log(result);
             res.send({type:'success'});
 
         }

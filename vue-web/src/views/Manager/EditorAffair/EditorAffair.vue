@@ -66,7 +66,7 @@ export default {
         UpdateAffair() {
             this.Editor.NewAffair.icon = this.activeIcon._id;
             let NewAffair = this.Editor.NewAffair;
-            NewAffair._id = this.TargetAffair._id;
+            NewAffair.id = this.TargetAffair._id;
             this.Work.Affair.UpdateAffair(NewAffair)
                 .then(() => {
                     // this.$emit("closeEditorPanel");

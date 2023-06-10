@@ -1,5 +1,8 @@
 <template>
     <div id="DataLife">
+        <audio id="audioController" controler>
+            <source src="./../src/assets/audio/award.mp3" type="audio/mpeg">
+          </audio>
         <p class="errorHint" v-if="nodeError">NetError:服务链接错误,请联系DalaLife管理员!</p>
         <!-- 桌面端导航栏 -->
 

@@ -7,7 +7,7 @@ const jwt = require('./../api/jwt.js');
 
 // 添加感悟
 app.post('/thought/add',jwt.verify,(req,res)=>{
-    console.log(new Date(new Date().getTime() + 8 * 60 * 60));
+    // console.log(new Date(new Date().getTime() + 8 * 60 * 60));
     delete req.body.time;
     new Export.Thought(req.body).save((err,result)=>{
         if(err) res.send({type:'error'});

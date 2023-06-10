@@ -1,6 +1,6 @@
 <!-- 组件说明 -->
 <template>
-    <div class='content AffairLi'>
+    <div :class='[{content:true},{AffairLi:true},{isComplete:item.isComplete}]'>
         <div class="AffairContent">
             <div class="AffairIconBlock">
                 <div class="AffairIcon">
@@ -13,9 +13,16 @@
                 </div>
             </div>
             <div class="AffairText">
-                <p class="AffairLiName">{{ item.name }}</p>
+                <p class="AffairLiName">
+                    {{ item.name }}
+                    <div class="level" v-show="item.record.length>0">
+                        Lv {{ item.record.length }}
+                    </div>
+                    <el-icon v-show="item.isComplete" title="今日已完成"><CircleCheckFilled /></el-icon>
+                </p>
                 <p class="AffairLiDescribe">
                     {{ item.describe }}
+                    
                 </p>
             </div>
         </div>

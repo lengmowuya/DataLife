@@ -1,6 +1,6 @@
 <!-- 组件说明 -->
 <template>
-  <div class='conten FinishRecord' v-if="item != null && item != undefined">
+  <div class='conten FinishRecord' v-if="item != null && item != undefined && item.affair != null">
     <div class="FinishRecordHeader">
       <div class="FinishRecordIcon">
         <svg class="iconBackground" aria-hidden="true">

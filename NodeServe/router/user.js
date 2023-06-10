@@ -9,10 +9,10 @@ const userCodeTable = {};
 
 
 app.post('/user/sign/sendEmailCode',(req,res)=>{
-    console.log(req.body.email);
+    // console.log(req.body.email);
     let emailCode = sendEmail(req.body.email);
     userCodeTable[req.body.email] = {emailCode,time:new Date().getTime()};
-    console.log(userCodeTable);
+    // console.log(userCodeTable);
     res.json({});
 })
 
@@ -59,7 +59,6 @@ app.post('/user/login',(req,res)=>{
             if(result == undefined){
                 res.send({type:'null'});
             }else if(result.passward == req.body.passward){
-                
                 // 去掉敏感数据
                 let userCopy = {
                     _id:result._id,

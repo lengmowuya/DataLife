@@ -6,7 +6,7 @@
       <div class="User">
         <img :src="user.headImg" alt="">
         <div class="userInfo">
-          <h1>{{user.name}}</h1>
+          <h1>{{user.name}}<el-icon><EditPen /></el-icon></h1>
           <h6>{{ user.email}}</h6>
           <div class="menu">
             <el-button type="danger" @click="loginOut()" round>登出</el-button>

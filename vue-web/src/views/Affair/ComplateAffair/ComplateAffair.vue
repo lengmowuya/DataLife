@@ -21,7 +21,7 @@
 
 <script>
 import { ElMessage } from 'element-plus'
-
+import audioController from '../../../js/audioController';
 export default {
     name:'ComplateAffair',
     props: ["onCompleteRecord", "CompleteAffair"],
@@ -55,6 +55,8 @@ export default {
                         type: 'success',
                     })
                     this.pushSentence = "";
+                    audioController.playAwardAudio();
+                    this.$parent.getAllAffair();
                 });
         },
         showPanel(bool){

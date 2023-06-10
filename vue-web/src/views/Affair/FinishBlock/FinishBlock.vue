@@ -38,8 +38,42 @@
             今日无完成记录,请速度完成一个.
         </div>
         <!-- 记录块 -->
-        <RecordLi v-for="(item, index) in RecordShowDate.record" :key="index" :item="item">
-        </RecordLi>
+        <div class="MorningRecordBlock RecordBlock" v-show="morningRecord.length">
+          <div class="RecordBlockTitle">
+            凌晨 <span>{{ morningRecord.length }} </span>
+          </div>
+          <div class="ReCordBlockList">
+            <RecordLi v-for="(item, index) in morningRecord" :key="index" :item="item">
+            </RecordLi>
+          </div>
+        </div>
+        <div class="MorningRecordBlock RecordBlock" v-show="forenoonRecord.length">
+          <div class="RecordBlockTitle">
+            上午 <span>{{ forenoonRecord.length }} </span>
+          </div>
+          <div class="ReCordBlockList">
+            <RecordLi v-for="(item, index) in forenoonRecord" :key="index" :item="item">
+            </RecordLi>
+          </div>
+        </div>
+        <div class="MorningRecordBlock RecordBlock" v-show="afternoonRecord.length">
+          <div class="RecordBlockTitle">
+            下午 <span>{{ afternoonRecord.length }} </span>
+          </div>
+          <div class="ReCordBlockList">
+            <RecordLi v-for="(item, index) in afternoonRecord" :key="index" :item="item">
+            </RecordLi>
+          </div>
+        </div>
+        <div class="MorningRecordBlock RecordBlock" v-show="eveningRecord.length">
+          <div class="RecordBlockTitle">
+            傍晚 <span>{{ eveningRecord.length }} </span>
+          </div>
+          <div class="ReCordBlockList">
+            <RecordLi v-for="(item, index) in eveningRecord" :key="index" :item="item">
+            </RecordLi>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -58,6 +92,7 @@ export default {
       recordDateList: [],
       AllAffairDay: 0,
       RecordShowDate: null,
+      recordList:[],
       Record: {
         activeIndex: 0,
       },
@@ -120,10 +155,34 @@ export default {
       // 获取所有记录
       this.axios.get(this.Tool.config.address + '/affairRecord/all/' + this.$store.state.user.id)
         .then(docs => {
+          this.recordList = docs.data;
           this.CreateDateList(docs.data);
           this.extendDateList();
         })
     }
+  },
+  computed:{
+    morningRecord(){
+      return this.RecordShowDate.record.filter(item=>new Date(item.time).getHours() <= 6);
+    },
+    forenoonRecord(){
+      return this.RecordShowDate.record.filter(item=>{
+        let hours = new Date(item.time).getHours();
+        return hours > 6 && hours <= 12
+      });
+    },
+    afternoonRecord(){
+      return this.RecordShowDate.record.filter(item=>{
+        let hours = new Date(item.time).getHours();
+        return hours > 12 && hours <= 17
+      });
+    },
+    eveningRecord(){
+      return this.RecordShowDate.record.filter(item=>{
+        let hours = new Date(item.time).getHours();
+        return hours > 17 && hours <= 24
+      });
+    },
   },
   mounted() {
     this.confirm();

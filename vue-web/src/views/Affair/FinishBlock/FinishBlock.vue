@@ -13,7 +13,7 @@
         <!-- 可供选择的日期 -->
         <div class="HistoryRecord">
           <div v-for="(item, i) in dateList" :key="i" :title="Tool.getDateString(item.data)"
-            :class="{ HistoryBlock: true }">
+            :class="{ HistoryBlock: true,firstWeek:getWeek(item.time) == '周一'}">
             <span v-if="item.record.length > 0" :class="{
               HistoryDateNumber: true,
               plus5: item.record.length >= 5,
@@ -25,7 +25,7 @@
                 @click="(RecordShowDate = dateList[i]), (Record.activeIndex = i)
               ">
               <span class="HistroyDateIntraday">{{
-                Tool.getMiniDateString(item.data)
+                getWeek(item.time)
               }}</span>
             </span>
           </div>
@@ -81,6 +81,7 @@
 
 <script>
 import RecordLi from './RecordLi/RecordLi.vue'
+import dayjs from 'dayjs'
 export default {
   name:'FinishBlock',
   components: {
@@ -106,6 +107,11 @@ export default {
         .post(this.Tool.config.address + "/affairRecord/remove", Affair)
         .then(() => {
         });
+    },
+    getWeek(timeString) {
+      var datas = dayjs(new Date(timeString)).day()
+      var week = ['日', '一', '二', '三', '四', '五', '六']
+      return '周' + week[datas]
     },
     // 将记录按日期归档
     CreateDateList (recordList){

@@ -12,6 +12,9 @@
                 </div>
             </div>
             <el-progress :title="`距离升到${userLevel+1}级,还差${userAllLevel.nextLevelAffair - userAllLevel.allLevel}次完成`" :percentage="userAllLevel.allLevel / userAllLevel.nextLevelAffair * 30 + 70 " :show-text="false" />
+            <div class="upgradeHint">
+                {{ `距离升到${userLevel+1}级,还差${userAllLevel.nextLevelAffair - userAllLevel.allLevel}次完成` }}
+            </div>
         </div>
         <div class="PageCore">
             <FinishBlock ref="FinishBlock"></FinishBlock>

@@ -1,7 +1,7 @@
 @import url('./../../../App.less');
 .HistoryRecord {
-    padding: 5px;
-    margin: 10px 0px;
+    // padding: 5px;
+    // margin: 10px 0px;
     margin-top: 0px;
     display: flex;
     flex-wrap: wrap-reverse;
@@ -12,11 +12,16 @@
     width: 100%;
     .HistoryBlock {
       @height: 30px;
-      width: @height;
+      width: 50px;
       height: @height;
       background: #f9f9f9;
       margin: 2px;
       border-radius: 7px;
+      margin-top:8px;
+      &.firstWeek{
+        margin-left:20px;
+        // border-left:4px solid @mainColor;
+      }
       .HistoryDateNumber {
         width: 100%;
         height: 100%;
@@ -39,15 +44,18 @@
           font-size: 19px;
         }
         .HistroyDateIntraday {
-          font-size: 14px;
-          opacity: 0.5;
-          // color:#252525;
+          font-size: 10px;
+          // opacity: 0.5;  
+          color:green;
+          font-weight: bold;
           font-family: caner;
+          text-shadow: 0px 0px 8px #40c463;
           // font-weight: bold;
-          display: none;
+          // display: none;
         }
         &:not(.active):hover {
-          opacity: 0.5;
+          // opacity: 0.5;
+          box-shadow: 0px 0px 4px green;
         }
         &.plus5 {
           background-color: #40c463;
@@ -74,10 +82,12 @@
     background: #fff;
   box-shadow: 0 4px 20px rgba(0, 25, 104, 0.05);
   border-radius: 6px;
-  padding:10px;
+  padding:14px;
   padding-top:14px;
   width:100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 99999;
 }
 .FinishBlock {
   background: #fff;
@@ -95,7 +105,7 @@
   max-height: calc(100vh - 50px);
   flex-grow: 1;
   .FinishCore{
-    max-width: 1200px;
+    // max-width: 1200px;
       display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -105,7 +115,9 @@
   .FinishDay {
     text-align: center;
     font-size: 16px;
-    padding: 16px 0px;
+    // padding: 10px 0px;
+    // margin-bottom:14px;
+    margin:6px 0px;
     display: flex;
     justify-content: center;
     .text {
@@ -139,18 +151,25 @@
     overflow-y: auto;
     flex-direction: column;
     padding:0px 16px;
-    box-sizing: border-box;
+    // box-sizing: border-box;
+    margin-left:-14px;
     height: 100%;
+    padding-bottom:40px;
+    &::-webkit-scrollbar{
+      background:none;
+      width: 10px;
+    }
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-      opacity: 0.2;
-      background: @mainColor;
+      background: fade(@mainColor3,10);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      border-radius: 10px;
+      background: fade(@mainColor3,20);
     }
     &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
       border-radius: 0;
-      background: @mainColor2;
+      background:none;
     }
     .RecordBlock{
       display:flex;

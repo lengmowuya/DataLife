@@ -15,14 +15,16 @@
     right:10px;
     top:0px;
     height: 50px;
-    width:140px;
+    width:210px;
     // transform: translateX(-100%);
     display:flex;
     // align-items: center;
     color:@mainColor;
     // font-size: 18px;
     flex-direction: column;
-    padding:10px;
+    // align-items: center;
+    justify-content: center;
+    // padding:6px;
     box-sizing: border-box;
     .AllLevelHead{
         // padding-top:6px;
@@ -33,26 +35,33 @@
         box-sizing: border-box;
         user-select: none;
         .userName{
-            max-width: 80px;
+            max-width: 120px;
             overflow: hidden;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             user-select: none;
+            font-size: 14px;
         }
         i{
-            font-size: 20px;
+            font-size: 18px;
             margin-right: 3px;
         }
         .AllLevelNumber{
-            font-size: 14px;
+            font-size: 12px;
             opacity: 0.6;
             margin-left: 3px;
         }
     }
     .el-progress--line{
-        margin-top:4px;
+        margin-top:2px;
         width:100%;
+    }
+    .upgradeHint{
+        font-size:12px;
+        opacity: 0.5;
+        letter-spacing: 1px;
+        margin-top:2px;
     }
 
 

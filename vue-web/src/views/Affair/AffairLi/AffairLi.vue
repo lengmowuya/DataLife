@@ -14,15 +14,20 @@
             </div>
             <div class="AffairText">
                 <p class="AffairLiName">
-                    {{ item.name }}
-                    <div class="level" v-show="item.record.length>0">
-                        Lv {{ item.record.length }}
+                    <p class="name">
+                        {{ item.name }}
+                        <el-icon v-show="item.isComplete" title="今日已完成"><CircleCheckFilled /></el-icon>
+                    </p>
+                    <div 
+                        :class="[{level:true},{level1:item.record.length>10},{level2:item.record.length>100},{level3:item.record.length>1000}]" 
+                        v-show="item.record.length>0"
+                    >
+                        Lv{{ item.record.length }}
                     </div>
-                    <el-icon v-show="item.isComplete" title="今日已完成"><CircleCheckFilled /></el-icon>
+                    
                 </p>
                 <p class="AffairLiDescribe">
                     {{ item.describe }}
-                    
                 </p>
             </div>
         </div>

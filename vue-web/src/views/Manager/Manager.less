@@ -112,11 +112,12 @@
         display:flex;
         transition:all 0.25s;
         border-radius: 6px;
-        border:1px solid #d8dee499;
-        box-shadow: 2px 2px 15px 0 rgba(55 ,99 ,170, 11%), -8px -8px 20px 0 #fff;
+        border:2px solid transparent;
+        box-shadow: 2px 2px 8px 0 rgba(55, 99, 170, 24%), -4px -4px 10px 0 hsl(0deg, 0%, 100% , 52%);
         position: relative;
         overflow: hidden;
         &:hover{
+            border-color: #145bb88a;
             .AffairLiName{
                 color:@mainColor !important;
             }
@@ -180,6 +181,7 @@
                 text-overflow: ellipsis;
                 max-width: calc(100% - 45px);
                 line-height: 24px;
+                transition:all 0.25s;
             }
             .AffairLiDescribe{
                 margin-top:2px;

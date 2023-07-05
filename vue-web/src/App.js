@@ -29,7 +29,6 @@ export default {
         },
         // 用户登录
         LoginUser(User) {
-            // let that = this;
             this.Work.User.LoginUserGlobal(this.SignBlock)
                 .then((data)=>{
                     console.log(data);
@@ -41,7 +40,7 @@ export default {
         },
     },
     beforeCreate() {
-        // this.BindVueToWork();
+        // 挂载工具环境在this
         this.Work.prototype = this;
         this.Work.__proto__ = this;
         this.Work.User.__proto__ = this.Work.__proto__;
@@ -74,7 +73,6 @@ export default {
         }
         
         if(document.body.clientWidth < 800){
-            console.log(document.body.clientWidth);
             window.location.href= this.Tool.config.mobileAddress;
         }
 

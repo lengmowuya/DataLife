@@ -12,6 +12,6 @@ db.once('open',()=>{
 //     passward:dbConfig.passward,
 // }
 // mongoose.connect('mongodb://localhost:27017/DataLife',options)
-mongoose.connect(`mongodb://${dbConfig.user}:${dbConfig.passward}@localhost:27017/DataLife`)
+mongoose.connect(`mongodb://${dbConfig.user}:${dbConfig.passward}@127.0.0.1:27017/datalife`)
 
 // mongoose.connect('mongodb://adminuser:123456@localhost:2017/mydb');

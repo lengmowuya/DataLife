@@ -1,8 +1,9 @@
 // 1.引入包
 const bodyParser = require('body-parser');
 const express = require("express");
+// app.disable('x-powered-by');
 const app = express();
-const port = 3000;
+const port = 5143;
 const router = require('./router/Router.js');
 
 require('./mongodb/db.js');
